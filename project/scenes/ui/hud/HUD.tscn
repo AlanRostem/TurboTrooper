@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/resources/sprite_frames/ui/hud/RushEnergyBarSpriteFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scenes/ui/hud/RushEnergyBar.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/hud/HUD.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui/elements/label/PixelLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/item/scrap/scrap.png" type="Texture" id=6]
+[ext_resource path="res://scenes/ui/hud/ScrapInfo.gd" type="Script" id=7]
+[ext_resource path="res://assets/sprites/ui/hud/health.png" type="Texture" id=8]
+[ext_resource path="res://scenes/ui/hud/HealthInfo.gd" type="Script" id=9]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 8 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "empty",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "full",
+"speed": 5.0
+} ]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 240.0
+margin_bottom = 16.0
+color = Color( 0.188235, 0.384314, 0.188235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RushEnergyBar" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -14.0
+margin_right = 14.0
+margin_bottom = 16.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="First" type="AnimatedSprite" parent="RushEnergyBar"]
+position = Vector2( 24, 8 )
+frames = ExtResource( 1 )
+animation = "empty"
+
+[node name="Second" type="AnimatedSprite" parent="RushEnergyBar"]
+position = Vector2( 14, 8 )
+frames = ExtResource( 1 )
+animation = "empty"
+
+[node name="Third" type="AnimatedSprite" parent="RushEnergyBar"]
+position = Vector2( 4, 8 )
+frames = ExtResource( 1 )
+animation = "empty"
+
+[node name="FlashTimer" type="Timer" parent="RushEnergyBar"]
+wait_time = 0.12
+
+[node name="ScrapInfo" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -36.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 12.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ScrapCountLabel" parent="ScrapInfo" instance=ExtResource( 5 )]
+margin_left = 10.0
+margin_right = 50.0
+margin_bottom = 11.0
+text = "x0"
+
+[node name="TextureRect" type="TextureRect" parent="ScrapInfo"]
+margin_right = 8.0
+margin_bottom = 8.0
+texture = ExtResource( 6 )
+
+[node name="HealthInfo" type="Control" parent="."]
+margin_left = 8.0
+margin_right = 40.0
+margin_bottom = 13.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Control" parent="HealthInfo"]
+margin_left = 8.0
+margin_right = 64.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="First" type="AnimatedSprite" parent="HealthInfo/Health"]
+position = Vector2( -4, 8 )
+frames = SubResource( 3 )
+animation = "full"
+
+[node name="Second" type="AnimatedSprite" parent="HealthInfo/Health"]
+position = Vector2( 8, 8 )
+frames = SubResource( 3 )
+animation = "full"
+
+[node name="Third" type="AnimatedSprite" parent="HealthInfo/Health"]
+position = Vector2( 20, 8 )
+frames = SubResource( 3 )
+animation = "full"
+
+[node name="FlashTimer" type="Timer" parent="HealthInfo"]
+wait_time = 0.3
+
+[connection signal="timeout" from="RushEnergyBar/FlashTimer" to="RushEnergyBar" method="_on_FlashTimer_timeout"]
+[connection signal="timeout" from="HealthInfo/FlashTimer" to="HealthInfo" method="_on_FlashTimer_timeout"]

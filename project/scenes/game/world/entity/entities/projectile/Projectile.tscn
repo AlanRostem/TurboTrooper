@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/world/entity/entities/projectile/Projectile.gd" type="Script" id=2]
+[ext_resource path="res://scenes/game/world/entity/components/hit_box/HitBox.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 1 )
+
+[node name="Projectile" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+is_gravity_enabled = false
+max_velocity = 360.0
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+[node name="CounterHitBox" parent="." index="2" instance=ExtResource( 3 )]
+hit_box_action_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CounterHitBox" index="0"]
+shape = SubResource( 1 )
+
+[node name="HitBox" parent="." index="3" instance=ExtResource( 3 )]
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
+[connection signal="hit_dealt" from="HitBox" to="." method="_on_HitBox_hit_dealt"]

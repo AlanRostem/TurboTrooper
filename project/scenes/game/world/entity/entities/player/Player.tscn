@@ -1,0 +1,161 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game/world/entity/entities/player/Player.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerIdleState.gd" type="Script" id=4]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerState.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerRunState.gd" type="Script" id=6]
+[ext_resource path="res://assets/resources/sprite_frames/char/PlayerSpriteFrames.tres" type="SpriteFrames" id=7]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerAirBorneState.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerCrouchState.gd" type="Script" id=9]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerSlideState.gd" type="Script" id=10]
+[ext_resource path="res://scenes/game/world/entity/entities/player/PlayerSprite.gd" type="Script" id=11]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerWalkState.gd" type="Script" id=12]
+[ext_resource path="res://scenes/game/world/entity/entities/player/PlayerStats.gd" type="Script" id=13]
+[ext_resource path="res://scenes/game/world/entity/components/hit_box/HitBox.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/resources/shaders/OutlineShader.tres" type="Material" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 2 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 7 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 3, 4 )
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 3, 4 )
+
+[node name="Player" instance=ExtResource( 1 )]
+z_index = 1
+collision_layer = 4
+script = ExtResource( 3 )
+collision_mode = 2
+air_acceleration = 250.0
+walk_transition_weight = 0.4
+max_walk_speed = 55.0
+walk_friction = 0.4
+dash_transition_weight = 0.05
+max_dash_speed = 100.0
+dash_friction = 0.1
+jump_speed = 150.0
+min_jump_speed = 50.0
+max_crouch_speed = 15.0
+crouch_transition_weight = 0.3
+slide_speed = 180.0
+slide_friction = 0.02
+slide_mitigation_acceleration = 250.0
+
+[node name="FlashingTimer" type="Timer" parent="." index="0"]
+wait_time = 0.1
+
+[node name="InvincibilityTimer" type="Timer" parent="." index="1"]
+wait_time = 2.0
+one_shot = true
+
+[node name="CrateOpeningTimer" type="Timer" parent="." index="2"]
+wait_time = 0.22
+one_shot = true
+
+[node name="RamSlideHitBox" parent="." index="3" instance=ExtResource( 15 )]
+__team = "player_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RamSlideHitBox" index="0"]
+position = Vector2( 11, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="InHitBox" parent="." index="4" instance=ExtResource( 15 )]
+hit_box_action_type = 1
+__team = "player_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InHitBox" index="0"]
+position = Vector2( 0, -4 )
+shape = SubResource( 2 )
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="." index="5"]
+material = ExtResource( 16 )
+use_parent_material = true
+position = Vector2( 0, -4 )
+frames = ExtResource( 7 )
+animation = "idle"
+playing = true
+script = ExtResource( 11 )
+
+[node name="RushEnergyVisualActivityTimer" type="Timer" parent="PlayerSprite" index="0"]
+wait_time = 0.22
+one_shot = true
+
+[node name="UpperBodyShape" type="CollisionShape2D" parent="." index="6"]
+position = Vector2( 0, -7 )
+shape = SubResource( 3 )
+
+[node name="BodyShape" parent="." index="7"]
+shape = SubResource( 4 )
+
+[node name="PlayerFSM" parent="." index="8" instance=ExtResource( 2 )]
+__inital_state = NodePath("PlayerIdleState")
+
+[node name="PlayerIdleState" parent="PlayerFSM" index="0" instance=ExtResource( 5 )]
+script = ExtResource( 4 )
+is_grounded_state = true
+
+[node name="PlayerWalkState" parent="PlayerFSM" index="1" instance=ExtResource( 5 )]
+script = ExtResource( 12 )
+is_grounded_state = true
+
+[node name="PlayerRunState" parent="PlayerFSM" index="2" instance=ExtResource( 5 )]
+script = ExtResource( 6 )
+is_grounded_state = true
+
+[node name="PlayerAirBorneState" parent="PlayerFSM" index="3" instance=ExtResource( 5 )]
+script = ExtResource( 8 )
+
+[node name="PlayerCrouchState" parent="PlayerFSM" index="4" instance=ExtResource( 5 )]
+script = ExtResource( 9 )
+is_grounded_state = true
+
+[node name="PlayerSlideState" parent="PlayerFSM" index="5" instance=ExtResource( 5 )]
+script = ExtResource( 10 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="9"]
+current = true
+limit_top = 0
+limit_bottom = 0
+drag_margin_h_enabled = true
+drag_margin_top = 1.0
+drag_margin_bottom = 1.0
+
+[node name="PlayerStats" type="Node2D" parent="." index="10"]
+script = ExtResource( 13 )
+
+[node name="RushEnergyRechargeTimer" type="Timer" parent="PlayerStats" index="0"]
+wait_time = 0.4
+
+[node name="RushEnergyRechargeStartingDelayTimer" type="Timer" parent="PlayerStats" index="1"]
+wait_time = 2.2
+one_shot = true
+
+[node name="RoofDetector" type="Area2D" parent="." index="11"]
+collision_layer = 0
+
+[node name="UpperBodyShape" type="CollisionShape2D" parent="RoofDetector" index="0"]
+position = Vector2( 0, -7 )
+shape = SubResource( 5 )
+
+[connection signal="timeout" from="FlashingTimer" to="." method="_on_FlashingTimer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+[connection signal="timeout" from="CrateOpeningTimer" to="." method="_on_CrateOpeningTimer_timeout"]
+[connection signal="hit_dealt" from="RamSlideHitBox" to="." method="_on_RamSlideHitBox_hit_dealt"]
+[connection signal="hit_received" from="InHitBox" to="PlayerStats" method="_on_InHitBox_hit_received"]
+[connection signal="timeout" from="PlayerSprite/RushEnergyVisualActivityTimer" to="PlayerSprite" method="_on_RushEnergyVisualActivityTimer_timeout"]
+[connection signal="rush_energy_consumed" from="PlayerStats" to="PlayerSprite" method="_on_PlayerStats_rush_energy_consumed"]
+[connection signal="timeout" from="PlayerStats/RushEnergyRechargeTimer" to="PlayerStats" method="_on_RushEnergyRechargeTimer_timeout"]
+[connection signal="timeout" from="PlayerStats/RushEnergyRechargeStartingDelayTimer" to="PlayerStats" method="_on_RushEnergyRechargeStartingDelayTimer_timeout"]
+[connection signal="body_entered" from="RoofDetector" to="." method="_on_RoofDetector_body_entered"]
+[connection signal="body_exited" from="RoofDetector" to="." method="_on_RoofDetector_body_exited"]

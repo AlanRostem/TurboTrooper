@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.gd" type="Script" id=1]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Finite state machine for game objects such as the player, enemies and more. This uses a node path for the initial state which must be specified for everything to work. The state objects are added simply by adding them to this node."
+}
