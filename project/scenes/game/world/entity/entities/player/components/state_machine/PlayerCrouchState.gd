@@ -1,7 +1,11 @@
 extends "res://scenes/game/world/entity/entities/player/components/state_machine/PlayerState.gd"
 
+const MIN_SLIDE_UNDER_ROOF_SPEED = 20
+
 func movement_update(delta):
 	if player.is_roof_above(): 
+		if !player.is_moving_too_fast(MIN_SLIDE_UNDER_ROOF_SPEED):
+			player.set_velocity_x(MIN_SLIDE_UNDER_ROOF_SPEED * player.get_looking_vector().x)
 		return
 		
 	player.apply_slide_friction(delta)
