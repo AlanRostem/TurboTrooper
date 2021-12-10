@@ -245,7 +245,7 @@ position = Vector2( 1220, 32 )
 position = Vector2( 312, 120 )
 
 [node name="BombCollectible" parent="GameWorld/EntityPool" index="5" instance=ExtResource( 10 )]
-position = Vector2( 132.129, 96.6401 )
+position = Vector2( 139, 125 )
 collision_mode = 2
 
 [editable path="GameWorld"]
