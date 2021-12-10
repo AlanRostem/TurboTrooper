@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/entities/item/CollectibleItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/objective/ObjectiveItem.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/item/objective/arrow.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "pointing",
+"speed": 3.0
+} ]
 
 [node name="ObjectiveItem" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -9,3 +26,10 @@ __disappear_on_pickup = false
 __disappear_on_timeout = false
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
+
+[node name="ArrowSprite" type="AnimatedSprite" parent="." index="5"]
+position = Vector2( 0, -18 )
+frames = SubResource( 3 )
+animation = "pointing"
+frame = 1
+playing = true

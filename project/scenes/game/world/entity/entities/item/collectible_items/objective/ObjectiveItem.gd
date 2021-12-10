@@ -6,6 +6,8 @@ const MIN_FOLLOW_X_DIST = 16
 
 onready var __body_shape = $BodyShape
 
+onready var __arrow_sprite = $ArrowSprite
+
 func _physics_process(delta):
 	if !_collected: return
 	var dir = parent_world.player_node.position - position
@@ -24,3 +26,4 @@ func set_attached_to_player(value):
 	_collected = value
 	__body_shape.disabled = value
 	is_gravity_enabled = !value
+	__arrow_sprite.visible = !value
