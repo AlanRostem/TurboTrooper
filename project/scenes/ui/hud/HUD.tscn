@@ -3,8 +3,8 @@
 [ext_resource path="res://assets/resources/sprite_frames/ui/hud/RushEnergyBarSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/ui/hud/RushEnergyBar.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/hud/HUD.gd" type="Script" id=3]
-[ext_resource path="res://scenes/ui/elements/label/PixelLabel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/sprites/item/scrap/scrap.png" type="Texture" id=6]
+[ext_resource path="res://scenes/ui/elements/label/GameBoyLabel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/item/scrap/scrap_small.png" type="Texture" id=6]
 [ext_resource path="res://scenes/ui/hud/ScrapInfo.gd" type="Script" id=7]
 [ext_resource path="res://assets/sprites/ui/hud/health.png" type="Texture" id=8]
 [ext_resource path="res://scenes/ui/hud/HealthInfo.gd" type="Script" id=9]
@@ -39,30 +39,28 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
+margin_top = 128.0
 margin_right = 240.0
-margin_bottom = 16.0
-color = Color( 0.188235, 0.384314, 0.188235, 1 )
+margin_bottom = 144.0
+color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GlobalMessage" parent="." instance=ExtResource( 5 )]
-visible = false
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -40.0
-margin_right = 0.0
-margin_bottom = -29.0
-text = "THIS IS A MESSAGE!"
-align = 1
+[node name="GlobalMessage" parent="." instance=ExtResource( 4 )]
+margin_left = 2.0
+margin_top = 134.0
+margin_right = 118.0
+margin_bottom = 144.0
+text = "time:54"
 
 [node name="RushEnergyBar" type="Control" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -14.0
-margin_right = 14.0
-margin_bottom = 16.0
+margin_left = -78.0
+margin_top = 124.0
+margin_right = -50.0
+margin_bottom = 140.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true,
@@ -90,21 +88,21 @@ wait_time = 0.12
 [node name="ScrapInfo" type="Control" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -36.0
-margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 12.0
+margin_left = -66.0
+margin_top = 128.0
+margin_right = -33.0
+margin_bottom = 137.0
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="ScrapCountLabel" parent="ScrapInfo" instance=ExtResource( 5 )]
+[node name="ScrapCountLabel" parent="ScrapInfo" instance=ExtResource( 4 )]
 margin_left = 10.0
 margin_right = 50.0
-margin_bottom = 11.0
-text = "x0"
+text = "x0
+"
 
 [node name="TextureRect" type="TextureRect" parent="ScrapInfo"]
 margin_right = 8.0
@@ -112,40 +110,32 @@ margin_bottom = 8.0
 texture = ExtResource( 6 )
 
 [node name="HealthInfo" type="Control" parent="."]
-margin_left = 8.0
-margin_right = 40.0
-margin_bottom = 13.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -25.0
+margin_top = 125.0
+margin_right = 7.0
+margin_bottom = 138.0
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Health" type="Control" parent="HealthInfo"]
-margin_left = 8.0
-margin_right = 64.0
-margin_bottom = 16.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="First" type="AnimatedSprite" parent="HealthInfo/Health"]
-position = Vector2( -4, 8 )
-frames = SubResource( 3 )
-animation = "full"
-
-[node name="Second" type="AnimatedSprite" parent="HealthInfo/Health"]
-position = Vector2( 8, 8 )
-frames = SubResource( 3 )
-animation = "full"
-
-[node name="Third" type="AnimatedSprite" parent="HealthInfo/Health"]
-position = Vector2( 20, 8 )
+[node name="HeartIcon" type="AnimatedSprite" parent="HealthInfo"]
+position = Vector2( 4, 8 )
 frames = SubResource( 3 )
 animation = "full"
 
 [node name="FlashTimer" type="Timer" parent="HealthInfo"]
 wait_time = 0.3
+
+[node name="HealthLabel" parent="HealthInfo" instance=ExtResource( 4 )]
+margin_left = 9.0
+margin_top = 3.0
+margin_right = 49.0
+margin_bottom = 17.0
+text = "-3"
 
 [connection signal="timeout" from="RushEnergyBar/FlashTimer" to="RushEnergyBar" method="_on_FlashTimer_timeout"]
 [connection signal="timeout" from="HealthInfo/FlashTimer" to="HealthInfo" method="_on_FlashTimer_timeout"]

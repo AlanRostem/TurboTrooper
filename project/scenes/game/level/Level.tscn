@@ -16,4 +16,10 @@ script = ExtResource( 2 )
 
 [node name="Player" parent="GameWorld/EntityPool" index="0" instance=ExtResource( 4 )]
 
+[node name="ScrapHoverText" parent="GameWorld" index="2"]
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+
+[node name="WeaponHoverText" parent="GameWorld" index="3"]
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+
 [editable path="GameWorld"]
