@@ -15,7 +15,7 @@ extents = Vector2( 5, 6 )
 script = ExtResource( 2 )
 __player_sprite_frames = ExtResource( 4 )
 __collectible_sprite = ExtResource( 5 )
-__attack_delay = 0.27
+__attack_delay = 0.3
 
 [node name="OutHitBox" parent="." index="1" instance=ExtResource( 3 )]
 __team = "player_team"

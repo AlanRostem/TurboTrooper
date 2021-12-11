@@ -15,6 +15,11 @@ var __is_slamming = false
 
 func _physics_process(delta):
 	var player = get_owner_player()
+	if player.is_roof_above():
+		set_can_attack(false)
+		return
+	else:
+		set_can_attack(true)
 	__hit_box.scale.x = player.get_horizontal_looking_dir()
 	var dir = player.get_looking_vector()
 	if dir.y != 0:
@@ -49,7 +54,6 @@ func _on_Sword_attacked():
 	var player = get_owner_player()
 	if player.is_on_ground():
 		player.set_velocity_x(0)
-	if !player.is_roof_above():
 		player.set_can_move_on_ground(false)
 	__slash_sound.play()
 

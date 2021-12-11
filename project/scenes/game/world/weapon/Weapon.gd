@@ -19,19 +19,20 @@ onready var __player_owner = get_parent().get_parent()
 onready var __attack_delay_timer = $AttackDelayTimer
 
 var __can_attack = true
+var __is_attacking = false
 
 func is_attacking():
-	return !__can_attack
+	return __is_attacking
 	
 func set_can_attack(value):
 	__can_attack = value
 
 func attack():
-	if !__can_attack: return
+	if !__can_attack or __is_attacking: return
 	
 	if use_attacking_delay:
 		__attack_delay_timer.start(__attack_delay)
-	__can_attack = false
+	__is_attacking = true
 	
 	if __player_owner.get_looking_vector().y > 0 and __player_owner.state_machine.get_current_state() == "PlayerAirBorneState":
 		emit_signal("downwards_attack")
@@ -39,7 +40,7 @@ func attack():
 		emit_signal("attacked")
 		
 func manually_end_attack_cycle():
-	__can_attack = true
+	__is_attacking = false
 	__attack_delay_timer.stop()
 	emit_signal("attack_cycle_end")
 	
@@ -59,7 +60,8 @@ func drop():
 	emit_signal("dropped")
 	__attack_delay_timer.stop()
 	__can_attack = true
+	__is_attacking = false
 
 func _on_AttackDelayTimer_timeout():
-	__can_attack = true
+	__is_attacking = false
 	emit_signal("attack_cycle_end")

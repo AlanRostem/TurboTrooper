@@ -1,6 +1,6 @@
 extends "res://scenes/game/world/entity/entities/player/components/state_machine/PlayerState.gd"
 
-const MIN_SLIDE_UNDER_ROOF_SPEED = 20
+const MIN_SLIDE_UNDER_ROOF_SPEED = 55
 
 func movement_update(delta):
 	if player.is_roof_above(): 
