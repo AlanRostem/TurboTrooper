@@ -27,6 +27,9 @@ func _ready():
 	if player != null:
 		assign_player_node(player)
 
+func get_parent_level():
+	return __parent_level
+
 func assign_player_node(player):
 	player_node = player
 	__parent_level.player_node = player

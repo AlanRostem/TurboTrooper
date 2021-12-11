@@ -9,6 +9,8 @@ var __player_found = null
 
 var _collected = false
 
+var __can_collect = true
+
 export var __disappear_on_pickup = true
 export var __disappear_on_timeout = true
 
@@ -23,7 +25,7 @@ func _process(delta):
 		__flash_timer.start()
 		__flashing = true
 		
-	if __player_found != null:
+	if __player_found != null and __can_collect:
 		if _pick_up_condition(__player_found) and !_collected:
 			_collected = true
 			_player_collected(__player_found)
@@ -33,6 +35,9 @@ func _process(delta):
 func _physics_process(delta):
 	if is_on_floor():
 		set_velocity_x(0)
+		
+func set_can_collect(value):
+	__can_collect = value
 
 func _player_collected(player):
 	pass

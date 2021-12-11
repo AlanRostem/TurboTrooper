@@ -27,3 +27,6 @@ func set_current_level(level_scene):
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)
+	
+func get_hud(): 
+	return __hud

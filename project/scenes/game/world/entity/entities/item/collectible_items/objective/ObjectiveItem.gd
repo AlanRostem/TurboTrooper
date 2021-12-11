@@ -19,9 +19,20 @@ func _physics_process(delta):
 		set_velocity_x(lerp(prev.x, 0, FOLLOW_LERP_WEIGHT))
 	set_velocity_y(lerp(prev.y, vel.y, FOLLOW_LERP_WEIGHT))
 
+func set_arrow_visible(value):
+	__arrow_sprite.visible = value
+
 func _player_collected(player):
+	set_velocity(Vector2.ZERO)
 	set_attached_to_player(true)
-		
+	_on_attached_to_player(player)
+	
+func _on_attached_to_player(player):
+	pass
+	
+func _on_detached_from_player(player):
+	pass
+
 func set_attached_to_player(value):
 	_collected = value
 	__body_shape.disabled = value

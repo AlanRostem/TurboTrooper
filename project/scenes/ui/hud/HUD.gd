@@ -17,4 +17,4 @@ func set_global_message(text):
 		__message.visible = true
 	
 func hide_global_message():
-	__message.visibe = false
+	__message.visible = false
