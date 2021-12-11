@@ -54,7 +54,7 @@ material = ExtResource( 8 )
 use_parent_material = true
 
 [node name="DamageTakenTimer" type="Timer" parent="." index="7"]
-wait_time = 0.1
+wait_time = 0.066
 one_shot = true
 
 [connection signal="damage_taken" from="HealthComponent" to="." method="_on_HealthComponent_damage_taken"]

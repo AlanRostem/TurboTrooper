@@ -78,27 +78,14 @@ __team = "player_team"
 position = Vector2( 0, -4 )
 shape = SubResource( 2 )
 
-[node name="PlayerSprite" type="AnimatedSprite" parent="." index="5"]
-material = ExtResource( 14 )
-use_parent_material = true
-position = Vector2( 0, -4 )
-frames = ExtResource( 7 )
-animation = "idle"
-playing = true
-script = ExtResource( 11 )
-
-[node name="RushEnergyVisualActivityTimer" type="Timer" parent="PlayerSprite" index="0"]
-wait_time = 0.22
-one_shot = true
-
-[node name="UpperBodyShape" type="CollisionShape2D" parent="." index="6"]
+[node name="UpperBodyShape" type="CollisionShape2D" parent="." index="5"]
 position = Vector2( 0, -7 )
 shape = SubResource( 3 )
 
-[node name="BodyShape" parent="." index="7"]
+[node name="BodyShape" parent="." index="6"]
 shape = SubResource( 4 )
 
-[node name="PlayerFSM" parent="." index="8" instance=ExtResource( 2 )]
+[node name="PlayerFSM" parent="." index="7" instance=ExtResource( 2 )]
 __inital_state = NodePath("PlayerIdleState")
 
 [node name="PlayerIdleState" parent="PlayerFSM" index="0" instance=ExtResource( 5 )]
@@ -123,7 +110,7 @@ is_grounded_state = true
 [node name="PlayerSlideState" parent="PlayerFSM" index="5" instance=ExtResource( 5 )]
 script = ExtResource( 10 )
 
-[node name="Camera2D" type="Camera2D" parent="." index="9"]
+[node name="Camera2D" type="Camera2D" parent="." index="8"]
 current = true
 limit_top = 0
 limit_bottom = 0
@@ -131,7 +118,7 @@ drag_margin_h_enabled = true
 drag_margin_top = 1.0
 drag_margin_bottom = 1.0
 
-[node name="PlayerStats" type="Node2D" parent="." index="10"]
+[node name="PlayerStats" type="Node2D" parent="." index="9"]
 script = ExtResource( 13 )
 
 [node name="RushEnergyRechargeTimer" type="Timer" parent="PlayerStats" index="0"]
@@ -141,21 +128,34 @@ wait_time = 0.4
 wait_time = 2.2
 one_shot = true
 
-[node name="RoofDetector" type="Area2D" parent="." index="11"]
+[node name="RoofDetector" type="Area2D" parent="." index="10"]
 collision_layer = 0
 
 [node name="UpperBodyShape" type="CollisionShape2D" parent="RoofDetector" index="0"]
 position = Vector2( 0, -7 )
 shape = SubResource( 5 )
 
+[node name="PlayerSprite" type="AnimatedSprite" parent="." index="11"]
+material = ExtResource( 14 )
+use_parent_material = true
+position = Vector2( 0, -4 )
+frames = ExtResource( 7 )
+animation = "idle"
+playing = true
+script = ExtResource( 11 )
+
+[node name="RushEnergyVisualActivityTimer" type="Timer" parent="PlayerSprite" index="0"]
+wait_time = 0.22
+one_shot = true
+
 [connection signal="timeout" from="FlashingTimer" to="." method="_on_FlashingTimer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
 [connection signal="timeout" from="CrateOpeningTimer" to="." method="_on_CrateOpeningTimer_timeout"]
 [connection signal="hit_dealt" from="RamSlideHitBox" to="." method="_on_RamSlideHitBox_hit_dealt"]
 [connection signal="hit_received" from="InHitBox" to="PlayerStats" method="_on_InHitBox_hit_received"]
-[connection signal="timeout" from="PlayerSprite/RushEnergyVisualActivityTimer" to="PlayerSprite" method="_on_RushEnergyVisualActivityTimer_timeout"]
 [connection signal="rush_energy_consumed" from="PlayerStats" to="PlayerSprite" method="_on_PlayerStats_rush_energy_consumed"]
 [connection signal="timeout" from="PlayerStats/RushEnergyRechargeTimer" to="PlayerStats" method="_on_RushEnergyRechargeTimer_timeout"]
 [connection signal="timeout" from="PlayerStats/RushEnergyRechargeStartingDelayTimer" to="PlayerStats" method="_on_RushEnergyRechargeStartingDelayTimer_timeout"]
 [connection signal="body_entered" from="RoofDetector" to="." method="_on_RoofDetector_body_entered"]
 [connection signal="body_exited" from="RoofDetector" to="." method="_on_RoofDetector_body_exited"]
+[connection signal="timeout" from="PlayerSprite/RushEnergyVisualActivityTimer" to="PlayerSprite" method="_on_RushEnergyVisualActivityTimer_timeout"]
