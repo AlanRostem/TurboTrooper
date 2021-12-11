@@ -7,12 +7,14 @@ const SLAM_SPEED = 230
 onready var __hit_box = $OutHitBox
 onready var __hit_box_shape = $OutHitBox/CollisionShape2D
 
+onready var __slash_sound = $SlashSound
+onready var __deflect_sound = $DeflectSound
+
 var __boost_damage = false
 var __is_slamming = false
 
 func _physics_process(delta):
 	var player = get_owner_player()
-	set_can_attack(!player.is_roof_above())
 	__hit_box.scale.x = player.get_horizontal_looking_dir()
 	var dir = player.get_looking_vector()
 	if dir.y != 0:
@@ -37,6 +39,7 @@ func _on_OutHitBox_hit_dealt(hitbox):
 		damage = CRITICAL_DAMAGE
 	elif parent is Projectile:
 		parent.deflect(HitBox.PLAYER_TEAM, STANDARD_DAMAGE)
+		__deflect_sound.play()
 	hitbox.take_hit(__hit_box, damage, {
 		"knock_back": get_owner_player().get_horizontal_looking_direction()
 	}, HealthComponent.DAMAGE_TYPE_MELEE)
@@ -46,7 +49,9 @@ func _on_Sword_attacked():
 	var player = get_owner_player()
 	if player.is_on_ground():
 		player.set_velocity_x(0)
-	player.set_can_move_on_ground(false)
+	if !player.is_roof_above():
+		player.set_can_move_on_ground(false)
+	__slash_sound.play()
 
 func _on_Sword_attack_cycle_end():
 	var player = get_owner_player()
