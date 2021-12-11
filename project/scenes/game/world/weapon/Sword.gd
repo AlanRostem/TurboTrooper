@@ -12,6 +12,7 @@ var __is_slamming = false
 
 func _physics_process(delta):
 	var player = get_owner_player()
+	set_can_attack(!player.is_roof_above())
 	__hit_box.scale.x = player.get_horizontal_looking_dir()
 	var dir = player.get_looking_vector()
 	if dir.y != 0:
@@ -69,3 +70,4 @@ func _on_Sword_dropped():
 	__hit_box_shape.disabled = true
 	var player = get_owner_player()
 	player.set_can_move_on_ground(true)
+	use_attacking_delay = true

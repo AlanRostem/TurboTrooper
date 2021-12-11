@@ -39,7 +39,6 @@ var __is_crouched = false
 var __looking_vector = Vector2.RIGHT
 var __horizontal_looking_direction = 1
 
-var __is_roof_above = false
 
 var __can_move_on_ground = true
 var __is_opening_crate = false
@@ -58,6 +57,9 @@ onready var __ram_slide_hit_box = $RamSlideHitBox
 onready var __ram_slide_hit_box_shape = $RamSlideHitBox/CollisionShape2D
 
 onready var __crate_opening_timer = $CrateOpeningTimer
+
+onready var __right_roof_ray = $RoofDetector/RightRay
+onready var __left_roof_ray = $RoofDetector/LeftRay
 
 #func _physics_process(delta):
 #	print(__dash_charge)
@@ -197,7 +199,7 @@ func start_invinvibility_sequence():
 	visible = false
 	
 func is_roof_above():
-	return __is_roof_above
+	return __right_roof_ray.is_colliding() or __left_roof_ray.is_colliding()
 	
 func is_opening_crate():
 	return __is_opening_crate
@@ -224,12 +226,6 @@ func _on_InvincibilityTimer_timeout():
 	set_hit_box_enabled(true)
 	__flashing_timer.stop()
 	visible = true
-
-func _on_RoofDetector_body_entered(body):
-	__is_roof_above = true
-
-func _on_RoofDetector_body_exited(body):
-	__is_roof_above = false
 
 func _on_RamSlideHitBox_hit_dealt(hitbox):
 	hitbox.take_hit(__ram_slide_hit_box, RAM_SLIDE_DAMAGE, {
