@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/game/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/BlasterCollectible.tscn" type="PackedScene" id=3]
@@ -8,7 +8,6 @@
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/brute/Brute.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/SwordCollectible.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rodder/Rodder.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/objective/BombCollectible.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 8, 0, 8, 8, 0, 8, 8 )
@@ -241,8 +240,5 @@ position = Vector2( 1220, 32 )
 
 [node name="Rodder2" parent="GameWorld/EntityPool" index="4" instance=ExtResource( 9 )]
 position = Vector2( 312, 120 )
-
-[node name="BombCollectible" parent="GameWorld/EntityPool" index="5" instance=ExtResource( 10 )]
-position = Vector2( 139, 125 )
 
 [editable path="GameWorld"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/game/GameHandler.gd" type="Script" id=1]
-[ext_resource path="res://scenes/game/level/levels/BombTestLevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game/level/levels/TestingLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/resources/shaders/WhiteningShader.tres" type="Material" id=4]
 
