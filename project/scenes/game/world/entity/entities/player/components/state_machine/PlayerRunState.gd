@@ -30,6 +30,6 @@ func movement_update(delta):
 			parent_state_machine.transition_to("PlayerSlideState", {
 				"boost": true
 			})
+			player.clear_dash_charge()
 		elif !slide:
 			parent_state_machine.transition_to("PlayerSlideState")
-		player.clear_dash_charge()
