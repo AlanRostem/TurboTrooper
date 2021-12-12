@@ -25,11 +25,11 @@ func movement_update(delta):
 		player.clear_dash_charge()
 		return
 			
-	if crouch or slide:
+	if crouch or slide_by_fire_button:
 		if player.has_max_dash_charge() and player.stats.get_rush_energy() > 0:
 			parent_state_machine.transition_to("PlayerSlideState", {
 				"boost": true
 			})
 			player.clear_dash_charge()
-		elif !slide:
+		elif !slide_by_fire_button:
 			parent_state_machine.transition_to("PlayerSlideState")

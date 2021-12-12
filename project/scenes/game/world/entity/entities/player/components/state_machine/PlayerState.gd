@@ -15,7 +15,7 @@ var aim_down = false
 var jump = false
 var cancel_jump = false
 var crouch = false
-var slide = false
+var slide_by_fire_button = false
 
 func physics_process_input_update(delta):
 	move_left = Input.is_action_pressed("move_left")
@@ -23,7 +23,7 @@ func physics_process_input_update(delta):
 	jump = Input.is_action_just_pressed("jump")
 	cancel_jump = Input.is_action_just_released("jump")
 	crouch = Input.is_action_pressed("crouch")
-	slide = crouch or Input.is_action_just_pressed("fire") and !player.stats.has_weapon()
+	slide_by_fire_button = Input.is_action_just_pressed("fire") and !player.stats.has_weapon()
 
 func physics_update(delta):
 	movement_update(delta)
