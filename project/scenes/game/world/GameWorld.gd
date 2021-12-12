@@ -76,6 +76,10 @@ func show_hover_scrap_collected(amount, location):
 
 func show_hover_weapon_collected(weapon_name, location):
 	__weapon_hover_text.display("+" + weapon_name, location)
+	
+# Uses weapon hover text
+func show_hover_text(text, location):
+	__weapon_hover_text.display(text, location)
 
 func _on_ScrapHoverText_display_off():
 	__scrap_recently_collected = 0

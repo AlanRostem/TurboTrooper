@@ -6,4 +6,4 @@ func _purchase_condition(player):
 		
 func _purchase_response(player):
 	player.stats.add_one_health()
-	print(player.stats.get_health())
+	player.parent_world.show_hover_text("+1 life", player.position)
