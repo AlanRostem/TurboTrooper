@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/game/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rush_rogue/RushRogue.tscn" type="PackedScene" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://scenes/game/world/structure/destructible/Crate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/brute/Brute.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/game/level/level_types/PurgeLevel.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/SwordCollectible.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rodder/Rodder.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/game/world/structure/destructible/WeaponCrate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/game/level/level_types/PurgeLevel.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 8, 0, 8, 8, 0, 8, 8 )
@@ -163,7 +165,7 @@ points = PoolVector2Array( 0, 0, 8, 8, 0, 8 )
 0/z_index = 0
 
 [node name="TestingLevel" instance=ExtResource( 1 )]
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 
 [node name="CustomTileMap" parent="GameWorld/Geometry" index="0"]
 position = Vector2( 1, 0 )
@@ -194,76 +196,76 @@ position = Vector2( 276, 108 )
 [node name="Crate7" parent="GameWorld/Geometry" index="8" instance=ExtResource( 5 )]
 position = Vector2( 284, 108 )
 
-[node name="Crate19" parent="GameWorld/Geometry" index="9" instance=ExtResource( 5 )]
-position = Vector2( 700, 108 )
-__containment_scene = ExtResource( 3 )
-
-[node name="Crate22" parent="GameWorld/Geometry" index="10" instance=ExtResource( 5 )]
+[node name="Crate22" parent="GameWorld/Geometry" index="9" instance=ExtResource( 5 )]
 position = Vector2( 484, 108 )
 
-[node name="Crate20" parent="GameWorld/Geometry" index="11" instance=ExtResource( 5 )]
+[node name="Crate20" parent="GameWorld/Geometry" index="10" instance=ExtResource( 5 )]
 position = Vector2( 500, 108 )
 
-[node name="Crate21" parent="GameWorld/Geometry" index="12" instance=ExtResource( 5 )]
+[node name="Crate21" parent="GameWorld/Geometry" index="11" instance=ExtResource( 5 )]
 position = Vector2( 492, 108 )
 
-[node name="Crate25" parent="GameWorld/Geometry" index="13" instance=ExtResource( 5 )]
+[node name="Crate25" parent="GameWorld/Geometry" index="12" instance=ExtResource( 5 )]
 position = Vector2( 708, 92 )
 
-[node name="Crate26" parent="GameWorld/Geometry" index="14" instance=ExtResource( 5 )]
+[node name="Crate26" parent="GameWorld/Geometry" index="13" instance=ExtResource( 5 )]
 position = Vector2( 700, 84 )
 
-[node name="Crate27" parent="GameWorld/Geometry" index="15" instance=ExtResource( 5 )]
+[node name="Crate27" parent="GameWorld/Geometry" index="14" instance=ExtResource( 5 )]
 position = Vector2( 700, 92 )
 
-[node name="Crate28" parent="GameWorld/Geometry" index="16" instance=ExtResource( 5 )]
+[node name="Crate28" parent="GameWorld/Geometry" index="15" instance=ExtResource( 5 )]
 position = Vector2( 708, 84 )
 
-[node name="Crate37" parent="GameWorld/Geometry" index="17" instance=ExtResource( 5 )]
+[node name="Crate37" parent="GameWorld/Geometry" index="16" instance=ExtResource( 5 )]
 position = Vector2( 884, 108 )
 
-[node name="Crate38" parent="GameWorld/Geometry" index="18" instance=ExtResource( 5 )]
+[node name="Crate38" parent="GameWorld/Geometry" index="17" instance=ExtResource( 5 )]
 position = Vector2( 892, 108 )
 
-[node name="Crate39" parent="GameWorld/Geometry" index="19" instance=ExtResource( 5 )]
+[node name="Crate39" parent="GameWorld/Geometry" index="18" instance=ExtResource( 5 )]
 position = Vector2( 892, 100 )
 
-[node name="Crate40" parent="GameWorld/Geometry" index="20" instance=ExtResource( 5 )]
+[node name="Crate40" parent="GameWorld/Geometry" index="19" instance=ExtResource( 5 )]
 position = Vector2( 884, 92 )
 
-[node name="Crate41" parent="GameWorld/Geometry" index="21" instance=ExtResource( 5 )]
+[node name="Crate41" parent="GameWorld/Geometry" index="20" instance=ExtResource( 5 )]
 position = Vector2( 884, 100 )
 
-[node name="Crate42" parent="GameWorld/Geometry" index="22" instance=ExtResource( 5 )]
+[node name="Crate42" parent="GameWorld/Geometry" index="21" instance=ExtResource( 5 )]
 position = Vector2( 892, 92 )
 
-[node name="Crate29" parent="GameWorld/Geometry" index="23" instance=ExtResource( 5 )]
+[node name="Crate29" parent="GameWorld/Geometry" index="22" instance=ExtResource( 5 )]
 position = Vector2( 612, 68 )
 
-[node name="Crate30" parent="GameWorld/Geometry" index="24" instance=ExtResource( 5 )]
+[node name="Crate30" parent="GameWorld/Geometry" index="23" instance=ExtResource( 5 )]
 position = Vector2( 604, 60 )
 
-[node name="Crate31" parent="GameWorld/Geometry" index="25" instance=ExtResource( 5 )]
+[node name="Crate31" parent="GameWorld/Geometry" index="24" instance=ExtResource( 5 )]
 position = Vector2( 604, 68 )
 
-[node name="Crate32" parent="GameWorld/Geometry" index="26" instance=ExtResource( 5 )]
+[node name="Crate32" parent="GameWorld/Geometry" index="25" instance=ExtResource( 5 )]
 position = Vector2( 612, 60 )
 
-[node name="Crate33" parent="GameWorld/Geometry" index="27" instance=ExtResource( 5 )]
+[node name="Crate33" parent="GameWorld/Geometry" index="26" instance=ExtResource( 5 )]
 position = Vector2( 572, 68 )
 
-[node name="Crate34" parent="GameWorld/Geometry" index="28" instance=ExtResource( 5 )]
+[node name="Crate34" parent="GameWorld/Geometry" index="27" instance=ExtResource( 5 )]
 position = Vector2( 564, 60 )
 
-[node name="Crate35" parent="GameWorld/Geometry" index="29" instance=ExtResource( 5 )]
+[node name="Crate35" parent="GameWorld/Geometry" index="28" instance=ExtResource( 5 )]
 position = Vector2( 564, 68 )
 
-[node name="Crate36" parent="GameWorld/Geometry" index="30" instance=ExtResource( 5 )]
+[node name="Crate36" parent="GameWorld/Geometry" index="29" instance=ExtResource( 5 )]
 position = Vector2( 572, 60 )
 
-[node name="Crate8" parent="GameWorld/Geometry" index="31" instance=ExtResource( 5 )]
-position = Vector2( 244, 108 )
+[node name="WeaponCrate" parent="GameWorld/Geometry" index="30" instance=ExtResource( 10 )]
+position = Vector2( 236, 108 )
 __containment_scene = ExtResource( 3 )
+
+[node name="WeaponCrate2" parent="GameWorld/Geometry" index="31" instance=ExtResource( 10 )]
+position = Vector2( 700, 108 )
+__containment_scene = ExtResource( 8 )
 
 [node name="ShopArea" parent="GameWorld/Geometry" index="32" instance=ExtResource( 6 )]
 position = Vector2( 1188, 92 )
@@ -273,22 +275,17 @@ position = Vector2( 93, -20 )
 
 [node name="Rodder" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 9 )]
 position = Vector2( 928, 64 )
-collision_layer = 0
 
 [node name="Rodder3" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 9 )]
 position = Vector2( 432, 104 )
-collision_layer = 0
 
 [node name="Brute" parent="GameWorld/EntityPool" index="3" instance=ExtResource( 7 )]
 position = Vector2( 1220, 24 )
-collision_layer = 0
 
 [node name="RushRogue" parent="GameWorld/EntityPool" index="4" instance=ExtResource( 2 )]
 position = Vector2( 667, 107 )
-collision_layer = 0
 
 [node name="RushRogue2" parent="GameWorld/EntityPool" index="5" instance=ExtResource( 2 )]
 position = Vector2( 864, 104 )
-collision_layer = 0
 
 [editable path="GameWorld"]

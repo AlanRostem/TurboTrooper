@@ -7,6 +7,10 @@
 [node name="HealthShop" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="PriceTag" parent="." index="0"]
+margin_top = -22.0
+margin_bottom = -13.0
+
 [node name="ItemSprite" parent="." index="2"]
-position = Vector2( 0, -7 )
+position = Vector2( 0, -9 )
 texture = ExtResource( 3 )

@@ -11,10 +11,10 @@ extents = Vector2( 4, 7 )
 script = ExtResource( 2 )
 
 [node name="PriceTag" parent="." instance=ExtResource( 3 )]
-margin_left = -7.0
-margin_top = -24.0
+margin_left = -6.0
+margin_top = -20.0
 margin_right = 7.0
-margin_bottom = -13.0
+margin_bottom = -11.0
 text = "100"
 
 [node name="ShopSprite" type="Sprite" parent="."]

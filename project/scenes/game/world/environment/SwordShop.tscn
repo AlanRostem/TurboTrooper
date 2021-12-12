@@ -9,6 +9,10 @@
 script = ExtResource( 2 )
 __weapon_scene = ExtResource( 3 )
 
+[node name="PriceTag" parent="." index="0"]
+margin_top = -22.0
+margin_right = 8.0
+
 [node name="ItemSprite" parent="." index="2"]
-position = Vector2( 0, -7 )
+position = Vector2( 0, -9 )
 texture = ExtResource( 4 )
