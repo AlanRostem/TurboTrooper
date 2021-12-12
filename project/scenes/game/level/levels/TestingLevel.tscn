@@ -218,22 +218,22 @@ position = Vector2( 700, 92 )
 position = Vector2( 708, 84 )
 
 [node name="Crate37" parent="GameWorld/Geometry" index="17" instance=ExtResource( 5 )]
-position = Vector2( 893, 108 )
+position = Vector2( 884, 108 )
 
 [node name="Crate38" parent="GameWorld/Geometry" index="18" instance=ExtResource( 5 )]
-position = Vector2( 901, 108 )
+position = Vector2( 892, 108 )
 
 [node name="Crate39" parent="GameWorld/Geometry" index="19" instance=ExtResource( 5 )]
-position = Vector2( 901, 100 )
+position = Vector2( 892, 100 )
 
 [node name="Crate40" parent="GameWorld/Geometry" index="20" instance=ExtResource( 5 )]
-position = Vector2( 893, 92 )
+position = Vector2( 884, 92 )
 
 [node name="Crate41" parent="GameWorld/Geometry" index="21" instance=ExtResource( 5 )]
-position = Vector2( 893, 100 )
+position = Vector2( 884, 100 )
 
 [node name="Crate42" parent="GameWorld/Geometry" index="22" instance=ExtResource( 5 )]
-position = Vector2( 901, 92 )
+position = Vector2( 892, 92 )
 
 [node name="Crate29" parent="GameWorld/Geometry" index="23" instance=ExtResource( 5 )]
 position = Vector2( 612, 68 )
@@ -282,6 +282,6 @@ position = Vector2( 1220, 24 )
 position = Vector2( 667, 107 )
 
 [node name="RushRogue2" parent="GameWorld/EntityPool" index="5" instance=ExtResource( 2 )]
-position = Vector2( 872, 104 )
+position = Vector2( 864, 104 )
 
 [editable path="GameWorld"]
