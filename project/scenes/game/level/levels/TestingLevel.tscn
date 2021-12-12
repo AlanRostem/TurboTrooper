@@ -275,17 +275,18 @@ position = Vector2( 93, -20 )
 
 [node name="Rodder" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 9 )]
 position = Vector2( 928, 64 )
+collision_layer = 0
 
 [node name="Rodder3" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 9 )]
 position = Vector2( 432, 104 )
+collision_layer = 0
 
 [node name="Brute" parent="GameWorld/EntityPool" index="3" instance=ExtResource( 7 )]
-position = Vector2( 1220, 24 )
+position = Vector2( 656, 104 )
+collision_layer = 0
 
-[node name="RushRogue" parent="GameWorld/EntityPool" index="4" instance=ExtResource( 2 )]
-position = Vector2( 667, 107 )
-
-[node name="RushRogue2" parent="GameWorld/EntityPool" index="5" instance=ExtResource( 2 )]
+[node name="RushRogue2" parent="GameWorld/EntityPool" index="4" instance=ExtResource( 2 )]
 position = Vector2( 864, 104 )
+collision_layer = 0
 
 [editable path="GameWorld"]
