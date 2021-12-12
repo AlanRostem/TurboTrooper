@@ -21,6 +21,16 @@ var __can_deal_damage_to_player = true
 var __is_player_seen = false
 var __horizontal_player_detect_direction = -1
 var horizontal_looking_direction = -1
+var __add_kill_to_level = false
+
+func _ready():
+	call_deferred("check_and_set_required_kill_for_level")
+
+func check_and_set_required_kill_for_level():
+	var level = parent_world.get_parent_level()
+	if level is PurgeLevel:
+		level.add_one_required_kill()
+		__add_kill_to_level = true
 
 func _physics_process(delta):
 	var player = parent_world.player_node
@@ -55,6 +65,8 @@ func die():
 	# TODO: Implement further
 	queue_free()
 	drop_scrap(scrap_drop_count_eliminated)
+	if __add_kill_to_level:
+		parent_world.get_parent_level().add_one_kill()
 
 func _on_HealthComponent_health_depleted(health_left):
 	die()
