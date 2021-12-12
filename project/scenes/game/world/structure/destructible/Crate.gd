@@ -4,6 +4,8 @@ var __break_effect_scene = preload("res://scenes/game/world/other/CrateBreakEffe
 
 export(PackedScene) var __containment_scene
 
+export(AudioStream) var __break_sound
+
 var __collectible
 var __player_nearby
 
@@ -15,6 +17,7 @@ func _process(delta):
 func _destroyed():
 	__collectible = parent_world.spawn_entity_deferred(__containment_scene, position)
 	parent_world.show_effect_deferred(__break_effect_scene, position)
+	parent_world.play_sound(__break_sound)
 
 func _on_InHitBox_received_additional_message(message):
 	if message.has("ram_slide"):

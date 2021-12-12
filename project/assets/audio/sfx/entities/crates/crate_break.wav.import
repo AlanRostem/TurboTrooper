@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/crate_break.wav-2043e86cfb41eaccb18c7841a5d7a291.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/entities/crates/crate_break.wav"
+dest_files=[ "res://.import/crate_break.wav-2043e86cfb41eaccb18c7841a5d7a291.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
