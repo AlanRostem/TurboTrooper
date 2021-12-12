@@ -23,7 +23,7 @@ func _physics_process(delta):
 	if __player == null: return
 	if __player.stats.get_scrap_count() < __price or !_purchase_condition(__player): 
 		return
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("select"):
 		__player.stats.lose_scrap(__price)
 		_purchase_response(__player)
 		
