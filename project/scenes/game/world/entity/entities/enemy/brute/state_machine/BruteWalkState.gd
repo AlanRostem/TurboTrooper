@@ -6,6 +6,3 @@ func enter(message: Dictionary):
 
 func physics_update(delta):
 	brute.set_velocity_x(brute.get_horizontal_player_detect_direction() * WALK_SPEED)
-
-func _on_Brute_player_visual_lost(player):
-	parent_state_machine.transition_to(name)

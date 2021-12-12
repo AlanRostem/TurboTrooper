@@ -53,10 +53,11 @@ one_shot = true
 position = Vector2( 1, -10 )
 frames = ExtResource( 2 )
 animation = "idle_slam"
+frame = 1
 playing = true
 script = ExtResource( 7 )
 
 [connection signal="player_detected" from="." to="EnemyFSM/BruteSlamState" method="_on_Brute_player_detected"]
-[connection signal="player_visual_lost" from="." to="EnemyFSM/BruteWalkState" method="_on_Brute_player_visual_lost"]
+[connection signal="player_visual_lost" from="." to="EnemyFSM/BruteSlamState" method="_on_Brute_player_visual_lost"]
 [connection signal="timeout" from="EnemyFSM/BruteSlamState/SlamTimer" to="EnemyFSM/BruteSlamState" method="_on_SlamTimer_timeout"]
 [connection signal="timeout" from="EnemyFSM/BruteSlamState/SlamDelayTimer" to="EnemyFSM/BruteSlamState" method="_on_SlamDelayTimer_timeout"]
