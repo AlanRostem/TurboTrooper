@@ -9,11 +9,14 @@ const SOLID_OBJECT_COLLISION_BIT = 0
 
 var __hover_text_scene = preload("res://scenes/ui/world/hover_text/WorldHoverText.tscn")
 
+var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
+
 onready var __entity_pool = $EntityPool
 
 onready var __tile_map = $Geometry/CustomTileMap
 
 onready var __parent_level = get_parent()
+onready var __sound_pool = $SoundPool
 
 var player_node
 
@@ -83,3 +86,9 @@ func show_hover_text(text, location):
 
 func _on_ScrapHoverText_display_off():
 	__scrap_recently_collected = 0
+	
+func play_sound(stream):
+	var sound = __sound_effect_scene.instance()
+	sound.stream = stream
+	__sound_pool.add_child(sound)
+	sound.call_deferred("play")
