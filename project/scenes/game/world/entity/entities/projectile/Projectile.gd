@@ -72,3 +72,7 @@ func _on_HitBox_body_entered(body):
 
 func _on_HitBox_hit_dealt(hitbox):
 	deal_hit(hitbox)
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
