@@ -84,6 +84,9 @@ is_grounded_state = true
 script = ExtResource( 6 )
 is_grounded_state = true
 
+[node name="DustSpawnTimer" type="Timer" parent="PlayerFSM/PlayerRunState" index="0"]
+wait_time = 0.1
+
 [node name="PlayerAirBorneState" parent="PlayerFSM" index="3" instance=ExtResource( 5 )]
 script = ExtResource( 8 )
 
@@ -142,6 +145,7 @@ cast_to = Vector2( 0, -8 )
 [connection signal="timeout" from="CrateOpeningTimer" to="." method="_on_CrateOpeningTimer_timeout"]
 [connection signal="hit_dealt" from="RamSlideHitBox" to="." method="_on_RamSlideHitBox_hit_dealt"]
 [connection signal="hit_received" from="InHitBox" to="PlayerStats" method="_on_InHitBox_hit_received"]
+[connection signal="timeout" from="PlayerFSM/PlayerRunState/DustSpawnTimer" to="PlayerFSM/PlayerRunState" method="_on_DustSpawnTimer_timeout"]
 [connection signal="rush_energy_consumed" from="PlayerStats" to="PlayerSprite" method="_on_PlayerStats_rush_energy_consumed"]
 [connection signal="timeout" from="PlayerStats/RushEnergyRechargeTimer" to="PlayerStats" method="_on_RushEnergyRechargeTimer_timeout"]
 [connection signal="timeout" from="PlayerStats/RushEnergyRechargeStartingDelayTimer" to="PlayerStats" method="_on_RushEnergyRechargeStartingDelayTimer_timeout"]
