@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/components/hit_box/HitBox.tscn" type="PackedScene" id=2]
@@ -12,9 +12,11 @@
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/EnemyFSM.gd" type="Script" id=10]
 [ext_resource path="res://scenes/game/world/entity/components/state_machine/State.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/components/EnemyIdleState.gd" type="Script" id=12]
+[ext_resource path="res://assets/audio/sfx/enemies/enemy_death.wav" type="AudioStream" id=13]
 
 [node name="Enemy" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+__death_sound = ExtResource( 13 )
 
 [node name="HealthComponent" parent="." index="1" instance=ExtResource( 4 )]
 
@@ -62,10 +64,10 @@ one_shot = true
 [connection signal="hit_received" from="InHitBox" to="." method="_on_InHitBox_hit_received"]
 [connection signal="received_additional_message" from="InHitBox" to="." method="_on_InHitBox_received_additional_message"]
 [connection signal="hit_dealt" from="OutHitBox" to="." method="_on_OutHitBox_hit_dealt"]
-[connection signal="screen_entered" from="VisibilityEnabler2D" to="EnemyFSM" method="_on_VisibilityEnabler2D_screen_entered"]
 [connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]
-[connection signal="screen_exited" from="VisibilityEnabler2D" to="EnemyFSM" method="_on_VisibilityEnabler2D_screen_exited"]
+[connection signal="screen_entered" from="VisibilityEnabler2D" to="EnemyFSM" method="_on_VisibilityEnabler2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="EnemyFSM" method="_on_VisibilityEnabler2D_screen_exited"]
 [connection signal="timeout" from="EnemyFSM/EnemyRamIntoAirState/AirborneStunTimer" to="EnemyFSM/EnemyRamIntoAirState" method="_on_AirborneStunTimer_timeout"]
 [connection signal="timeout" from="EnemyFSM/EnemyMeleeKnockBackState/KnockBackTimer" to="EnemyFSM/EnemyMeleeKnockBackState" method="_on_KnockBackTimer_timeout"]
 [connection signal="timeout" from="DamageTakenTimer" to="." method="_on_DamageTakenTimer_timeout"]

@@ -17,6 +17,8 @@ export(float) var player_detection_range_in_tiles = 5
 export(bool) var can_be_knocked_back = true 
 export(bool) var detect_player_on_visible = false 
 
+export(AudioStream) var __death_sound
+
 var __can_deal_damage_to_player = true
 var __is_player_seen = false
 var __horizontal_player_detect_direction = -1
@@ -67,6 +69,7 @@ func die():
 	drop_scrap(scrap_drop_count_eliminated)
 	if __add_kill_to_level:
 		parent_world.get_parent_level().add_one_kill()
+	parent_world.play_sound(__death_sound)
 
 func _on_HealthComponent_health_depleted(health_left):
 	die()
