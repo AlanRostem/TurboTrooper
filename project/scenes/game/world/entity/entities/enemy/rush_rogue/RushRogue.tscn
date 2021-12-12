@@ -17,7 +17,7 @@ extents = Vector2( 7, 4 )
 [node name="RushRogue" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 collision_mode = 2
-player_detection_range_in_tiles = 8.0
+player_detection_range_in_tiles = 6.0
 
 [node name="BodyShape" parent="." index="0"]
 shape = SubResource( 1 )
@@ -54,7 +54,6 @@ one_shot = true
 position = Vector2( 0, -5 )
 frames = ExtResource( 2 )
 animation = "patrol"
-frame = 2
 playing = true
 script = ExtResource( 7 )
 

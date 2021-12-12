@@ -2,6 +2,8 @@ extends "res://scenes/game/world/entity/entities/player/components/state_machine
 
 var __is_jumping = false
 
+onready var __jump_sound = $JumpSound
+
 func movement_update(delta):
 	if __is_jumping:
 		if cancel_jump and player.get_velocity().y < -player.min_jump_speed:
@@ -45,6 +47,7 @@ func enter(message: Dictionary):
 	if message.has("jumping"):
 		__is_jumping = true
 		player.jump()
+		__jump_sound.play()
 
 func exit():
 	__is_jumping = false
