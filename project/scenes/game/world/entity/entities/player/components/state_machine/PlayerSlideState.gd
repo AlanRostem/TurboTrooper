@@ -1,5 +1,7 @@
 extends "res://scenes/game/world/entity/entities/player/components/state_machine/PlayerState.gd"
 
+onready var __slide_sound = $SlideSound
+
 func movement_update(delta):
 	if player.is_roof_above(): return
 
@@ -38,6 +40,7 @@ func enter(message):
 			player.stats.use_rush_energy(2)
 			player.slide(player.moving_direction)
 			player.set_ram_slide_hit_box_enabled(true)
+			__slide_sound.play()
 	player.clear_dash_charge()
 	player.crouch()
 	player.collision_mode = MovingEntity.CollisionModes.SLIDE
