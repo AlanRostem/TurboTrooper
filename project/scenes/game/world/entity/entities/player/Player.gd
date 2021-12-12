@@ -8,25 +8,25 @@ const RAM_SLIDE_DAMAGE = 5
 
 export var air_acceleration: float
 
-export var walk_transition_weight: float
-export var max_walk_speed: float
-export var walk_friction: float
+var walk_transition_weight = .4
+var max_walk_speed = 55
+var walk_friction = .4
 
-export var dash_transition_weight: float
-export var max_dash_speed: float
-export var dash_friction: float
+var dash_transition_weight = .05
+var max_dash_speed  = 100
+var dash_friction = .1
 
-export var jump_speed: float
-export var min_jump_speed: float
+var jump_speed = 150
+var min_jump_speed = 50
 
-export var max_crouch_speed: float
-export var crouch_transition_weight: float
+var max_crouch_speed = 15
+var crouch_transition_weight = .3
 
-export var slide_speed: float
-export var slide_friction: float
-export var slide_mitigation_acceleration: float
+var slide_speed = 180
+var slide_friction = 0.02
+var slide_mitigation_acceleration = 250
 
-var __dash_charge_fill_per_second = 200
+var __dash_charge_fill_per_second = 250
 var __dash_charge_loss_per_second = 120
 
 var __dash_charge = 0
