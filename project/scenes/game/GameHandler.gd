@@ -9,21 +9,29 @@ extends Node2D
 
 var __current_level = null
 
-export(PackedScene) var level
+var __level_index = -1
 
 onready var __hud = $CanvasLayer/HUD
 
+onready var __level_list = $LevelList
+
 func _ready():
-	set_current_level(level)
+	set_current_level(0)
 
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
-func set_current_level(level_scene):
+func set_current_level(index):
+	var level_scene = __level_list.get_level_scene(0)
+	__level_index = index
 	if __current_level != null:
 		__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
+	
+func set_current_to_next_level():
+	if !__level_list.is_last_level(__level_index):
+		set_current_level(__level_index + 1)
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)

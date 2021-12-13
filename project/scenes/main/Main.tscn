@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/game/GameHandler.gd" type="Script" id=1]
-[ext_resource path="res://scenes/game/level/levels/TestingLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/hud/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/resources/shaders/WhiteningShader.tres" type="Material" id=4]
+[ext_resource path="res://scenes/game/level/management/LevelList.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 material = ExtResource( 4 )
@@ -20,7 +20,8 @@ all save data about the player and manages the player's temporary in-game stats.
 that in mind, all user interface, such as the pause menu and HUD, will be handled through
 the playable nodes themselves (such as a level and the level select world)"
 }
-level = ExtResource( 2 )
+
+[node name="LevelList" parent="GameHandler" instance=ExtResource( 5 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GameHandler"]
 
