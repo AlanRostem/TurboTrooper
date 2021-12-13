@@ -4,7 +4,7 @@ class_name Player
 const MAX_DASH_CHARGE = 100
 const PLAYER_TEAM = "player_team"
 const RAM_SLIDE_SPEED = 200
-const RAM_SLIDE_DAMAGE = 5
+const RAM_SLIDE_DAMAGE = 10
 
 export var air_acceleration: float
 
