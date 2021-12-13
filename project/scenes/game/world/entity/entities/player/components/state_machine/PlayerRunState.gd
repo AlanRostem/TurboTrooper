@@ -11,7 +11,7 @@ func movement_update(delta):
 		parent_state_machine.transition_to("PlayerSlideState")
 		return
 	
-	if player.is_on_ground() and player.has_max_dash_charge():
+	if player.is_on_ground() and player.has_max_dash_charge() and player.stats.get_rush_energy() > 0:
 		if !__spawning_dust:
 			__dust_spawn_timer.start()
 			__spawning_dust = true
