@@ -10,6 +10,7 @@ const SOLID_OBJECT_COLLISION_BIT = 0
 var __hover_text_scene = preload("res://scenes/ui/world/hover_text/WorldHoverText.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
+var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
 
 onready var __entity_pool = $EntityPool
 
@@ -24,6 +25,8 @@ onready var __scrap_hover_text = $ScrapHoverText
 onready var __weapon_hover_text = $WeaponHoverText
 
 var __scrap_recently_collected = 0
+
+var __delayed_sounds = {}
 
 func _ready():
 	var player = __entity_pool.get_node_or_null("Player")
@@ -87,8 +90,22 @@ func show_hover_text(text, location):
 func _on_ScrapHoverText_display_off():
 	__scrap_recently_collected = 0
 	
-func play_sound(stream):
-	var sound = __sound_effect_scene.instance()
+func play_sound(stream: AudioStream, delay = 0):
+	var sound
+	if delay > 0:
+		if !__delayed_sounds.has(stream.resource_path):
+			sound = __delayed_sound_scene.instance()
+			sound.delay = delay
+			__delayed_sounds[stream.resource_path] = true
+			sound.stream = stream
+			__sound_pool.add_child(sound)
+			sound.connect("can_play", self, "_on_sound_can_play")
+			sound.call_deferred("play")
+		return
+	sound = __sound_effect_scene.instance()
 	sound.stream = stream
 	__sound_pool.add_child(sound)
 	sound.call_deferred("play")
+	
+func _on_sound_can_play(sound):
+	__delayed_sounds.erase(sound.stream.resource_path)
