@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/resources/sprite_frames/char/RushRogueSpriteFrames.tres" type="SpriteFrames" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rush_rogue/state_machine/RushRoguePartolState.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rush_rogue/state_machine/RushRogueRushState.gd" type="Script" id=6]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rush_rogue/RushRogueSprite.gd" type="Script" id=7]
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/rush_rogue/state_machine/RushRogueChargeUpState.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 3 )
@@ -46,7 +47,10 @@ script = ExtResource( 5 )
 [node name="RushRogueRushState" parent="EnemyFSM" index="1" instance=ExtResource( 4 )]
 script = ExtResource( 6 )
 
-[node name="RushTimer" type="Timer" parent="EnemyFSM/RushRogueRushState" index="0"]
+[node name="RushRogueChargeUpState" parent="EnemyFSM" index="2" instance=ExtResource( 4 )]
+script = ExtResource( 8 )
+
+[node name="RushTimer" type="Timer" parent="EnemyFSM/RushRogueChargeUpState" index="0"]
 wait_time = 0.4
 one_shot = true
 
@@ -54,10 +58,9 @@ one_shot = true
 position = Vector2( 0, -5 )
 frames = ExtResource( 2 )
 animation = "patrol"
-frame = 1
 playing = true
 script = ExtResource( 7 )
 
-[connection signal="player_detected" from="." to="EnemyFSM/RushRogueRushState" method="_on_RushRogue_player_detected"]
-[connection signal="player_visual_lost" from="." to="EnemyFSM/RushRoguePatrolState" method="_on_RushRogue_player_visual_lost"]
-[connection signal="timeout" from="EnemyFSM/RushRogueRushState/RushTimer" to="EnemyFSM/RushRogueRushState" method="_on_RushTimer_timeout"]
+[connection signal="player_detected" from="." to="EnemyFSM/RushRogueChargeUpState" method="_on_RushRogue_player_detected"]
+[connection signal="player_visual_lost" from="." to="EnemyFSM/RushRogueRushState" method="_on_RushRogue_player_visual_lost"]
+[connection signal="timeout" from="EnemyFSM/RushRogueChargeUpState/RushTimer" to="EnemyFSM/RushRogueChargeUpState" method="_on_RushTimer_timeout"]
