@@ -47,6 +47,7 @@ wait_time = 0.67
 position = Vector2( 0, -9 )
 frames = ExtResource( 3 )
 animation = "walk"
+frame = 1
 playing = true
 script = ExtResource( 6 )
 

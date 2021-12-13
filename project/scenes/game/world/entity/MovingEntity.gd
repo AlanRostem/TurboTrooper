@@ -106,7 +106,7 @@ func _physics_process(delta):
 			# TODO: Determine if this needs rotation when changing 
 			# perspective vector
 			__velocity.y = move_and_slide_with_snap(
-				__velocity, __snap_vector * parent_world.get_tile_size(),
+				__velocity, __snap_vector * parent_world.get_tile_size() / 4,
 				-__down_vector, stop_on_slope).y
 				
 			if is_on_floor():
