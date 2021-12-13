@@ -17,7 +17,7 @@ func _process(delta):
 func _destroyed():
 	__collectible = parent_world.spawn_entity_deferred(__containment_scene, position)
 	parent_world.show_effect_deferred(__break_effect_scene, position)
-	parent_world.play_sound(__break_sound)
+	parent_world.play_sound(__break_sound, 0.02)
 
 func _on_InHitBox_received_additional_message(message):
 	if message.has("ram_slide"):

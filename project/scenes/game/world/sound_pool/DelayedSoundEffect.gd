@@ -7,9 +7,7 @@ export var delay: float
 onready var __timer = $Timer
 
 func _ready():
-	if delay < stream.get_length():
-		queue_free()
-		return
+	assert(delay < stream.get_length())
 	__timer.start(delay)
 
 func _on_Timer_timeout():
