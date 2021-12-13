@@ -270,14 +270,17 @@ position = Vector2( 612, 84 )
 
 [node name="WeaponCrate" parent="GameWorld/Geometry" index="33" instance=ExtResource( 10 )]
 position = Vector2( 700, 92 )
+collision_mask = 0
 __containment_scene = ExtResource( 8 )
 
 [node name="WeaponCrate3" parent="GameWorld/Geometry" index="34" instance=ExtResource( 10 )]
 position = Vector2( 508, 100 )
+collision_mask = 0
 __containment_scene = ExtResource( 3 )
 
 [node name="WeaponCrate2" parent="GameWorld/Geometry" index="35" instance=ExtResource( 10 )]
 position = Vector2( 253, 108 )
+collision_mask = 0
 __containment_scene = ExtResource( 8 )
 
 [node name="ShopArea" parent="GameWorld/Geometry" index="36" instance=ExtResource( 6 )]
