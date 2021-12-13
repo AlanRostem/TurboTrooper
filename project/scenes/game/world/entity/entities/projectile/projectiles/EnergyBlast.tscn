@@ -16,19 +16,29 @@ script = ExtResource( 3 )
 max_velocity = 280.0
 damage_type = "energy"
 damage = 1
+__rotation_mode = 1
 __shoot_sound = ExtResource( 4 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 
+[node name="BodyShape" parent="." index="1"]
+position = Vector2( 0, -1 )
+
+[node name="CounterHitBox" parent="." index="2"]
+position = Vector2( 0, -1 )
+
 [node name="CollisionShape2D" parent="CounterHitBox" index="0"]
 shape = SubResource( 1 )
+
+[node name="HitBox" parent="." index="3"]
+position = Vector2( 0, -1 )
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" parent="." index="4"]
-position = Vector2( 0, -8.9407e-08 )
+position = Vector2( 0, -1 )
 scale = Vector2( 0.2, 0.2 )
 
 [connection signal="hit_dealt" from="HitBox" to="." method="_on_HitBox_hit_dealt_to_counter"]
