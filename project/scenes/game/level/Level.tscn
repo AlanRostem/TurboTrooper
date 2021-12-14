@@ -16,4 +16,10 @@ script = ExtResource( 2 )
 
 [node name="Player" parent="GameWorld/EntityPool" index="0" instance=ExtResource( 4 )]
 
+[node name="ScrapHoverText" parent="GameWorld" index="2"]
+visible = false
+
+[node name="WeaponHoverText" parent="GameWorld" index="3"]
+visible = false
+
 [editable path="GameWorld"]
