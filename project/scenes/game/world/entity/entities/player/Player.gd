@@ -61,9 +61,26 @@ onready var __crate_opening_timer = $CrateOpeningTimer
 onready var __right_roof_ray = $RoofDetector/RightRay
 onready var __left_roof_ray = $RoofDetector/LeftRay
 
+onready var __camera = $Camera2D
+
+var __controls_enabled = true
+
 #func _physics_process(delta):
 #	print(__dash_charge)
 #	print(get_velocity().x)
+	
+func set_camera_bounds(bounds: Rect2):
+	__camera.limit_left = bounds.position.x;
+	__camera.limit_top = bounds.position.y;
+	__camera.limit_right = bounds.size.x;
+	__camera.limit_bottom = bounds.size.y;
+	print(bounds)
+
+func set_controls_enabled(value):
+	__controls_enabled = value
+
+func controls_enabled():
+	return __controls_enabled
 
 func run(direction: int, delta: float):
 	set_velocity_x(lerp(get_velocity().x, direction * max_dash_speed, dash_transition_weight))

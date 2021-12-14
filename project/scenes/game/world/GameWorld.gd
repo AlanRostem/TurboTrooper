@@ -32,6 +32,11 @@ func _ready():
 	var player = __entity_pool.get_node_or_null("Player")
 	if player != null:
 		assign_player_node(player)
+		var rect = __tile_map.get_used_rect()
+		rect.position *= __tile_map.get_tile_size()
+		rect.size *= __tile_map.get_tile_size()
+		player.set_camera_bounds(rect)
+		
 
 func get_parent_level():
 	return __parent_level

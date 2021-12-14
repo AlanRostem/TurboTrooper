@@ -18,6 +18,7 @@ var crouch = false
 var slide_by_fire_button = false
 
 func physics_process_input_update(delta):
+	if !player.controls_enabled(): return
 	move_left = Input.is_action_pressed("move_left")
 	move_right = Input.is_action_pressed("move_right")
 	jump = Input.is_action_just_pressed("jump")

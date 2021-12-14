@@ -15,6 +15,7 @@ cell_size = Vector2( 8, 8 )
 script = ExtResource( 2 )
 
 [node name="Player" parent="GameWorld/EntityPool" index="0" instance=ExtResource( 4 )]
+position = Vector2( -8, 96 )
 
 [node name="ScrapHoverText" parent="GameWorld" index="2"]
 visible = false
