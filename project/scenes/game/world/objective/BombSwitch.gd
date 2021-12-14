@@ -5,6 +5,7 @@ export var __detonation_time = 60
 onready var __bomb_timer = $BombTimer
 
 onready var __sprite  = $AnimatedSprite
+onready var __arrow_sprite  = $ArrowSprite
 
 onready var __body_shape = $StaticBody2D/CollisionShape2D
 onready var __press_shape = $PressArea/CollisionShape2D
@@ -21,6 +22,7 @@ func _on_PressArea_body_entered(body):
 	__sprite.animation = "on"
 	__body_shape.set_deferred("disabled", true)
 	__press_shape.set_deferred("disabled", true)
+	__arrow_sprite.visible = false
 	
 func is_ticking():
 	return __count_down
