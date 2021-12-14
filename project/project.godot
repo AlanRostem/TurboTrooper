@@ -48,11 +48,6 @@ _global_script_classes=[ {
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://scenes/game/world/entity/entities/projectile/Projectile.gd"
-}, {
-"base": "Node2D",
-"class": "PurgeLevel",
-"language": "GDScript",
-"path": "res://scenes/game/level/level_types/PurgeLevel.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
@@ -62,8 +57,7 @@ _global_script_class_icons={
 "MovingEntity": "",
 "Player": "",
 "PlayerStats": "",
-"Projectile": "",
-"PurgeLevel": ""
+"Projectile": ""
 }
 
 [application]

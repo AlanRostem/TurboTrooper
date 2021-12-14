@@ -15,8 +15,18 @@ onready var __hud = $CanvasLayer/HUD
 
 onready var __level_list = $LevelList
 
+var __player_save_data = {
+	"score": 0,
+	"life": 0,
+	"weapon": 0,
+	"level": 0,
+}
+
 func _ready():
 	set_current_level(0)
+	
+func update_player_save_data(key, value):
+	__player_save_data[key] = value
 
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.

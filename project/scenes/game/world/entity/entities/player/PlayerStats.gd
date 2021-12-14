@@ -3,9 +3,11 @@ class_name PlayerStats
 
 const MAX_HEALTH = 3
 const MAX_RUSH_ENERGY = 6
+const MAX_SCORE = 99999
 
 signal scrap_changed(value)
 signal health_changed(value)
+signal score_changed(value)
 signal died()
 signal rush_energy_changed(value)
 signal rush_energy_consumed()
@@ -23,6 +25,7 @@ var __health = MAX_HEALTH
 var __equipped_weapon
 
 var __is_recharging_rush_energy = false
+var __score = 0
 
 onready var __player = get_parent()
 onready var __rush_energy_recharge_timer = $RushEnergyRechargeTimer
@@ -54,6 +57,16 @@ func _physics_process(delta):
 		__player.set_aim_up(true)
 	elif Input.is_action_just_released("aim_up"):
 		__player.set_aim_up(false)
+	
+func add_score(score):
+	set_score(__score + score)
+	
+func set_score(score):
+	__score = clamp(score, 0, MAX_SCORE)
+	emit_signal("score_changed", __score)
+	
+func get_score():
+	return __score
 	
 func has_weapon():
 	return __equipped_weapon != null
