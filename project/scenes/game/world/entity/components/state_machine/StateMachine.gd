@@ -10,6 +10,7 @@ signal transitioned(state_name)
 export(NodePath) var __inital_state
 
 export var init_state_on_ready = true
+export var enter_state_on_ready = false
 
 var __current_state
 var __previous_state
@@ -17,6 +18,8 @@ var __previous_state
 func _ready():
 	if init_state_on_ready and __inital_state != null and __inital_state != "":
 		__current_state = get_node(__inital_state)
+		if enter_state_on_ready:
+			__current_state.enter({})
 
 onready var parent_entity = get_parent()
 

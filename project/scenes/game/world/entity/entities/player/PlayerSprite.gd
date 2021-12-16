@@ -41,6 +41,7 @@ func _physics_process(delta):
 			else: 
 				animation = "running"
 			frame = f
+		"PlayerEnterLevelState": animation = "jump"
 		"PlayerAirBorneState": 
 			if player.is_aiming_up():
 				animation = "aim_up_jump"
