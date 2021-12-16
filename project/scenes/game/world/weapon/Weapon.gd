@@ -14,6 +14,8 @@ var __collectible_scene = preload("res://scenes/game/world/entity/entities/item/
 
 export(float) var __attack_delay = 0.8
 
+export var weapon_index = -1
+
 onready var __player_owner = get_parent().get_parent()
 
 onready var __attack_delay_timer = $AttackDelayTimer

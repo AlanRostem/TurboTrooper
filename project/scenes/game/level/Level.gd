@@ -8,6 +8,9 @@ var player_node
 
 var __convert_player_scrap_to_score = false
 
+func set_player_stats(stats: Dictionary):
+	player_node.stats.set_from_data(stats)
+
 func start_player_scrap_to_score_conversion():
 	__convert_player_scrap_to_score = true
 	
