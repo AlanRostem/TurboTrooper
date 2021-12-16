@@ -23,3 +23,6 @@ func _on_BombSwitch_activated():
 
 func _on_BombSwitch_completion_transition_over():
 	start_player_scrap_to_score_conversion()
+
+func _on_BombSwitch_detonated():
+	player_node.die()

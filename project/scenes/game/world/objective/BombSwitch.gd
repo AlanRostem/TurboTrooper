@@ -1,6 +1,7 @@
 extends "res://scenes/game/world/objective/Objective.gd"
 
 signal activated()
+signal detonated()
 
 export var __detonation_time = 60
 
@@ -37,7 +38,8 @@ func stop_ticking():
 
 # TODO: Show explosion and die
 func _on_BombTimer_timeout():
-	pass # Replace with function body.
+	emit_signal("detonated")
+	__parent_level.game_handler.get_hud().hide_global_message()
 
 
 func _on_BombSwitch_completed():

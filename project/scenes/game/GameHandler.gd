@@ -50,7 +50,12 @@ func set_current_to_next_level():
 		set_current_level(__level_index + 1)
 		
 func reset_current_level():
-	set_current_level(__level_index)
+	var level_scene: PackedScene = __level_list.get_level_scene(__level_index)
+	__current_level.queue_free()
+	__current_level = level_scene.instance()
+	__current_level.connect("ready", self, "_on_current_level_ready")
+	add_child(__current_level)
+	__current_level.set_player_stats(__player_save_data)
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)

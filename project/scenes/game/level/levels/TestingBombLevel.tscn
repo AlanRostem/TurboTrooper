@@ -11,11 +11,9 @@
 [node name="IntroTimer" parent="." index="0"]
 wait_time = 0.2
 
-[node name="ColorRect" parent="CanvasLayer" index="0"]
-color = Color( 0.607843, 0.737255, 0.0588235, 1 )
-
 [node name="BombSwitch" parent="GameWorld/Geometry" index="0"]
 position = Vector2( 152, 96 )
+__detonation_time = 5
 
 [node name="Crate" parent="GameWorld/Geometry" index="1" instance=ExtResource( 4 )]
 position = Vector2( 96, 100 )
@@ -101,7 +99,6 @@ __containment_scene = ExtResource( 5 )
 
 [node name="Rodder" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 2 )]
 position = Vector2( 84, 96 )
-collision_layer = 0
 
 [node name="EscapeArea" parent="GameWorld" index="5"]
 position = Vector2( 8, 88 )
