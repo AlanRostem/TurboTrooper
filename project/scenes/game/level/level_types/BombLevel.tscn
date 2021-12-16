@@ -48,6 +48,7 @@ position = Vector2( 8, 0 )
 rotation = 1.5708
 
 [connection signal="activated" from="GameWorld/BombSwitch" to="." method="_on_BombSwitch_activated"]
+[connection signal="completion_transition_over" from="GameWorld/BombSwitch" to="." method="_on_BombSwitch_completion_transition_over"]
 [connection signal="body_entered" from="GameWorld/EscapeArea" to="." method="_on_EscapeArea_body_entered"]
 
 [editable path="GameWorld"]

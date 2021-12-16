@@ -18,7 +18,7 @@ export(PackedScene) var test_weapon_scene
 
 var __default_player_sprite_frames = preload("res://assets/resources/sprite_frames/char/PlayerSpriteFrames.tres")
 
-var __scrap_count = 0
+var __scrap_count = 250
 var __rush_energy_count = MAX_RUSH_ENERGY
 var __health = MAX_HEALTH
 
@@ -145,6 +145,10 @@ func recharge_rush_energy():
 	if __rush_energy_count == MAX_RUSH_ENERGY:
 		__rush_energy_recharge_timer.stop()
 		__is_recharging_rush_energy = false
+
+func convert_scrap_to_score(count = 1):
+	lose_scrap(count)
+	add_score(count)
 
 func _on_RushEnergyRechargeTimer_timeout():
 	recharge_rush_energy()

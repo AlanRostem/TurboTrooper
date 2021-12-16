@@ -20,3 +20,7 @@ func _on_EscapeArea_body_entered(player):
 func _on_BombSwitch_activated():
 	__arrow_sprite.visible = true
 	__blockade_shape.set_deferred("disabled", true)
+
+
+func _on_BombSwitch_completion_transition_over():
+	start_player_scrap_to_score_conversion()
