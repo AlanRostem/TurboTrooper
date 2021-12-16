@@ -29,7 +29,16 @@ func _on_PressArea_body_entered(body):
 	
 func is_ticking():
 	return __count_down
+	
+func stop_ticking():
+	__bomb_timer.stop()
+	__parent_level.game_handler.get_hud().hide_global_message()
+	__count_down = false
 
 # TODO: Show explosion and die
 func _on_BombTimer_timeout():
 	pass # Replace with function body.
+
+
+func _on_BombSwitch_completed():
+	stop_ticking()
