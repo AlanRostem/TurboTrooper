@@ -40,6 +40,7 @@ func stop_ticking():
 func _on_BombTimer_timeout():
 	emit_signal("detonated")
 	__parent_level.game_handler.get_hud().hide_global_message()
+	__count_down = false
 
 
 func _on_BombSwitch_completed():
