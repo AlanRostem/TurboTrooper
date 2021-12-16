@@ -37,6 +37,8 @@ func _ready():
 		rect.size *= __tile_map.get_tile_size()
 		player.set_camera_bounds(rect)
 		
+func hide_all_except_player():
+	pass
 
 func get_parent_level():
 	return __parent_level

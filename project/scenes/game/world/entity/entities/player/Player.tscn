@@ -77,41 +77,43 @@ shape = SubResource( 4 )
 __inital_state = NodePath("PlayerEnterLevelState")
 enter_state_on_ready = true
 
-[node name="PlayerLeaveLevelState" parent="PlayerFSM" index="0" instance=ExtResource( 5 )]
+[node name="PlayerDeathState" parent="PlayerFSM" index="0" instance=ExtResource( 5 )]
+
+[node name="PlayerLeaveLevelState" parent="PlayerFSM" index="1" instance=ExtResource( 5 )]
 script = ExtResource( 19 )
 
-[node name="PlayerEnterLevelState" parent="PlayerFSM" index="1" instance=ExtResource( 5 )]
+[node name="PlayerEnterLevelState" parent="PlayerFSM" index="2" instance=ExtResource( 5 )]
 script = ExtResource( 18 )
 
 [node name="MoveTimer" type="Timer" parent="PlayerFSM/PlayerEnterLevelState" index="0"]
 one_shot = true
 
-[node name="PlayerIdleState" parent="PlayerFSM" index="2" instance=ExtResource( 5 )]
+[node name="PlayerIdleState" parent="PlayerFSM" index="3" instance=ExtResource( 5 )]
 script = ExtResource( 4 )
 is_grounded_state = true
 
-[node name="PlayerWalkState" parent="PlayerFSM" index="3" instance=ExtResource( 5 )]
+[node name="PlayerWalkState" parent="PlayerFSM" index="4" instance=ExtResource( 5 )]
 script = ExtResource( 12 )
 is_grounded_state = true
 
-[node name="PlayerRunState" parent="PlayerFSM" index="4" instance=ExtResource( 5 )]
+[node name="PlayerRunState" parent="PlayerFSM" index="5" instance=ExtResource( 5 )]
 script = ExtResource( 6 )
 is_grounded_state = true
 
 [node name="DustSpawnTimer" type="Timer" parent="PlayerFSM/PlayerRunState" index="0"]
 wait_time = 0.1
 
-[node name="PlayerAirBorneState" parent="PlayerFSM" index="5" instance=ExtResource( 5 )]
+[node name="PlayerAirBorneState" parent="PlayerFSM" index="6" instance=ExtResource( 5 )]
 script = ExtResource( 8 )
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerAirBorneState" index="0"]
 stream = ExtResource( 16 )
 
-[node name="PlayerCrouchState" parent="PlayerFSM" index="6" instance=ExtResource( 5 )]
+[node name="PlayerCrouchState" parent="PlayerFSM" index="7" instance=ExtResource( 5 )]
 script = ExtResource( 9 )
 is_grounded_state = true
 
-[node name="PlayerSlideState" parent="PlayerFSM" index="7" instance=ExtResource( 5 )]
+[node name="PlayerSlideState" parent="PlayerFSM" index="8" instance=ExtResource( 5 )]
 script = ExtResource( 10 )
 
 [node name="SlideSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerSlideState" index="0"]
