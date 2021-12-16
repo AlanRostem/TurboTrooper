@@ -241,7 +241,7 @@ func can_move_on_ground():
 func die():
 	state_machine.transition_to("PlayerDeathState")
 	parent_world.get_parent_level().start_reset_sequence()
-	parent_world.hide()
+	parent_world.hide_and_remove_entities()
 
 func _on_InvincibilityTimer_timeout():
 	set_hit_box_enabled(true)

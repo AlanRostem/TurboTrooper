@@ -14,6 +14,7 @@ onready var __win_theme = $WinTheme
 func complete():
 	__completion_transition_timer.start(__completion_transition_time)
 	__win_theme.play()
+	__parent_level.set_remove_all_entities(true)
 	emit_signal("completed")
 	
 func _on_CompletionTransitionTimer_timeout():

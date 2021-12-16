@@ -28,6 +28,7 @@ onready var __scrap_hover_text = $ScrapHoverText
 onready var __weapon_hover_text = $WeaponHoverText
 
 var __scrap_recently_collected = 0
+var __remove_all_entities = false
 
 var __delayed_sounds = {}
 
@@ -40,12 +41,15 @@ func _ready():
 		rect.size *= __tile_map.get_tile_size()
 		player.set_camera_bounds(rect)
 		
-func hide():
+func hide_and_remove_entities():
 	__geometry.visible = false
-	__hide_entities = true
+	set_remove_all_entities(true)
 	
-func are_all_entities_hidden():
-	return __hide_entities
+func set_remove_all_entities(value):
+	__remove_all_entities = value
+
+func remove_all_entities():
+	return __remove_all_entities
 
 func get_parent_level():
 	return __parent_level

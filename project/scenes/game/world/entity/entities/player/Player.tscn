@@ -38,7 +38,7 @@ z_index = 1
 collision_layer = 4
 script = ExtResource( 3 )
 collision_mode = 2
-__hide_on_entity_pool_hidden = false
+__remove_when_entity_pool_cleared = false
 air_acceleration = 250.0
 
 [node name="FlashingTimer" type="Timer" parent="." index="0"]

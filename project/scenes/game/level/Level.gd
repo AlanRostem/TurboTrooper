@@ -8,13 +8,18 @@ onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
 onready var __color_rect = $CanvasLayer/ColorRect
 
+onready var __game_world = $GameWorld
+
 var player_node
 
 var __convert_player_scrap_to_score = false
 
 func _ready():
 	__color_rect.visible = true
-
+	
+func set_remove_all_entities(value):
+	__game_world.set_remove_all_entities(value)
+	
 func start_reset_sequence():
 	__reset_timer.start()
 

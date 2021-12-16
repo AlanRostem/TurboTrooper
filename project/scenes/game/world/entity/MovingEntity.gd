@@ -19,7 +19,7 @@ export var gravity = 400
 
 export var stop_on_slope = true
 
-export var __hide_on_entity_pool_hidden = true
+export var __remove_when_entity_pool_cleared = true
 
 var parent_world = null
 
@@ -35,9 +35,8 @@ func _ready():
 		parent_world = get_parent().get_parent()
 		
 func _process(delta):
-	if __hide_on_entity_pool_hidden:
-		visible = !parent_world.are_all_entities_hidden()
-
+	if __remove_when_entity_pool_cleared and parent_world.remove_all_entities():
+		queue_free()
 # Returns true if the absolute value of the entity's x-velocity is greater
 # than the max_viable_x_speed export variable
 func is_moving_too_fast(max_viable_x_speed):
