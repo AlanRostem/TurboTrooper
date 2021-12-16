@@ -127,6 +127,7 @@ func get_scrap_count():
 	return __scrap_count
 
 func take_one_damage():
+	if __health == 0: return
 	set_health(__health - 1)
 	if __equipped_weapon != null:
 		__equipped_weapon.drop()

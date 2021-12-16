@@ -144,7 +144,7 @@ use_parent_material = true
 position = Vector2( 0, -4 )
 frames = ExtResource( 7 )
 animation = "death"
-frame = 7
+frame = 8
 playing = true
 script = ExtResource( 11 )
 

@@ -7,7 +7,7 @@ onready var __heart_icon = $HeartIcon
 onready var __flash_timer = $FlashTimer
 
 func set_health(count):
-	if count > 1:
+	if count != 1:
 		__flash_timer.stop()
 		visible = true
 	else:

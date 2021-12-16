@@ -1,7 +1,7 @@
 extends "res://scenes/game/level/Level.gd"
 
 
-onready var __bomb_switch = $GameWorld/BombSwitch
+onready var __bomb_switch = $GameWorld/Geometry/BombSwitch
 
 onready var __blockade_shape = $GameWorld/EscapeArea/Blockade/CollisionShape2D
 

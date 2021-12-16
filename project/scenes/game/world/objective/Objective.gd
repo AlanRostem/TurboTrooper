@@ -5,7 +5,7 @@ signal completion_transition_over()
 
 export var __completion_transition_time = 3.0
 
-onready var __parent_level = get_parent().get_parent()
+onready var __parent_level = get_parent().get_parent().get_parent()
 
 onready var __completion_transition_timer = $CompletionTransitionTimer
 
