@@ -103,4 +103,7 @@ position = Vector2( 84, 96 )
 [node name="EscapeArea" parent="GameWorld" index="5"]
 position = Vector2( 8, 88 )
 
+[node name="CheckPoint" parent="." index="5"]
+position = Vector2( 168, 92 )
+
 [editable path="GameWorld"]

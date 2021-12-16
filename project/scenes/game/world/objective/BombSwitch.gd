@@ -27,6 +27,7 @@ func _on_PressArea_body_entered(body):
 	__press_shape.set_deferred("disabled", true)
 	__arrow_sprite.visible = false
 	emit_signal("activated")
+	get_parent_level().save_check_point()
 	
 func is_ticking():
 	return __count_down

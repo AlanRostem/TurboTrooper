@@ -9,6 +9,7 @@ onready var __next_level_transition_timer = $NextLevelTransitionTimer
 onready var __color_rect = $CanvasLayer/ColorRect
 
 onready var __game_world = $GameWorld
+onready var __check_point = $CheckPoint
 
 var player_node
 
@@ -16,6 +17,16 @@ var __convert_player_scrap_to_score = false
 
 func _ready():
 	__color_rect.visible = true
+	if game_handler.has_check_point():
+		player_node.state_machine.transition_to("PlayerIdleState")
+	else:
+		player_node.state_machine.transition_to("PlayerEnterLevelState")
+	
+func save_check_point():
+	game_handler.set_check_point(__check_point.position)
+	
+func put_player_on_check_point(vec):
+	player_node.position = vec
 	
 func set_remove_all_entities(value):
 	__game_world.set_remove_all_entities(value)

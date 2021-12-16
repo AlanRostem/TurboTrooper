@@ -76,8 +76,7 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="PlayerFSM" parent="." index="7" instance=ExtResource( 2 )]
-__inital_state = NodePath("PlayerEnterLevelState")
-enter_state_on_ready = true
+init_state_on_ready = false
 
 [node name="PlayerDeathState" parent="PlayerFSM" index="0" instance=ExtResource( 5 )]
 script = ExtResource( 20 )

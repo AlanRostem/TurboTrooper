@@ -47,6 +47,8 @@ visible = false
 [node name="WeaponHoverText" parent="GameWorld" index="3"]
 visible = false
 
+[node name="CheckPoint" type="Position2D" parent="."]
+
 [connection signal="timeout" from="IntroTimer" to="." method="_on_IntroTimer_timeout"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
 [connection signal="timeout" from="NextLevelTransitionTimer" to="." method="_on_NextLeveTransitionTimer_timeout"]

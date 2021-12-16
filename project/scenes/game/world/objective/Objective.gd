@@ -17,5 +17,8 @@ func complete():
 	__parent_level.set_remove_all_entities(true)
 	emit_signal("completed")
 	
+func get_parent_level():
+	return __parent_level
+	
 func _on_CompletionTransitionTimer_timeout():
 	emit_signal("completion_transition_over")
