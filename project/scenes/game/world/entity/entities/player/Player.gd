@@ -70,7 +70,7 @@ var __controls_enabled = true
 #	print(get_velocity().x)
 	
 func set_camera_bounds(bounds: Rect2):
-	__camera.limit_left = bounds.position.x;
+	__camera.limit_left = clamp(bounds.position.x, 0, INF);
 	__camera.limit_top = bounds.position.y;
 	__camera.limit_right = bounds.size.x;
 	__camera.limit_bottom = bounds.size.y;

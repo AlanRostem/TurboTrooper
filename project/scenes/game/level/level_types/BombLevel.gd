@@ -3,10 +3,14 @@ extends "res://scenes/game/level/Level.gd"
 
 onready var __bomb_switch = $GameWorld/BombSwitch
 
-func _ready():
-	pass # Replace with function body.
+onready var __blockade_shape = $GameWorld/EscapeArea/Blockade/CollisionShape2D
 
+var __touched_escape_area = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_EscapeArea_body_entered(player):
+	if !__touched_escape_area:
+		__touched_escape_area = true
+		__blockade_shape.set_deferred("disabled", false)
+	elif __bomb_switch.is_ticking():
+		__blockade_shape.set_deferred("disabled", true)
+		
