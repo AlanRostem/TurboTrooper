@@ -23,7 +23,7 @@ func _ready():
 		player_node.state_machine.transition_to("PlayerEnterLevelState")
 	
 func save_check_point():
-	game_handler.set_check_point(__check_point.position)
+	game_handler.set_check_point(__check_point.position, player_node.stats.get_scrap_count())
 	
 func put_player_on_check_point(vec):
 	player_node.position = vec

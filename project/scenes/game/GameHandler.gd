@@ -18,20 +18,23 @@ onready var __level_list = $LevelList
 var __has_check_point = false
 
 var __check_point: Vector2
+var __scrap = 0
 
 var __player_save_data = {
 	"score": 0,
 	"life": 3,
 	"weapon": -1,
 	"level": 0,
+	"scrap": 0,
 }
 
 func _ready():
 	set_current_level(0)
 	
-func set_check_point(vec):
+func set_check_point(vec, scrap):
 	__has_check_point = true
 	__check_point = vec
+	__scrap = scrap
 	
 func has_check_point():
 	return __has_check_point
@@ -72,6 +75,7 @@ func reset_current_level():
 	__current_level.set_player_stats(__player_save_data)
 	if __has_check_point:
 		__current_level.put_player_on_check_point(__check_point)
+		__current_level.player_node.stats.set_scrap(__scrap)
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)
