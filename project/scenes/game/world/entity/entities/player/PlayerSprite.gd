@@ -54,6 +54,8 @@ func _physics_process(delta):
 			animation = "slide"
 		"PlayerSlideState": 
 			animation = "slide"
+		"PlayerDeathState":
+			animation = "death"
 
 
 func _on_RushEnergyVisualActivityTimer_timeout():

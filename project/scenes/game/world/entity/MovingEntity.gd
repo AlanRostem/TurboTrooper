@@ -19,6 +19,8 @@ export var gravity = 400
 
 export var stop_on_slope = true
 
+export var __hide_on_entity_pool_hidden = true
+
 var parent_world = null
 
 var __velocity = Vector2()
@@ -31,6 +33,10 @@ var __can_accelerate = true
 func _ready():
 	if parent_world == null:
 		parent_world = get_parent().get_parent()
+		
+func _process(delta):
+	if __hide_on_entity_pool_hidden:
+		visible = !parent_world.are_all_entities_hidden()
 
 # Returns true if the absolute value of the entity's x-velocity is greater
 # than the max_viable_x_speed export variable

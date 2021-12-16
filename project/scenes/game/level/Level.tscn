@@ -9,9 +9,13 @@
 script = ExtResource( 3 )
 
 [node name="IntroTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="ResetTimer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
 
 [node name="NextLevelTransitionTimer" type="Timer" parent="."]
 one_shot = true
@@ -44,6 +48,7 @@ visible = false
 visible = false
 
 [connection signal="timeout" from="IntroTimer" to="." method="_on_IntroTimer_timeout"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
 [connection signal="timeout" from="NextLevelTransitionTimer" to="." method="_on_NextLeveTransitionTimer_timeout"]
 
 [editable path="GameWorld"]

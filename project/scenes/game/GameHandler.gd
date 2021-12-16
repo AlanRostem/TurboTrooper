@@ -48,6 +48,9 @@ func set_current_level(index):
 func set_current_to_next_level():
 	if !__level_list.is_last_level(__level_index):
 		set_current_level(__level_index + 1)
+		
+func reset_current_level():
+	set_current_level(__level_index)
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)

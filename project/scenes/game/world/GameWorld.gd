@@ -12,7 +12,10 @@ var __hover_text_scene = preload("res://scenes/ui/world/hover_text/WorldHoverTex
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
 
+onready var __geometry = $Geometry
 onready var __entity_pool = $EntityPool
+
+var __hide_entities = false
 
 onready var __tile_map = $Geometry/CustomTileMap
 
@@ -37,8 +40,12 @@ func _ready():
 		rect.size *= __tile_map.get_tile_size()
 		player.set_camera_bounds(rect)
 		
-func hide_all_except_player():
-	pass
+func hide():
+	__geometry.visible = false
+	__hide_entities = true
+	
+func are_all_entities_hidden():
+	return __hide_entities
 
 func get_parent_level():
 	return __parent_level

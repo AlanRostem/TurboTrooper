@@ -136,9 +136,10 @@ func take_one_damage():
 		__player.stop_aiming_down()
 	if !__player.is_roof_above():
 		__player.set_velocity_x(0)
-	__player.start_invinvibility_sequence()
 	if __health == 0:
 		emit_signal("died")
+	else:
+		__player.start_invinvibility_sequence()
 	
 func add_one_health():
 	set_health(__health + 1)

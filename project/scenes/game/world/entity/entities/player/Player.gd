@@ -251,3 +251,9 @@ func _on_RamSlideHitBox_hit_dealt(hitbox):
 
 func _on_CrateOpeningTimer_timeout():
 	set_opening_crate(false)
+
+
+func _on_PlayerStats_died():
+	state_machine.transition_to("PlayerDeathState")
+	parent_world.get_parent_level().start_reset_sequence()
+	parent_world.hide()
