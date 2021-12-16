@@ -140,6 +140,7 @@ func take_one_damage():
 		__player.set_velocity_x(0)
 	if __health == 0:
 		emit_signal("died")
+		__player.become_invincible()
 	else:
 		__player.start_invinvibility_sequence()
 	

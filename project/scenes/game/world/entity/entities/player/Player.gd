@@ -209,10 +209,13 @@ func set_hit_box_enabled(value):
 	__hit_box_shape.set_deferred("disabled", !value)
 	
 func start_invinvibility_sequence():
-	set_hit_box_enabled(false)
+	become_invincible()
 	__invincibility_timer.start()
 	__flashing_timer.start()
 	visible = false
+	
+func become_invincible():
+	set_hit_box_enabled(false)
 	
 func is_roof_above():
 	return __right_roof_ray.is_colliding() or __left_roof_ray.is_colliding()
