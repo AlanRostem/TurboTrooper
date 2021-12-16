@@ -17,13 +17,17 @@ onready var __level_list = $LevelList
 
 var __player_save_data = {
 	"score": 0,
-	"life": 0,
-	"weapon": 0,
+	"life": 3,
+	"weapon": -1,
 	"level": 0,
 }
 
 func _ready():
 	set_current_level(0)
+	
+func update_player_data(data):
+	update_player_save_data("score", data["score"])
+	update_player_save_data("weapon", data["weapon"])
 	
 func update_player_save_data(key, value):
 	__player_save_data[key] = value
@@ -34,10 +38,12 @@ func set_current_level(index):
 	var level_scene: PackedScene = __level_list.get_level_scene(index)
 	__level_index = index
 	if __current_level != null:
+		update_player_data(__current_level.player_node.stats.get_data())
 		__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
+	__current_level.set_player_stats(__player_save_data)
 	
 func set_current_to_next_level():
 	if !__level_list.is_last_level(__level_index):

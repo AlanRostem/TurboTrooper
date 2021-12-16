@@ -24,4 +24,5 @@ func _physics_process(delta):
 
 
 func _on_NextLeveTransitionTimer_timeout():
+	game_handler.update_player_data(player_node.stats.get_data())
 	game_handler.set_current_to_next_level()

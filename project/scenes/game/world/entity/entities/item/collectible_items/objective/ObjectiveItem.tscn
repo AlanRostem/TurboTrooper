@@ -31,4 +31,5 @@ __disappear_on_timeout = false
 position = Vector2( 0, -18 )
 frames = SubResource( 3 )
 animation = "pointing"
+frame = 1
 playing = true
