@@ -2,12 +2,18 @@ extends Node2D
 
 onready var game_handler = get_parent()
 
-onready var __next_level_transition_timer = $NextLeveTransitionTimer
+onready var __intro_timer = $IntroTimer
+onready var __next_level_transition_timer = $NextLevelTransitionTimer
+
+onready var __color_rect = $CanvasLayer/ColorRect
 
 var player_node
 
 var __convert_player_scrap_to_score = false
 
+func _ready():
+	__color_rect.visible = true
+	
 func set_player_stats(stats: Dictionary):
 	player_node.stats.set_from_data(stats)
 
@@ -26,3 +32,7 @@ func _physics_process(delta):
 func _on_NextLeveTransitionTimer_timeout():
 	game_handler.update_player_data(player_node.stats.get_data())
 	game_handler.set_current_to_next_level()
+
+
+func _on_IntroTimer_timeout():
+	__color_rect.visible = false
