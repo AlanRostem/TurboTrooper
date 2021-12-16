@@ -1,5 +1,7 @@
 extends "res://scenes/game/world/objective/Objective.gd"
 
+signal activated()
+
 export var __detonation_time = 60
 
 onready var __bomb_timer = $BombTimer
@@ -23,6 +25,7 @@ func _on_PressArea_body_entered(body):
 	__body_shape.set_deferred("disabled", true)
 	__press_shape.set_deferred("disabled", true)
 	__arrow_sprite.visible = false
+	emit_signal("activated")
 	
 func is_ticking():
 	return __count_down
