@@ -14,9 +14,8 @@ func _on_EscapeArea_body_entered(player):
 		__touched_escape_area = true
 		__blockade_shape.set_deferred("disabled", false)
 	elif __bomb_switch.is_ticking():
-		__blockade_shape.set_deferred("disabled", true)
-		
-
+		player.state_machine.transition_to("PlayerLeaveLevelState")
 
 func _on_BombSwitch_activated():
 	__arrow_sprite.visible = true
+	__blockade_shape.set_deferred("disabled", true)
