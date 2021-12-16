@@ -2,6 +2,8 @@ extends Node2D
 
 onready var game_handler = get_parent()
 
+onready var __next_level_transition_timer = $NextLeveTransitionTimer
+
 var player_node
 
 var __convert_player_scrap_to_score = false
@@ -15,3 +17,8 @@ func _physics_process(delta):
 			player_node.stats.convert_scrap_to_score()
 		else:
 			__convert_player_scrap_to_score = false
+			__next_level_transition_timer.start()
+
+
+func _on_NextLeveTransitionTimer_timeout():
+	game_handler.set_current_to_next_level()

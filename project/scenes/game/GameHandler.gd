@@ -31,7 +31,7 @@ func update_player_save_data(key, value):
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
 func set_current_level(index):
-	var level_scene = __level_list.get_level_scene(0)
+	var level_scene: PackedScene = __level_list.get_level_scene(index)
 	__level_index = index
 	if __current_level != null:
 		__current_level.queue_free()
