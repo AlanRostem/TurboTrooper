@@ -43,6 +43,7 @@ func _ready():
 		call_deferred("equip_test_weapon")
 	call_deferred("set_rush_energy", MAX_RUSH_ENERGY)
 	call_deferred("set_health", MAX_HEALTH)
+	call_deferred("set_scrap", 0)
 	
 func _physics_process(delta):
 	if __player.is_on_ground():
