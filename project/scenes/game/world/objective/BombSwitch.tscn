@@ -40,6 +40,7 @@ frames = SubResource( 3 )
 animation = "off"
 
 [node name="ArrowSprite" parent="." index="1" instance=ExtResource( 4 )]
+frame = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
 collision_mask = 0
@@ -61,4 +62,5 @@ one_shot = true
 
 [connection signal="completed" from="." to="." method="_on_BombSwitch_completed"]
 [connection signal="body_entered" from="PressArea" to="." method="_on_PressArea_body_entered"]
+[connection signal="body_exited" from="PressArea" to="." method="_on_PressArea_body_exited"]
 [connection signal="timeout" from="BombTimer" to="." method="_on_BombTimer_timeout"]
