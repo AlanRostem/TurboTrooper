@@ -49,6 +49,7 @@ func update_player_save_data(key, value):
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
 func set_current_level(index):
+	__has_check_point = false
 	var level_scene: PackedScene = __level_list.get_level_scene(index)
 	__level_index = index
 	if __current_level != null:
@@ -58,7 +59,6 @@ func set_current_level(index):
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
 	__current_level.set_player_stats(__player_save_data)
-	__has_check_point = false
 	
 func set_current_to_next_level():
 	if !__level_list.is_last_level(__level_index):

@@ -47,7 +47,6 @@ disabled = true
 visible = false
 position = Vector2( 8, 0 )
 rotation = 1.5708
-frame = 0
 
 [connection signal="activated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_activated"]
 [connection signal="completion_transition_over" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_completion_transition_over"]
