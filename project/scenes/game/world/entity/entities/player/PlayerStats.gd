@@ -44,7 +44,7 @@ func _ready():
 		call_deferred("equip_test_weapon")
 	call_deferred("set_rush_energy", MAX_RUSH_ENERGY)
 	call_deferred("set_health", MAX_HEALTH)
-	call_deferred("emit_signal", "scrap_changed", __scrap_count)
+#	call_deferred("emit_signal", "scrap_changed", __scrap_count)
 	
 
 func _physics_process(delta):
