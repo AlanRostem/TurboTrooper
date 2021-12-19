@@ -72,10 +72,10 @@ tile_data = PoolIntArray( 65529, 0, 0, 65530, 0, 1, 65531, 0, 1, 65532, 0, 1, 65
 position = Vector2( 320, 96 )
 
 [node name="SpikeHazard" parent="GameWorld/Geometry" index="19" instance=ExtResource( 7 )]
-position = Vector2( 292, 100 )
+position = Vector2( 156, 100 )
 
 [node name="SpikeHazard2" parent="GameWorld/Geometry" index="20" instance=ExtResource( 7 )]
-position = Vector2( 300, 100 )
+position = Vector2( 164, 100 )
 
 [node name="Player" parent="GameWorld/EntityPool" index="0"]
 position = Vector2( -8, 88 )
@@ -85,7 +85,7 @@ position = Vector2( 60, 100 )
 __containment_scene = ExtResource( 5 )
 
 [node name="Rodder" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 2 )]
-position = Vector2( 224, 88 )
+position = Vector2( 276, 48 )
 
 [node name="EscapeArea" parent="GameWorld" index="5"]
 position = Vector2( 8, 88 )
