@@ -14,7 +14,10 @@ func connect_to_player(player):
 	player.stats.connect("score_changed", self, "update_score_count")
 
 func set_global_message(text):
+	__message.rect_size.x = 0
 	__message.text = text
+	__message.align = Label.ALIGN_CENTER
+	__message.rect_position.y = 32
 	if !__message.visible:
 		__message.visible = true
 	

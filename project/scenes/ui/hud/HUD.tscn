@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/resources/sprite_frames/ui/hud/RushEnergyBarSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/ui/hud/RushEnergyBar.gd" type="Script" id=2]
@@ -9,22 +9,25 @@
 [ext_resource path="res://assets/sprites/ui/hud/health.png" type="Texture" id=8]
 [ext_resource path="res://scenes/ui/hud/HealthInfo.gd" type="Script" id=9]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 8 )
-region = Rect2( 8, 0, 8, 8 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.188235, 0.384314, 0.188235, 1 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 8 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 8, 8 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "empty",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 2 ) ],
+"frames": [ SubResource( 3 ) ],
 "loop": true,
 "name": "full",
 "speed": 5.0
@@ -56,14 +59,15 @@ text = "score:00000"
 
 [node name="GlobalMessage" parent="." instance=ExtResource( 4 )]
 visible = false
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -40.0
-margin_right = 0.0
-margin_bottom = -30.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -44.0
+margin_top = 32.0
+margin_right = 44.0
+margin_bottom = 42.0
+custom_styles/normal = SubResource( 1 )
 custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
-text = ""
+text = "ESCAPE! - 30"
 align = 1
 
 [node name="RushEnergyBar" type="Control" parent="."]
@@ -136,7 +140,7 @@ __meta__ = {
 
 [node name="HeartIcon" type="AnimatedSprite" parent="HealthInfo"]
 position = Vector2( 4, 8 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "full"
 
 [node name="FlashTimer" type="Timer" parent="HealthInfo"]
