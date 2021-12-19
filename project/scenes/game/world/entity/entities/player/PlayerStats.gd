@@ -21,16 +21,19 @@ export(PackedScene) var test_weapon_scene
 
 var __default_player_sprite_frames = preload("res://assets/resources/sprite_frames/char/PlayerSpriteFrames.tres")
 
-var __scrap_count = 0
-var __dirty_scrap = 0
+var __data = {
+	"scrap": 0,
+	"life": MAX_HEALTH,
+	"weapon": -1,
+	"score": 0,
+	"checkpoint": null,
+}
+
 var __rush_energy_count = MAX_RUSH_ENERGY
-var __health = MAX_HEALTH
 
 var __equipped_weapon
-var __weapon_idx = -1
 
 var __is_recharging_rush_energy = false
-var __score = 0
 
 var __sword_scene = preload("res://scenes/game/world/weapon/Sword.tscn")
 var __blaster_scene = preload("res://scenes/game/world/weapon/Blaster.tscn")
@@ -43,7 +46,6 @@ func _ready():
 	if test_weapon_scene != null:
 		call_deferred("equip_test_weapon")
 	call_deferred("set_rush_energy", MAX_RUSH_ENERGY)
-	call_deferred("set_health", MAX_HEALTH)
 #	call_deferred("emit_signal", "scrap_changed", __scrap_count)
 	
 
@@ -67,37 +69,40 @@ func _physics_process(delta):
 		__player.set_aim_up(true)
 	elif Input.is_action_just_released("aim_up"):
 		__player.set_aim_up(false)
+		
+func set_check_point(checkpoint):
+	if checkpoint != null:
+		__player.position = checkpoint
+	__data["checkpoint"] = checkpoint
 	
 func set_from_data(data: Dictionary):
+	set_health(data["life"])
+	set_scrap(data["scrap"])
 	set_score(data["score"])
+	set_check_point(data["checkpoint"])	
 	match data["weapon"]:
 		SWORD_WEAPON_IDX: instance_and_equip_weapon(__sword_scene)
 		BLASTER_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
 	
+	
 func get_data():
-	return {
-		"score": get_score(),
-		"weapon": __weapon_idx
-	}
+	return __data
 	
 func add_score(score):
-	set_score(__score + score)
+	set_score(__data["score"] + score)
 	
 func set_score(score):
-	__score = clamp(score, 0, MAX_SCORE)
-	emit_signal("score_changed", __score)
+	__data["score"] = clamp(score, 0, MAX_SCORE)
+	emit_signal("score_changed", __data["score"])
 	
 func get_score():
-	return __score
+	return __data["score"]
 	
 func has_weapon():
 	return __equipped_weapon != null
 	
 func get_weapon():
 	return __equipped_weapon
-	
-func dirty_set_scrap(scrap):
-	__dirty_scrap = scrap
 	
 func instance_and_equip_weapon(scene):
 	var weapon = scene.instance()
@@ -107,7 +112,7 @@ func equip_weapon(weapon):
 	if has_weapon():
 		__equipped_weapon.drop()
 	__equipped_weapon = weapon
-	__weapon_idx = weapon.weapon_index
+	__data["weapon"] = weapon.weapon_index
 	add_child(__equipped_weapon)
 	__equipped_weapon.equip()
 	emit_signal("weapon_changed", __equipped_weapon)
@@ -119,22 +124,22 @@ func get_equipped_weapon():
 	return __equipped_weapon
 
 func set_scrap(count):
-	__scrap_count = count
-	emit_signal("scrap_changed", __scrap_count)
+	__data["scrap"] = count
+	emit_signal("scrap_changed", __data["scrap"])
 
 func add_scrap(count):
-	set_scrap(__scrap_count + count)
+	set_scrap(__data["scrap"] + count)
 	
 func lose_scrap(count):
-	__scrap_count = clamp(__scrap_count - count, 0, INF)
-	emit_signal("scrap_changed", __scrap_count)
+	__data["scrap"] = clamp(__data["scrap"] - count, 0, INF)
+	emit_signal("scrap_changed", __data["scrap"])
 	
 func get_scrap_count():
-	return __scrap_count
+	return __data["scrap"]
 
 func take_one_damage():
-	if __health == 0: return
-	set_health(__health - 1)
+	if __data["life"] == 0: return
+	set_health(__data["life"] - 1)
 	if __equipped_weapon != null:
 		__equipped_weapon.drop()
 		__player.set_sprite_frames(__default_player_sprite_frames)
@@ -143,20 +148,20 @@ func take_one_damage():
 		__player.stop_aiming_down()
 	if !__player.is_roof_above():
 		__player.set_velocity_x(0)
-	if __health == 0:
+	if __data["life"] == 0:
 		emit_signal("died")
 		__player.become_invincible()
 	else:
 		__player.start_invinvibility_sequence()
 	
 func add_one_health():
-	set_health(__health + 1)
+	set_health(__data["life"] + 1)
 	
 func set_health(value):
-	__health = value
-	emit_signal("health_changed", __health)
+	__data["life"] = value
+	emit_signal("health_changed", __data["life"])
 
-func get_health(): return __health
+func get_health(): return __data["life"]
 
 func get_rush_energy():
 	return __rush_energy_count

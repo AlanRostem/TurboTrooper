@@ -17,15 +17,12 @@ onready var __level_list = $LevelList
 
 var __has_check_point = false
 
-var __check_point: Vector2
-var __scrap = 0
-
-var __player_save_data = {
+var __saved_player_stats = {
 	"score": 0,
 	"life": 3,
 	"weapon": -1,
-	"level": 0,
 	"scrap": 0,
+	"checkpoint": null,
 }
 
 func _ready():
@@ -33,32 +30,31 @@ func _ready():
 	
 func set_check_point(vec, scrap):
 	__has_check_point = true
-	__check_point = vec
-	__scrap = scrap
+	update_player_save_data("checkpoint", vec)
+	update_player_save_data("scrap", scrap)
 	
 func has_check_point():
 	return __has_check_point
 	
-func update_player_data(data):
-	update_player_save_data("score", data["score"])
-	update_player_save_data("weapon", data["weapon"])
-	
 func update_player_save_data(key, value):
-	__player_save_data[key] = value
+	__saved_player_stats[key] = value
 
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
 func set_current_level(index):
 	__has_check_point = false
+	update_player_save_data("checkpoint", null)
 	var level_scene: PackedScene = __level_list.get_level_scene(index)
 	__level_index = index
 	if __current_level != null:
-		update_player_data(__current_level.player_node.stats.get_data())
+		__saved_player_stats = __current_level.player_node.stats.get_data()
+		__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
+		__saved_player_stats["checkpoint"] = null
 		__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
-	__current_level.set_player_stats(__player_save_data)
+	__current_level.set_player_stats(__saved_player_stats)
 	
 func set_current_to_next_level():
 	if !__level_list.is_last_level(__level_index):
@@ -67,15 +63,12 @@ func set_current_to_next_level():
 func reset_current_level():
 	var level_scene: PackedScene = __level_list.get_level_scene(__level_index)
 	if __has_check_point:
-		update_player_data(__current_level.player_node.stats.get_data())
+		__saved_player_stats = __current_level.player_node.stats.get_data()
 	__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
-	__current_level.set_player_stats(__player_save_data)
-	if __has_check_point:
-		__current_level.put_player_on_check_point(__check_point)
-		__current_level.set_saved_player_scrap(__scrap)
+	__current_level.set_player_stats(__saved_player_stats)
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)
