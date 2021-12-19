@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rodder/Rodder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/world/structure/destructible/WeaponCrate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/game/world/structure/destructible/Crate.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/BlasterCollectible.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/SwordCollectible.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/world/environment/LaunchPad.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/world/environment/hazards/SpikeHazard.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/BlasterCollectible.tscn" type="PackedScene" id=8]
 
 [node name="TestingBombLevel" instance=ExtResource( 1 )]
 
@@ -77,14 +78,18 @@ position = Vector2( 96, 100 )
 [node name="SpikeHazard2" parent="GameWorld/Geometry" index="20" instance=ExtResource( 7 )]
 position = Vector2( 104, 100 )
 
+[node name="WeaponCrate" parent="GameWorld/Geometry" index="21" instance=ExtResource( 3 )]
+position = Vector2( 60, 100 )
+__containment_scene = ExtResource( 8 )
+
+[node name="WeaponCrate2" parent="GameWorld/Geometry" index="22" instance=ExtResource( 3 )]
+position = Vector2( 36, 100 )
+__containment_scene = ExtResource( 5 )
+
 [node name="Player" parent="GameWorld/EntityPool" index="0"]
 position = Vector2( -8, 88 )
 
-[node name="WeaponCrate" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 3 )]
-position = Vector2( 60, 100 )
-__containment_scene = ExtResource( 5 )
-
-[node name="Rodder" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 2 )]
+[node name="Rodder" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 2 )]
 position = Vector2( 276, 48 )
 
 [node name="EscapeArea" parent="GameWorld" index="5"]
