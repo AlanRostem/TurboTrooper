@@ -39,9 +39,10 @@ var __is_crouched = false
 var __looking_vector = Vector2.RIGHT
 var __horizontal_looking_direction = 1
 
-
 var __can_move_on_ground = true
 var __is_opening_crate = false
+
+var __is_invincible = false
 
 onready var __upper_body_shape: CollisionShape2D = $UpperBodyShape
 onready var __hit_box_shape = $InHitBox/CollisionShape2D
@@ -216,6 +217,10 @@ func start_invinvibility_sequence():
 	
 func become_invincible():
 	set_hit_box_enabled(false)
+	__is_invincible = true
+	
+func is_invincible():
+	return __is_invincible
 	
 func is_roof_above():
 	return __right_roof_ray.is_colliding() or __left_roof_ray.is_colliding()
@@ -250,12 +255,12 @@ func _on_InvincibilityTimer_timeout():
 	set_hit_box_enabled(true)
 	__flashing_timer.stop()
 	visible = true
+	__is_invincible = false
 
 func _on_RamSlideHitBox_hit_dealt(hitbox):
 	hitbox.take_hit(__ram_slide_hit_box, RAM_SLIDE_DAMAGE, {
 		"ram_slide": true
 	})
-
 
 func _on_CrateOpeningTimer_timeout():
 	set_opening_crate(false)

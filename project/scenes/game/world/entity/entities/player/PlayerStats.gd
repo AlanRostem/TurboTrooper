@@ -141,7 +141,7 @@ func get_scrap_count():
 	return __data["scrap"]
 
 func take_one_damage():
-	if __data["life"] == 0: return
+	if __data["life"] == 0 or __player.is_invincible(): return
 	set_health(__data["life"] - 1)
 	if __equipped_weapon != null:
 		__equipped_weapon.drop()
