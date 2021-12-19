@@ -41,6 +41,8 @@ var __blaster_scene = preload("res://scenes/game/world/weapon/Blaster.tscn")
 onready var __player = get_parent()
 onready var __rush_energy_recharge_timer = $RushEnergyRechargeTimer
 onready var __rush_energy_recharge_starting_delay_timer = $RushEnergyRechargeStartingDelayTimer
+onready var __damage_sound = $DamageSound
+
 
 func _ready():
 	if test_weapon_scene != null:
@@ -154,6 +156,7 @@ func take_one_damage():
 		__player.become_invincible()
 	else:
 		__player.start_invinvibility_sequence()
+		__damage_sound.play()
 	
 func add_one_health():
 	set_health(__data["life"] + 1)

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pick_up_scrap.wav-4e821176ca408e83404ec4800562310b.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/world/scrap/pick_up_scrap.wav"
+dest_files=[ "res://.import/pick_up_scrap.wav-4e821176ca408e83404ec4800562310b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
