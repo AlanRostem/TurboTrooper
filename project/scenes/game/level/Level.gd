@@ -25,6 +25,9 @@ func _ready():
 func save_check_point():
 	game_handler.set_check_point(__check_point.position, player_node.stats.get_scrap_count())
 	
+func set_saved_player_scrap(scrap):
+	player_node.stats.set_scrap(scrap)
+	
 func put_player_on_check_point(vec):
 	player_node.position = vec
 	

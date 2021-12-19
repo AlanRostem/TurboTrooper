@@ -75,7 +75,7 @@ func reset_current_level():
 	__current_level.set_player_stats(__player_save_data)
 	if __has_check_point:
 		__current_level.put_player_on_check_point(__check_point)
-		__current_level.player_node.stats.set_scrap(__scrap)
+		__current_level.set_saved_player_scrap(__scrap)
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)

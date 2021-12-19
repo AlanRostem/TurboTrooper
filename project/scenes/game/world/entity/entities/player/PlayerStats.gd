@@ -22,6 +22,7 @@ export(PackedScene) var test_weapon_scene
 var __default_player_sprite_frames = preload("res://assets/resources/sprite_frames/char/PlayerSpriteFrames.tres")
 
 var __scrap_count = 0
+var __dirty_scrap = 0
 var __rush_energy_count = MAX_RUSH_ENERGY
 var __health = MAX_HEALTH
 
@@ -43,9 +44,9 @@ func _ready():
 		call_deferred("equip_test_weapon")
 	call_deferred("set_rush_energy", MAX_RUSH_ENERGY)
 	call_deferred("set_health", MAX_HEALTH)
-	if __scrap_count == 0:
-		call_deferred("set_scrap", 0)
+	call_deferred("emit_signal", "scrap_changed", __scrap_count)
 	
+
 func _physics_process(delta):
 	if __player.is_on_ground():
 		if __player.is_aiming_down():
@@ -94,6 +95,9 @@ func has_weapon():
 	
 func get_weapon():
 	return __equipped_weapon
+	
+func dirty_set_scrap(scrap):
+	__dirty_scrap = scrap
 	
 func instance_and_equip_weapon(scene):
 	var weapon = scene.instance()
