@@ -45,6 +45,7 @@ b = Vector2( 7, 2.38419e-07 )
 script = ExtResource( 2 )
 
 [node name="InHitBox" parent="." instance=ExtResource( 3 )]
+visible = false
 hit_box_action_type = 1
 __team = "enemy_team"
 
