@@ -28,11 +28,10 @@ var __saved_player_stats = {
 func _ready():
 	set_current_level(0)
 	
-func set_check_point(vec, scrap):
+func set_check_point(vec):
 	__has_check_point = true
 	update_player_save_data("checkpoint", vec)
-	update_player_save_data("scrap", scrap)
-	
+
 func has_check_point():
 	return __has_check_point
 	

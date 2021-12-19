@@ -23,7 +23,8 @@ func _ready():
 		player_node.state_machine.transition_to("PlayerEnterLevelState")
 	
 func save_check_point():
-	game_handler.set_check_point(__check_point.position, player_node.stats.get_scrap_count())
+	game_handler.set_check_point(__check_point.position)
+	player_node.stats.set_check_point(__check_point.position)
 	
 func set_saved_player_scrap(scrap):
 	player_node.stats.call_deferred("set_scrap", scrap)
@@ -39,6 +40,8 @@ func start_reset_sequence():
 
 func set_player_stats(stats: Dictionary):
 	player_node.stats.set_from_data(stats)
+	if game_handler.has_check_point():
+		put_player_on_check_point(player_node.stats.get_check_point())
 
 func start_player_scrap_to_score_conversion():
 	__convert_player_scrap_to_score = true
@@ -52,7 +55,7 @@ func _physics_process(delta):
 			__next_level_transition_timer.start()
 
 func _on_NextLeveTransitionTimer_timeout():
-	game_handler.update_player_data(player_node.stats.get_data())
+#	game_handler.update_player_data(player_node.stats.get_data())
 	game_handler.set_current_to_next_level()
 
 func _on_IntroTimer_timeout():

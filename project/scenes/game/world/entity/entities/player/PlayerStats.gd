@@ -71,15 +71,16 @@ func _physics_process(delta):
 		__player.set_aim_up(false)
 		
 func set_check_point(checkpoint):
-	if checkpoint != null:
-		__player.position = checkpoint
 	__data["checkpoint"] = checkpoint
+	
+func get_check_point():
+	return __data["checkpoint"]
 	
 func set_from_data(data: Dictionary):
 	set_health(data["life"])
 	set_scrap(data["scrap"])
 	set_score(data["score"])
-	set_check_point(data["checkpoint"])	
+	set_check_point(data["checkpoint"])
 	match data["weapon"]:
 		SWORD_WEAPON_IDX: instance_and_equip_weapon(__sword_scene)
 		BLASTER_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
