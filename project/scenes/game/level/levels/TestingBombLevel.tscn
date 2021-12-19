@@ -78,7 +78,7 @@ position = Vector2( 60, 100 )
 __containment_scene = ExtResource( 5 )
 
 [node name="Rodder" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 2 )]
-position = Vector2( 136, 96 )
+position = Vector2( 224, 88 )
 
 [node name="EscapeArea" parent="GameWorld" index="5"]
 position = Vector2( 8, 88 )
