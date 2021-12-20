@@ -28,7 +28,8 @@ func _physics_process(delta):
 		__press_shape.set_deferred("disabled", true)
 		__arrow_sprite.visible = false
 		emit_signal("activated")
-		get_parent_level().save_check_point()
+		if !get_parent_level().game_handler.has_check_point():
+			get_parent_level().save_check_point()
 		
 func _on_PressArea_body_entered(body):
 	__player_on_top = true

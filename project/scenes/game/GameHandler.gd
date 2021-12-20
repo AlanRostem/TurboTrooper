@@ -30,6 +30,7 @@ func _ready():
 	
 func set_check_point(vec):
 	__has_check_point = true
+	__saved_player_stats = __current_level.player_node.stats.get_data()
 	update_player_save_data("checkpoint", vec)
 
 func has_check_point():
@@ -61,12 +62,11 @@ func set_current_to_next_level():
 		
 func reset_current_level():
 	var level_scene: PackedScene = __level_list.get_level_scene(__level_index)
-	if __has_check_point:
-		__saved_player_stats = __current_level.player_node.stats.get_data()
 	__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
+	print(__saved_player_stats)
 	__current_level.set_player_stats(__saved_player_stats)
 	
 func _on_current_level_ready():

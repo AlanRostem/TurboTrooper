@@ -25,7 +25,7 @@ func set_enabled(value):
 	__out_hit_box_shape.set_deferred("disabled", !value)
 
 func _on_InHitBox_hit_received(hitbox, damage, damage_type):
-	if damage_type == "energy":
+	if damage_type == "energy" or damage_type == "critical":
 		set_enabled(false)
 		__down_timer.start()
 
