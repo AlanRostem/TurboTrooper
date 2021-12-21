@@ -24,6 +24,8 @@ onready var __sound_pool = $SoundPool
 
 var player_node
 
+onready var __parallax_sprite = $ParallaxBackground/ParallaxLayer/Sprite
+
 onready var __scrap_hover_text = $ScrapHoverText
 onready var __weapon_hover_text = $WeaponHoverText
 
@@ -44,6 +46,7 @@ func _ready():
 func hide_and_remove_entities():
 	__geometry.visible = false
 	set_remove_all_entities(true)
+	__parallax_sprite.visible = false
 	
 func set_remove_all_entities(value):
 	__remove_all_entities = value

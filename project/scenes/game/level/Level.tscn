@@ -41,10 +41,10 @@ script = ExtResource( 2 )
 [node name="Player" parent="GameWorld/EntityPool" index="0" instance=ExtResource( 4 )]
 position = Vector2( 24, 88 )
 
-[node name="ScrapHoverText" parent="GameWorld" index="2"]
+[node name="ScrapHoverText" parent="GameWorld" index="3"]
 visible = false
 
-[node name="WeaponHoverText" parent="GameWorld" index="3"]
+[node name="WeaponHoverText" parent="GameWorld" index="4"]
 visible = false
 
 [node name="CheckPoint" type="Position2D" parent="."]

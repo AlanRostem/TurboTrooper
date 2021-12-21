@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/parallax/cave.png" type="Texture" id=4]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,6 +11,15 @@ __meta__ = {
 "_editor_description_": "This node contains all world collision and an entity pool. Spawning/despawning of
 entities is managed by this node, but are attached to the entity pool node"
 }
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 160, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 4 )
+centered = false
 
 [node name="Geometry" type="Node2D" parent="."]
 
