@@ -66,6 +66,7 @@ func reset_current_level():
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
+	__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	__current_level.set_player_stats(__saved_player_stats)
 	
 func _on_current_level_ready():

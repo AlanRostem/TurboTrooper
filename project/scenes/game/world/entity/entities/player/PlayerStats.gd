@@ -147,7 +147,6 @@ func take_one_damage():
 		__equipped_weapon.drop()
 		__player.set_sprite_frames(__default_player_sprite_frames)
 		__equipped_weapon = null
-		__data["weapon"] = -1
 		__player.set_aim_up(false)
 		__player.stop_aiming_down()
 	if !__player.is_roof_above():
@@ -158,6 +157,8 @@ func take_one_damage():
 	else:
 		__player.start_invinvibility_sequence()
 		__damage_sound.play()
+		__data["weapon"] = -1
+		
 	
 func add_one_health():
 	set_health(__data["life"] + 1)
