@@ -155,6 +155,9 @@ script = ExtResource( 11 )
 wait_time = 0.22
 one_shot = true
 
+[node name="RushEnergyVisualFlashTimer" type="Timer" parent="PlayerSprite" index="1"]
+wait_time = 0.055
+
 [node name="RoofDetector" type="Node2D" parent="." index="11"]
 
 [node name="LeftRay" type="RayCast2D" parent="RoofDetector" index="0"]
@@ -179,3 +182,4 @@ cast_to = Vector2( 0, -8 )
 [connection signal="timeout" from="PlayerStats/RushEnergyRechargeTimer" to="PlayerStats" method="_on_RushEnergyRechargeTimer_timeout"]
 [connection signal="timeout" from="PlayerStats/RushEnergyRechargeStartingDelayTimer" to="PlayerStats" method="_on_RushEnergyRechargeStartingDelayTimer_timeout"]
 [connection signal="timeout" from="PlayerSprite/RushEnergyVisualActivityTimer" to="PlayerSprite" method="_on_RushEnergyVisualActivityTimer_timeout"]
+[connection signal="timeout" from="PlayerSprite/RushEnergyVisualFlashTimer" to="PlayerSprite" method="_on_RushEnergyVisualFlashTimer_timeout"]
