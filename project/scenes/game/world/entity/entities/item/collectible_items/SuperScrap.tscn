@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/game/world/entity/entities/item/CollectibleItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/item/scrap/cog.png" type="Texture" id=2]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 6 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+} ]
+
+[node name="SuperScrap" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+collision_mode = 0
+is_gravity_enabled = false
+__disappear_on_timeout = false
+
+[node name="BodyShape" parent="PlayerDetectionArea" index="0"]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="4"]
+frames = SubResource( 4 )
+playing = true
