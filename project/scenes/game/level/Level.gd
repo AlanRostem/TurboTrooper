@@ -49,7 +49,7 @@ func start_player_scrap_to_score_conversion():
 func _physics_process(delta):
 	if __convert_player_scrap_to_score:
 		if player_node.stats.get_scrap_count() > 0:
-			player_node.stats.convert_scrap_to_score()
+			player_node.stats.convert_scrap_to_score(4)
 		else:
 			__convert_player_scrap_to_score = false
 			__next_level_transition_timer.start()

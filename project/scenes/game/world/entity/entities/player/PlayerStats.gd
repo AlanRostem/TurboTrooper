@@ -190,8 +190,11 @@ func recharge_rush_energy():
 		__is_recharging_rush_energy = false
 
 func convert_scrap_to_score(count = 1):
-	lose_scrap(count)
-	add_score(count)
+	var c = count
+	if c > get_score():
+		c = get_score()
+	lose_scrap(c)
+	add_score(c)
 
 func _on_RushEnergyRechargeTimer_timeout():
 	recharge_rush_energy()

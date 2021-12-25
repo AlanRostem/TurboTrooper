@@ -1,6 +1,6 @@
 extends "res://scenes/game/world/entity/entities/item/CollectibleItem.gd"
 
-const MAX_SCRAP_REWARD = 500
+const MAX_SCRAP_REWARD = 250
 
 func _player_collected(player):
 	var scrap_reward = MAX_SCRAP_REWARD
