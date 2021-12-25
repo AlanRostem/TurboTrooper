@@ -23,12 +23,6 @@ tile_data = PoolIntArray( 131065, 0, 0, 131066, 0, 1, 131067, 0, 1, 131068, 0, 1
 [node name="Player" parent="GameWorld/EntityPool" index="0"]
 position = Vector2( 0, 96 )
 
-[node name="ScrapHoverText" parent="GameWorld" index="3"]
-custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
-
-[node name="WeaponHoverText" parent="GameWorld" index="4"]
-custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
-
 [node name="EscapeArea" type="Area2D" parent="GameWorld" index="5"]
 position = Vector2( 8, 96 )
 collision_layer = 0

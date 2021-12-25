@@ -130,3 +130,7 @@ func play_sound(stream: AudioStream, delay = 0):
 	
 func _on_sound_can_play(sound):
 	__delayed_sounds.erase(sound.stream.resource_path)
+
+
+func _on_DeathPits_body_entered(player):
+	player.die()

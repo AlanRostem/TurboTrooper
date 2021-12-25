@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/structure/destructible/ChainedCrate.tscn" type="PackedScene" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rodder/Rodder.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 8 )
 
 [node name="TestingBombLevel" instance=ExtResource( 1 )]
 
@@ -68,6 +71,10 @@ position = Vector2( 128, 76 )
 [node name="ShopArea" parent="GameWorld/Geometry" index="15" instance=ExtResource( 12 )]
 position = Vector2( 728, 92 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/DeathPits" index="0"]
+position = Vector2( 612, 168 )
+shape = SubResource( 1 )
+
 [node name="Player" parent="GameWorld/EntityPool" index="0"]
 position = Vector2( -8, 88 )
 
@@ -86,6 +93,9 @@ custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 
 [node name="EscapeArea" parent="GameWorld" index="5"]
 position = Vector2( 8, 88 )
+
+[node name="ArrowSprite" parent="GameWorld/EscapeArea" index="2"]
+frame = 0
 
 [node name="CheckPoint" parent="." index="5"]
 position = Vector2( 788, 96 )

@@ -26,6 +26,10 @@ centered = false
 [node name="CustomTileMap" parent="Geometry" instance=ExtResource( 2 )]
 script = null
 
+[node name="DeathPits" type="Area2D" parent="Geometry"]
+collision_layer = 0
+collision_mask = 4
+
 [node name="EntityPool" type="Node2D" parent="."]
 __meta__ = {
 "_editor_description_": "This node holds all the active game objects. The parent GameWorld node manages the objects in this node"
@@ -39,5 +43,6 @@ custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 
 [node name="SoundPool" type="Node" parent="."]
 
+[connection signal="body_entered" from="Geometry/DeathPits" to="." method="_on_DeathPits_body_entered"]
 [connection signal="display_off" from="ScrapHoverText" to="." method="_on_ScrapHoverText_display_off"]
 [connection signal="display_off" from="WeaponHoverText" to="." method="_on_ScrapHoverText_display_off"]

@@ -43,11 +43,9 @@ position = Vector2( 24, 88 )
 
 [node name="ScrapHoverText" parent="GameWorld" index="3"]
 visible = false
-custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 
 [node name="WeaponHoverText" parent="GameWorld" index="4"]
 visible = false
-custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 
 [node name="CheckPoint" type="Position2D" parent="."]
 
