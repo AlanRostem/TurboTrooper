@@ -22,6 +22,9 @@ func _ready():
 	else:
 		player_node.state_machine.transition_to("PlayerEnterLevelState")
 	
+func get_game_world():
+	return __game_world
+	
 func save_check_point():
 	game_handler.set_check_point(__check_point.position)
 	player_node.stats.set_check_point(__check_point.position)

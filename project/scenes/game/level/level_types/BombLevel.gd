@@ -22,6 +22,7 @@ func _on_EscapeArea_body_entered(player):
 	elif __bomb_switch.is_ticking():
 		player.state_machine.transition_to("PlayerLeaveLevelState")
 		__bomb_switch.complete()
+		__arrow_sprite.visible = false
 
 func _on_BombSwitch_activated():
 	__arrow_sprite.visible = true

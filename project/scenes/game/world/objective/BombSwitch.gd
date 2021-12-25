@@ -17,6 +17,8 @@ var __count_down = false
 
 var __player_on_top = false
 
+var __time_score = 0
+
 func _physics_process(delta):
 	if __count_down:
 		__parent_level.game_handler.get_hud().set_global_message("ESCAPE! - " + str(round(__bomb_timer.time_left)))
@@ -31,6 +33,9 @@ func _physics_process(delta):
 		if !get_parent_level().game_handler.has_check_point():
 			get_parent_level().save_check_point()
 		
+func get_time_score():
+	return __time_score
+		
 func _on_PressArea_body_entered(body):
 	__player_on_top = true
 	
@@ -38,6 +43,7 @@ func is_ticking():
 	return __count_down
 	
 func stop_ticking():
+	__time_score = round(__bomb_timer.time_left) * 100
 	__bomb_timer.stop()
 	__parent_level.game_handler.get_hud().hide_global_message()
 	__count_down = false
@@ -50,6 +56,9 @@ func _on_BombTimer_timeout():
 
 func _on_BombSwitch_completed():
 	stop_ticking()
+	var world = __parent_level.get_game_world()
+	world.show_hover_text("+" + str(__time_score) + "score", world.player_node.position)
+	world.player_node.stats.add_score(__time_score)
 
 func _on_PressArea_body_exited(body):
 	__player_on_top = false
