@@ -260,7 +260,7 @@ func _on_InvincibilityTimer_timeout():
 func _on_RamSlideHitBox_hit_dealt(hitbox):
 	hitbox.take_hit(__ram_slide_hit_box, RAM_SLIDE_DAMAGE, {
 		"ram_slide": true
-	})
+	}, HealthComponent.DAMAGE_TYPE_RAM_SLIDE)
 
 func _on_CrateOpeningTimer_timeout():
 	set_opening_crate(false)
