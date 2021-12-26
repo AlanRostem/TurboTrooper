@@ -250,6 +250,7 @@ func die():
 	state_machine.transition_to("PlayerDeathState")
 	parent_world.get_parent_level().start_reset_sequence()
 	parent_world.hide_and_remove_entities()
+	parent_world.get_parent_level().stop_theme()
 
 func _on_InvincibilityTimer_timeout():
 	set_hit_box_enabled(true)

@@ -11,6 +11,8 @@ onready var __color_rect = $CanvasLayer/ColorRect
 onready var __game_world = $GameWorld
 onready var __check_point = $CheckPoint
 
+onready var __theme = $Theme
+
 var player_node
 
 var __convert_player_scrap_to_score = false
@@ -63,7 +65,10 @@ func _on_NextLeveTransitionTimer_timeout():
 
 func _on_IntroTimer_timeout():
 	__color_rect.visible = false
-
+	__theme.play()
+	
+func stop_theme():
+	__theme.stop()
 
 func _on_ResetTimer_timeout():
 	game_handler.reset_current_level()
