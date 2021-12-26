@@ -12,6 +12,8 @@ export(bool) var use_attacking_delay = true
 
 var __collectible_scene = preload("res://scenes/game/world/entity/entities/item/collectible_items/WeaponCollectible.tscn")
 
+var __pick_up_sound = preload("res://assets/audio/sfx/player/player_pick_up_weapon.wav")
+
 export(float) var __attack_delay = 0.8
 
 export var weapon_index = -1
@@ -51,6 +53,7 @@ func get_owner_player():
 	
 func equip():
 	__player_owner.set_sprite_frames(__player_sprite_frames)
+	__player_owner.parent_world.play_sound(__pick_up_sound)
 	
 func drop():
 	var collectible = __player_owner.parent_world.spawn_entity_deferred(__collectible_scene, __player_owner.position)
