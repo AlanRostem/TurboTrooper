@@ -36,10 +36,10 @@ __meta__ = {
 }
 
 [node name="ScrapHoverText" parent="." instance=ExtResource( 3 )]
-custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 
 [node name="WeaponHoverText" parent="." instance=ExtResource( 3 )]
-custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
 
 [node name="SoundPool" type="Node" parent="."]
 
