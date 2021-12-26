@@ -13,6 +13,8 @@ onready var __arrow_sprite  = $ArrowSprite
 onready var __body_shape = $StaticBody2D/CollisionShape2D
 onready var __press_shape = $PressArea/CollisionShape2D
 
+onready var __explode_sound = $ExplodeSound
+
 var __count_down = false
 
 var __player_on_top = false
@@ -53,6 +55,7 @@ func _on_BombTimer_timeout():
 	emit_signal("detonated")
 	__parent_level.game_handler.get_hud().hide_global_message()
 	__count_down = false
+	__explode_sound.play()
 
 func _on_BombSwitch_completed():
 	stop_ticking()

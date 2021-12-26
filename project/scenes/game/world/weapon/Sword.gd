@@ -9,6 +9,7 @@ onready var __hit_box_shape = $OutHitBox/CollisionShape2D
 
 onready var __slash_sound = $SlashSound
 onready var __deflect_sound = $DeflectSound
+onready var __down_dash_sound = $DownDashSound
 
 var __boost_damage = false
 var __is_slamming = false
@@ -64,6 +65,7 @@ func _on_Sword_attack_cycle_end():
 
 func _on_Sword_downwards_attack():
 	var player = get_owner_player()
+	__down_dash_sound.play()
 	if player.stats.get_rush_energy() > 0:
 		player.stats.use_rush_energy(2)
 		__hit_box_shape.disabled = false
