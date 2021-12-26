@@ -6,6 +6,8 @@ const PLAYER_TEAM = "player_team"
 const RAM_SLIDE_SPEED = 200
 const RAM_SLIDE_DAMAGE = 10
 
+var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
+
 export var air_acceleration: float
 
 var walk_transition_weight = .4
@@ -251,6 +253,7 @@ func die():
 	parent_world.get_parent_level().start_reset_sequence()
 	parent_world.hide_and_remove_entities()
 	parent_world.get_parent_level().stop_theme()
+	parent_world.play_sound(__death_sound)
 
 func _on_InvincibilityTimer_timeout():
 	set_hit_box_enabled(true)
