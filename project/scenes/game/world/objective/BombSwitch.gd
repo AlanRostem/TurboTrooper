@@ -14,6 +14,7 @@ onready var __body_shape = $StaticBody2D/CollisionShape2D
 onready var __press_shape = $PressArea/CollisionShape2D
 
 onready var __explode_sound = $ExplodeSound
+onready var __press_sound = $PressSound
 
 var __count_down = false
 
@@ -40,6 +41,7 @@ func get_time_score():
 		
 func _on_PressArea_body_entered(body):
 	__player_on_top = true
+	__press_sound.play()
 	
 func is_ticking():
 	return __count_down

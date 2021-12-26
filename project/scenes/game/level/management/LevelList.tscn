@@ -8,8 +8,8 @@
 [node name="LevelList" type="Node"]
 script = ExtResource( 1 )
 
-[node name="CaveTest" parent="." instance=ExtResource( 2 )]
-level_scene = ExtResource( 4 )
-
 [node name="LabTest" parent="." instance=ExtResource( 2 )]
 level_scene = ExtResource( 3 )
+
+[node name="CaveTest" parent="." instance=ExtResource( 2 )]
+level_scene = ExtResource( 4 )
