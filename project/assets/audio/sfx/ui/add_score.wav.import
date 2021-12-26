@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/add_score.wav-95f77dd55815d04ce24b41a2fa9471d7.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/ui/add_score.wav"
+dest_files=[ "res://.import/add_score.wav-95f77dd55815d04ce24b41a2fa9471d7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
