@@ -8,6 +8,16 @@ func enter(message):
 	player.set_velocity_y(0)
 	player.is_gravity_enabled = false
 	__move_timer.start()
+	call_deferred("__check_and_prevent_weapon_attack")
+	
+func __check_and_prevent_weapon_attack():
+	if player.stats.has_weapon():
+		player.stats.get_weapon().set_can_attack(false)
+
+
+func exit():
+	if player.stats.has_weapon():
+		player.stats.get_weapon().set_can_attack(true)
 
 func physics_update(delta):
 	if !__move: return
