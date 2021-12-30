@@ -84,12 +84,6 @@ position = Vector2( 416, 96 )
 [node name="SuperScrap" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 9 )]
 position = Vector2( 268, 92 )
 
-[node name="ScrapHoverText" parent="GameWorld" index="3"]
-custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
-
-[node name="WeaponHoverText" parent="GameWorld" index="4"]
-custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
-
 [node name="ArrowSprite" parent="GameWorld/EscapeArea" index="2"]
 frame = 1
 

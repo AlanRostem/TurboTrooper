@@ -10,7 +10,18 @@ onready var __detection_shape = $PlayerDetectionArea/BodyShape
 
 var weapon
 
+var __scrap_sound = preload("res://assets/audio/sfx/world/scrap/pick_up_scrap.wav")
+
+export(String) var weapon_name 
+export(int) var scrap_value 
+
 func _player_collected(player):
+	if player.stats.has_weapon():
+		if player.stats.get_weapon().name == weapon_name:
+			player.stats.add_scrap(scrap_value)
+			parent_world.play_sound(__scrap_sound, 0.02)
+			parent_world.show_hover_scrap_collected(scrap_value, position + Vector2.UP * 16)
+			return
 	if weapon != null:
 		player.stats.equip_weapon(weapon)
 		parent_world.show_hover_weapon_collected(weapon.name, position)

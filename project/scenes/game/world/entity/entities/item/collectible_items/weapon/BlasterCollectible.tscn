@@ -6,6 +6,8 @@
 
 [node name="BlasterCollectible" instance=ExtResource( 1 )]
 __weapon_scene = ExtResource( 2 )
+weapon_name = "Blaster"
+scrap_value = 50
 
 [node name="Sprite" parent="." index="2"]
 texture = ExtResource( 3 )
