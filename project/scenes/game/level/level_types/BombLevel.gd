@@ -14,6 +14,7 @@ func _ready():
 		__blockade_shape.set_deferred("disabled", false)
 		__touched_escape_area = true
 	game_handler.get_hud().hide_global_message()
+	__arrow_sprite.visible = false
 
 func _on_EscapeArea_body_entered(player):
 	if !__touched_escape_area:
