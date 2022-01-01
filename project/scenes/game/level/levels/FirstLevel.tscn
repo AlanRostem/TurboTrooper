@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/game/world/environment/LaunchPad.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/world/structure/destructible/Crate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/boom_crawler/BoomCrawler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedPipeArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedBlock.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 8 )
@@ -38,6 +39,24 @@ position = Vector2( 240, 112 )
 
 [node name="SpeedPipeArea" parent="GameWorld/Geometry" index="8" instance=ExtResource( 5 )]
 position = Vector2( 716, 112 )
+
+[node name="SpeedBlock" parent="GameWorld/Geometry/SpeedPipeArea" index="1" instance=ExtResource( 6 )]
+position = Vector2( 40, -20 )
+
+[node name="SpeedBlock2" parent="GameWorld/Geometry/SpeedPipeArea" index="2" instance=ExtResource( 6 )]
+position = Vector2( 32, -20 )
+
+[node name="SpeedBlock3" parent="GameWorld/Geometry/SpeedPipeArea" index="3" instance=ExtResource( 6 )]
+position = Vector2( 24, -20 )
+
+[node name="SpeedBlock4" parent="GameWorld/Geometry/SpeedPipeArea" index="4" instance=ExtResource( 6 )]
+position = Vector2( -8, -36 )
+
+[node name="SpeedBlock5" parent="GameWorld/Geometry/SpeedPipeArea" index="5" instance=ExtResource( 6 )]
+position = Vector2( 0, -36 )
+
+[node name="SpeedBlock6" parent="GameWorld/Geometry/SpeedPipeArea" index="6" instance=ExtResource( 6 )]
+position = Vector2( 8, -36 )
 
 [node name="BoomCrawler" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 4 )]
 position = Vector2( 560, 112 )
