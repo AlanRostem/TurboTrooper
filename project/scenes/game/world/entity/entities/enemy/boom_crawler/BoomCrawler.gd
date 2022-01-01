@@ -1,5 +1,7 @@
 extends Enemy
 
+var __explosion_effect_scene = preload("res://scenes/game/world/other/BoomCrawlerExplosionEffect.tscn")
+
 const WALK_SPEED = 30
 
 export var __direction = -1
@@ -14,4 +16,4 @@ func _physics_process(delta):
 
 func _on_OutHitBox_hit_dealt_then_destroy_self(hitbox):
 	queue_free()
-	# TODO: Spawn explosion effect
+	parent_world.show_effect_deferred(__explosion_effect_scene, position)
