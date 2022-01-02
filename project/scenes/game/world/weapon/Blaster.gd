@@ -17,8 +17,10 @@ func fire_projectile(scene):
 	if dir.y == 1:
 		projectile.damage = CRITICAL_DAMAGE
 		projectile.damage_type = HealthComponent.DAMAGE_TYPE_CRITICAL
-
-	projectile.call_deferred("init_from_player_weapon", dir, self, position)
+	var offset = Vector2(position)
+	if player.is_crouched():
+		offset.y += 2
+	projectile.call_deferred("init_from_player_weapon", dir, self, offset)
 
 func _on_Blaster_downwards_attack():
 	fire_projectile(__projectile_scene)
