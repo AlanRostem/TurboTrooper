@@ -8,4 +8,5 @@ is_gravity_enabled = false
 __disappear_on_timeout = false
 
 [node name="Sprite" parent="." index="2"]
+position = Vector2( 0, 0 )
 texture = ExtResource( 1 )
