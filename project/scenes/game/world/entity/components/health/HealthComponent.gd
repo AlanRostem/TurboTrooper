@@ -21,6 +21,10 @@ onready var __health = max_health
 func get_health():
 	return __health
 
+func deplete_health():
+	emit_signal("health_depleted")
+	__health = 0
+
 func take_damage(damage, type = DAMAGE_TYPE_STANDARD):
 	if type != DAMAGE_TYPE_STANDARD and __immunities.has(type): return
 	

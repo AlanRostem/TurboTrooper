@@ -46,6 +46,9 @@ func can_see_player():
 func get_horizontal_player_detect_direction():
 	return __horizontal_player_detect_direction
 
+func get_health_component():
+	return __health_component
+
 func drop_scrap(count):
 	randomize()
 	var drop_speed = 50
