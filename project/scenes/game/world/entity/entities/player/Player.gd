@@ -4,7 +4,7 @@ class_name Player
 const MAX_DASH_CHARGE = 100
 const PLAYER_TEAM = "player_team"
 const RAM_SLIDE_SPEED = 200
-const RAM_SLIDE_DAMAGE = 10
+const RAM_SLIDE_DAMAGE = 8
 
 var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
 
@@ -262,9 +262,13 @@ func _on_InvincibilityTimer_timeout():
 	__is_invincible = false
 
 func _on_RamSlideHitBox_hit_dealt(hitbox):
+	var damage_type = HealthComponent.DAMAGE_TYPE_RAM_SLIDE
+	if stats.has_weapon():
+		if stats.get_weapon().name == "Sword":
+			damage_type = HealthComponent.DAMAGE_TYPE_MELEE
 	hitbox.take_hit(__ram_slide_hit_box, RAM_SLIDE_DAMAGE, {
 		"ram_slide": true
-	}, HealthComponent.DAMAGE_TYPE_RAM_SLIDE)
+	}, damage_type)
 
 func _on_CrateOpeningTimer_timeout():
 	set_opening_crate(false)

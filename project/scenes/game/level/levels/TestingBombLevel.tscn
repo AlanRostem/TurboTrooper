@@ -67,24 +67,19 @@ position = Vector2( 212, 100 )
 
 [node name="WeaponCrate2" parent="GameWorld/Geometry" index="13" instance=ExtResource( 3 )]
 position = Vector2( 88, 100 )
-collision_mask = 0
 __containment_scene = ExtResource( 5 )
 
 [node name="ChainedCrate3" parent="GameWorld/Geometry" index="14" instance=ExtResource( 2 )]
 position = Vector2( 128, 76 )
-collision_mask = 0
 
 [node name="ChainedCrate4" parent="GameWorld/Geometry" index="15" instance=ExtResource( 2 )]
 position = Vector2( 136, 76 )
-collision_mask = 0
 
 [node name="ChainedCrate5" parent="GameWorld/Geometry" index="16" instance=ExtResource( 2 )]
 position = Vector2( 136, 68 )
-collision_mask = 0
 
 [node name="ChainedCrate6" parent="GameWorld/Geometry" index="17" instance=ExtResource( 2 )]
 position = Vector2( 128, 68 )
-collision_mask = 0
 
 [node name="ShopArea" parent="GameWorld/Geometry" index="18" instance=ExtResource( 12 )]
 position = Vector2( 976, 84 )

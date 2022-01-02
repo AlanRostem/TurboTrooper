@@ -1,7 +1,7 @@
 extends "res://scenes/game/world/weapon/Weapon.gd"
 
 const CRITICAL_DAMAGE = 24
-const STANDARD_DAMAGE = 8
+const STANDARD_DAMAGE = 12
 const SLAM_SPEED = 230
 
 onready var __hit_box = $OutHitBox
@@ -55,12 +55,10 @@ func _on_Sword_attacked():
 	var player = get_owner_player()
 	if player.is_on_ground():
 		player.set_velocity_x(0)
-		player.set_can_move_on_ground(false)
 	__slash_sound.play()
 
 func _on_Sword_attack_cycle_end():
 	var player = get_owner_player()
-	player.set_can_move_on_ground(true)
 	__hit_box_shape.disabled = true
 
 func _on_Sword_downwards_attack():
