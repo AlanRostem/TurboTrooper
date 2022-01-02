@@ -21,6 +21,9 @@ drop_scrap_on_damaged = false
 __containment_scene = ExtResource( 4 )
 __break_sound = ExtResource( 5 )
 
+[node name="InHitBox" parent="." index="0"]
+__team = "enemy_team"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InHitBox" index="0"]
 shape = SubResource( 1 )
 
