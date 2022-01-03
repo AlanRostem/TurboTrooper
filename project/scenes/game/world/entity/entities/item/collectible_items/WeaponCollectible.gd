@@ -15,7 +15,14 @@ var __scrap_sound = preload("res://assets/audio/sfx/world/scrap/pick_up_scrap.wa
 export(String) var weapon_name 
 export(int) var scrap_value 
 
+func _pick_up_condition(player):
+	if player.stats.has_weapon():
+		if player.stats.get_weapon().name != weapon_name:
+			return Input.is_action_just_pressed("aim_up")
+	return true
+
 func _player_collected(player):
+	queue_free()
 	if player.stats.has_weapon():
 		if player.stats.get_weapon().name == weapon_name:
 			player.stats.add_scrap(scrap_value)
