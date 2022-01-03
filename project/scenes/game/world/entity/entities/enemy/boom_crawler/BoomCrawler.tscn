@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/char/boom_crawler/char.png" type="Texture" id=2]
-[ext_resource path="res://scenes/game/world/entity/entities/enemy/boom_crawler/BoomCrawler.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/components/EnemyState.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/boom_crawler/BoomCrawlerWalkState.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 3 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 4, 4 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -24,9 +28,7 @@ animations = [ {
 } ]
 
 [node name="BoomCrawler" instance=ExtResource( 1 )]
-script = ExtResource( 3 )
 collision_mode = 2
-detect_player_on_visible = true
 __death_sound = null
 
 [node name="BodyShape" parent="." index="0"]
@@ -37,8 +39,8 @@ shape = SubResource( 1 )
 max_health = 5
 
 [node name="BodyShape" type="CollisionShape2D" parent="InHitBox" index="0"]
-position = Vector2( 0, 4 )
-shape = SubResource( 1 )
+position = Vector2( 0, 3 )
+shape = SubResource( 5 )
 
 [node name="BodyShape" type="CollisionShape2D" parent="OutHitBox" index="0"]
 position = Vector2( 0, 4 )
@@ -48,10 +50,16 @@ shape = SubResource( 1 )
 position = Vector2( 0, 2 )
 scale = Vector2( 0.6, 0.5 )
 
+[node name="EnemyFSM" parent="." index="5"]
+__inital_state = NodePath("BoomCrawlerWalkState")
+
+[node name="BoomCrawlerWalkState" parent="EnemyFSM" index="0" instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+
 [node name="EnemySprite" parent="." index="6"]
 position = Vector2( 0, -1 )
 frames = SubResource( 4 )
 playing = true
 
-[connection signal="player_detected" from="." to="." method="_on_BoomCrawler_player_detected"]
-[connection signal="hit_dealt" from="OutHitBox" to="." method="_on_OutHitBox_hit_dealt_then_destroy_self"]
+[connection signal="player_detected" from="." to="EnemyFSM/BoomCrawlerWalkState" method="_on_BoomCrawler_player_detected"]
+[connection signal="hit_dealt" from="OutHitBox" to="EnemyFSM/BoomCrawlerWalkState" method="_on_OutHitBox_hit_dealt"]
