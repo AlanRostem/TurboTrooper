@@ -53,3 +53,7 @@ func _on_LifeTimer_timeout():
 
 func _on_FlashTimer_timeout():
 	visible = !visible
+
+
+func _on_PlayerDetectionArea_body_exited(body):
+	__player_found = null

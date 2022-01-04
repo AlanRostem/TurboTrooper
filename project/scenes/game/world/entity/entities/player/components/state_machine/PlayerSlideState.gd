@@ -35,7 +35,9 @@ func movement_update(delta):
 		parent_state_machine.transition_to("PlayerAirBorneState")
 
 func enter(message):
-	if message.has("boost"):
+	if player.is_on_slope():
+		player.set_ram_slide_hit_box_enabled(true)
+	elif message.has("boost"):
 		if player.stats.get_rush_energy() >= 2:
 			player.stats.use_rush_energy(2)
 			player.slide(player.moving_direction)

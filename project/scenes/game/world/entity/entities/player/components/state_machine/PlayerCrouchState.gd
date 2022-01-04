@@ -12,6 +12,9 @@ func movement_update(delta):
 
 	if player.is_effectively_standing_still():
 		player.set_velocity_x(0)
+		
+	if player.is_on_slope():
+		parent_state_machine.transition_to("PlayerSlideState")
 			
 	player.reduce_dash_charge(delta)
 

@@ -30,6 +30,8 @@ var __snap_vector = Vector2.DOWN
 
 var __can_accelerate = true
 
+var __is_on_slope = false
+
 func _ready():
 	if parent_world == null:
 		parent_world = get_parent().get_parent()
@@ -98,6 +100,9 @@ func accelerate_x(x, max_speed, delta):
 
 	set_velocity_x(vx + movement)
 
+func is_on_slope():
+	return __is_on_slope
+
 func _physics_process(delta):
 	if is_gravity_enabled:
 		__velocity += __down_vector * gravity * delta
@@ -113,8 +118,8 @@ func _physics_process(delta):
 			__velocity.y = move_and_slide_with_snap(
 				__velocity, __snap_vector * parent_world.get_tile_size() / 4,
 				-__down_vector, stop_on_slope).y
-				
 			if is_on_floor():
 				__snap_vector = Vector2(__down_vector)
+				__is_on_slope = get_floor_normal().y != -1
 				
 	# TODO: Check if the entity is on a slope and store that in a variable
