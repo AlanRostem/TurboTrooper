@@ -7,6 +7,8 @@ extends Node2D
 # that in mind, all user interface, such as the pause menu and HUD, will be handled through
 # the playable nodes themselves (such as a level and the level select world)
 
+signal game_completed()
+
 var __current_level = null
 
 var __level_index = -1
@@ -24,9 +26,6 @@ var __saved_player_stats = {
 	"scrap": 0,
 	"checkpoint": null,
 }
-
-func _ready():
-	set_current_level(0)
 	
 func set_check_point(vec):
 	__has_check_point = true
@@ -52,6 +51,7 @@ func set_current_level(index):
 		__saved_player_stats["checkpoint"] = null
 		__current_level.queue_free()
 	__current_level = level_scene.instance()
+	print(__current_level.name)
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
 	__current_level.set_player_stats(__saved_player_stats)
@@ -59,6 +59,11 @@ func set_current_level(index):
 func set_current_to_next_level():
 	if !__level_list.is_last_level(__level_index):
 		set_current_level(__level_index + 1)
+	else:
+		emit_signal("game_completed")
+		visible = false
+		__current_level.queue_free()
+		__current_level = null
 		
 func reset_current_level():
 	var level_scene: PackedScene = __level_list.get_level_scene(__level_index)
@@ -74,3 +79,7 @@ func _on_current_level_ready():
 	
 func get_hud(): 
 	return __hud
+
+func _on_MainMenu_game_started():
+	set_current_level(0)
+	visible = true

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/sprites/ui/main_menu/bg.png" type="Texture" id=1]
+[ext_resource path="res://scenes/ui/main_menu/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/elements/label/GameBoyLabel.tscn" type="PackedScene" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartLabel" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.0
+margin_top = 8.0
+margin_right = 42.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 1 )
+text = "press start"
+align = 1
+
+[node name="StartFlashTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="StartFlashTimer" to="." method="_on_StartFlashTimer_timeout"]
