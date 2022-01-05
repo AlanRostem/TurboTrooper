@@ -57,7 +57,7 @@ func set_current_level(index):
 		__saved_player_stats["checkpoint"] = null
 		__current_level.queue_free()
 	__current_level = level_scene.instance()
-#	print(__current_level.name)
+	print(__current_level.name)
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
 	__current_level.set_player_stats(__saved_player_stats)
