@@ -7,6 +7,9 @@ onready var __start_label = $StartLabel
 var __is_playing_game = false
 
 func _physics_process(delta):
+	if Input.is_action_pressed("select") and Input.is_action_pressed("pause"):
+		get_tree().quit()
+		return
 	if Input.is_action_just_pressed("pause") and !__is_playing_game:
 		emit_signal("game_started")
 		visible = false
