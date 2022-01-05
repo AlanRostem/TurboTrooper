@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/game/world/objective/Objective.gd" type="Script" id=1]
-[ext_resource path="res://assets/audio/music/win_theme.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/music/win_theme.ogg" type="AudioStream" id=2]
 
 [node name="Objective" type="Node2D"]
 script = ExtResource( 1 )
