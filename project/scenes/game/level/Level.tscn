@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/audio/music/normal_theme.wav" type="AudioStream" id=5]
 
 [node name="Level" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 3 )
 
 [node name="Theme" type="AudioStreamPlayer" parent="."]

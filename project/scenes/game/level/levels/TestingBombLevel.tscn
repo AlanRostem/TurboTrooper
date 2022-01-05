@@ -40,54 +40,45 @@ position = Vector2( -8, 88 )
 
 [node name="FloatingScrap" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 13 )]
 position = Vector2( 580, 84 )
-collision_layer = 0
 
 [node name="FloatingScrap2" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 13 )]
 position = Vector2( 596, 76 )
-collision_layer = 0
 
 [node name="FloatingScrap5" parent="GameWorld/EntityPool" index="3" instance=ExtResource( 13 )]
 position = Vector2( 652, 84 )
-collision_layer = 0
 
 [node name="FloatingScrap3" parent="GameWorld/EntityPool" index="4" instance=ExtResource( 13 )]
 position = Vector2( 612, 68 )
-collision_layer = 0
 
 [node name="FloatingScrap4" parent="GameWorld/EntityPool" index="5" instance=ExtResource( 13 )]
 position = Vector2( 628, 60 )
-collision_layer = 0
 
 [node name="FloatingScrap6" parent="GameWorld/EntityPool" index="6" instance=ExtResource( 13 )]
 position = Vector2( 644, 60 )
-collision_layer = 0
 
 [node name="FloatingScrap18" parent="GameWorld/EntityPool" index="7" instance=ExtResource( 13 )]
 position = Vector2( 748, 100 )
-collision_layer = 0
 
 [node name="FloatingScrap19" parent="GameWorld/EntityPool" index="8" instance=ExtResource( 13 )]
 position = Vector2( 756, 100 )
-collision_layer = 0
 
 [node name="FloatingScrap20" parent="GameWorld/EntityPool" index="9" instance=ExtResource( 13 )]
 position = Vector2( 764, 100 )
-collision_layer = 0
 
 [node name="FloatingScrap21" parent="GameWorld/EntityPool" index="10" instance=ExtResource( 13 )]
 position = Vector2( 772, 100 )
-collision_layer = 0
 
 [node name="FloatingScrap22" parent="GameWorld/EntityPool" index="11" instance=ExtResource( 13 )]
 position = Vector2( 780, 100 )
-collision_layer = 0
 
 [node name="FloatingScrap23" parent="GameWorld/EntityPool" index="12" instance=ExtResource( 13 )]
 position = Vector2( 788, 100 )
-collision_layer = 0
 
 [node name="BoomCrawler2" parent="GameWorld/EntityPool" index="13" instance=ExtResource( 8 )]
 position = Vector2( 868, 96 )
+
+[node name="ArrowSprite" parent="GameWorld/EscapeArea" index="2"]
+frame = 1
 
 [node name="CheckPoint" parent="." index="6"]
 position = Vector2( 1036, 90 )

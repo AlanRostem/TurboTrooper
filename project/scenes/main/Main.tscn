@@ -21,6 +21,7 @@ margin_right = 122.0
 margin_bottom = 90.0
 
 [node name="GameHandler" type="Node2D" parent="."]
+pause_mode = 2
 visible = false
 script = ExtResource( 1 )
 __meta__ = {
@@ -37,7 +38,11 @@ the playable nodes themselves (such as a level and the level select world)"
 
 [node name="HUD" parent="GameHandler/CanvasLayer" instance=ExtResource( 3 )]
 
+[node name="PauseabilityTimer" type="Timer" parent="GameHandler"]
+one_shot = true
+
 [connection signal="game_started" from="MainMenu" to="GameHandler" method="_on_MainMenu_game_started"]
 [connection signal="game_completed" from="GameHandler" to="MainMenu" method="_on_GameHandler_game_completed"]
+[connection signal="timeout" from="GameHandler/PauseabilityTimer" to="GameHandler" method="_on_PauseabilityTimer_timeout"]
 
 [editable path="MainMenu"]

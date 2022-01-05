@@ -16,8 +16,10 @@ var __level_index = -1
 onready var __hud = $CanvasLayer/HUD
 
 onready var __level_list = $LevelList
+onready var __pauseability_timer = $PauseabilityTimer
 
 var __has_check_point = false
+var __can_pause = false
 
 var __saved_player_stats = {
 	"score": 0,
@@ -26,6 +28,10 @@ var __saved_player_stats = {
 	"scrap": 0,
 	"checkpoint": null,
 }
+	
+func _physics_process(delta):
+	if Input.is_action_just_pressed("pause") and __can_pause:
+		get_tree().paused = !get_tree().paused
 	
 func set_check_point(vec):
 	__has_check_point = true
@@ -55,6 +61,8 @@ func set_current_level(index):
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
 	__current_level.set_player_stats(__saved_player_stats)
+	__pauseability_timer.start()
+	__can_pause = false
 	
 func set_current_to_next_level():
 	if !__level_list.is_last_level(__level_index):
@@ -83,3 +91,6 @@ func get_hud():
 func _on_MainMenu_game_started():
 	set_current_level(0)
 	visible = true
+
+func _on_PauseabilityTimer_timeout():
+	__can_pause = true
