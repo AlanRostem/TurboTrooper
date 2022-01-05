@@ -60,7 +60,7 @@ func enter(message: Dictionary):
 		__is_jumping = true
 		player.jump()
 		__jump_sound.play()
-		player.crouch()
+	player.crouch()
 
 func exit():
 	__is_jumping = false
