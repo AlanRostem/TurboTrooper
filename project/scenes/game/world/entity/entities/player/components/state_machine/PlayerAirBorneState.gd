@@ -33,16 +33,24 @@ func movement_update(delta):
 					else:
 						parent_state_machine.transition_to("PlayerSlideState")
 				else:
+					if player.is_crouched():
+						if !player.is_roof_above():
+							player.stand_up()
+						else:
+							parent_state_machine.transition_to("PlayerSlideState")
+							return 
 					if player.is_moving_too_fast(player.max_walk_speed):
 						parent_state_machine.transition_to("PlayerRunState")
 					else:
 						parent_state_machine.transition_to("PlayerWalkState")
-					if player.is_crouched():
-						player.stand_up()
+					
 			else:
 				parent_state_machine.transition_to("PlayerIdleState")
-				if player.is_crouched():
+				if !player.is_roof_above():
 					player.stand_up()
+				else:
+					parent_state_machine.transition_to("PlayerCrouchState")
+					return 
 		else:
 			parent_state_machine.transition_to("PlayerSlideState")
 	
