@@ -12,10 +12,9 @@ onready var __secret_arrow_sprite = $GameWorld/SecretEscapePoint/ArrowSprite
 var __touched_escape_area = false
 
 func _ready():
-	if game_handler.has_check_point():
+	if has_check_point():
 		__blockade_shape.set_deferred("disabled", false)
 		__touched_escape_area = true
-	game_handler.get_hud().hide_global_message()
 	__arrow_sprite.visible = false
 
 func _on_EscapeArea_body_entered(player):

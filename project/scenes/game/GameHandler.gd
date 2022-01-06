@@ -48,6 +48,7 @@ func update_player_save_data(key, value):
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
 func set_current_level(index):
+	get_hud().hide_global_message()
 	__has_check_point = false
 	update_player_save_data("checkpoint", null)
 	var level_scene: PackedScene = __level_list.get_level_scene(index)
@@ -76,10 +77,12 @@ func set_current_to_next_level():
 		__current_level = null
 		
 func reset_current_level():
+	get_hud().hide_global_message()
 	var level_scene: PackedScene = __level_list.get_level_scene(__level_index)
 	__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
+	__current_level.set_check_point_enabled(true)	
 	add_child(__current_level)
 	__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	__current_level.set_player_stats(__saved_player_stats)

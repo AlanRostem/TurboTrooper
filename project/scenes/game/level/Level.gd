@@ -16,13 +16,20 @@ onready var __theme = $Theme
 var player_node
 
 var __convert_player_scrap_to_score = false
+var __has_check_point = false
 
 func _ready():
 	__color_rect.visible = true
-	if game_handler.has_check_point():
+	if __has_check_point:
 		player_node.state_machine.transition_to("PlayerIdleState")
 	else:
 		player_node.state_machine.transition_to("PlayerEnterLevelState")
+	
+func set_check_point_enabled(value):
+	__has_check_point = true
+	
+func has_check_point():
+	return __has_check_point
 	
 func get_game_world():
 	return __game_world
