@@ -55,11 +55,11 @@ text = "worry not if you lose your weapon! sliding into enemies also does great 
 autowrap = true
 
 [node name="TutorialText5" parent="GameWorld/TutorialTexts" index="4" instance=ExtResource( 8 )]
-margin_left = 980.0
-margin_top = 32.0
-margin_right = 1112.0
-margin_bottom = 68.0
-text = "Use your scrap to craft what you need!"
+margin_left = 984.0
+margin_top = 40.0
+margin_right = 1100.0
+margin_bottom = 76.0
+text = "press select to craft items you need."
 autowrap = true
 
 [node name="TutorialText6" parent="GameWorld/TutorialTexts" index="5" instance=ExtResource( 8 )]
@@ -132,6 +132,9 @@ position = Vector2( 704, 116 )
 [node name="Crate15" parent="GameWorld/Geometry" index="19" instance=ExtResource( 7 )]
 position = Vector2( 712, 116 )
 
+[node name="PlayerStats" parent="GameWorld/EntityPool/Player" index="9"]
+__infinite_health = true
+
 [node name="BoomCrawler" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 6 )]
 position = Vector2( 692, 112 )
 
@@ -154,3 +157,4 @@ position = Vector2( 1296, 110 )
 [connection signal="activated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_activated_for_training"]
 
 [editable path="GameWorld"]
+[editable path="GameWorld/EntityPool/Player"]
