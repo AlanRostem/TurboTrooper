@@ -13,29 +13,12 @@ script = ExtResource( 3 )
 [node name="Theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
-[node name="IntroTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
 [node name="ResetTimer" type="Timer" parent="."]
 wait_time = 4.2
 one_shot = true
 
 [node name="NextLevelTransitionTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.607843, 0.737255, 0.0588235, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameWorld" parent="." instance=ExtResource( 1 )]
 
@@ -54,7 +37,6 @@ visible = false
 
 [node name="CheckPoint" type="Position2D" parent="."]
 
-[connection signal="timeout" from="IntroTimer" to="." method="_on_IntroTimer_timeout"]
 [connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
 [connection signal="timeout" from="NextLevelTransitionTimer" to="." method="_on_NextLeveTransitionTimer_timeout"]
 
