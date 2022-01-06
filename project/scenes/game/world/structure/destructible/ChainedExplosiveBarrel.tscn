@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/game/world/structure/DestructibleStructure.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/hazard/chained_explosive_barrel.png" type="Texture" id=2]
+[ext_resource path="res://scenes/game/world/structure/destructible/ChainedExplosiveBarrel.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 9 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 6 )
+
+[node name="ChainedExplosiveBarrel" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+drop_scrap_on_damaged = false
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InHitBox" index="0"]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[node name="HealthComponent" parent="." index="2"]
+max_health = 5
+__immunities = [ "standard", "energy", "critical", "ram_slide" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+position = Vector2( 0, 2 )
+shape = SubResource( 2 )

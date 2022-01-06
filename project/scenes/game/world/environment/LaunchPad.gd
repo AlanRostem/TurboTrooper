@@ -1,4 +1,5 @@
 extends Area2D
+class_name LaunchPad
 
 const MAX_LAUNCH_SPEED = 230
 
