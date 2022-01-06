@@ -43,8 +43,14 @@ position = Vector2( 380, 84 )
 [node name="MovingSpikeHazard" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 4 )]
 position = Vector2( 432, 40 )
 
+[node name="ArrowSprite" parent="GameWorld/EscapeArea" index="2"]
+frame = 0
+
 [node name="SecretEscapePoint" parent="GameWorld" index="7"]
 position = Vector2( 744, 120 )
+
+[node name="ArrowSprite" parent="GameWorld/SecretEscapePoint" index="1"]
+frame = 1
 
 [node name="CheckPoint" parent="." index="6"]
 position = Vector2( 536, 104 )
