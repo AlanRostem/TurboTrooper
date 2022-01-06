@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ui/elements/label/GameBoyLabel.tscn" type="PackedScene" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+
+[node name="TutorialText" instance=ExtResource( 1 )]
+custom_styles/normal = SubResource( 1 )
