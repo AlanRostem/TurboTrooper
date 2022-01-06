@@ -20,6 +20,7 @@ onready var __pauseability_timer = $PauseabilityTimer
 
 var __has_check_point = false
 var __can_pause = false
+export var __has_completed_game = false
 
 var __saved_player_stats = {
 	"score": 0,
@@ -68,6 +69,7 @@ func set_current_to_next_level():
 	if !__level_list.is_last_level(__level_index):
 		set_current_level(__level_index + 1)
 	else:
+		__has_completed_game = true
 		emit_signal("game_completed")
 		visible = false
 		__current_level.queue_free()
@@ -89,7 +91,7 @@ func get_hud():
 	return __hud
 
 func _on_MainMenu_game_started():
-	set_current_level(0)
+	set_current_level(int(__has_completed_game))
 	visible = true
 
 func _on_PauseabilityTimer_timeout():

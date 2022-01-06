@@ -33,6 +33,7 @@ all save data about the player and manages the player's temporary in-game stats.
 that in mind, all user interface, such as the pause menu and HUD, will be handled through
 the playable nodes themselves (such as a level and the level select world)"
 }
+__has_completed_game = true
 
 [node name="LevelList" parent="GameHandler" instance=ExtResource( 5 )]
 

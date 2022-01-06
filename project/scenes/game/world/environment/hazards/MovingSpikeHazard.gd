@@ -6,16 +6,13 @@ onready var __disabled_timer = $DisabledTimer
 onready var __sprite = $AnimatedSprite
 
 const ANGLE_SPEED = PI * 2.0 / 3.0
-const SPEED = 35
+const SPEED = 60
 
 var __enabled = true
 var __angle = 0
-var __target_pos:Vector2
 
 func _physics_process(delta):
-	if !__enabled:
-		position = __target_pos
-		return
+	if !__enabled: return
 	__angle += ANGLE_SPEED * delta
 	set_velocity_y(sin(__angle) * SPEED)
 	position.y += get_velocity().y * delta
@@ -31,7 +28,6 @@ func _on_InHitBox_hit_received(hitbox, damage, damage_type):
 		set_enabled(false)
 		__disabled_timer.start()
 		set_velocity_y(0)
-		__target_pos = position
 
 
 func _on_DisabledTimer_timeout():
