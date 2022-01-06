@@ -26,6 +26,9 @@ position = Vector2( 148, 108 )
 [node name="SuperScrap" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 4 )]
 position = Vector2( 84, 104 )
 
+[node name="ArrowSprite" parent="GameWorld/EscapeArea" index="2"]
+frame = 1
+
 [node name="CheckPoint" parent="." index="6"]
 position = Vector2( 336, 112 )
 

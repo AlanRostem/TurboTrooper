@@ -5,8 +5,8 @@ const DAMAGE = 30
 const BARREL_WIDTH = 5
 
 const MAX_X_SPEED = 200
-const MAX_LAUNCH_SPEED = 180
-const MIN_LAUNCH_SPEED = 130
+const MAX_LAUNCH_SPEED = 160
+const MIN_LAUNCH_SPEED = 100
 
 onready var __out_hit_box = $OutHitBox
 onready var __sprite = $AnimatedSprite
