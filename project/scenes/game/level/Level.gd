@@ -2,11 +2,9 @@ extends Node2D
 
 onready var game_handler = get_parent()
 
-onready var __intro_timer = $IntroTimer
 onready var __reset_timer = $ResetTimer
 onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
-onready var __color_rect = $CanvasLayer/ColorRect
 
 onready var __game_world = $GameWorld
 onready var __check_point = $CheckPoint
@@ -19,7 +17,6 @@ var __convert_player_scrap_to_score = false
 var __has_check_point = false
 
 func _ready():
-	__color_rect.visible = true
 	if __has_check_point:
 		player_node.state_machine.transition_to("PlayerIdleState")
 	else:
@@ -71,11 +68,13 @@ func _on_NextLeveTransitionTimer_timeout():
 	game_handler.set_current_to_next_level()
 
 func _on_IntroTimer_timeout():
-	__color_rect.visible = false
 	__theme.play()
 	
 func stop_theme():
 	__theme.stop()
+	
+func start():
+	__theme.play()
 
 func _on_ResetTimer_timeout():
 	game_handler.reset_current_level()

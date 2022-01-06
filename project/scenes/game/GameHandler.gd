@@ -17,6 +17,8 @@ onready var __hud = $CanvasLayer/HUD
 
 onready var __level_list = $LevelList
 onready var __pauseability_timer = $PauseabilityTimer
+onready var __level_intro_timer = $LevelIntroTimer
+onready var __color_rect = $CanvasLayer/ColorRect
 
 var __has_check_point = false
 var __can_pause = false
@@ -48,6 +50,8 @@ func update_player_save_data(key, value):
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
 func set_current_level(index):
+	__level_intro_timer.start()
+	__color_rect.visible =  true
 	get_hud().hide_global_message()
 	__has_check_point = false
 	update_player_save_data("checkpoint", null)
@@ -77,12 +81,14 @@ func set_current_to_next_level():
 		__current_level = null
 		
 func reset_current_level():
+	__color_rect.visible = true
 	get_hud().hide_global_message()
 	var level_scene: PackedScene = __level_list.get_level_scene(__level_index)
 	__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
-	__current_level.set_check_point_enabled(true)	
+	__current_level.set_check_point_enabled(true)
+	__current_level.start()
 	add_child(__current_level)
 	__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	__current_level.set_player_stats(__saved_player_stats)
@@ -99,3 +105,7 @@ func _on_MainMenu_game_started():
 
 func _on_PauseabilityTimer_timeout():
 	__can_pause = true
+
+func _on_LevelIntroTimer_timeout():
+	__color_rect.visible = false
+	__current_level.start()	
