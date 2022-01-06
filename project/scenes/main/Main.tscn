@@ -41,6 +41,15 @@ __has_completed_game = true
 
 [node name="HUD" parent="GameHandler/CanvasLayer" instance=ExtResource( 3 )]
 
+[node name="ColorRect" type="ColorRect" parent="GameHandler/CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PauseabilityTimer" type="Timer" parent="GameHandler"]
 one_shot = true
 
