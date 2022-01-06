@@ -141,26 +141,18 @@ __meta__ = {
 }
 
 [node name="EntityButton" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
-__icon = null
-__entity = null
 
 [node name="EntityButton2" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_left = 20.0
 margin_right = 36.0
-__icon = null
-__entity = null
 
 [node name="EntityButton3" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_left = 40.0
 margin_right = 56.0
-__icon = null
-__entity = null
 
 [node name="EntityButton4" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_left = 60.0
 margin_right = 76.0
-__icon = null
-__entity = null
 
 [node name="Tools" type="Panel" parent="."]
 anchor_left = 0.5
