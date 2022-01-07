@@ -41,7 +41,7 @@ func get_entity_at_tile(tile):
 	return null
 
 func get_tile(tile):
-	return __level.get_game_world().get_entity_pool().get_cellv(tile)
+	return __level.get_game_world().get_tile_map().get_cellv(tile)
 
 func add_entity(scene, tile):
 	if is_tile_occupied(tile): return
@@ -49,7 +49,7 @@ func add_entity(scene, tile):
 
 func get_entities():
 	var entities = __level.get_game_world().get_entity_pool().get_children()
-	entities.append_array(__level.get_game_world().get_floor_entity_pool().get_children())
+	entities.append_array(__level.get_game_world().get_geometry().get_children())
 	return entities
 
 func set_tile(type, tile):
