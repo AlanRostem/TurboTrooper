@@ -89,6 +89,11 @@ func spawn_entity_deferred(entity_scene, location):
 #		assign_player_node(entity)
 	return entity
 
+func get_entity_pool():
+	return  __entity_pool
+	
+func get_geometry():
+	return __geometry
 # func move_entity_to_world(entity, world):
 #	pass
 
