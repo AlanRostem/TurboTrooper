@@ -9,6 +9,7 @@ onready var __tile_tween = $MenuLayer/Tiles/TileTween
 onready var __entities_tween = $MenuLayer/Entities/EntitiesTween
 onready var __tools_tween = $MenuLayer/Tools/ToolsTween
 onready var __camera = $Canvas/CameraHolder/Camera2D
+onready var __file_dialog = $FileDialog
 
 
 func get_editor_canvas():
@@ -37,3 +38,7 @@ func _on_ToolsButton_toggled(button_pressed):
 
 func _on_PauseButton_pressed():
 	get_tree().paused = !get_tree().paused
+
+
+func _on_SaveButton_pressed():
+	__file_dialog.popup()
