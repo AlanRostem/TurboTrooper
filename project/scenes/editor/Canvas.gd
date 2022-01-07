@@ -8,7 +8,8 @@ func _ready():
 	set_paused(true)
 	set_canvas_tool(PencilTool.new())
 	__canvas_tool.set_entity_stroke(load("res://scenes/game/world/entity/entities/item/collectible_items/FloatingScrap.tscn"))
-
+	__level.player_node.set_camera_follow(false)
+	
 func _gui_input(event):
 #################################################
 #	Floor entities can have a diffrent z index	#
@@ -54,15 +55,15 @@ func get_entities():
 
 func set_tile(type, tile):
 	if get_tile(tile) != -1 or get_entity_at_tile(tile) != null: return
-	__level.get_game_world().get_entity_pool().set_cellv(tile, type)
-	__level.get_game_world().get_entity_pool().update_bitmask_area(tile)
+	__level.get_game_world().get_tile_map().set_cellv(tile, type)
+	__level.get_game_world().get_tile_map().update_bitmask_area(tile)
 
 func remove_entity(entity):
 	entity.queue_free()
 
 func remove_tile(tile):
-	__level.get_game_world().get_entity_pool().set_cellv(tile, -1)
-	__level.get_game_world().get_entity_pool().update_bitmask_area(tile)
+	__level.get_game_world().get_tile_map().set_cellv(tile, -1)
+	__level.get_game_world().get_tile_map().update_bitmask_area(tile)
 
 func remove_tile_or_entity_at_tile(tile):
 	var entity = get_entity_at_tile(tile)
@@ -102,10 +103,12 @@ func is_tile_occupied(tile):
 	return get_tile(tile) != -1 or get_entity_at_tile(tile) != null
 
 func save():
+	__level.player_node.set_camera_follow(true)
 	var scene = PackedScene.new()
 	var scene_root = __level
 	scene.pack(scene_root)
 	ResourceSaver.save('res://test.tscn', scene)
+	__level.player_node.set_camera_follow(false)
 	
 func __set_owner(node, root):
 	if node != root:

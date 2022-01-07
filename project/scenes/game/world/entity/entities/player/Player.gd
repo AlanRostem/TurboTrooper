@@ -77,6 +77,9 @@ func set_camera_bounds(bounds: Rect2):
 	__camera.limit_top = 0;
 	__camera.limit_right = bounds.size.x + bounds.position.x;
 	__camera.limit_bottom = 144;
+	
+func set_camera_follow(value):
+	__camera.current = value
 
 func set_controls_enabled(value):
 	__controls_enabled = value

@@ -1,16 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/game/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/editor/Canvas.gd" type="Script" id=2]
 [ext_resource path="res://scenes/editor/Editor.gd" type="Script" id=3]
 [ext_resource path="res://scenes/editor/buttons/TileButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/editor/CameraHolder.gd" type="Script" id=5]
 [ext_resource path="res://scenes/editor/buttons/EntityButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/editor/buttons/ToolButton.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/editor/tool/PencilTool.gd" type="Script" id=10]
 [ext_resource path="res://scenes/editor/tool/MoveTool.gd" type="Script" id=11]
-
-[sub_resource type="AtlasTexture" id=1]
-region = Rect2( 16, 16, 16, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 region = Rect2( 0, 16, 16, 32 )
@@ -26,6 +24,9 @@ region = Rect2( 0, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=6]
 region = Rect2( 16, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=1]
+region = Rect2( 16, 16, 16, 32 )
+
 [node name="Editor" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
@@ -36,7 +37,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Canvas" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Canvas" type="Control" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -232.0
@@ -47,54 +50,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level" parent="Canvas" instance=ExtResource( 1 )]
+[node name="Level" parent="CanvasLayer/Canvas" instance=ExtResource( 1 )]
 
-[node name="Tiles" type="Panel" parent="."]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -72.0
-margin_bottom = 72.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CameraHolder" type="Node2D" parent="CanvasLayer/Canvas"]
+script = ExtResource( 5 )
 
-[node name="TilesButton" type="TextureButton" parent="Tiles"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 4.0
-margin_top = -10.0
-margin_right = 16.0
-margin_bottom = 10.0
-toggle_mode = true
-texture_normal = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Canvas/CameraHolder"]
+current = true
 
-[node name="TileTween" type="Tween" parent="Tiles"]
+[node name="MenuLayer" type="CanvasLayer" parent="."]
 
-[node name="TileGrid" type="GridContainer" parent="Tiles"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -12.0
-margin_top = -56.0
-margin_right = 12.0
-margin_bottom = 64.0
-rect_clip_content = true
-columns = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TileButton" parent="Tiles/TileGrid" instance=ExtResource( 4 )]
-__type = 1
-
-[node name="Entities" type="Panel" parent="."]
+[node name="Entities" type="Panel" parent="MenuLayer"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -106,50 +72,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EntitiesButton" type="TextureButton" parent="Entities"]
+[node name="EntitiesButton" type="TextureButton" parent="MenuLayer/Entities"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -10.0
-margin_right = -4.0
-margin_bottom = 22.0
+margin_left = -16.0
+margin_top = -24.0
+margin_bottom = 8.0
 toggle_mode = true
 texture_normal = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EntitiesTween" type="Tween" parent="Entities"]
+[node name="EntitiesTween" type="Tween" parent="MenuLayer/Entities"]
 
-[node name="EntitiesGrid" type="GridContainer" parent="Entities"]
+[node name="EntitiesGrid" type="GridContainer" parent="MenuLayer/Entities"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -32.0
-margin_top = -64.0
-margin_right = 44.0
+margin_left = -28.0
+margin_top = -72.0
+margin_right = 48.0
 margin_bottom = 64.0
 columns = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EntityButton" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
+[node name="EntityButton" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
 
-[node name="EntityButton2" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
+[node name="EntityButton2" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_left = 20.0
 margin_right = 36.0
 
-[node name="EntityButton3" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
+[node name="EntityButton3" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_left = 40.0
 margin_right = 56.0
 
-[node name="EntityButton4" parent="Entities/EntitiesGrid" instance=ExtResource( 6 )]
+[node name="EntityButton4" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_left = 60.0
 margin_right = 76.0
 
-[node name="Tools" type="Panel" parent="."]
+[node name="Tools" type="Panel" parent="MenuLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -79.0
@@ -159,7 +124,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ToolsButton" type="TextureButton" parent="Tools"]
+[node name="ToolsButton" type="TextureButton" parent="MenuLayer/Tools"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -174,9 +139,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ToolsTween" type="Tween" parent="Tools"]
+[node name="ToolsTween" type="Tween" parent="MenuLayer/Tools"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Tools"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/Tools"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -189,13 +154,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ToolButton" parent="Tools/HBoxContainer" instance=ExtResource( 9 )]
+[node name="ToolButton" parent="MenuLayer/Tools/HBoxContainer" instance=ExtResource( 9 )]
 toggle_mode = true
 group = SubResource( 4 )
 texture_normal = SubResource( 5 )
 __tool = ExtResource( 10 )
 
-[node name="ToolButton2" parent="Tools/HBoxContainer" instance=ExtResource( 9 )]
+[node name="ToolButton2" parent="MenuLayer/Tools/HBoxContainer" instance=ExtResource( 9 )]
 margin_left = 20.0
 margin_right = 36.0
 toggle_mode = true
@@ -203,7 +168,7 @@ group = SubResource( 4 )
 texture_normal = SubResource( 6 )
 __tool = ExtResource( 11 )
 
-[node name="PauseButton" type="Button" parent="."]
+[node name="PauseButton" type="Button" parent="MenuLayer"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -217,7 +182,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="toggled" from="Tiles/TilesButton" to="." method="_on_TilesButton_toggled"]
-[connection signal="toggled" from="Entities/EntitiesButton" to="." method="_on_EntitiesButton_toggled"]
-[connection signal="toggled" from="Tools/ToolsButton" to="." method="_on_ToolsButton_toggled"]
-[connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
+[node name="Tiles" type="Panel" parent="MenuLayer"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -72.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilesButton" type="TextureButton" parent="MenuLayer/Tiles"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_right = 16.0
+margin_bottom = 8.0
+toggle_mode = true
+texture_normal = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileTween" type="Tween" parent="MenuLayer/Tiles"]
+
+[node name="TileGrid" type="GridContainer" parent="MenuLayer/Tiles"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -56.0
+margin_right = 12.0
+margin_bottom = 64.0
+rect_clip_content = true
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileButton" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
+__type = 1
+
+[connection signal="toggled" from="MenuLayer/Entities/EntitiesButton" to="." method="_on_EntitiesButton_toggled"]
+[connection signal="toggled" from="MenuLayer/Tools/ToolsButton" to="." method="_on_ToolsButton_toggled"]
+[connection signal="pressed" from="MenuLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
+[connection signal="toggled" from="MenuLayer/Tiles/TilesButton" to="." method="_on_TilesButton_toggled"]
