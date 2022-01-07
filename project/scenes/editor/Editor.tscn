@@ -410,3 +410,4 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="MenuLayer/Tools/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="file_selected" from="MenuLayer/FileDialog" to="Canvas" method="_on_FileDialog_file_selected"]

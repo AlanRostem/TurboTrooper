@@ -119,3 +119,6 @@ func save(path: String):
 	scene.pack(scene_root)
 	ResourceSaver.save(path, scene)
 	__level.player_node.set_camera_follow(false)
+
+func _on_FileDialog_file_selected(path):
+	save(path)
