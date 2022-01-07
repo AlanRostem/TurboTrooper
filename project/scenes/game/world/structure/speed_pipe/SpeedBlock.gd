@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends "res://scenes/game/world/structure/Structure.gd"
 
 
 onready var __sprite = $AnimatedSprite
