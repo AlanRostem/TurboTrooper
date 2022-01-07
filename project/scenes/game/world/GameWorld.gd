@@ -72,16 +72,15 @@ func spawn_entity(entity_scene, location):
 	var entity = entity_scene.instance()
 	entity.position = location
 	entity.parent_world = self
-	entity.owner = __parent_level
 	__entity_pool.add_child(entity)
+	entity.owner = __parent_level	
 	return entity
 	
 func add_geometry(scene, location):
 	var geometry = scene.instance()
 	geometry.position = location
-	geometry.owner = __parent_level
 	__geometry.add_child(geometry)
-	
+	geometry.owner = __parent_level
 	return geometry
 	
 # Instance a node that inherits the base entity scene through a specified scene and
@@ -92,9 +91,7 @@ func spawn_entity_deferred(entity_scene, location):
 	entity.position = location
 	entity.parent_world = self
 	__entity_pool.call_deferred("add_child", entity)
-	entity.owner = __parent_level
-#	if entity is Player:
-#		assign_player_node(entity)
+	entity.set_deferred("owner", __parent_level)
 	return entity
 
 func get_entity_pool():
