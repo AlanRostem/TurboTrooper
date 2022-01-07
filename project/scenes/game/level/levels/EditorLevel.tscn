@@ -1,0 +1,956 @@
+[gd_scene load_steps=109 format=2]
+
+[ext_resource path="res://assets/resources/MainTileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.gd" type="Script" id=2]
+[ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/elements/label/PixelLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/resources/font/SmallFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=8]
+[ext_resource path="res://assets/font/pixelsix00.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/sprites/parallax/cave.png" type="Texture" id=10]
+[ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.gd" type="Script" id=11]
+[ext_resource path="res://scenes/game/world/entity/components/health/HealthComponent.gd" type="Script" id=12]
+[ext_resource path="res://scenes/game/world/entity/entities/player/Player.gd" type="Script" id=13]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerIdleState.gd" type="Script" id=14]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerWalkState.gd" type="Script" id=15]
+[ext_resource path="res://scenes/game/world/entity/entities/player/PlayerSprite.gd" type="Script" id=16]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerCrouchState.gd" type="Script" id=17]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerSlideState.gd" type="Script" id=18]
+[ext_resource path="res://scenes/game/world/entity/entities/player/PlayerStats.gd" type="Script" id=19]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerAirBorneState.gd" type="Script" id=20]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerRunState.gd" type="Script" id=21]
+[ext_resource path="res://scenes/game/world/environment/HealthShop.gd" type="Script" id=22]
+[ext_resource path="res://scenes/game/world/environment/SwordShop.gd" type="Script" id=23]
+[ext_resource path="res://scenes/game/world/environment/BlasterShop.gd" type="Script" id=24]
+[ext_resource path="res://scenes/game/world/entity/components/hit_box/HitBox.gd" type="Script" id=25]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerLeaveLevelState.gd" type="Script" id=26]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerEnterLevelState.gd" type="Script" id=27]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerDeathState.gd" type="Script" id=28]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerLeaveLevelSecretState.gd" type="Script" id=29]
+[ext_resource path="res://scenes/game/world/entity/components/hit_box/HitBox.tscn" type="PackedScene" id=30]
+[ext_resource path="res://scenes/game/world/weapon/Sword.tscn" type="PackedScene" id=31]
+[ext_resource path="res://scenes/game/world/weapon/Blaster.tscn" type="PackedScene" id=32]
+[ext_resource path="res://assets/sprites/item/weapon/sword.png" type="Texture" id=33]
+[ext_resource path="res://assets/sprites/item/weapon/blaster.png" type="Texture" id=34]
+[ext_resource path="res://assets/audio/music/normal_theme.wav" type="AudioStream" id=35]
+[ext_resource path="res://assets/sprites/prop/shop.png" type="Texture" id=36]
+[ext_resource path="res://assets/audio/sfx/player/player_slide.wav" type="AudioStream" id=37]
+[ext_resource path="res://assets/resources/shaders/InvertShader.tres" type="Material" id=38]
+[ext_resource path="res://assets/audio/sfx/player/player_take_damage.wav" type="AudioStream" id=39]
+[ext_resource path="res://assets/audio/sfx/player/player_jump.wav" type="AudioStream" id=40]
+[ext_resource path="res://assets/resources/sprite_frames/char/PlayerSpriteFrames.tres" type="SpriteFrames" id=41]
+[ext_resource path="res://scenes/game/world/environment/BlasterShop.tscn" type="PackedScene" id=42]
+[ext_resource path="res://scenes/game/world/environment/HealthShop.tscn" type="PackedScene" id=43]
+[ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=44]
+[ext_resource path="res://scenes/game/world/entity/components/health/HealthComponent.tscn" type="PackedScene" id=45]
+[ext_resource path="res://scenes/game/world/entity/entities/player/Player.tscn" type="PackedScene" id=46]
+[ext_resource path="res://scenes/game/world/environment/SwordShop.tscn" type="PackedScene" id=47]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerState.tscn" type="PackedScene" id=48]
+[ext_resource path="res://scenes/game/level/level_types/BombLevel.gd" type="Script" id=49]
+[ext_resource path="res://scenes/game/world/objective/BombSwitch.gd" type="Script" id=50]
+[ext_resource path="res://assets/audio/music/win_theme.wav" type="AudioStream" id=51]
+[ext_resource path="res://assets/sprites/prop/bomb_switch.png" type="Texture" id=52]
+[ext_resource path="res://assets/sprites/item/other/heart.png" type="Texture" id=53]
+[ext_resource path="res://assets/audio/sfx/world/store/buy_health.wav" type="AudioStream" id=54]
+[ext_resource path="res://assets/sprites/item/objective/arrow.png" type="Texture" id=55]
+[ext_resource path="res://assets/audio/sfx/world/bomb_button/bomb_button_press.wav" type="AudioStream" id=56]
+[ext_resource path="res://assets/audio/sfx/world/bomb/bomb_explode.wav" type="AudioStream" id=57]
+[ext_resource path="res://assets/sprites/item/crate/weapon_crate.png" type="Texture" id=58]
+[ext_resource path="res://assets/sprites/prop/speed_pipe.png" type="Texture" id=59]
+[ext_resource path="res://assets/sprites/item/scrap/cog.png" type="Texture" id=60]
+[ext_resource path="res://assets/sprites/prop/speed_block.png" type="Texture" id=61]
+[ext_resource path="res://assets/audio/sfx/entities/crates/crate_break.wav" type="AudioStream" id=62]
+[ext_resource path="res://scenes/game/world/structure/destructible/Crate.gd" type="Script" id=63]
+[ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedPipeArea.gd" type="Script" id=64]
+[ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedBlock.gd" type="Script" id=65]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.gd" type="Script" id=66]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/BlasterCollectible.tscn" type="PackedScene" id=67]
+[ext_resource path="res://scenes/game/world/objective/ArrowSprite.tscn" type="PackedScene" id=68]
+[ext_resource path="res://scenes/game/world/GameWorld.tscn" type="PackedScene" id=69]
+[ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedBlock.tscn" type="PackedScene" id=70]
+[ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedPipeArea.tscn" type="PackedScene" id=71]
+[ext_resource path="res://scenes/game/world/environment/CustomTileMap.tscn" type="PackedScene" id=72]
+[ext_resource path="res://scenes/game/world/objective/BombSwitch.tscn" type="PackedScene" id=73]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn" type="PackedScene" id=74]
+[ext_resource path="res://scenes/game/world/structure/destructible/BlasterCrate.tscn" type="PackedScene" id=75]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 52 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 52 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "on",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "off",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 55 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 55 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 5, 4 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 5, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 4, 9 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 5, 5 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 8, 4 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 9, 4 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 12, 1 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 61 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 61 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 16 ) ],
+"loop": true,
+"name": "on",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "off",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 6, 2 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 5, 7 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 3, 4 )
+
+[sub_resource type="CircleShape2D" id=23]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 6, 6 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 60 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 60 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=28]
+animations = [ {
+"frames": [ SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+} ]
+
+[sub_resource type="StyleBoxFlat" id=29]
+bg_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+
+[sub_resource type="DynamicFont" id=30]
+size = 8
+font_data = ExtResource( 9 )
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 8, 72 )
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 8, 72 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 72, 8 )
+
+[node name="Level" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 49 )
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 35 )
+stream_paused = true
+
+[node name="GameWorld" type="Node2D" parent="." instance=ExtResource( 69 )]
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_description_": "This node contains all world collision and an entity pool. Spawning/despawning of
+entities is managed by this node, but are attached to the entity pool node"
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="GameWorld"]
+scroll_offset = Vector2( 440, 0 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="GameWorld/ParallaxBackground"]
+position = Vector2( -40, 0 )
+motion_mirroring = Vector2( 160, 0 )
+
+[node name="Sprite" type="Sprite" parent="GameWorld/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Geometry" type="Node2D" parent="GameWorld"]
+
+[node name="BombSwitch" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 73 )]
+position = Vector2( 364, 100 )
+script = ExtResource( 50 )
+__completion_transition_time = 3.0
+__detonation_time = 60
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GameWorld/Geometry/BombSwitch"]
+position = Vector2( 0, 4 )
+frames = SubResource( 3 )
+animation = "off"
+
+[node name="ArrowSprite" type="AnimatedSprite" parent="GameWorld/Geometry/BombSwitch" instance=ExtResource( 68 )]
+position = Vector2( 0, -12 )
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameWorld/Geometry/BombSwitch"]
+position = Vector2( 0, 4 )
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/BombSwitch/StaticBody2D"]
+position = Vector2( 0, 4 )
+shape = SubResource( 7 )
+
+[node name="PressArea" type="Area2D" parent="GameWorld/Geometry/BombSwitch"]
+position = Vector2( 0, 4 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/BombSwitch/PressArea"]
+position = Vector2( 0, -1 )
+shape = SubResource( 8 )
+
+[node name="BombTimer" type="Timer" parent="GameWorld/Geometry/BombSwitch"]
+one_shot = true
+
+[node name="CompletionTransitionTimer" type="Timer" parent="GameWorld/Geometry/BombSwitch"]
+one_shot = true
+
+[node name="WinTheme" type="AudioStreamPlayer" parent="GameWorld/Geometry/BombSwitch"]
+stream = ExtResource( 51 )
+stream_paused = true
+
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="GameWorld/Geometry/BombSwitch"]
+stream = ExtResource( 57 )
+stream_paused = true
+
+[node name="PressSound" type="AudioStreamPlayer" parent="GameWorld/Geometry/BombSwitch"]
+stream = ExtResource( 56 )
+stream_paused = true
+
+[node name="ShopArea" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 44 )]
+position = Vector2( 292, 100 )
+
+[node name="SwordShop" type="Node2D" parent="GameWorld/Geometry/ShopArea" instance=ExtResource( 47 )]
+position = Vector2( -20, 0 )
+script = ExtResource( 23 )
+__price = 25
+__weapon_scene = ExtResource( 31 )
+
+[node name="PriceTag" type="Label" parent="GameWorld/Geometry/ShopArea/SwordShop" instance=ExtResource( 5 )]
+margin_left = -5.0
+margin_top = -24.0
+margin_right = 5.0
+margin_bottom = -13.0
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "25"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopSprite" type="Sprite" parent="GameWorld/Geometry/ShopArea/SwordShop"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 36 )
+
+[node name="ItemSprite" type="Sprite" parent="GameWorld/Geometry/ShopArea/SwordShop"]
+position = Vector2( 0, -9 )
+texture = ExtResource( 33 )
+
+[node name="PlayerDetectionArea" type="Area2D" parent="GameWorld/Geometry/ShopArea/SwordShop"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/ShopArea/SwordShop/PlayerDetectionArea"]
+position = Vector2( 0, 3 )
+shape = SubResource( 10 )
+
+[node name="HealthShop" type="Node2D" parent="GameWorld/Geometry/ShopArea" instance=ExtResource( 43 )]
+position = Vector2( 20, 0 )
+script = ExtResource( 22 )
+__price = 100
+
+[node name="PriceTag" type="Label" parent="GameWorld/Geometry/ShopArea/HealthShop" instance=ExtResource( 5 )]
+margin_left = -6.5
+margin_top = -24.0
+margin_right = 6.5
+margin_bottom = -15.0
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopSprite" type="Sprite" parent="GameWorld/Geometry/ShopArea/HealthShop"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 36 )
+
+[node name="ItemSprite" type="Sprite" parent="GameWorld/Geometry/ShopArea/HealthShop"]
+position = Vector2( 0, -9 )
+texture = ExtResource( 53 )
+
+[node name="PlayerDetectionArea" type="Area2D" parent="GameWorld/Geometry/ShopArea/HealthShop"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/ShopArea/HealthShop/PlayerDetectionArea"]
+position = Vector2( 0, 3 )
+shape = SubResource( 10 )
+
+[node name="BuySound" type="AudioStreamPlayer" parent="GameWorld/Geometry/ShopArea/HealthShop"]
+stream = ExtResource( 54 )
+stream_paused = true
+
+[node name="BlasterShop" type="Node2D" parent="GameWorld/Geometry/ShopArea" instance=ExtResource( 42 )]
+script = ExtResource( 24 )
+__price = 50
+__weapon_scene = ExtResource( 32 )
+
+[node name="PriceTag" type="Label" parent="GameWorld/Geometry/ShopArea/BlasterShop" instance=ExtResource( 5 )]
+margin_left = -5.0
+margin_top = -24.0
+margin_right = 5.0
+margin_bottom = -13.0
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+text = "50"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopSprite" type="Sprite" parent="GameWorld/Geometry/ShopArea/BlasterShop"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 36 )
+
+[node name="ItemSprite" type="Sprite" parent="GameWorld/Geometry/ShopArea/BlasterShop"]
+position = Vector2( 0, -9 )
+texture = ExtResource( 34 )
+
+[node name="PlayerDetectionArea" type="Area2D" parent="GameWorld/Geometry/ShopArea/BlasterShop"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/ShopArea/BlasterShop/PlayerDetectionArea"]
+position = Vector2( 0, 3 )
+shape = SubResource( 10 )
+
+[node name="CustomTileMap" type="TileMap" parent="GameWorld/Geometry" instance=ExtResource( 72 )]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 8, 8 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65535, 0, 0, 1, 0, 0, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 1, 6, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 1, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 1, 18, 0, 1, 19, 0, 1, 20, 0, 1, 21, 0, 1, 22, 0, 1, 23, 0, 1, 24, 0, 1, 25, 0, 1, 26, 0, 1, 27, 0, 1, 28, 0, 1, 29, 0, 1, 30, 0, 1, 31, 0, 1, 32, 0, 1, 33, 0, 1, 34, 0, 1, 35, 0, 1, 36, 0, 1, 37, 0, 1, 38, 0, 1, 39, 0, 1, 40, 0, 1, 41, 0, 1, 42, 0, 1, 43, 0, 1, 44, 0, 1, 45, 0, 1, 46, 0, 1, 47, 0, 1, 48, 0, 1, 49, 0, 1, 50, 0, 2, 131065, 0, 0, 131066, 0, 1, 131067, 0, 1, 131068, 0, 1, 131069, 0, 1, 131070, 0, 1, 131071, 0, 1, 65536, 0, 1, 65537, 0, 131077, 65538, 0, 65537, 65539, 0, 65537, 65540, 0, 65537, 65541, 0, 65537, 65542, 0, 65537, 65543, 0, 65537, 65544, 0, 65537, 65545, 0, 65537, 65546, 0, 65537, 65547, 0, 65537, 65548, 0, 65537, 65549, 0, 65537, 65550, 0, 65537, 65551, 0, 65537, 65552, 0, 65537, 65553, 0, 65537, 65554, 0, 65537, 65555, 0, 65537, 65556, 0, 65537, 65557, 0, 65537, 65558, 0, 65537, 65559, 0, 65537, 65560, 0, 65537, 65561, 0, 65537, 65562, 0, 65537, 65563, 0, 65537, 65564, 0, 65537, 65565, 0, 65537, 65566, 0, 65537, 65567, 0, 65537, 65568, 0, 65537, 65569, 0, 65537, 65570, 0, 65537, 65571, 0, 65537, 65572, 0, 65537, 65573, 0, 65537, 65574, 0, 65537, 65575, 0, 65537, 65576, 0, 65537, 65577, 0, 65537, 65578, 0, 65537, 65579, 0, 65537, 65580, 0, 65537, 65581, 0, 65537, 65582, 0, 65537, 65583, 0, 65537, 65584, 0, 65537, 65585, 0, 65537, 65586, 0, 65538, 196601, 0, 65536, 196602, 0, 65537, 196603, 0, 65537, 196604, 0, 65537, 196605, 0, 65537, 196606, 0, 65537, 196607, 0, 65537, 131072, 0, 65537, 131073, 0, 65537, 131074, 0, 65537, 131075, 0, 65537, 131076, 0, 65537, 131077, 0, 65537, 131078, 0, 65537, 131079, 0, 65537, 131080, 0, 65537, 131081, 0, 65537, 131082, 0, 65537, 131083, 0, 65537, 131084, 0, 65537, 131085, 0, 65537, 131086, 0, 65537, 131087, 0, 65537, 131088, 0, 65537, 131089, 0, 65537, 131090, 0, 65537, 131091, 0, 65537, 131092, 0, 65537, 131093, 0, 65537, 131094, 0, 65537, 131095, 0, 65537, 131096, 0, 65537, 131097, 0, 65537, 131098, 0, 65537, 131099, 0, 65537, 131100, 0, 65537, 131101, 0, 65537, 131102, 0, 65537, 131103, 0, 65537, 131104, 0, 65537, 131105, 0, 65537, 131106, 0, 65537, 131107, 0, 65537, 131108, 0, 65537, 131109, 0, 65537, 131110, 0, 65537, 131111, 0, 65537, 131112, 0, 65537, 131113, 0, 65537, 131114, 0, 65537, 131115, 0, 65537, 131116, 0, 65537, 131117, 0, 65537, 131118, 0, 65537, 131119, 0, 65537, 131120, 0, 65537, 131121, 0, 65537, 131122, 0, 65538, 262137, 0, 65536, 262138, 0, 65537, 262139, 0, 65537, 262140, 0, 65537, 262141, 0, 65537, 262142, 0, 65537, 262143, 0, 65537, 196608, 0, 65537, 196609, 0, 65537, 196610, 0, 65537, 196611, 0, 65537, 196612, 0, 65537, 196613, 0, 65537, 196614, 0, 65537, 196615, 0, 65537, 196616, 0, 65537, 196617, 0, 65537, 196618, 0, 65537, 196619, 0, 65540, 196620, 0, 131073, 196621, 0, 131073, 196622, 0, 131073, 196623, 0, 131073, 196624, 0, 131073, 196625, 0, 131073, 196626, 0, 131073, 196627, 0, 131073, 196628, 0, 131073, 196629, 0, 131073, 196630, 0, 131073, 196631, 0, 131073, 196632, 0, 131073, 196633, 0, 131073, 196634, 0, 131073, 196635, 0, 131073, 196636, 0, 131073, 196637, 0, 131073, 196638, 0, 131073, 196639, 0, 131073, 196640, 0, 131073, 196641, 0, 131073, 196642, 0, 131073, 196643, 0, 131073, 196644, 0, 131073, 196645, 0, 131073, 196646, 0, 131073, 196647, 0, 131073, 196648, 0, 131073, 196649, 0, 131073, 196650, 0, 131073, 196651, 0, 131073, 196652, 0, 131073, 196653, 0, 131073, 196654, 0, 131073, 196655, 0, 131073, 196656, 0, 65541, 196657, 0, 65537, 196658, 0, 65538, 327673, 0, 65536, 327674, 0, 65537, 327675, 0, 65537, 327676, 0, 65537, 327677, 0, 65537, 327678, 0, 65537, 327679, 0, 65537, 262144, 0, 65537, 262145, 0, 65537, 262146, 0, 65537, 262147, 0, 65537, 262148, 0, 65537, 262149, 0, 65537, 262150, 0, 65537, 262151, 0, 65540, 262152, 0, 131073, 262153, 0, 131073, 262154, 0, 131073, 262155, 0, 131074, 262192, 0, 65536, 262193, 0, 65537, 262194, 0, 65538, 393209, 0, 65536, 393210, 0, 65537, 393211, 0, 65537, 393212, 0, 65537, 393213, 0, 65537, 393214, 0, 65537, 393215, 0, 65537, 327680, 0, 65537, 327681, 0, 65537, 327682, 0, 65537, 327683, 0, 65537, 327684, 0, 65537, 327685, 0, 65537, 327686, 0, 65540, 327687, 0, 131074, 327728, 0, 65536, 327729, 0, 65537, 327730, 0, 65538, 458745, 0, 65536, 458746, 0, 65537, 458747, 0, 65537, 458748, 0, 65537, 458749, 0, 65537, 458750, 0, 65537, 458751, 0, 65537, 393216, 0, 65537, 393217, 0, 65537, 393218, 0, 65537, 393219, 0, 65537, 393220, 0, 65537, 393221, 0, 65540, 393222, 0, 131074, 393264, 0, 65536, 393265, 0, 65537, 393266, 0, 65538, 524281, 0, 65536, 524282, 0, 65537, 524283, 0, 65537, 524284, 0, 65537, 524285, 0, 65537, 524286, 0, 65537, 524287, 0, 65537, 458752, 0, 65537, 458753, 0, 65537, 458754, 0, 65537, 458755, 0, 65540, 458756, 0, 131073, 458757, 0, 131074, 458800, 0, 65536, 458801, 0, 65537, 458802, 0, 65538, 589817, 0, 65536, 589818, 0, 65537, 589819, 0, 65537, 589820, 0, 65537, 589821, 0, 65537, 589822, 0, 65537, 589823, 0, 65537, 524288, 0, 65537, 524289, 0, 65537, 524290, 0, 65540, 524291, 0, 131074, 524336, 0, 65536, 524337, 0, 65537, 524338, 0, 65538, 655353, 0, 65536, 655354, 0, 65540, 655355, 0, 131073, 655356, 0, 131073, 655357, 0, 131073, 655358, 0, 131073, 655359, 0, 131073, 589824, 0, 131073, 589825, 0, 131073, 589826, 0, 131074, 589872, 0, 65536, 589873, 0, 65537, 589874, 0, 65538, 720889, 0, 65536, 720890, 0, 65538, 655408, 0, 65536, 655409, 0, 65537, 655410, 0, 65538, 786425, 0, 65536, 786426, 0, 65538, 720944, 0, 65536, 720945, 0, 65537, 720946, 0, 65538, 851961, 0, 65536, 851962, 0, 65538, 786480, 0, 65536, 786481, 0, 65537, 786482, 0, 65538, 917497, 0, 65536, 917498, 0, 65538, 852016, 0, 65536, 852017, 0, 65537, 852018, 0, 65538, 983033, 0, 65536, 983034, 0, 131076, 983035, 0, 1, 983036, 0, 1, 983037, 0, 1, 983038, 0, 1, 983039, 0, 1, 917504, 0, 1, 917505, 0, 1, 917506, 0, 1, 917507, 0, 1, 917508, 0, 1, 917509, 0, 1, 917510, 0, 1, 917511, 0, 1, 917512, 0, 1, 917513, 0, 1, 917514, 0, 1, 917515, 0, 1, 917516, 0, 1, 917517, 0, 1, 917518, 0, 1, 917519, 0, 1, 917520, 0, 1, 917521, 0, 1, 917522, 0, 1, 917523, 0, 1, 917524, 0, 1, 917525, 0, 1, 917526, 0, 1, 917527, 0, 1, 917528, 0, 1, 917529, 0, 1, 917530, 0, 1, 917531, 0, 1, 917532, 0, 1, 917533, 0, 1, 917534, 0, 1, 917535, 0, 1, 917536, 0, 1, 917537, 0, 1, 917538, 0, 1, 917539, 0, 1, 917540, 0, 1, 917541, 0, 1, 917542, 0, 1, 917543, 0, 1, 917544, 0, 1, 917545, 0, 1, 917546, 0, 1, 917547, 0, 1, 917548, 0, 1, 917549, 0, 1, 917550, 0, 1, 917551, 0, 1, 917552, 0, 131077, 917553, 0, 65537, 917554, 0, 65538, 1048569, 0, 65536, 1048570, 0, 65537, 1048571, 0, 65537, 1048572, 0, 65537, 1048573, 0, 65537, 1048574, 0, 65537, 1048575, 0, 65537, 983040, 0, 65537, 983041, 0, 65537, 983042, 0, 65537, 983043, 0, 65537, 983044, 0, 65537, 983045, 0, 65537, 983046, 0, 65537, 983047, 0, 65537, 983048, 0, 65537, 983049, 0, 65537, 983050, 0, 65537, 983051, 0, 65537, 983052, 0, 65537, 983053, 0, 65537, 983054, 0, 65537, 983055, 0, 65537, 983056, 0, 65537, 983057, 0, 65537, 983058, 0, 65537, 983059, 0, 65537, 983060, 0, 65537, 983061, 0, 65537, 983062, 0, 65537, 983063, 0, 65537, 983064, 0, 65537, 983065, 0, 65537, 983066, 0, 65537, 983067, 0, 65537, 983068, 0, 65537, 983069, 0, 65537, 983070, 0, 65537, 983071, 0, 65537, 983072, 0, 65537, 983073, 0, 65537, 983074, 0, 65537, 983075, 0, 65537, 983076, 0, 65537, 983077, 0, 65537, 983078, 0, 65537, 983079, 0, 65537, 983080, 0, 65537, 983081, 0, 65537, 983082, 0, 65537, 983083, 0, 65537, 983084, 0, 65537, 983085, 0, 65537, 983086, 0, 65537, 983087, 0, 65537, 983088, 0, 65537, 983089, 0, 65537, 983090, 0, 65538, 1114105, 0, 65536, 1114106, 0, 65537, 1114107, 0, 65537, 1114108, 0, 65537, 1114109, 0, 65537, 1114110, 0, 65537, 1114111, 0, 65537, 1048576, 0, 65537, 1048577, 0, 65537, 1048578, 0, 65537, 1048579, 0, 65537, 1048580, 0, 65537, 1048581, 0, 65537, 1048582, 0, 65537, 1048583, 0, 65537, 1048584, 0, 65537, 1048585, 0, 65537, 1048586, 0, 65537, 1048587, 0, 65537, 1048588, 0, 65537, 1048589, 0, 65537, 1048590, 0, 65537, 1048591, 0, 65537, 1048592, 0, 65537, 1048593, 0, 65537, 1048594, 0, 65537, 1048595, 0, 65537, 1048596, 0, 65537, 1048597, 0, 65537, 1048598, 0, 65537, 1048599, 0, 65537, 1048600, 0, 65537, 1048601, 0, 65537, 1048602, 0, 65537, 1048603, 0, 65537, 1048604, 0, 65537, 1048605, 0, 65537, 1048606, 0, 65537, 1048607, 0, 65537, 1048608, 0, 65537, 1048609, 0, 65537, 1048610, 0, 65537, 1048611, 0, 65537, 1048612, 0, 65537, 1048613, 0, 65537, 1048614, 0, 65537, 1048615, 0, 65537, 1048616, 0, 65537, 1048617, 0, 65537, 1048618, 0, 65537, 1048619, 0, 65537, 1048620, 0, 65537, 1048621, 0, 65537, 1048622, 0, 65537, 1048623, 0, 65537, 1048624, 0, 65537, 1048625, 0, 65537, 1048626, 0, 65538, 1179641, 0, 65536, 1179642, 0, 65537, 1179643, 0, 65537, 1179644, 0, 65537, 1179645, 0, 65537, 1179646, 0, 65537, 1179647, 0, 65537, 1114112, 0, 65537, 1114113, 0, 65537, 1114114, 0, 65537, 1114115, 0, 65537, 1114116, 0, 65537, 1114117, 0, 65537, 1114118, 0, 65537, 1114119, 0, 65537, 1114120, 0, 65537, 1114121, 0, 65537, 1114122, 0, 65537, 1114123, 0, 65537, 1114124, 0, 65537, 1114125, 0, 65537, 1114126, 0, 65537, 1114127, 0, 65537, 1114128, 0, 65537, 1114129, 0, 65537, 1114130, 0, 65537, 1114131, 0, 65537, 1114132, 0, 65537, 1114133, 0, 65537, 1114134, 0, 65537, 1114135, 0, 65537, 1114136, 0, 65537, 1114137, 0, 65537, 1114138, 0, 65537, 1114139, 0, 65537, 1114140, 0, 65537, 1114141, 0, 65537, 1114142, 0, 65537, 1114143, 0, 65537, 1114144, 0, 65537, 1114145, 0, 65537, 1114146, 0, 65537, 1114147, 0, 65537, 1114148, 0, 65537, 1114149, 0, 65537, 1114150, 0, 65537, 1114151, 0, 65537, 1114152, 0, 65537, 1114153, 0, 65537, 1114154, 0, 65537, 1114155, 0, 65537, 1114156, 0, 65537, 1114157, 0, 65537, 1114158, 0, 65537, 1114159, 0, 65537, 1114160, 0, 65537, 1114161, 0, 65537, 1114162, 0, 65538, 1245177, 0, 131072, 1245178, 0, 131073, 1245179, 0, 131073, 1245180, 0, 131073, 1245181, 0, 131073, 1245182, 0, 131073, 1245183, 0, 131073, 1179648, 0, 131073, 1179649, 0, 131073, 1179650, 0, 131073, 1179651, 0, 131073, 1179652, 0, 131073, 1179653, 0, 131073, 1179654, 0, 131073, 1179655, 0, 131073, 1179656, 0, 131073, 1179657, 0, 131073, 1179658, 0, 131073, 1179659, 0, 131073, 1179660, 0, 131073, 1179661, 0, 131073, 1179662, 0, 131073, 1179663, 0, 131073, 1179664, 0, 131073, 1179665, 0, 131073, 1179666, 0, 131073, 1179667, 0, 131073, 1179668, 0, 131073, 1179669, 0, 131073, 1179670, 0, 131073, 1179671, 0, 131073, 1179672, 0, 131073, 1179673, 0, 131073, 1179674, 0, 131073, 1179675, 0, 131073, 1179676, 0, 131073, 1179677, 0, 131073, 1179678, 0, 131073, 1179679, 0, 131073, 1179680, 0, 131073, 1179681, 0, 131073, 1179682, 0, 131073, 1179683, 0, 131073, 1179684, 0, 131073, 1179685, 0, 131073, 1179686, 0, 131073, 1179687, 0, 131073, 1179688, 0, 131073, 1179689, 0, 131073, 1179690, 0, 131073, 1179691, 0, 131073, 1179692, 0, 131073, 1179693, 0, 131073, 1179694, 0, 131073, 1179695, 0, 131073, 1179696, 0, 131073, 1179697, 0, 131073, 1179698, 0, 131074 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": "Default tilemap node for all levels. Loads a specific TileSet resource with all tiles defined for later use"
+}
+
+[node name="DeathPits" type="Area2D" parent="GameWorld/Geometry"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="BlasterCrate" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 75 )]
+position = Vector2( 100, 108 )
+collision_mask = 0
+script = ExtResource( 63 )
+drop_scrap_on_damaged = false
+scrap_drop_count_damaged = 1
+__containment_scene = ExtResource( 67 )
+__break_sound = ExtResource( 62 )
+__let_player_kick_to_open = true
+
+[node name="InHitBox" type="Area2D" parent="GameWorld/Geometry/BlasterCrate" instance=ExtResource( 30 )]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 25 )
+hit_box_action_type = 1
+__team = "enemy_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/BlasterCrate/InHitBox"]
+shape = SubResource( 11 )
+
+[node name="HealthComponent" type="Node" parent="GameWorld/Geometry/BlasterCrate" instance=ExtResource( 45 )]
+script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": "Component node used as a child of the HitBox node to determine "
+}
+max_health = 1
+__immunities = [  ]
+
+[node name="ScrapDropLocation" type="Position2D" parent="GameWorld/Geometry/BlasterCrate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/BlasterCrate"]
+shape = SubResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="GameWorld/Geometry/BlasterCrate"]
+texture = ExtResource( 58 )
+
+[node name="PlayerDetector" type="Area2D" parent="GameWorld/Geometry/BlasterCrate"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/BlasterCrate/PlayerDetector"]
+position = Vector2( 0, -1 )
+shape = SubResource( 13 )
+
+[node name="SpeedPipeArea" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 71 )]
+position = Vector2( 164, 108 )
+script = ExtResource( 64 )
+
+[node name="SpeedPipe" type="Node2D" parent="GameWorld/Geometry/SpeedPipeArea"]
+position = Vector2( 0, -4 )
+
+[node name="PipeSprite" type="Sprite" parent="GameWorld/Geometry/SpeedPipeArea/SpeedPipe"]
+texture = ExtResource( 59 )
+
+[node name="PlayerDetectionArea" type="Area2D" parent="GameWorld/Geometry/SpeedPipeArea/SpeedPipe"]
+position = Vector2( 0, 4 )
+collision_layer = 0
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/SpeedPipeArea/SpeedPipe/PlayerDetectionArea"]
+shape = SubResource( 14 )
+
+[node name="Blockade" type="StaticBody2D" parent="GameWorld/Geometry/SpeedPipeArea/SpeedPipe"]
+position = Vector2( 0, -1 )
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/SpeedPipeArea/SpeedPipe/Blockade"]
+shape = SubResource( 15 )
+
+[node name="@StaticBody2D@100" type="StaticBody2D" parent="GameWorld/Geometry" groups=[
+"speed_block",
+] instance=ExtResource( 70 )]
+position = Vector2( 212, 84 )
+collision_mask = 0
+script = ExtResource( 65 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GameWorld/Geometry/@StaticBody2D@100"]
+frames = SubResource( 18 )
+animation = "off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/@StaticBody2D@100"]
+shape = SubResource( 19 )
+disabled = true
+one_way_collision = true
+
+[node name="Timer" type="Timer" parent="GameWorld/Geometry/@StaticBody2D@100"]
+wait_time = 5.0
+one_shot = true
+
+[node name="@StaticBody2D@101" type="StaticBody2D" parent="GameWorld/Geometry" groups=[
+"speed_block",
+] instance=ExtResource( 70 )]
+position = Vector2( 220, 84 )
+collision_mask = 0
+script = ExtResource( 65 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GameWorld/Geometry/@StaticBody2D@101"]
+frames = SubResource( 18 )
+animation = "off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/@StaticBody2D@101"]
+shape = SubResource( 19 )
+disabled = true
+one_way_collision = true
+
+[node name="Timer" type="Timer" parent="GameWorld/Geometry/@StaticBody2D@101"]
+wait_time = 5.0
+one_shot = true
+
+[node name="@StaticBody2D@102" type="StaticBody2D" parent="GameWorld/Geometry" groups=[
+"speed_block",
+] instance=ExtResource( 70 )]
+position = Vector2( 228, 84 )
+collision_mask = 0
+script = ExtResource( 65 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GameWorld/Geometry/@StaticBody2D@102"]
+frames = SubResource( 18 )
+animation = "off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/Geometry/@StaticBody2D@102"]
+shape = SubResource( 19 )
+disabled = true
+one_way_collision = true
+
+[node name="Timer" type="Timer" parent="GameWorld/Geometry/@StaticBody2D@102"]
+wait_time = 5.0
+one_shot = true
+
+[node name="EntityPool" type="Node2D" parent="GameWorld"]
+__meta__ = {
+"_editor_description_": "This node holds all the active game objects. The parent GameWorld node manages the objects in this node"
+}
+
+[node name="Player" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 46 )]
+position = Vector2( -11, 96 )
+z_index = 1
+collision_layer = 4
+script = ExtResource( 13 )
+__meta__ = {
+"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
+MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
+registered in the next physics process call."
+}
+collision_mode = 2
+is_gravity_enabled = false
+is_internal_collision_func_enabled = true
+gravity = 400
+stop_on_slope = true
+__remove_when_entity_pool_cleared = false
+air_acceleration = 250.0
+
+[node name="FlashingTimer" type="Timer" parent="GameWorld/EntityPool/Player"]
+wait_time = 0.1
+
+[node name="InvincibilityTimer" type="Timer" parent="GameWorld/EntityPool/Player"]
+wait_time = 2.0
+one_shot = true
+
+[node name="CrateOpeningTimer" type="Timer" parent="GameWorld/EntityPool/Player"]
+wait_time = 0.22
+one_shot = true
+
+[node name="RamSlideHitBox" type="Area2D" parent="GameWorld/EntityPool/Player" instance=ExtResource( 30 )]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 25 )
+hit_box_action_type = 0
+__team = "player_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/EntityPool/Player/RamSlideHitBox"]
+position = Vector2( 11, 0 )
+shape = SubResource( 20 )
+disabled = true
+
+[node name="InHitBox" type="Area2D" parent="GameWorld/EntityPool/Player" instance=ExtResource( 30 )]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 25 )
+hit_box_action_type = 1
+__team = "player_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/EntityPool/Player/InHitBox"]
+position = Vector2( 0, -4 )
+shape = SubResource( 21 )
+
+[node name="UpperBodyShape" type="CollisionShape2D" parent="GameWorld/EntityPool/Player"]
+position = Vector2( 0, -7 )
+shape = SubResource( 22 )
+one_way_collision_margin = 0.0
+
+[node name="BodyShape" type="CollisionShape2D" parent="GameWorld/EntityPool/Player"]
+shape = SubResource( 23 )
+
+[node name="PlayerFSM" type="Node" parent="GameWorld/EntityPool/Player" instance=ExtResource( 3 )]
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_description_": "Finite state machine for game objects such as the player, enemies and more. This uses a node path for the initial state which must be specified for everything to work. The state objects are added simply by adding them to this node."
+}
+__inital_state = NodePath("")
+init_state_on_ready = false
+enter_state_on_ready = false
+
+[node name="PlayerDeathState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 28 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = false
+
+[node name="PlayerLeaveLevelSecretState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 29 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = false
+
+[node name="PlayerLeaveLevelState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 26 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = false
+
+[node name="PlayerEnterLevelState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 27 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = false
+
+[node name="MoveTimer" type="Timer" parent="GameWorld/EntityPool/Player/PlayerFSM/PlayerEnterLevelState"]
+one_shot = true
+
+[node name="PlayerIdleState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 14 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = true
+
+[node name="PlayerWalkState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 15 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = true
+
+[node name="PlayerRunState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 21 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = true
+
+[node name="DustSpawnTimer" type="Timer" parent="GameWorld/EntityPool/Player/PlayerFSM/PlayerRunState"]
+wait_time = 0.1
+
+[node name="PlayerAirBorneState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 20 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = false
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="GameWorld/EntityPool/Player/PlayerFSM/PlayerAirBorneState"]
+stream = ExtResource( 40 )
+stream_paused = true
+
+[node name="PlayerCrouchState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = true
+
+[node name="PlayerSlideState" type="Node" parent="GameWorld/EntityPool/Player/PlayerFSM" instance=ExtResource( 48 )]
+script = ExtResource( 18 )
+__meta__ = {
+"_editor_description_": "State object as used by the StateMachine node. This can be extended and it 
+contains virtual functions for entering/exiting the state, input and a physics
+update that is called inside the parent state machine's _physics_process method."
+}
+is_grounded_state = false
+
+[node name="SlideSound" type="AudioStreamPlayer" parent="GameWorld/EntityPool/Player/PlayerFSM/PlayerSlideState"]
+stream = ExtResource( 37 )
+stream_paused = true
+
+[node name="Camera2D" type="Camera2D" parent="GameWorld/EntityPool/Player"]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 40
+limit_bottom = 144
+drag_margin_h_enabled = true
+drag_margin_top = 1.0
+drag_margin_bottom = 1.0
+
+[node name="PlayerStats" type="Node2D" parent="GameWorld/EntityPool/Player"]
+script = ExtResource( 19 )
+test_weapon_scene = null
+__infinite_health = false
+
+[node name="RushEnergyRechargeTimer" type="Timer" parent="GameWorld/EntityPool/Player/PlayerStats"]
+wait_time = 0.4
+
+[node name="RushEnergyRechargeStartingDelayTimer" type="Timer" parent="GameWorld/EntityPool/Player/PlayerStats"]
+wait_time = 2.2
+one_shot = true
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="GameWorld/EntityPool/Player/PlayerStats"]
+stream = ExtResource( 39 )
+stream_paused = true
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="GameWorld/EntityPool/Player"]
+material = ExtResource( 38 )
+use_parent_material = true
+position = Vector2( 0, -4 )
+frames = ExtResource( 41 )
+animation = "death"
+frame = 8
+playing = true
+script = ExtResource( 16 )
+
+[node name="RushEnergyVisualActivityTimer" type="Timer" parent="GameWorld/EntityPool/Player/PlayerSprite"]
+wait_time = 0.22
+one_shot = true
+
+[node name="RushEnergyVisualFlashTimer" type="Timer" parent="GameWorld/EntityPool/Player/PlayerSprite"]
+wait_time = 0.055
+
+[node name="RoofDetector" type="Node2D" parent="GameWorld/EntityPool/Player"]
+
+[node name="LeftRay" type="RayCast2D" parent="GameWorld/EntityPool/Player/RoofDetector"]
+position = Vector2( -3, -3 )
+enabled = true
+cast_to = Vector2( 0, -8 )
+
+[node name="RightRay" type="RayCast2D" parent="GameWorld/EntityPool/Player/RoofDetector"]
+position = Vector2( 3, -3 )
+enabled = true
+cast_to = Vector2( 0, -8 )
+
+[node name="@SuperScrap@103" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 74 )]
+position = Vector2( 220, 52 )
+collision_layer = 0
+script = ExtResource( 66 )
+__meta__ = {
+"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
+MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
+registered in the next physics process call."
+}
+collision_mode = 0
+is_gravity_enabled = false
+is_internal_collision_func_enabled = true
+gravity = 400
+stop_on_slope = true
+__remove_when_entity_pool_cleared = true
+__disappear_on_pickup = true
+__disappear_on_timeout = false
+
+[node name="BodyShape" type="CollisionShape2D" parent="GameWorld/EntityPool/@SuperScrap@103"]
+shape = SubResource( 24 )
+
+[node name="PlayerDetectionArea" type="Area2D" parent="GameWorld/EntityPool/@SuperScrap@103"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="BodyShape" type="CollisionShape2D" parent="GameWorld/EntityPool/@SuperScrap@103/PlayerDetectionArea"]
+shape = SubResource( 25 )
+
+[node name="LifeTimer" type="Timer" parent="GameWorld/EntityPool/@SuperScrap@103"]
+wait_time = 10.0
+one_shot = true
+
+[node name="FlashTimer" type="Timer" parent="GameWorld/EntityPool/@SuperScrap@103"]
+wait_time = 0.1
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="GameWorld/EntityPool/@SuperScrap@103"]
+frames = SubResource( 28 )
+playing = true
+
+[node name="ScrapHoverText" type="Label" parent="GameWorld" instance=ExtResource( 6 )]
+visible = false
+margin_bottom = 9.0
+custom_styles/normal = SubResource( 29 )
+custom_fonts/font = SubResource( 30 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeTimer" type="Timer" parent="GameWorld/ScrapHoverText"]
+wait_time = 0.75
+one_shot = true
+
+[node name="WeaponHoverText" type="Label" parent="GameWorld" instance=ExtResource( 6 )]
+visible = false
+margin_bottom = 9.0
+custom_styles/normal = SubResource( 29 )
+custom_fonts/font = SubResource( 30 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeTimer" type="Timer" parent="GameWorld/WeaponHoverText"]
+wait_time = 0.75
+one_shot = true
+
+[node name="EscapeArea" type="Area2D" parent="GameWorld"]
+position = Vector2( 8, 72 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/EscapeArea"]
+position = Vector2( 8, 0 )
+shape = SubResource( 31 )
+
+[node name="Blockade" type="StaticBody2D" parent="GameWorld/EscapeArea"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/EscapeArea/Blockade"]
+position = Vector2( -16, 0 )
+shape = SubResource( 32 )
+disabled = true
+
+[node name="ArrowSprite" type="AnimatedSprite" parent="GameWorld/EscapeArea" instance=ExtResource( 68 )]
+visible = false
+position = Vector2( 8, 24 )
+rotation = 1.5708
+frames = SubResource( 6 )
+playing = true
+
+[node name="SoundPool" type="Node" parent="GameWorld"]
+
+[node name="SecretEscapePoint" type="Area2D" parent="GameWorld"]
+position = Vector2( 136, -32 )
+collision_layer = 0
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/SecretEscapePoint"]
+shape = SubResource( 33 )
+
+[node name="ArrowSprite" type="AnimatedSprite" parent="GameWorld/SecretEscapePoint" instance=ExtResource( 68 )]
+position = Vector2( 0, -24 )
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[node name="CheckPoint" type="Position2D" parent="."]
+
+[connection signal="activated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_activated"]
+[connection signal="completed" from="GameWorld/Geometry/BombSwitch" to="GameWorld/Geometry/BombSwitch" method="_on_BombSwitch_completed"]
+[connection signal="completion_transition_over" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_completion_transition_over"]
+[connection signal="detonated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_detonated"]
+[connection signal="body_entered" from="GameWorld/Geometry/BombSwitch/PressArea" to="GameWorld/Geometry/BombSwitch" method="_on_PressArea_body_entered"]
+[connection signal="body_exited" from="GameWorld/Geometry/BombSwitch/PressArea" to="GameWorld/Geometry/BombSwitch" method="_on_PressArea_body_exited"]
+[connection signal="timeout" from="GameWorld/Geometry/BombSwitch/BombTimer" to="GameWorld/Geometry/BombSwitch" method="_on_BombTimer_timeout"]
+[connection signal="timeout" from="GameWorld/Geometry/BombSwitch/CompletionTransitionTimer" to="GameWorld/Geometry/BombSwitch" method="_on_CompletionTransitionTimer_timeout"]
+[connection signal="body_entered" from="GameWorld/Geometry/ShopArea/SwordShop/PlayerDetectionArea" to="GameWorld/Geometry/ShopArea/SwordShop" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="GameWorld/Geometry/ShopArea/SwordShop/PlayerDetectionArea" to="GameWorld/Geometry/ShopArea/SwordShop" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="GameWorld/Geometry/ShopArea/HealthShop/PlayerDetectionArea" to="GameWorld/Geometry/ShopArea/HealthShop" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="GameWorld/Geometry/ShopArea/HealthShop/PlayerDetectionArea" to="GameWorld/Geometry/ShopArea/HealthShop" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="GameWorld/Geometry/ShopArea/BlasterShop/PlayerDetectionArea" to="GameWorld/Geometry/ShopArea/BlasterShop" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="GameWorld/Geometry/ShopArea/BlasterShop/PlayerDetectionArea" to="GameWorld/Geometry/ShopArea/BlasterShop" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="GameWorld/Geometry/DeathPits" to="GameWorld" method="_on_DeathPits_body_entered"]
+[connection signal="area_entered" from="GameWorld/Geometry/BlasterCrate/InHitBox" to="GameWorld/Geometry/BlasterCrate/InHitBox" method="_on_HitBox_area_entered"]
+[connection signal="hit_received" from="GameWorld/Geometry/BlasterCrate/InHitBox" to="GameWorld/Geometry/BlasterCrate" method="_on_InHitBox_hit_received"]
+[connection signal="received_additional_message" from="GameWorld/Geometry/BlasterCrate/InHitBox" to="GameWorld/Geometry/BlasterCrate" method="_on_InHitBox_received_additional_message"]
+[connection signal="health_depleted" from="GameWorld/Geometry/BlasterCrate/HealthComponent" to="GameWorld/Geometry/BlasterCrate" method="_on_HealthComponent_health_depleted"]
+[connection signal="body_entered" from="GameWorld/Geometry/BlasterCrate/PlayerDetector" to="GameWorld/Geometry/BlasterCrate" method="_on_PlayerDetector_body_entered"]
+[connection signal="body_exited" from="GameWorld/Geometry/BlasterCrate/PlayerDetector" to="GameWorld/Geometry/BlasterCrate" method="_on_PlayerDetector_body_exited"]
+[connection signal="body_entered" from="GameWorld/Geometry/SpeedPipeArea/SpeedPipe/PlayerDetectionArea" to="GameWorld/Geometry/SpeedPipeArea" method="_on_PlayerDetectionArea_body_entered"]
+[connection signal="body_exited" from="GameWorld/Geometry/SpeedPipeArea/SpeedPipe/PlayerDetectionArea" to="GameWorld/Geometry/SpeedPipeArea" method="_on_PlayerDetectionArea_body_exited"]
+[connection signal="timeout" from="GameWorld/Geometry/@StaticBody2D@100/Timer" to="GameWorld/Geometry/@StaticBody2D@100" method="_on_Timer_timeout"]
+[connection signal="timeout" from="GameWorld/Geometry/@StaticBody2D@101/Timer" to="GameWorld/Geometry/@StaticBody2D@101" method="_on_Timer_timeout"]
+[connection signal="timeout" from="GameWorld/Geometry/@StaticBody2D@102/Timer" to="GameWorld/Geometry/@StaticBody2D@102" method="_on_Timer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/FlashingTimer" to="GameWorld/EntityPool/Player" method="_on_FlashingTimer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/InvincibilityTimer" to="GameWorld/EntityPool/Player" method="_on_InvincibilityTimer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/CrateOpeningTimer" to="GameWorld/EntityPool/Player" method="_on_CrateOpeningTimer_timeout"]
+[connection signal="area_entered" from="GameWorld/EntityPool/Player/RamSlideHitBox" to="GameWorld/EntityPool/Player/RamSlideHitBox" method="_on_HitBox_area_entered"]
+[connection signal="hit_dealt" from="GameWorld/EntityPool/Player/RamSlideHitBox" to="GameWorld/EntityPool/Player" method="_on_RamSlideHitBox_hit_dealt"]
+[connection signal="area_entered" from="GameWorld/EntityPool/Player/InHitBox" to="GameWorld/EntityPool/Player/InHitBox" method="_on_HitBox_area_entered"]
+[connection signal="hit_received" from="GameWorld/EntityPool/Player/InHitBox" to="GameWorld/EntityPool/Player/PlayerStats" method="_on_InHitBox_hit_received"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/PlayerFSM/PlayerEnterLevelState/MoveTimer" to="GameWorld/EntityPool/Player/PlayerFSM/PlayerEnterLevelState" method="_on_MoveTimer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/PlayerFSM/PlayerRunState/DustSpawnTimer" to="GameWorld/EntityPool/Player/PlayerFSM/PlayerRunState" method="_on_DustSpawnTimer_timeout"]
+[connection signal="died" from="GameWorld/EntityPool/Player/PlayerStats" to="GameWorld/EntityPool/Player" method="_on_PlayerStats_died"]
+[connection signal="rush_energy_consumed" from="GameWorld/EntityPool/Player/PlayerStats" to="GameWorld/EntityPool/Player/PlayerSprite" method="_on_PlayerStats_rush_energy_consumed"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/PlayerStats/RushEnergyRechargeTimer" to="GameWorld/EntityPool/Player/PlayerStats" method="_on_RushEnergyRechargeTimer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/PlayerStats/RushEnergyRechargeStartingDelayTimer" to="GameWorld/EntityPool/Player/PlayerStats" method="_on_RushEnergyRechargeStartingDelayTimer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/PlayerSprite/RushEnergyVisualActivityTimer" to="GameWorld/EntityPool/Player/PlayerSprite" method="_on_RushEnergyVisualActivityTimer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/Player/PlayerSprite/RushEnergyVisualFlashTimer" to="GameWorld/EntityPool/Player/PlayerSprite" method="_on_RushEnergyVisualFlashTimer_timeout"]
+[connection signal="body_entered" from="GameWorld/EntityPool/@SuperScrap@103/PlayerDetectionArea" to="GameWorld/EntityPool/@SuperScrap@103" method="_on_PlayerDetectionArea_body_entered"]
+[connection signal="body_exited" from="GameWorld/EntityPool/@SuperScrap@103/PlayerDetectionArea" to="GameWorld/EntityPool/@SuperScrap@103" method="_on_PlayerDetectionArea_body_exited"]
+[connection signal="timeout" from="GameWorld/EntityPool/@SuperScrap@103/LifeTimer" to="GameWorld/EntityPool/@SuperScrap@103" method="_on_LifeTimer_timeout"]
+[connection signal="timeout" from="GameWorld/EntityPool/@SuperScrap@103/FlashTimer" to="GameWorld/EntityPool/@SuperScrap@103" method="_on_FlashTimer_timeout"]
+[connection signal="display_off" from="GameWorld/ScrapHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
+[connection signal="timeout" from="GameWorld/ScrapHoverText/LifeTimer" to="GameWorld/ScrapHoverText" method="_on_LifeTimer_timeout"]
+[connection signal="display_off" from="GameWorld/WeaponHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
+[connection signal="timeout" from="GameWorld/WeaponHoverText/LifeTimer" to="GameWorld/WeaponHoverText" method="_on_LifeTimer_timeout"]
+[connection signal="body_entered" from="GameWorld/EscapeArea" to="." method="_on_EscapeArea_body_entered"]
+[connection signal="body_entered" from="GameWorld/SecretEscapePoint" to="." method="_on_SecretEscapePoint_body_entered"]
+
+[editable path="GameWorld"]

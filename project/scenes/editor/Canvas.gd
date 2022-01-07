@@ -116,9 +116,16 @@ func save(path: String):
 	__level.player_node.set_camera_follow(true)
 	var scene = PackedScene.new()
 	var scene_root = __level
+	__set_owner(scene_root, scene_root)
 	scene.pack(scene_root)
 	ResourceSaver.save(path, scene)
 	__level.player_node.set_camera_follow(false)
+
+func __set_owner(node, root):
+	if node != root:
+		node.owner = root
+	for child in node.get_children():
+		__set_owner(child, root)
 
 func _on_FileDialog_file_selected(path):
 	save(path)
