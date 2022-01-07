@@ -77,7 +77,7 @@ func remove_tile(tile):
 func remove_tile_or_entity_at_tile(tile):
 	var entity = get_entity_at_tile(tile)
 	if entity != null:
-		if entity is MovingEntity or entity is Structure:
+		if entity is MovingEntity or entity is Structure or entity is GeometryNode:
 			remove_entity(entity)
 	elif get_tile(tile) != -1:
 		remove_tile(tile)
