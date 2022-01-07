@@ -7,7 +7,7 @@ var __canvas_tool
 func _ready():
 	set_paused(true)
 	set_canvas_tool(PencilTool.new())
-	__canvas_tool.set_entity_stroke(load("res://scenes/game/level/entity/entities/collectible/CollectibleBomb.tscn"))
+	__canvas_tool.set_entity_stroke(load("res://scenes/game/world/entity/entities/item/collectible_items/FloatingScrap.tscn"))
 
 func _gui_input(event):
 #################################################
@@ -24,13 +24,7 @@ func _gui_input(event):
 		__canvas_tool.set_remove(event.is_pressed())
 		
 #		remove_tile_or_entity_at_tile(position_to_tile(get_local_mouse_position()))
-	
-	if event.is_action("editor_pause"):
-		set_paused(!is_paused())
-		
-func _process(delta):
-	if Input.is_action_just_pressed("editor_pause"):
-		save()
+
 
 func is_paused():
 	return get_tree().paused
