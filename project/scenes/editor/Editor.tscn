@@ -133,8 +133,8 @@ __meta__ = {
 [node name="Canvas" type="Control" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -80.0
-margin_right = 80.0
+margin_left = -240.0
+margin_right = -80.0
 margin_bottom = 144.0
 script = ExtResource( 2 )
 __meta__ = {
@@ -164,11 +164,12 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -72.0
+margin_top = -210.0
 margin_right = 48.0
-margin_bottom = 72.0
+margin_bottom = -66.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -380,8 +381,8 @@ texture_normal = SubResource( 24 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -40.0
-margin_top = -72.0
-margin_bottom = 72.0
+margin_top = -210.0
+margin_bottom = -66.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -459,10 +460,11 @@ margin_bottom = 24.0
 __type = 8
 
 [node name="FileDialog" type="FileDialog" parent="."]
-margin_left = 8.0
-margin_top = 56.0
-margin_right = 416.0
-margin_bottom = 360.0
+visible = true
+margin_left = 16.0
+margin_top = 176.0
+margin_right = 480.0
+margin_bottom = 400.0
 resizable = true
 __meta__ = {
 "_edit_use_anchors_": false
