@@ -13,6 +13,7 @@ extents = Vector2( 12, 1 )
 script = ExtResource( 3 )
 
 [node name="SpeedPipe" type="Node2D" parent="."]
+position = Vector2( 0, -4 )
 
 [node name="PipeSprite" type="Sprite" parent="SpeedPipe"]
 texture = ExtResource( 1 )
