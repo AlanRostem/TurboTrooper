@@ -125,7 +125,13 @@ func __set_owner(node, root):
 	if node != root:
 		node.owner = root
 	for child in node.get_children():
-		__set_owner(child, root)
+		if __is_instanced_from_scene(child):
+			__set_owner(child, root)
+		else: 
+			child.owner = root
+		
+func __is_instanced_from_scene(node):
+	return !node.filename.empty()
 
 func _on_FileDialog_file_selected(path):
 	save(path)
