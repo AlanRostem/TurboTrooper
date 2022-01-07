@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/editor/Canvas.gd" type="Script" id=2]
@@ -18,6 +18,14 @@
 [ext_resource path="res://scenes/game/world/environment/hazards/MovingSpikeHazard.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/game/world/environment/hazards/SpikeHazard.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/game/world/structure/destructible/ChainedCrate.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/game/world/structure/destructible/Crate.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/game/world/structure/destructible/BlasterCrate.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/game/world/structure/destructible/SwordCrate.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/FloatingScrap.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedBlock.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/game/world/structure/speed_pipe/SpeedPipeArea.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/game/world/environment/LaunchPad.tscn" type="PackedScene" id=26]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
@@ -31,45 +39,77 @@ region = Rect2( 32, 0, 16, 16 )
 atlas = ExtResource( 7 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 7 )
 region = Rect2( 16, 16, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
 region = Rect2( 32, 16, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
 region = Rect2( 48, 16, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 32, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 7 )
 region = Rect2( 16, 32, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 7 )
 region = Rect2( 32, 32, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 7 )
+region = Rect2( 48, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 7 )
+region = Rect2( 16, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 7 )
+region = Rect2( 32, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 7 )
+region = Rect2( 48, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 7 )
+region = Rect2( 16, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 7 )
+region = Rect2( 32, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 7 )
 region = Rect2( 16, 0, 16, 8 )
 
-[sub_resource type="ButtonGroup" id=5]
+[sub_resource type="ButtonGroup" id=12]
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 7 )
 region = Rect2( 16, 8, 8, 8 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 7 )
 region = Rect2( 24, 8, 8, 8 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 7 )
 region = Rect2( 8, 0, 8, 16 )
 
@@ -164,13 +204,13 @@ __entity = ExtResource( 12 )
 [node name="EntityButton3" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_left = 32.0
 margin_right = 48.0
-__icon = SubResource( 9 )
+__icon = SubResource( 4 )
 __entity = ExtResource( 14 )
 
 [node name="EntityButton4" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_top = 20.0
 margin_bottom = 36.0
-__icon = SubResource( 10 )
+__icon = SubResource( 5 )
 __entity = ExtResource( 13 )
 
 [node name="EntityButton5" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
@@ -178,7 +218,7 @@ margin_left = 16.0
 margin_top = 20.0
 margin_right = 32.0
 margin_bottom = 36.0
-__icon = SubResource( 11 )
+__icon = SubResource( 6 )
 __entity = ExtResource( 15 )
 
 [node name="EntityButton6" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
@@ -186,13 +226,13 @@ margin_left = 32.0
 margin_top = 20.0
 margin_right = 48.0
 margin_bottom = 36.0
-__icon = SubResource( 12 )
+__icon = SubResource( 7 )
 __entity = ExtResource( 16 )
 
 [node name="EntityButton7" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
 margin_top = 40.0
 margin_bottom = 56.0
-__icon = SubResource( 13 )
+__icon = SubResource( 8 )
 __entity = ExtResource( 17 )
 
 [node name="EntityButton8" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
@@ -200,8 +240,66 @@ margin_left = 16.0
 margin_top = 40.0
 margin_right = 32.0
 margin_bottom = 56.0
-__icon = SubResource( 14 )
+__icon = SubResource( 9 )
 __entity = ExtResource( 18 )
+
+[node name="EntityButton9" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_left = 32.0
+margin_top = 40.0
+margin_right = 48.0
+margin_bottom = 56.0
+__icon = SubResource( 10 )
+__entity = ExtResource( 19 )
+
+[node name="EntityButton10" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_top = 60.0
+margin_bottom = 76.0
+__icon = SubResource( 16 )
+__entity = ExtResource( 20 )
+
+[node name="EntityButton11" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_left = 16.0
+margin_top = 60.0
+margin_right = 32.0
+margin_bottom = 76.0
+__icon = SubResource( 17 )
+__entity = ExtResource( 21 )
+
+[node name="EntityButton12" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_left = 32.0
+margin_top = 60.0
+margin_right = 48.0
+margin_bottom = 76.0
+__icon = SubResource( 18 )
+__entity = ExtResource( 22 )
+
+[node name="EntityButton13" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_top = 80.0
+margin_bottom = 96.0
+__icon = SubResource( 19 )
+__entity = ExtResource( 23 )
+
+[node name="EntityButton14" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 32.0
+margin_bottom = 96.0
+__icon = SubResource( 20 )
+__entity = ExtResource( 25 )
+
+[node name="EntityButton15" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_left = 32.0
+margin_top = 80.0
+margin_right = 48.0
+margin_bottom = 96.0
+__icon = SubResource( 21 )
+__entity = ExtResource( 24 )
+
+[node name="EntityButton16" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
+margin_top = 100.0
+margin_bottom = 116.0
+__icon = SubResource( 22 )
+__entity = ExtResource( 26 )
 
 [node name="Tools" type="Panel" parent="MenuLayer"]
 anchor_left = 0.5
@@ -222,7 +320,7 @@ margin_left = -8.0
 margin_right = 8.0
 margin_bottom = 8.0
 toggle_mode = true
-texture_normal = SubResource( 4 )
+texture_normal = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -245,16 +343,16 @@ __meta__ = {
 
 [node name="ToolButton" parent="MenuLayer/Tools/HBoxContainer" instance=ExtResource( 9 )]
 toggle_mode = true
-group = SubResource( 5 )
-texture_normal = SubResource( 6 )
+group = SubResource( 12 )
+texture_normal = SubResource( 13 )
 __tool = ExtResource( 10 )
 
 [node name="ToolButton2" parent="MenuLayer/Tools/HBoxContainer" instance=ExtResource( 9 )]
 margin_left = 12.0
 margin_right = 20.0
 toggle_mode = true
-group = SubResource( 5 )
-texture_normal = SubResource( 7 )
+group = SubResource( 12 )
+texture_normal = SubResource( 14 )
 __tool = ExtResource( 11 )
 
 [node name="PauseButton" type="Button" parent="MenuLayer"]
@@ -289,7 +387,7 @@ anchor_bottom = 0.5
 margin_top = -16.0
 margin_right = 8.0
 toggle_mode = true
-texture_normal = SubResource( 8 )
+texture_normal = SubResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
