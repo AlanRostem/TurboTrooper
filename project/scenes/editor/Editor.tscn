@@ -130,12 +130,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FileDialog" type="FileDialog" parent="."]
-margin_left = 8.0
-margin_top = 24.0
-margin_right = 424.0
-margin_bottom = 224.0
-
 [node name="Canvas" type="Control" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -183,7 +177,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = -8.0
 margin_top = -16.0
-toggle_mode = true
+action_mode = 0
 texture_normal = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -321,9 +315,9 @@ __entity = ExtResource( 26 )
 [node name="Tools" type="Panel" parent="MenuLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -79.0
-margin_top = -24.0
-margin_right = 79.0
+margin_left = -80.0
+margin_top = -8.0
+margin_right = 78.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -462,6 +456,16 @@ __type = 7
 margin_top = 16.0
 margin_bottom = 24.0
 __type = 8
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_left = 8.0
+margin_top = 56.0
+margin_right = 416.0
+margin_bottom = 360.0
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="toggled" from="MenuLayer/Entities/EntitiesButton" to="." method="_on_EntitiesButton_toggled"]
 [connection signal="toggled" from="MenuLayer/Tools/ToolsButton" to="." method="_on_ToolsButton_toggled"]
