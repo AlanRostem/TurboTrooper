@@ -9,7 +9,6 @@ func _process(delta):
 		__drag_pos = __camera.position + get_global_mouse_position()
 	elif Input.is_action_just_released("editor_pan_camera"):
 		__pressed = false
-
-func _input(event):
-	if event is InputEventMouseMotion and __pressed:
+		
+	if __pressed:
 		__camera.position = __drag_pos - get_global_mouse_position()
