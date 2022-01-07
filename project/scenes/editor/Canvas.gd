@@ -50,7 +50,12 @@ func get_tile(tile):
 
 func add_entity(scene, tile):
 	if is_tile_occupied(tile): return
-	__level.get_game_world().spawn_entity(scene, tile_to_position(tile))
+	var object = scene.instance()
+	if object is MovingEntity:
+		__level.get_game_world().spawn_entity(scene, tile_to_position(tile))
+	else:
+		__level.get_game_world().add_geometry(scene, tile_to_position(tile))
+	object.queue_free()
 
 func get_entities():
 	var entities = __level.get_game_world().get_entity_pool().get_children()
