@@ -1,14 +1,14 @@
 extends Control
 
 
-onready var __canvas = $CanvasLayer/Canvas
+onready var __canvas = $Canvas
 onready var __tiles = $MenuLayer/Tiles
 onready var __entities = $MenuLayer/Entities
 onready var __tools = $MenuLayer/Tools
 onready var __tile_tween = $MenuLayer/Tiles/TileTween
 onready var __entities_tween = $MenuLayer/Entities/EntitiesTween
 onready var __tools_tween = $MenuLayer/Tools/ToolsTween
-onready var __camera = $CanvasLayer/Canvas/CameraHolder/Camera2D
+onready var __camera = $Canvas/CameraHolder/Camera2D
 
 
 func get_editor_canvas():

@@ -1,6 +1,7 @@
 extends Control
 
 onready var __level = $Level
+onready var __camera = $CameraHolder/Camera2D
 
 var __canvas_tool
 
@@ -32,6 +33,9 @@ func is_paused():
 
 func set_paused(flag):
 	get_tree().paused = flag
+
+func get_camera_offset():
+	return __camera.position
 
 func get_entity_at_tile(tile):
 	var tile_size = __level.get_game_world().get_tile_size()
