@@ -94,8 +94,9 @@ func get_entity_pool():
 	
 func get_geometry():
 	return __geometry
-# func move_entity_to_world(entity, world):
-#	pass
+
+func get_tile_map():
+	return __tile_map
 
 func show_effect_deferred(scene, location):
 	var effect = scene.instance()
