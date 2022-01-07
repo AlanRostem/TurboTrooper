@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://scenes/game/world/entity/entities/projectile/Projectile.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Structure",
+"language": "GDScript",
+"path": "res://scenes/game/world/structure/Structure.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
@@ -69,7 +74,8 @@ _global_script_class_icons={
 "PencilTool": "",
 "Player": "",
 "PlayerStats": "",
-"Projectile": ""
+"Projectile": "",
+"Structure": ""
 }
 
 [application]
