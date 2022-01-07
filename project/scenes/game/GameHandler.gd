@@ -18,6 +18,7 @@ onready var __hud = $CanvasLayer/HUD
 onready var __level_list = $LevelList
 onready var __pauseability_timer = $PauseabilityTimer
 onready var __level_intro_timer = $LevelIntroTimer
+onready var __reset_timer = $LevelResetTimer
 onready var __color_rect = $CanvasLayer/ColorRect
 
 var __has_check_point = false
@@ -40,6 +41,7 @@ func set_check_point(vec):
 	__has_check_point = true
 	__saved_player_stats = __current_level.player_node.stats.get_data()
 	update_player_save_data("checkpoint", vec)
+	__current_level.set_check_point_enabled(true)	
 
 func has_check_point():
 	return __has_check_point
@@ -81,17 +83,19 @@ func set_current_to_next_level():
 		__current_level = null
 		
 func reset_current_level():
-	__color_rect.visible = true
+	__color_rect.visible = false
 	get_hud().hide_global_message()
 	var level_scene: PackedScene = __level_list.get_level_scene(__level_index)
 	__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
-	__current_level.set_check_point_enabled(true)
-	__current_level.start()
 	add_child(__current_level)
 	__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	__current_level.set_player_stats(__saved_player_stats)
+	__current_level.start()
+	
+func start_reset_sequence():
+	__reset_timer.start()
 	
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)
@@ -109,3 +113,7 @@ func _on_PauseabilityTimer_timeout():
 func _on_LevelIntroTimer_timeout():
 	__color_rect.visible = false
 	__current_level.start()	
+
+
+func _on_LevelResetTimer_timeout():
+	reset_current_level()

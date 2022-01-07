@@ -2,9 +2,7 @@ extends Node2D
 
 onready var game_handler = get_parent()
 
-onready var __reset_timer = $ResetTimer
 onready var __next_level_transition_timer = $NextLevelTransitionTimer
-
 
 onready var __game_world = $GameWorld
 onready var __check_point = $CheckPoint
@@ -43,9 +41,6 @@ func put_player_on_check_point(vec):
 	
 func set_remove_all_entities(value):
 	__game_world.set_remove_all_entities(value)
-	
-func start_reset_sequence():
-	__reset_timer.start()
 
 func set_player_stats(stats: Dictionary):
 	player_node.stats.set_from_data(stats)
