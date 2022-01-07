@@ -20,6 +20,7 @@ onready var __pauseability_timer = $PauseabilityTimer
 onready var __level_intro_timer = $LevelIntroTimer
 onready var __reset_timer = $LevelResetTimer
 onready var __color_rect = $CanvasLayer/ColorRect
+onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
 var __has_check_point = false
 var __can_pause = false
@@ -102,6 +103,9 @@ func _on_current_level_ready():
 	
 func get_hud(): 
 	return __hud
+	
+func start_transitioning_to_next_level():
+	__next_level_transition_timer.start()
 
 func _on_MainMenu_game_started():
 	set_current_level(int(__has_completed_game))
@@ -117,3 +121,7 @@ func _on_LevelIntroTimer_timeout():
 
 func _on_LevelResetTimer_timeout():
 	reset_current_level()
+
+
+func _on_NextLevelTransitionTimer_timeout():
+	set_current_to_next_level()
