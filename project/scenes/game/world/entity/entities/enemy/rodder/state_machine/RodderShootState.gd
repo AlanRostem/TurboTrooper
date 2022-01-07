@@ -21,7 +21,7 @@ func exit():
 	
 func shoot():
 	__shots += 1
-	var rod = rodder.parent_world.spawn_entity_deferred(__rod_scene, rodder.position)
+	var rod = rodder.parent_world.spawn_entity_deferred(__rod_scene, rodder.position + Vector2.DOWN * 5)
 	rod.init_deferred(Vector2(rodder.horizontal_looking_direction, 0), HitBox.ENEMY_TEAM)
 
 func _on_ShootTimer_timeout():

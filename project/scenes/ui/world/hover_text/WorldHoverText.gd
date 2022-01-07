@@ -6,6 +6,10 @@ const HOVER_SPEED = 20
 
 onready var __life_timer = $LifeTimer
 
+func _ready():
+	# This is a dirty fix
+	owner = get_parent().get_parent()
+
 func display(str_txt, location):
 	rect_size.x = 0
 	text = str_txt
