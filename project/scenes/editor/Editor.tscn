@@ -175,6 +175,8 @@ __meta__ = {
 }
 
 [node name="EntitiesTween" type="Tween" parent="MenuLayer/Entities"]
+playback_speed = 4.0
+playback/speed = 4.0
 
 [node name="EntitiesGrid" type="GridContainer" parent="MenuLayer/Entities"]
 anchor_left = 0.5
@@ -326,6 +328,8 @@ __meta__ = {
 }
 
 [node name="ToolsTween" type="Tween" parent="MenuLayer/Tools"]
+playback_speed = 4.0
+playback/speed = 4.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/Tools"]
 anchor_left = 0.5
@@ -355,20 +359,6 @@ group = SubResource( 19 )
 texture_normal = SubResource( 21 )
 __tool = ExtResource( 11 )
 
-[node name="PauseButton" type="Button" parent="MenuLayer"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -25.0
-margin_top = -20.0
-margin_right = 25.0
-toggle_mode = true
-text = "Pause"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Tiles" type="Panel" parent="MenuLayer"]
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -393,6 +383,8 @@ __meta__ = {
 }
 
 [node name="TileTween" type="Tween" parent="MenuLayer/Tiles"]
+playback_speed = 4.0
+playback/speed = 4.0
 
 [node name="TileGrid" type="GridContainer" parent="MenuLayer/Tiles"]
 anchor_left = 0.5
@@ -450,5 +442,4 @@ __type = 8
 
 [connection signal="toggled" from="MenuLayer/Entities/EntitiesButton" to="." method="_on_EntitiesButton_toggled"]
 [connection signal="toggled" from="MenuLayer/Tools/ToolsButton" to="." method="_on_ToolsButton_toggled"]
-[connection signal="pressed" from="MenuLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="toggled" from="MenuLayer/Tiles/TilesButton" to="." method="_on_TilesButton_toggled"]
