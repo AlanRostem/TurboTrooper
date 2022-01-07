@@ -21,11 +21,13 @@ region = Rect2( 16, 0, 16, 8 )
 
 [sub_resource type="ButtonGroup" id=4]
 
-[sub_resource type="AtlasTexture" id=5]
-region = Rect2( 0, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 7 )
+region = Rect2( 16, 8, 8, 8 )
 
-[sub_resource type="AtlasTexture" id=6]
-region = Rect2( 16, 0, 16, 16 )
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 7 )
+region = Rect2( 24, 8, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
@@ -101,9 +103,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -20.0
 margin_top = -72.0
-margin_right = 56.0
+margin_right = 36.0
 margin_bottom = 72.0
-columns = 4
+columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -119,14 +121,14 @@ margin_left = 40.0
 margin_right = 56.0
 
 [node name="EntityButton4" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 60.0
-margin_right = 76.0
+margin_top = 20.0
+margin_bottom = 36.0
 
 [node name="Tools" type="Panel" parent="MenuLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -79.0
-margin_top = -32.0
+margin_top = -24.0
 margin_right = 79.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -153,29 +155,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -71.0
-margin_top = -8.0
-margin_right = 71.0
-margin_bottom = 8.0
+margin_left = -16.0
+margin_top = -4.0
+margin_right = 16.0
+margin_bottom = 4.0
+custom_constants/separation = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ToolButton" parent="MenuLayer/Tools/HBoxContainer" instance=ExtResource( 9 )]
-margin_right = 16.0
-margin_bottom = 16.0
 toggle_mode = true
 group = SubResource( 4 )
-texture_normal = SubResource( 5 )
+texture_normal = SubResource( 8 )
 __tool = ExtResource( 10 )
 
 [node name="ToolButton2" parent="MenuLayer/Tools/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 20.0
-margin_right = 36.0
-margin_bottom = 16.0
+margin_left = 12.0
+margin_right = 20.0
 toggle_mode = true
 group = SubResource( 4 )
-texture_normal = SubResource( 6 )
+texture_normal = SubResource( 9 )
 __tool = ExtResource( 11 )
 
 [node name="PauseButton" type="Button" parent="MenuLayer"]
