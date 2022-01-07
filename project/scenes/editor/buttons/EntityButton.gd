@@ -2,7 +2,7 @@ tool
 extends TextureButton
 
 
-onready var __editor = get_parent().get_parent().get_parent()
+onready var __editor = get_parent().get_parent().get_parent().get_parent()
 export var __tile_set = preload("res://assets/resources/MainTileSet.tres") setget set_tile_set
 export(Texture) var __icon = null setget set_icon
 export(PackedScene) var __entity = null setget set_entity
