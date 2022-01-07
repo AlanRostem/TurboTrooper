@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/editor/Canvas.gd" type="Script" id=2]
@@ -29,10 +29,6 @@
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 8, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
@@ -98,10 +94,6 @@ region = Rect2( 16, 64, 16, 16 )
 atlas = ExtResource( 7 )
 region = Rect2( 32, 64, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 7 )
-region = Rect2( 16, 0, 16, 8 )
-
 [sub_resource type="ButtonGroup" id=20]
 
 [sub_resource type="AtlasTexture" id=21]
@@ -115,10 +107,6 @@ region = Rect2( 24, 8, 8, 8 )
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 7 )
 region = Rect2( 8, 16, 8, 8 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 7 )
-region = Rect2( 8, 0, 8, 16 )
 
 [node name="Editor" type="Control"]
 pause_mode = 2
@@ -164,42 +152,26 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -210.0
-margin_right = 48.0
-margin_bottom = -66.0
+margin_left = -176.0
+margin_top = 30.0
+margin_right = -16.0
+margin_bottom = 102.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
-
-[node name="EntitiesButton" type="TextureButton" parent="MenuLayer/Entities"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = -8.0
-margin_top = -16.0
-toggle_mode = true
-action_mode = 0
-texture_normal = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EntitiesTween" type="Tween" parent="MenuLayer/Entities"]
-playback_speed = 4.0
-playback/speed = 4.0
 
 [node name="EntitiesGrid" type="GridContainer" parent="MenuLayer/Entities"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -24.0
-margin_top = -72.0
-margin_right = 24.0
-margin_bottom = 72.0
+margin_left = -64.0
+margin_top = -20.0
+margin_right = 64.0
+margin_bottom = 20.0
 custom_constants/hseparation = 0
-columns = 3
+columns = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -221,127 +193,108 @@ __icon = SubResource( 5 )
 __entity = ExtResource( 14 )
 
 [node name="EntityButton4" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_top = 20.0
-margin_bottom = 36.0
+margin_left = 48.0
+margin_right = 64.0
 __icon = SubResource( 6 )
 __entity = ExtResource( 13 )
 
 [node name="EntityButton5" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 16.0
-margin_top = 20.0
-margin_right = 32.0
-margin_bottom = 36.0
+margin_left = 64.0
+margin_right = 80.0
 __icon = SubResource( 7 )
 __entity = ExtResource( 15 )
 
 [node name="EntityButton6" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 32.0
-margin_top = 20.0
-margin_right = 48.0
-margin_bottom = 36.0
+margin_left = 80.0
+margin_right = 96.0
 __icon = SubResource( 8 )
 __entity = ExtResource( 16 )
 
 [node name="EntityButton7" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_top = 40.0
-margin_bottom = 56.0
+margin_left = 96.0
+margin_right = 112.0
 __icon = SubResource( 9 )
 __entity = ExtResource( 17 )
 
 [node name="EntityButton8" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 16.0
-margin_top = 40.0
-margin_right = 32.0
-margin_bottom = 56.0
+margin_left = 112.0
+margin_right = 128.0
 __icon = SubResource( 10 )
 __entity = ExtResource( 18 )
 
 [node name="EntityButton9" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 32.0
-margin_top = 40.0
-margin_right = 48.0
-margin_bottom = 56.0
+margin_top = 20.0
+margin_bottom = 36.0
 __icon = SubResource( 11 )
 __entity = ExtResource( 19 )
 
 [node name="EntityButton10" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_top = 60.0
-margin_bottom = 76.0
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 32.0
+margin_bottom = 36.0
 __icon = SubResource( 12 )
 __entity = ExtResource( 20 )
 
 [node name="EntityButton11" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 16.0
-margin_top = 60.0
-margin_right = 32.0
-margin_bottom = 76.0
+margin_left = 32.0
+margin_top = 20.0
+margin_right = 48.0
+margin_bottom = 36.0
 __icon = SubResource( 13 )
 __entity = ExtResource( 21 )
 
 [node name="EntityButton12" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 32.0
-margin_top = 60.0
-margin_right = 48.0
-margin_bottom = 76.0
+margin_left = 48.0
+margin_top = 20.0
+margin_right = 64.0
+margin_bottom = 36.0
 __icon = SubResource( 14 )
 __entity = ExtResource( 22 )
 
 [node name="EntityButton13" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_top = 80.0
-margin_bottom = 96.0
+margin_left = 64.0
+margin_top = 20.0
+margin_right = 80.0
+margin_bottom = 36.0
 __icon = SubResource( 15 )
 __entity = ExtResource( 23 )
 
 [node name="EntityButton14" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 16.0
-margin_top = 80.0
-margin_right = 32.0
-margin_bottom = 96.0
+margin_left = 80.0
+margin_top = 20.0
+margin_right = 96.0
+margin_bottom = 36.0
 __icon = SubResource( 16 )
 __entity = ExtResource( 25 )
 
 [node name="EntityButton15" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_left = 32.0
-margin_top = 80.0
-margin_right = 48.0
-margin_bottom = 96.0
+margin_left = 96.0
+margin_top = 20.0
+margin_right = 112.0
+margin_bottom = 36.0
 __icon = SubResource( 17 )
 __entity = ExtResource( 24 )
 
 [node name="EntityButton16" parent="MenuLayer/Entities/EntitiesGrid" instance=ExtResource( 6 )]
-margin_top = 100.0
-margin_bottom = 116.0
+margin_left = 112.0
+margin_top = 20.0
+margin_right = 128.0
+margin_bottom = 36.0
 __icon = SubResource( 18 )
 __entity = ExtResource( 26 )
 
 [node name="Tools" type="Panel" parent="MenuLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -80.0
-margin_top = -8.0
-margin_right = 78.0
+margin_left = -152.0
+margin_top = 160.0
+margin_right = 56.0
+margin_bottom = 232.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ToolsButton" type="TextureButton" parent="MenuLayer/Tools"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
-toggle_mode = true
-texture_normal = SubResource( 19 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ToolsTween" type="Tween" parent="MenuLayer/Tools"]
-playback_speed = 4.0
-playback/speed = 4.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/Tools"]
 anchor_left = 0.5
@@ -380,43 +333,27 @@ texture_normal = SubResource( 24 )
 [node name="Tiles" type="Panel" parent="MenuLayer"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = -40.0
-margin_top = -210.0
-margin_bottom = -66.0
+margin_left = 8.0
+margin_top = 30.0
+margin_right = 80.0
+margin_bottom = 102.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="TilesButton" type="TextureButton" parent="MenuLayer/Tiles"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -16.0
-margin_right = 8.0
-toggle_mode = true
-texture_normal = SubResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TileTween" type="Tween" parent="MenuLayer/Tiles"]
-playback_speed = 4.0
-playback/speed = 4.0
 
 [node name="TileGrid" type="GridContainer" parent="MenuLayer/Tiles"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -12.0
-margin_top = -64.0
-margin_right = 12.0
-margin_bottom = 64.0
+margin_left = -20.0
+margin_top = -28.0
+margin_right = 20.0
+margin_bottom = 12.0
 rect_clip_content = true
-custom_constants/vseparation = 0
-custom_constants/hseparation = 0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 8
 columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -426,51 +363,51 @@ __meta__ = {
 __type = 1
 
 [node name="TileButton2" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
-margin_left = 8.0
-margin_right = 16.0
+margin_left = 16.0
+margin_right = 24.0
 __type = 0
 
 [node name="TileButton3" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
-margin_left = 16.0
-margin_right = 24.0
+margin_left = 32.0
+margin_right = 40.0
 __type = 3
 
 [node name="TileButton4" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
-margin_top = 8.0
-margin_bottom = 16.0
+margin_top = 16.0
+margin_bottom = 24.0
 __type = 5
 
 [node name="TileButton5" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 16.0
-margin_bottom = 16.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 24.0
+margin_bottom = 24.0
 __type = 6
 
 [node name="TileButton6" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
-margin_left = 16.0
-margin_top = 8.0
-margin_right = 24.0
-margin_bottom = 16.0
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 40.0
+margin_bottom = 24.0
 __type = 7
 
 [node name="TileButton7" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
-margin_top = 16.0
-margin_bottom = 24.0
+margin_top = 32.0
+margin_bottom = 40.0
 __type = 8
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="FileDialog" type="FileDialog" parent="MenuLayer"]
 visible = true
-margin_left = 16.0
-margin_top = 176.0
-margin_right = 480.0
-margin_bottom = 400.0
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 472.0
+margin_bottom = 248.0
 resizable = true
+current_dir = "res://scenes/game/level/levels"
+current_file = "FactoryLevelTest.tscn"
+current_path = "res://scenes/game/level/levels/FactoryLevelTest.tscn"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="toggled" from="MenuLayer/Entities/EntitiesButton" to="." method="_on_EntitiesButton_toggled"]
-[connection signal="toggled" from="MenuLayer/Tools/ToolsButton" to="." method="_on_ToolsButton_toggled"]
 [connection signal="pressed" from="MenuLayer/Tools/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
-[connection signal="toggled" from="MenuLayer/Tiles/TilesButton" to="." method="_on_TilesButton_toggled"]

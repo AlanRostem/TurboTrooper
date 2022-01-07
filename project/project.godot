@@ -98,7 +98,7 @@ output_latency=20
 [display]
 
 window/size/width=480
-window/size/height=420
+window/size/height=260
 window/size/test_width=640
 window/size/test_height=576
 window/stretch/mode="viewport"
