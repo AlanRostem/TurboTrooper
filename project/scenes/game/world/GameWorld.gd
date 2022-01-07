@@ -77,6 +77,12 @@ func spawn_entity(entity_scene, location):
 #		assign_player_node(entity)
 	return entity
 	
+func add_geometry(scene, location):
+	var geometry = scene.instance()
+	geometry.position = location
+	__geometry.add_child(geometry)
+	return geometry
+	
 # Instance a node that inherits the base entity scene through a specified scene and
 # specify a relative location for the entity to be present. The node is then added as 
 # a child of the EntityPool node. The adding is deferred. 
