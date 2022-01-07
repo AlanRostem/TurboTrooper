@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://scenes/game/world/environment/GeometryNode.gd"
 
 func _on_PlayerDetectionArea_body_entered(player):
 	player.visible = false
