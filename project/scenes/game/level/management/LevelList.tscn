@@ -11,6 +11,9 @@
 [node name="LevelList" type="Node"]
 script = ExtResource( 1 )
 
+[node name="FactoryLevelTest" parent="." instance=ExtResource( 2 )]
+level_scene = ExtResource( 5 )
+
 [node name="FirstLevel" parent="." instance=ExtResource( 2 )]
 level_scene = ExtResource( 3 )
 
@@ -19,9 +22,6 @@ level_scene = ExtResource( 7 )
 
 [node name="TrainingLevel" parent="." instance=ExtResource( 2 )]
 level_scene = ExtResource( 6 )
-
-[node name="FactoryLevelTest" parent="." instance=ExtResource( 2 )]
-level_scene = ExtResource( 5 )
 
 [node name="CaveTest" parent="." instance=ExtResource( 2 )]
 level_scene = ExtResource( 4 )

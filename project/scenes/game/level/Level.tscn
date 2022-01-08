@@ -38,10 +38,6 @@ position = Vector2( 112, 80 )
 cell_size = Vector2( 8, 8 )
 script = ExtResource( 2 )
 
-[node name="DeathPits" type="Area2D" parent="GameWorld/Geometry"]
-collision_layer = 0
-collision_mask = 4
-
 [node name="EntityPool" type="Node2D" parent="GameWorld"]
 __meta__ = {
 "_editor_description_": "This node holds all the active game objects. The parent GameWorld node manages the objects in this node"
@@ -60,6 +56,5 @@ visible = false
 
 [node name="CheckPoint" type="Position2D" parent="."]
 
-[connection signal="body_entered" from="GameWorld/Geometry/DeathPits" to="GameWorld" method="_on_DeathPits_body_entered"]
 [connection signal="display_off" from="GameWorld/ScrapHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
 [connection signal="display_off" from="GameWorld/WeaponHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
