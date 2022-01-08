@@ -16,7 +16,7 @@ export(CollisionModes) var collision_mode
 export var is_gravity_enabled = true
 export var is_internal_collision_func_enabled = true
 
-export var gravity = 400
+export var gravity = 400 
 
 export var stop_on_slope = true
 

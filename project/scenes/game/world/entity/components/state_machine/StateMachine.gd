@@ -38,7 +38,6 @@ func _physics_process(delta):
 func transition_to(state_name: String, message: Dictionary = {}):
 	if not has_node(state_name):
 		return false
-
 	if __current_state != null:
 		__current_state.exit()
 	__current_state = get_node(state_name)
