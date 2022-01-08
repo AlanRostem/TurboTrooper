@@ -250,9 +250,8 @@ func can_move_on_ground():
 	
 func die():
 	state_machine.transition_to("PlayerDeathState")
-	parent_world.get_parent_level().game_handler.start_reset_sequence()
+	parent_world.get_parent_level().game_handler.start_reset_sequence(true)
 	parent_world.hide_and_remove_entities()
-	parent_world.get_parent_level().stop_theme()
 	parent_world.play_sound(__death_sound)
 
 func _on_InvincibilityTimer_timeout():
