@@ -64,6 +64,10 @@ one_shot = true
 [node name="NextLevelTransitionTimer" type="Timer" parent="GameHandler"]
 one_shot = true
 
+[node name="CaveThemePlayer" type="AudioStreamPlayer" parent="GameHandler"]
+
+[node name="WinThemePlayer" type="AudioStreamPlayer" parent="GameHandler"]
+
 [connection signal="game_started" from="MainMenu" to="GameHandler" method="_on_MainMenu_game_started"]
 [connection signal="game_completed" from="GameHandler" to="MainMenu" method="_on_GameHandler_game_completed"]
 [connection signal="timeout" from="GameHandler/PauseabilityTimer" to="GameHandler" method="_on_PauseabilityTimer_timeout"]

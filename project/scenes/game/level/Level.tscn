@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=2]
 [ext_resource path="res://scenes/game/level/Level.gd" type="Script" id=3]
 [ext_resource path="res://scenes/game/world/entity/entities/player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/audio/music/normal_theme.wav" type="AudioStream" id=5]
 [ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=8]
@@ -13,9 +12,6 @@
 [node name="Level" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 3 )
-
-[node name="Theme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
 
 [node name="GameWorld" type="Node2D" parent="."]
 script = ExtResource( 8 )

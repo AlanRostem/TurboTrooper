@@ -22,6 +22,11 @@ onready var __reset_timer = $LevelResetTimer
 onready var __color_rect = $CanvasLayer/ColorRect
 onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
+onready var __cave_theme_player = $CaveThemePlayer
+onready var __win_theme_player = $WinThemePlayer
+
+var __current_level_theme
+
 var __has_check_point = false
 var __can_pause = false
 export var __has_completed_game = false
@@ -48,6 +53,11 @@ func has_check_point():
 	
 func update_player_save_data(key, value):
 	__saved_player_stats[key] = value
+
+func __set_current_level_theme(theme_enum):
+	match theme_enum:
+		Level.Theme.CAVE:
+			__current_level_theme = __cave_theme_player
 
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
@@ -107,6 +117,8 @@ func get_hud():
 	
 func start_transitioning_to_next_level():
 	__next_level_transition_timer.start()
+	__current_level_theme.stop()
+	__win_theme_player.play()
 
 func _on_MainMenu_game_started():
 	set_current_level(int(__has_completed_game))
@@ -118,11 +130,10 @@ func _on_PauseabilityTimer_timeout():
 func _on_LevelIntroTimer_timeout():
 	__color_rect.visible = false
 	__current_level.start()
-
-
+	__current_level_theme.play()
+	
 func _on_LevelResetTimer_timeout():
 	reset_current_level()
-
 
 func _on_NextLevelTransitionTimer_timeout():
 	set_current_to_next_level()
