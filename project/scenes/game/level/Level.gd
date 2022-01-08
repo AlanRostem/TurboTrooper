@@ -21,6 +21,9 @@ func _ready():
 func set_check_point_enabled(value):
 	__has_check_point = true
 	
+func set_check_point_location(vec):
+	__check_point.position = vec
+	
 func has_check_point():
 	return __has_check_point
 	
