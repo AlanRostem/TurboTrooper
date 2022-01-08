@@ -60,7 +60,7 @@ one_shot = true
 position = Vector2( 1, -12 )
 frames = ExtResource( 2 )
 animation = "idle_slam"
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 7 )
 
