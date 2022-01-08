@@ -117,7 +117,7 @@ func _on_PauseabilityTimer_timeout():
 
 func _on_LevelIntroTimer_timeout():
 	__color_rect.visible = false
-	__current_level.start()	
+	__current_level.start()
 
 
 func _on_LevelResetTimer_timeout():
