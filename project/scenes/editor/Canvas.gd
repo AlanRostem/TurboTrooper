@@ -100,6 +100,15 @@ func set_canvas_tool(canvas_tool):
 
 func get_canvas_tool():
 	return __canvas_tool
+	
+func set_level(level):
+	if __level != null:
+		__level.queue_free()
+	__level = level
+	add_child(__level)
+	
+func get_level():
+	return __level
 
 func position_to_tile(pos):
 	var tile_size = __level.get_game_world().get_tile_size()
@@ -111,27 +120,3 @@ func tile_to_position(tile):
 
 func is_tile_occupied(tile):
 	return get_tile(tile) != -1 or get_entity_at_tile(tile) != null
-
-func save(path: String):
-	__level.player_node.set_camera_follow(true)
-	var scene_root = __level
-	__set_owner(scene_root, scene_root)
-	var scene = PackedScene.new()
-	scene.pack(scene_root)
-	ResourceSaver.save(path, scene)
-	__level.player_node.set_camera_follow(false)
-
-func __set_owner(node, root):
-	if node != root:
-		node.owner = root
-	for child in node.get_children():
-		if !__is_instanced_from_scene(child):
-			__set_owner(child, root)
-		else:
-			child.owner = root
-		
-func __is_instanced_from_scene(node):
-	return !node.filename.empty()
-
-func _on_FileDialog_file_selected(path):
-	save(path)

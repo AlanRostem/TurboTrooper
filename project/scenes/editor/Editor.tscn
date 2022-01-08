@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/editor/Canvas.gd" type="Script" id=2]
@@ -107,6 +107,10 @@ region = Rect2( 24, 8, 8, 8 )
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 7 )
 region = Rect2( 8, 16, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 24, 8, 8 )
 
 [node name="Editor" type="Control"]
 pause_mode = 2
@@ -330,6 +334,12 @@ margin_right = 32.0
 group = SubResource( 18 )
 texture_normal = SubResource( 21 )
 
+[node name="LoadButton" parent="MenuLayer/Tools/HBoxContainer" instance=ExtResource( 9 )]
+margin_left = 36.0
+margin_right = 44.0
+group = SubResource( 18 )
+texture_normal = SubResource( 22 )
+
 [node name="Tiles" type="Panel" parent="MenuLayer"]
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -410,4 +420,5 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="MenuLayer/Tools/HBoxContainer/SaveButton" to="." method="_on_SaveButton_pressed"]
-[connection signal="file_selected" from="MenuLayer/FileDialog" to="Canvas" method="_on_FileDialog_file_selected"]
+[connection signal="pressed" from="MenuLayer/Tools/HBoxContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="file_selected" from="MenuLayer/FileDialog" to="." method="_on_FileDialog_file_selected"]
