@@ -141,7 +141,6 @@ script = ExtResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="Canvas/CameraHolder"]
 current = true
-limit_left = 0
 limit_top = 0
 limit_bottom = 144
 drag_margin_left = 0.0
