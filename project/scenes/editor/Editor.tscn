@@ -411,9 +411,10 @@ margin_top = 32.0
 margin_right = 472.0
 margin_bottom = 248.0
 resizable = true
-current_dir = "res://scenes/game/level/levels"
+access = 2
+current_dir = "/Dev/TurboTrooper/project"
 current_file = "FactoryLevelTest.tscn"
-current_path = "res://scenes/game/level/levels/FactoryLevelTest.tscn"
+current_path = "/Dev/TurboTrooper/project/FactoryLevelTest.tscn"
 __meta__ = {
 "_edit_use_anchors_": false
 }
