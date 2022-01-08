@@ -25,7 +25,6 @@ func _on_EscapeArea_body_entered(player):
 		player.state_machine.transition_to("PlayerLeaveLevelState")
 		__bomb_switch.complete()
 		__arrow_sprite.visible = false
-		stop_theme()
 
 func _on_BombSwitch_activated():
 	__arrow_sprite.visible = true
@@ -41,7 +40,6 @@ func _on_SecretEscapePoint_body_entered(player):
 	player.state_machine.transition_to("PlayerLeaveLevelSecretState")
 	__bomb_switch.complete()
 	__arrow_sprite.visible = false
-	stop_theme()
 	__secret_arrow_sprite.visible = false
 	var world = player.parent_world
 	world.show_hover_text("+" + str(MAX_SECRET_SCORE) + "score", player.position)

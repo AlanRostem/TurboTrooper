@@ -45,6 +45,7 @@ var __can_move_on_ground = true
 var __is_opening_crate = false
 
 var __is_invincible = false
+var __is_immortal = false
 
 onready var __upper_body_shape: CollisionShape2D = $UpperBodyShape
 onready var __hit_box_shape = $InHitBox/CollisionShape2D
@@ -68,9 +69,9 @@ onready var __camera = $Camera2D
 
 var __controls_enabled = true
 
-#func _physics_process(delta):
-#	print(__dash_charge)
-#	print(get_velocity().x)
+func _physics_process(delta):
+	if position.y > 144 + 24:
+		die()
 	
 func set_camera_bounds(bounds: Rect2):
 	__camera.limit_left = clamp(bounds.position.x, 0, INF);
@@ -80,6 +81,9 @@ func set_camera_bounds(bounds: Rect2):
 	
 func set_camera_follow(value):
 	__camera.current = value
+
+func become_immortal():
+	__is_immortal = true
 
 func set_controls_enabled(value):
 	__controls_enabled = value
@@ -252,11 +256,12 @@ func can_move_on_ground():
 	return __can_move_on_ground
 	
 func die():
+	if __is_immortal: return
 	state_machine.transition_to("PlayerDeathState")
-	parent_world.get_parent_level().game_handler.start_reset_sequence()
+	parent_world.get_parent_level().game_handler.start_reset_sequence(true)
 	parent_world.hide_and_remove_entities()
-	parent_world.get_parent_level().stop_theme()
 	parent_world.play_sound(__death_sound)
+	__is_immortal = true
 
 func _on_InvincibilityTimer_timeout():
 	set_hit_box_enabled(true)

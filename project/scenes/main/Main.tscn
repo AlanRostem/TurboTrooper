@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/game/GameHandler.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/main_menu/MainMenu.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/resources/shaders/WhiteningShader.tres" type="Material" id=4]
 [ext_resource path="res://scenes/game/level/management/LevelList.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/main/Main.gd" type="Script" id=6]
+[ext_resource path="res://assets/audio/music/win_theme.wav" type="AudioStream" id=7]
 
 [node name="Main" type="Node2D"]
 material = ExtResource( 4 )
@@ -63,6 +64,9 @@ one_shot = true
 
 [node name="NextLevelTransitionTimer" type="Timer" parent="GameHandler"]
 one_shot = true
+
+[node name="WinThemePlayer" type="AudioStreamPlayer" parent="GameHandler"]
+stream = ExtResource( 7 )
 
 [connection signal="game_started" from="MainMenu" to="GameHandler" method="_on_MainMenu_game_started"]
 [connection signal="game_completed" from="GameHandler" to="MainMenu" method="_on_GameHandler_game_completed"]

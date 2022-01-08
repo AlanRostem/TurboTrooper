@@ -46,7 +46,6 @@ disabled = true
 [node name="ArrowSprite" parent="GameWorld/EscapeArea" index="2" instance=ExtResource( 4 )]
 position = Vector2( 8, 24 )
 rotation = 1.5708
-frame = 0
 
 [node name="SecretEscapePoint" type="Area2D" parent="GameWorld" index="7"]
 position = Vector2( 136, -32 )
@@ -61,11 +60,10 @@ shape = SubResource( 3 )
 
 [node name="ArrowSprite" parent="GameWorld/SecretEscapePoint" index="1" instance=ExtResource( 4 )]
 position = Vector2( 0, -24 )
+frame = 0
 
 [connection signal="activated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_activated"]
 [connection signal="completion_transition_over" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_completion_transition_over"]
 [connection signal="detonated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_detonated"]
 [connection signal="body_entered" from="GameWorld/EscapeArea" to="." method="_on_EscapeArea_body_entered"]
 [connection signal="body_entered" from="GameWorld/SecretEscapePoint" to="." method="_on_SecretEscapePoint_body_entered"]
-
-[editable path="GameWorld"]
