@@ -73,15 +73,22 @@ func set_current_to_next_level():
 func set_current_level(index):
 	var level_scene: PackedScene = __level_list.get_level_scene(index)
 	__level_index = index
+	
 	if __current_level != null:
 		__current_level.queue_free()
 	__current_level = level_scene.instance()
+	if has_check_point():
+		__current_level.set_check_point_enabled(true)
 	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
+	
 	__current_level.set_player_stats(__saved_player_stats)
+	
 	__load_current_level_theme(__current_level.get_theme_enum())
 	__pauseability_timer.start()
 	__can_pause = false
+	get_hud().hide_global_message()
+	
 
 func change_level(index):
 	__has_check_point = false
@@ -93,12 +100,9 @@ func change_level(index):
 	
 	__level_intro_timer.start()
 	__color_rect.visible =  true
-	get_hud().hide_global_message()
 
 func reset_current_level():
 	set_current_level(__level_index)
-	if has_check_point():
-		__current_level.set_check_point_enabled(true)
 
 func start_reset_sequence(died = false):
 	__reset_timer.start()
