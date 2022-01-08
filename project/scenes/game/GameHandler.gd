@@ -42,8 +42,7 @@ func set_check_point(vec):
 	__has_check_point = true
 	__saved_player_stats = __current_level.player_node.stats.get_data()
 	update_player_save_data("checkpoint", vec)
-	__current_level.set_check_point_enabled(true)	
-
+	
 func has_check_point():
 	return __has_check_point
 	
@@ -90,6 +89,8 @@ func reset_current_level():
 	__current_level.queue_free()
 	__current_level = level_scene.instance()
 	__current_level.connect("ready", self, "_on_current_level_ready")
+	if has_check_point():
+		__current_level.set_check_point_enabled(true)
 	add_child(__current_level)
 	__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	__current_level.set_player_stats(__saved_player_stats)

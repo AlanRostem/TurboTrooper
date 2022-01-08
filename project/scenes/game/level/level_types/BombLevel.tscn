@@ -67,5 +67,3 @@ position = Vector2( 0, -24 )
 [connection signal="detonated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_detonated"]
 [connection signal="body_entered" from="GameWorld/EscapeArea" to="." method="_on_EscapeArea_body_entered"]
 [connection signal="body_entered" from="GameWorld/SecretEscapePoint" to="." method="_on_SecretEscapePoint_body_entered"]
-
-[editable path="GameWorld"]
