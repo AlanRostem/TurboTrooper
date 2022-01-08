@@ -108,6 +108,7 @@ func start_reset_sequence(died = false):
 	__reset_timer.start()
 	if died:
 		__current_level_theme.stop()
+		__saved_player_stats["weapon"] = -1
 	
 func __load_current_level_theme(theme_enum):
 	if __current_level_theme_enum == theme_enum: return
