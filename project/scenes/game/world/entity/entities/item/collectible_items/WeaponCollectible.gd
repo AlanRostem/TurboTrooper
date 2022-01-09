@@ -44,7 +44,7 @@ func set_recently_dropped(value):
 		call_deferred("__set_life_timer_wait_time_to_low")
 		
 func __set_life_timer_wait_time_to_low():
-	_life_timer.start(3.5)
+	_life_timer.start(1.5)
 	__pick_up_timer.start()
 	__detection_shape.disabled = true
 
