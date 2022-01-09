@@ -1,41 +1,25 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/parallax/pipes.png" type="Texture" id=3]
 [ext_resource path="res://scenes/game/world/objective/BombSwitch.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/game/world/objective/BombSwitch.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/resources/MainTileSet.tres" type="TileSet" id=8]
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=9]
 [ext_resource path="res://scenes/game/world/structure/destructible/ChainedCrate.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/game/world/structure/destructible/Crate.gd" type="Script" id=11]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/Scrap.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/audio/sfx/entities/crates/crate_break.wav" type="AudioStream" id=13]
 [ext_resource path="res://scenes/game/world/environment/hazards/SpikeHazard.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/game/world/environment/hazards/SpikeHazard.gd" type="Script" id=15]
 [ext_resource path="res://scenes/game/world/environment/LaunchPad.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/game/world/environment/GeometryNode.gd" type="Script" id=17]
 [ext_resource path="res://scenes/game/world/structure/destructible/Crate.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/game/world/structure/destructible/SwordCrate.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/SwordCollectible.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/game/world/structure/destructible/BlasterCrate.tscn" type="PackedScene" id=21]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/BlasterCollectible.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/game/world/entity/entities/player/Player.tscn" type="PackedScene" id=23]
-[ext_resource path="res://scenes/game/world/entity/entities/player/Player.gd" type="Script" id=24]
 [ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/FloatingScrap.tscn" type="PackedScene" id=25]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/Scrap.gd" type="Script" id=26]
-[ext_resource path="res://assets/audio/sfx/world/scrap/pick_up_scrap.wav" type="AudioStream" id=27]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rodder/Rodder.tscn" type="PackedScene" id=28]
-[ext_resource path="res://scenes/game/world/entity/entities/enemy/Enemy.gd" type="Script" id=29]
-[ext_resource path="res://assets/audio/sfx/enemies/enemy_death.wav" type="AudioStream" id=30]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/boom_crawler/BoomCrawler.tscn" type="PackedScene" id=31]
 [ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn" type="PackedScene" id=32]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.gd" type="Script" id=33]
 [ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.tscn" type="PackedScene" id=34]
 [ext_resource path="res://assets/font/pixelsix00.ttf" type="DynamicFontData" id=35]
-[ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.gd" type="Script" id=36]
 [ext_resource path="res://scenes/game/world/objective/ArrowSprite.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/sprites/item/objective/arrow.png" type="Texture" id=38]
 
@@ -74,7 +58,6 @@ extents = Vector2( 72, 8 )
 [node name="Level88" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 1 )
-__theme = 0
 
 [node name="GameWorld" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -95,1588 +78,326 @@ centered = false
 
 [node name="Geometry" type="Node2D" parent="GameWorld"]
 
-[node name="BombSwitch" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 4 )]
+[node name="BombSwitch" parent="GameWorld/Geometry" instance=ExtResource( 4 )]
 position = Vector2( 2292, 108 )
-script = ExtResource( 5 )
-__completion_transition_time = 3.0
-__detonation_time = 15
 
-[node name="ShopArea" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 6 )]
+[node name="ShopArea" parent="GameWorld/Geometry" instance=ExtResource( 6 )]
 position = Vector2( 2220, 108 )
 
-[node name="CustomTileMap" type="TileMap" parent="GameWorld/Geometry" instance=ExtResource( 7 )]
-tile_set = ExtResource( 8 )
+[node name="CustomTileMap" parent="GameWorld/Geometry" instance=ExtResource( 7 )]
 cell_size = Vector2( 8, 8 )
-collision_mask = 0
-format = 1
 tile_data = PoolIntArray( -65378, 5, 0, 65529, 5, 0, 65530, 5, 2, 137, 5, 0, 138, 5, 1, 139, 5, 1, 140, 5, 1, 141, 5, 1, 142, 5, 1, 143, 5, 1, 144, 5, 1, 145, 5, 1, 146, 5, 1, 147, 5, 1, 148, 5, 1, 149, 5, 1, 150, 5, 1, 151, 5, 1, 152, 5, 1, 153, 5, 1, 154, 5, 1, 155, 5, 1, 156, 5, 1, 157, 5, 1, 158, 5, 1, 159, 5, 1, 160, 5, 1, 161, 5, 1, 162, 5, 1, 163, 5, 1, 164, 5, 1, 165, 5, 1, 166, 5, 1, 167, 5, 1, 168, 5, 1, 169, 5, 1, 170, 5, 1, 171, 5, 1, 172, 5, 1, 173, 5, 1, 174, 5, 1, 175, 5, 2, 131065, 5, 65536, 131066, 5, 65538, 65673, 5, 65536, 65674, 5, 65537, 65675, 5, 65537, 65676, 5, 65537, 65677, 5, 65537, 65678, 5, 65537, 65679, 5, 65537, 65680, 5, 65537, 65681, 5, 65537, 65682, 5, 65537, 65683, 5, 65537, 65684, 5, 65537, 65685, 5, 65537, 65686, 5, 65537, 65687, 5, 65537, 65688, 5, 65537, 65689, 5, 65537, 65690, 5, 65537, 65691, 5, 65537, 65692, 5, 65537, 65693, 5, 65537, 65694, 5, 65537, 65695, 5, 65537, 65696, 5, 65537, 65697, 5, 65537, 65698, 5, 65537, 65699, 5, 65537, 65700, 5, 65537, 65701, 5, 65537, 65702, 5, 65537, 65703, 5, 65537, 65704, 5, 65537, 65705, 5, 65537, 65706, 5, 65537, 65707, 5, 65537, 65708, 5, 65537, 65709, 5, 65537, 65710, 5, 65537, 65711, 5, 65538, 196601, 5, 65536, 196602, 5, 65538, 131209, 5, 131072, 131210, 5, 131073, 131211, 5, 131073, 131212, 5, 131073, 131213, 5, 131073, 131214, 5, 131073, 131215, 5, 131073, 131216, 5, 131073, 131217, 5, 131073, 131218, 5, 131073, 131219, 5, 131073, 131220, 5, 131073, 131221, 5, 131073, 131222, 5, 131073, 131223, 5, 131073, 131224, 5, 131073, 131225, 5, 131073, 131226, 5, 131073, 131227, 5, 131073, 131228, 5, 131073, 131229, 5, 131073, 131230, 5, 131073, 131231, 5, 131073, 131232, 5, 131073, 131233, 5, 131073, 131234, 5, 5, 131235, 5, 65537, 131236, 5, 65537, 131237, 5, 65537, 131238, 5, 65537, 131239, 5, 65537, 131240, 5, 65537, 131241, 5, 65537, 131242, 5, 65537, 131243, 5, 65537, 131244, 5, 65537, 131245, 5, 65537, 131246, 5, 65537, 131247, 5, 65538, 262137, 5, 65536, 262138, 5, 65538, 196755, 11, 0, 196756, 11, 0, 196770, 5, 65536, 196771, 5, 65537, 196772, 5, 65537, 196773, 5, 65537, 196774, 5, 65537, 196775, 5, 65537, 196776, 5, 65537, 196777, 5, 65537, 196778, 5, 65537, 196779, 5, 65537, 196780, 5, 65537, 196781, 5, 65537, 196782, 5, 65537, 196783, 5, 65538, 327673, 5, 65536, 327674, 5, 65538, 262291, 11, 0, 262292, 11, 0, 262306, 5, 65536, 262307, 5, 65537, 262308, 5, 65537, 262309, 5, 65537, 262310, 5, 65537, 262311, 5, 65537, 262312, 5, 65537, 262313, 5, 65537, 262314, 5, 65537, 262315, 5, 65537, 262316, 5, 65537, 262317, 5, 65537, 262318, 5, 65537, 262319, 5, 65538, 393209, 5, 65536, 393210, 5, 65538, 327820, 1, 0, 327822, 1, 0, 327824, 1, 0, 327826, 1, 0, 327842, 5, 65536, 327843, 5, 65537, 327844, 5, 65537, 327845, 5, 65537, 327846, 5, 65537, 327847, 5, 65537, 327848, 5, 65537, 327849, 5, 65537, 327850, 5, 65537, 327851, 5, 65537, 327852, 5, 65537, 327853, 5, 65537, 327854, 5, 65537, 327855, 5, 65538, 458745, 5, 65536, 458746, 5, 65538, 393353, 5, 0, 393354, 5, 1, 393355, 5, 1, 393356, 5, 1, 393357, 5, 1, 393358, 5, 1, 393359, 5, 1, 393360, 5, 1, 393361, 5, 1, 393362, 5, 1, 393363, 5, 1, 393364, 5, 1, 393365, 5, 1, 393366, 5, 1, 393367, 5, 1, 393368, 5, 1, 393369, 5, 1, 393370, 5, 1, 393371, 5, 1, 393372, 5, 1, 393373, 5, 2, 393378, 5, 65536, 393379, 5, 65537, 393380, 5, 65537, 393381, 5, 65537, 393382, 5, 65537, 393383, 5, 65537, 393384, 5, 65537, 393385, 5, 65537, 393386, 5, 65537, 393387, 5, 65537, 393388, 5, 65537, 393389, 5, 65537, 393390, 5, 65537, 393391, 5, 65538, 524281, 5, 65536, 524282, 5, 65538, 458858, 5, 0, 458859, 5, 1, 458860, 5, 1, 458861, 5, 1, 458862, 5, 1, 458863, 5, 1, 458864, 5, 1, 458865, 5, 1, 458866, 5, 1, 458867, 5, 1, 458868, 5, 1, 458869, 5, 1, 458870, 5, 1, 458871, 5, 2, 458873, 8, 0, 458874, 8, 1, 458875, 8, 2, 458889, 5, 65536, 458890, 5, 65537, 458891, 5, 65537, 458892, 5, 65537, 458893, 5, 65537, 458894, 5, 65537, 458895, 5, 65537, 458896, 5, 65537, 458897, 5, 65537, 458898, 5, 65537, 458899, 5, 65537, 458900, 5, 65537, 458901, 5, 65537, 458902, 5, 65537, 458903, 5, 65537, 458904, 5, 65537, 458905, 5, 65537, 458906, 5, 65537, 458907, 5, 65537, 458908, 5, 65537, 458909, 5, 65538, 458914, 5, 65536, 458915, 5, 65537, 458916, 5, 65537, 458917, 5, 65537, 458918, 5, 65537, 458919, 5, 65537, 458920, 5, 65537, 458921, 5, 65537, 458922, 5, 65537, 458923, 5, 65537, 458924, 5, 65537, 458925, 5, 65537, 458926, 5, 65537, 458927, 5, 65538, 589817, 5, 65536, 589818, 5, 65538, 524393, 5, 0, 524394, 5, 65541, 524395, 5, 65537, 524396, 5, 65537, 524397, 5, 65537, 524398, 5, 65537, 524399, 5, 65537, 524400, 5, 65537, 524401, 5, 65537, 524402, 5, 65537, 524403, 5, 65537, 524404, 5, 65537, 524405, 5, 65537, 524406, 5, 65537, 524407, 5, 65538, 524425, 5, 131072, 524426, 5, 131073, 524427, 5, 131073, 524428, 5, 131073, 524429, 5, 131073, 524430, 5, 131073, 524431, 5, 131073, 524432, 5, 131073, 524433, 5, 131073, 524434, 5, 131073, 524435, 5, 131073, 524436, 5, 131073, 524437, 5, 131073, 524438, 5, 131073, 524439, 5, 131073, 524440, 5, 131073, 524441, 5, 131073, 524442, 5, 131073, 524443, 5, 131073, 524444, 5, 131073, 524445, 5, 131074, 524450, 5, 131072, 524451, 5, 131073, 524452, 5, 131073, 524453, 5, 131073, 524454, 5, 131073, 524455, 5, 131073, 524456, 5, 131073, 524457, 5, 131073, 524458, 5, 131073, 524459, 5, 131073, 524460, 5, 131073, 524461, 5, 131073, 524462, 5, 131073, 524463, 5, 131074, 655353, 5, 65536, 655354, 5, 65538, 589886, 5, 0, 589887, 5, 1, 589888, 5, 1, 589889, 5, 1, 589890, 5, 1, 589891, 5, 1, 589892, 5, 1, 589893, 5, 1, 589894, 5, 1, 589895, 5, 1, 589896, 5, 1, 589897, 5, 1, 589898, 5, 1, 589899, 5, 1, 589900, 5, 1, 589901, 5, 1, 589902, 5, 1, 589903, 5, 1, 589904, 5, 1, 589905, 5, 1, 589906, 5, 2, 589926, 5, 0, 589927, 5, 1, 589928, 5, 1, 589929, 5, 65541, 589930, 5, 65537, 589931, 5, 65537, 589932, 5, 65537, 589933, 5, 65537, 589934, 5, 65537, 589935, 5, 65537, 589936, 5, 65537, 589937, 5, 65537, 589938, 5, 65537, 589939, 5, 65537, 589940, 5, 65537, 589941, 5, 65537, 589942, 5, 65537, 589943, 5, 65538, 720889, 5, 65536, 720890, 5, 65538, 655421, 5, 0, 655422, 5, 65541, 655423, 5, 65537, 655424, 5, 65537, 655425, 5, 65537, 655426, 5, 65537, 655427, 5, 65537, 655428, 5, 65537, 655429, 5, 65537, 655430, 5, 65537, 655431, 5, 65537, 655432, 5, 65537, 655433, 5, 65537, 655434, 5, 65537, 655435, 5, 65537, 655436, 5, 65537, 655437, 5, 65537, 655438, 5, 65537, 655439, 5, 65537, 655440, 5, 65537, 655441, 5, 65537, 655442, 5, 65540, 655443, 5, 2, 655462, 5, 65536, 655463, 5, 65537, 655464, 5, 65537, 655465, 5, 65537, 655466, 5, 65537, 655467, 5, 65537, 655468, 5, 65537, 655469, 5, 65537, 655470, 5, 65537, 655471, 5, 65537, 655472, 5, 65537, 655473, 5, 65537, 655474, 5, 65537, 655475, 5, 65537, 655476, 5, 65537, 655477, 5, 65537, 655478, 5, 65537, 655479, 5, 65538, 786425, 5, 65536, 786426, 5, 65538, 720957, 5, 65536, 720958, 5, 65537, 720959, 5, 65537, 720960, 5, 65537, 720961, 5, 65537, 720962, 5, 65537, 720963, 5, 65537, 720964, 5, 65537, 720965, 5, 65537, 720966, 5, 65537, 720967, 5, 65537, 720968, 5, 65537, 720969, 5, 65537, 720970, 5, 65537, 720971, 5, 65537, 720972, 5, 65537, 720973, 5, 65537, 720974, 5, 65537, 720975, 5, 65537, 720976, 5, 65537, 720977, 5, 65537, 720978, 5, 65537, 720979, 5, 65540, 720980, 5, 2, 720992, 8, 0, 720993, 8, 1, 720994, 8, 2, 720998, 5, 65536, 720999, 5, 65537, 721000, 5, 65537, 721001, 5, 65537, 721002, 5, 65537, 721003, 5, 65537, 721004, 5, 65537, 721005, 5, 65537, 721006, 5, 65537, 721007, 5, 65537, 721008, 5, 65537, 721009, 5, 65537, 721010, 5, 65537, 721011, 5, 65537, 721012, 5, 65537, 721013, 5, 65537, 721014, 5, 65537, 721015, 5, 65538, 851961, 5, 65536, 851962, 5, 65538, 786486, 11, 0, 786488, 11, 0, 786493, 5, 65536, 786494, 5, 65537, 786495, 5, 65537, 786496, 5, 65537, 786497, 5, 65537, 786498, 5, 65537, 786499, 5, 65537, 786500, 5, 65537, 786501, 5, 65537, 786502, 5, 65537, 786503, 5, 65537, 786504, 5, 65537, 786505, 5, 65537, 786506, 5, 65537, 786507, 5, 65537, 786508, 5, 65537, 786509, 5, 65537, 786510, 5, 65537, 786511, 5, 65537, 786512, 5, 65537, 786513, 5, 65537, 786514, 5, 65537, 786515, 5, 65537, 786516, 5, 65540, 786517, 5, 2, 786534, 5, 65536, 786535, 5, 65537, 786536, 5, 65537, 786537, 5, 65537, 786538, 5, 65537, 786539, 5, 65537, 786540, 5, 65537, 786541, 5, 65537, 786542, 5, 65537, 786543, 5, 65537, 786544, 5, 65537, 786545, 5, 65537, 786546, 5, 65537, 786547, 5, 65537, 786548, 5, 65537, 786549, 5, 65537, 786550, 5, 65537, 786551, 5, 65538, 917497, 5, 65536, 917498, 5, 65538, 852029, 5, 65536, 852030, 5, 65537, 852031, 5, 65537, 852032, 5, 65537, 852033, 5, 65537, 852034, 5, 65537, 852035, 5, 65537, 852036, 5, 65537, 852037, 5, 65537, 852038, 5, 65537, 852039, 5, 65537, 852040, 5, 65537, 852041, 5, 65537, 852042, 5, 65537, 852043, 5, 65537, 852044, 5, 65537, 852045, 5, 65537, 852046, 5, 65537, 852047, 5, 65537, 852048, 5, 65537, 852049, 5, 65537, 852050, 5, 65537, 852051, 5, 65537, 852052, 5, 65537, 852053, 5, 65540, 852054, 5, 2, 852070, 5, 65536, 852071, 5, 65537, 852072, 5, 65537, 852073, 5, 65537, 852074, 5, 65537, 852075, 5, 65537, 852076, 5, 65537, 852077, 5, 65537, 852078, 5, 65537, 852079, 5, 65537, 852080, 5, 65537, 852081, 5, 65537, 852082, 5, 65537, 852083, 5, 65537, 852084, 5, 65537, 852085, 5, 65537, 852086, 5, 65537, 852087, 5, 65538, 983033, 5, 65536, 983034, 5, 65540, 983035, 5, 1, 983036, 5, 1, 983037, 5, 1, 983038, 5, 1, 983039, 5, 1, 917504, 5, 1, 917505, 5, 1, 917506, 5, 1, 917507, 5, 1, 917508, 5, 1, 917509, 5, 1, 917510, 5, 1, 917511, 5, 1, 917512, 5, 1, 917513, 5, 1, 917514, 5, 2, 917516, 5, 0, 917517, 5, 1, 917518, 5, 1, 917519, 5, 2, 917521, 5, 0, 917522, 5, 1, 917523, 5, 1, 917524, 5, 2, 917526, 5, 0, 917527, 5, 1, 917528, 5, 1, 917529, 5, 1, 917530, 5, 1, 917531, 5, 1, 917532, 5, 1, 917533, 5, 1, 917534, 5, 1, 917535, 5, 1, 917536, 5, 1, 917537, 5, 1, 917538, 5, 1, 917539, 5, 1, 917540, 5, 1, 917541, 5, 1, 917542, 5, 1, 917543, 5, 1, 917544, 5, 1, 917545, 5, 1, 917546, 5, 1, 917547, 5, 1, 917548, 5, 1, 917549, 5, 1, 917550, 5, 1, 917551, 5, 1, 917552, 5, 1, 917553, 5, 1, 917554, 5, 2, 917565, 5, 65536, 917566, 5, 65537, 917567, 5, 65537, 917568, 5, 65537, 917569, 5, 65537, 917570, 5, 65537, 917571, 5, 65537, 917572, 5, 65537, 917573, 5, 65537, 917574, 5, 65537, 917575, 5, 65537, 917576, 5, 65537, 917577, 5, 65537, 917578, 5, 65537, 917579, 5, 65537, 917580, 5, 65537, 917581, 5, 65537, 917582, 5, 65537, 917583, 5, 65537, 917584, 5, 65537, 917585, 5, 65537, 917586, 5, 65537, 917587, 5, 65537, 917588, 5, 65537, 917589, 5, 65537, 917590, 5, 65540, 917591, 5, 1, 917592, 5, 1, 917593, 5, 1, 917594, 5, 1, 917595, 5, 1, 917596, 5, 1, 917597, 5, 1, 917598, 5, 1, 917599, 5, 1, 917600, 5, 1, 917601, 5, 1, 917602, 5, 1, 917603, 5, 1, 917604, 5, 1, 917605, 5, 1, 917606, 5, 65541, 917607, 5, 65537, 917608, 5, 65537, 917609, 5, 65537, 917610, 5, 65537, 917611, 5, 65537, 917612, 5, 65537, 917613, 5, 65537, 917614, 5, 65537, 917615, 5, 65537, 917616, 5, 65537, 917617, 5, 65537, 917618, 5, 65537, 917619, 5, 65537, 917620, 5, 65537, 917621, 5, 65537, 917622, 5, 65537, 917623, 5, 65540, 917624, 5, 1, 917625, 5, 1, 917626, 5, 1, 917627, 5, 1, 917628, 5, 1, 917629, 5, 1, 917630, 5, 1, 917631, 5, 1, 917632, 5, 1, 917633, 5, 1, 917634, 5, 1, 917635, 5, 1, 917636, 5, 1, 917637, 5, 1, 917638, 5, 1, 917639, 5, 1, 917640, 5, 1, 917641, 5, 1, 917642, 5, 1, 917643, 5, 1, 917644, 5, 1, 917645, 5, 1, 917646, 5, 1, 917647, 5, 1, 917648, 5, 1, 917649, 5, 1, 917650, 5, 1, 917651, 5, 1, 917652, 5, 1, 917653, 5, 1, 917654, 5, 1, 917655, 5, 1, 917656, 5, 1, 917657, 5, 1, 917658, 5, 1, 917659, 5, 1, 917660, 5, 1, 917661, 5, 1, 917662, 5, 1, 917663, 5, 1, 917664, 5, 1, 917665, 5, 1, 917666, 5, 1, 917667, 5, 1, 917668, 5, 1, 917669, 5, 1, 917670, 5, 1, 917671, 5, 1, 917672, 5, 1, 917673, 5, 1, 917674, 5, 1, 917675, 5, 1, 917676, 5, 1, 917677, 5, 1, 917678, 5, 1, 917679, 5, 1, 917680, 5, 1, 917681, 5, 1, 917682, 5, 1, 917683, 5, 1, 917684, 5, 2, 1048569, 5, 65536, 1048570, 5, 65537, 1048571, 5, 65537, 1048572, 5, 65537, 1048573, 5, 65537, 1048574, 5, 65537, 1048575, 5, 65537, 983040, 5, 65537, 983041, 5, 65537, 983042, 5, 65537, 983043, 5, 65537, 983044, 5, 65537, 983045, 5, 65537, 983046, 5, 65537, 983047, 5, 65537, 983048, 5, 65537, 983049, 5, 65537, 983050, 5, 65538, 983052, 5, 65536, 983053, 5, 65537, 983054, 5, 65537, 983055, 5, 65538, 983057, 5, 65536, 983058, 5, 65537, 983059, 5, 65537, 983060, 5, 65538, 983062, 5, 65536, 983063, 5, 65537, 983064, 5, 65537, 983065, 5, 65537, 983066, 5, 65537, 983067, 5, 65537, 983068, 5, 65537, 983069, 5, 65537, 983070, 5, 65537, 983071, 5, 65537, 983072, 5, 65537, 983073, 5, 65537, 983074, 5, 65537, 983075, 5, 65537, 983076, 5, 65537, 983077, 5, 65537, 983078, 5, 65537, 983079, 5, 65537, 983080, 5, 65537, 983081, 5, 65537, 983082, 5, 65537, 983083, 5, 65537, 983084, 5, 65537, 983085, 5, 65537, 983086, 5, 65537, 983087, 5, 65537, 983088, 5, 65537, 983089, 5, 65537, 983090, 5, 65538, 983101, 5, 65536, 983102, 5, 65537, 983103, 5, 65537, 983104, 5, 65537, 983105, 5, 65537, 983106, 5, 65537, 983107, 5, 65537, 983108, 5, 65537, 983109, 5, 65537, 983110, 5, 65537, 983111, 5, 65537, 983112, 5, 65537, 983113, 5, 65537, 983114, 5, 65537, 983115, 5, 65537, 983116, 5, 65537, 983117, 5, 65537, 983118, 5, 65537, 983119, 5, 65537, 983120, 5, 65537, 983121, 5, 65537, 983122, 5, 65537, 983123, 5, 65537, 983124, 5, 65537, 983125, 5, 65537, 983126, 5, 65537, 983127, 5, 65537, 983128, 5, 65537, 983129, 5, 65537, 983130, 5, 65537, 983131, 5, 65537, 983132, 5, 65537, 983133, 5, 65537, 983134, 5, 65537, 983135, 5, 65537, 983136, 5, 65537, 983137, 5, 65537, 983138, 5, 65537, 983139, 5, 65537, 983140, 5, 65537, 983141, 5, 65537, 983142, 5, 65537, 983143, 5, 65537, 983144, 5, 65537, 983145, 5, 65537, 983146, 5, 65537, 983147, 5, 65537, 983148, 5, 65537, 983149, 5, 65537, 983150, 5, 65537, 983151, 5, 65537, 983152, 5, 65537, 983153, 5, 65537, 983154, 5, 65537, 983155, 5, 65537, 983156, 5, 65537, 983157, 5, 65537, 983158, 5, 65537, 983159, 5, 65537, 983160, 5, 65537, 983161, 5, 65537, 983162, 5, 65537, 983163, 5, 65537, 983164, 5, 65537, 983165, 5, 65537, 983166, 5, 65537, 983167, 5, 65537, 983168, 5, 65537, 983169, 5, 65537, 983170, 5, 65537, 983171, 5, 65537, 983172, 5, 65537, 983173, 5, 65537, 983174, 5, 65537, 983175, 5, 65537, 983176, 5, 65537, 983177, 5, 65537, 983178, 5, 65537, 983179, 5, 65537, 983180, 5, 65537, 983181, 5, 65537, 983182, 5, 65537, 983183, 5, 65537, 983184, 5, 65537, 983185, 5, 65537, 983186, 5, 65537, 983187, 5, 65537, 983188, 5, 65537, 983189, 5, 65537, 983190, 5, 65537, 983191, 5, 65537, 983192, 5, 65537, 983193, 5, 65537, 983194, 5, 65537, 983195, 5, 65537, 983196, 5, 65537, 983197, 5, 65537, 983198, 5, 65537, 983199, 5, 65537, 983200, 5, 65537, 983201, 5, 65537, 983202, 5, 65537, 983203, 5, 65537, 983204, 5, 65537, 983205, 5, 65537, 983206, 5, 65537, 983207, 5, 65537, 983208, 5, 65537, 983209, 5, 65537, 983210, 5, 65537, 983211, 5, 65537, 983212, 5, 65537, 983213, 5, 65537, 983214, 5, 65537, 983215, 5, 65537, 983216, 5, 65537, 983217, 5, 65537, 983218, 5, 65537, 983219, 5, 65537, 983220, 5, 65540, 983221, 5, 2, 1114105, 5, 65536, 1114106, 5, 65537, 1114107, 5, 65537, 1114108, 5, 65537, 1114109, 5, 65537, 1114110, 5, 65537, 1114111, 5, 65537, 1048576, 5, 65537, 1048577, 5, 65537, 1048578, 5, 65537, 1048579, 5, 65537, 1048580, 5, 65537, 1048581, 5, 65537, 1048582, 5, 65537, 1048583, 5, 65537, 1048584, 5, 65537, 1048585, 5, 65537, 1048586, 5, 65538, 1048588, 5, 65536, 1048589, 5, 65537, 1048590, 5, 65537, 1048591, 5, 65538, 1048593, 5, 65536, 1048594, 5, 65537, 1048595, 5, 65537, 1048596, 5, 65538, 1048598, 5, 65536, 1048599, 5, 65537, 1048600, 5, 65537, 1048601, 5, 65537, 1048602, 5, 65537, 1048603, 5, 65537, 1048604, 5, 65537, 1048605, 5, 65537, 1048606, 5, 65537, 1048607, 5, 65537, 1048608, 5, 65537, 1048609, 5, 65537, 1048610, 5, 65537, 1048611, 5, 65537, 1048612, 5, 65537, 1048613, 5, 65537, 1048614, 5, 65537, 1048615, 5, 65537, 1048616, 5, 65537, 1048617, 5, 65537, 1048618, 5, 65537, 1048619, 5, 65537, 1048620, 5, 65537, 1048621, 5, 65537, 1048622, 5, 65537, 1048623, 5, 65537, 1048624, 5, 65537, 1048625, 5, 65537, 1048626, 5, 65538, 1048637, 5, 65536, 1048638, 5, 65537, 1048639, 5, 65537, 1048640, 5, 65537, 1048641, 5, 65537, 1048642, 5, 65537, 1048643, 5, 65537, 1048644, 5, 65537, 1048645, 5, 65537, 1048646, 5, 65537, 1048647, 5, 65537, 1048648, 5, 65537, 1048649, 5, 65537, 1048650, 5, 65537, 1048651, 5, 65537, 1048652, 5, 65537, 1048653, 5, 65537, 1048654, 5, 65537, 1048655, 5, 65537, 1048656, 5, 65537, 1048657, 5, 65537, 1048658, 5, 65537, 1048659, 5, 65537, 1048660, 5, 65537, 1048661, 5, 65537, 1048662, 5, 65537, 1048663, 5, 65537, 1048664, 5, 65537, 1048665, 5, 65537, 1048666, 5, 65537, 1048667, 5, 65537, 1048668, 5, 65537, 1048669, 5, 65537, 1048670, 5, 65537, 1048671, 5, 65537, 1048672, 5, 65537, 1048673, 5, 65537, 1048674, 5, 65537, 1048675, 5, 65537, 1048676, 5, 65537, 1048677, 5, 65537, 1048678, 5, 65537, 1048679, 5, 65537, 1048680, 5, 65537, 1048681, 5, 65537, 1048682, 5, 65537, 1048683, 5, 65537, 1048684, 5, 65537, 1048685, 5, 65537, 1048686, 5, 65537, 1048687, 5, 65537, 1048688, 5, 65537, 1048689, 5, 65537, 1048690, 5, 65537, 1048691, 5, 65537, 1048692, 5, 65537, 1048693, 5, 65537, 1048694, 5, 65537, 1048695, 5, 65537, 1048696, 5, 65537, 1048697, 5, 65537, 1048698, 5, 65537, 1048699, 5, 65537, 1048700, 5, 65537, 1048701, 5, 65537, 1048702, 5, 65537, 1048703, 5, 65537, 1048704, 5, 65537, 1048705, 5, 65537, 1048706, 5, 65537, 1048707, 5, 65537, 1048708, 5, 65537, 1048709, 5, 65537, 1048710, 5, 65537, 1048711, 5, 65537, 1048712, 5, 65537, 1048713, 5, 65537, 1048714, 5, 65537, 1048715, 5, 65537, 1048716, 5, 65537, 1048717, 5, 65537, 1048718, 5, 65537, 1048719, 5, 65537, 1048720, 5, 65537, 1048721, 5, 65537, 1048722, 5, 65537, 1048723, 5, 65537, 1048724, 5, 65537, 1048725, 5, 65537, 1048726, 5, 65537, 1048727, 5, 65537, 1048728, 5, 65537, 1048729, 5, 65537, 1048730, 5, 65537, 1048731, 5, 65537, 1048732, 5, 65537, 1048733, 5, 65537, 1048734, 5, 65537, 1048735, 5, 65537, 1048736, 5, 65537, 1048737, 5, 65537, 1048738, 5, 65537, 1048739, 5, 65537, 1048740, 5, 65537, 1048741, 5, 65537, 1048742, 5, 65537, 1048743, 5, 65537, 1048744, 5, 65537, 1048745, 5, 65537, 1048746, 5, 65537, 1048747, 5, 65537, 1048748, 5, 65537, 1048749, 5, 65537, 1048750, 5, 65537, 1048751, 5, 65537, 1048752, 5, 65537, 1048753, 5, 65537, 1048754, 5, 65537, 1048755, 5, 65537, 1048756, 5, 65537, 1048757, 5, 65538, 1179641, 5, 131072, 1179642, 5, 131073, 1179643, 5, 131073, 1179644, 5, 131073, 1179645, 5, 131073, 1179646, 5, 131073, 1179647, 5, 131073, 1114112, 5, 131073, 1114113, 5, 131073, 1114114, 5, 131073, 1114115, 5, 131073, 1114116, 5, 131073, 1114117, 5, 131073, 1114118, 5, 131073, 1114119, 5, 131073, 1114120, 5, 131073, 1114121, 5, 131073, 1114122, 5, 131074, 1114124, 5, 131072, 1114125, 5, 131073, 1114126, 5, 131073, 1114127, 5, 131074, 1114129, 5, 131072, 1114130, 5, 131073, 1114131, 5, 131073, 1114132, 5, 131074, 1114134, 5, 131072, 1114135, 5, 131073, 1114136, 5, 131073, 1114137, 5, 131073, 1114138, 5, 131073, 1114139, 5, 131073, 1114140, 5, 131073, 1114141, 5, 131073, 1114142, 5, 131073, 1114143, 5, 131073, 1114144, 5, 131073, 1114145, 5, 131073, 1114146, 5, 131073, 1114147, 5, 131073, 1114148, 5, 131073, 1114149, 5, 131073, 1114150, 5, 131073, 1114151, 5, 131073, 1114152, 5, 131073, 1114153, 5, 131073, 1114154, 5, 131073, 1114155, 5, 131073, 1114156, 5, 131073, 1114157, 5, 131073, 1114158, 5, 131073, 1114159, 5, 131073, 1114160, 5, 131073, 1114161, 5, 131073, 1114162, 5, 131074, 1114173, 5, 131072, 1114174, 5, 131073, 1114175, 5, 131073, 1114176, 5, 131073, 1114177, 5, 131073, 1114178, 5, 131073, 1114179, 5, 131073, 1114180, 5, 131073, 1114181, 5, 131073, 1114182, 5, 131073, 1114183, 5, 131073, 1114184, 5, 131073, 1114185, 5, 131073, 1114186, 5, 131073, 1114187, 5, 131073, 1114188, 5, 131073, 1114189, 5, 131073, 1114190, 5, 131073, 1114191, 5, 131073, 1114192, 5, 131073, 1114193, 5, 131073, 1114194, 5, 131073, 1114195, 5, 131073, 1114196, 5, 131073, 1114197, 5, 131073, 1114198, 5, 131073, 1114199, 5, 131073, 1114200, 5, 131073, 1114201, 5, 131073, 1114202, 5, 131073, 1114203, 5, 131073, 1114204, 5, 131073, 1114205, 5, 131073, 1114206, 5, 131073, 1114207, 5, 131073, 1114208, 5, 131073, 1114209, 5, 131073, 1114210, 5, 131073, 1114211, 5, 131073, 1114212, 5, 131073, 1114213, 5, 131073, 1114214, 5, 131073, 1114215, 5, 131073, 1114216, 5, 131073, 1114217, 5, 131073, 1114218, 5, 131073, 1114219, 5, 131073, 1114220, 5, 131073, 1114221, 5, 131073, 1114222, 5, 131073, 1114223, 5, 131073, 1114224, 5, 131073, 1114225, 5, 131073, 1114226, 5, 131073, 1114227, 5, 131073, 1114228, 5, 131073, 1114229, 5, 131073, 1114230, 5, 131073, 1114231, 5, 131073, 1114232, 5, 131073, 1114233, 5, 131073, 1114234, 5, 131073, 1114235, 5, 131073, 1114236, 5, 131073, 1114237, 5, 131073, 1114238, 5, 131073, 1114239, 5, 131073, 1114240, 5, 131073, 1114241, 5, 131073, 1114242, 5, 131073, 1114243, 5, 131073, 1114244, 5, 131073, 1114245, 5, 131073, 1114246, 5, 131073, 1114247, 5, 131073, 1114248, 5, 131073, 1114249, 5, 131073, 1114250, 5, 131073, 1114251, 5, 131073, 1114252, 5, 131073, 1114253, 5, 131073, 1114254, 5, 131073, 1114255, 5, 131073, 1114256, 5, 131073, 1114257, 5, 131073, 1114258, 5, 131073, 1114259, 5, 131073, 1114260, 5, 131073, 1114261, 5, 131073, 1114262, 5, 131073, 1114263, 5, 131073, 1114264, 5, 131073, 1114265, 5, 131073, 1114266, 5, 131073, 1114267, 5, 131073, 1114268, 5, 131073, 1114269, 5, 131073, 1114270, 5, 131073, 1114271, 5, 131073, 1114272, 5, 131073, 1114273, 5, 131073, 1114274, 5, 131073, 1114275, 5, 131073, 1114276, 5, 131073, 1114277, 5, 131073, 1114278, 5, 131073, 1114279, 5, 131073, 1114280, 5, 131073, 1114281, 5, 131073, 1114282, 5, 131073, 1114283, 5, 131073, 1114284, 5, 131073, 1114285, 5, 131073, 1114286, 5, 131073, 1114287, 5, 131073, 1114288, 5, 131073, 1114289, 5, 131073, 1114290, 5, 131073, 1114291, 5, 131073, 1114292, 5, 131073, 1114293, 5, 131074 )
 script = ExtResource( 9 )
-__meta__ = {
-"_editor_description_": "Default tilemap node for all levels. Loads a specific TileSet resource with all tiles defined for later use"
-}
 
-[node name="@ChainedCrate@104" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 10 )]
+[node name="@ChainedCrate@104" parent="GameWorld/Geometry" instance=ExtResource( 10 )]
 position = Vector2( 188, 108 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = false
 
-[node name="@ChainedCrate@105" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 10 )]
+[node name="@ChainedCrate@105" parent="GameWorld/Geometry" instance=ExtResource( 10 )]
 position = Vector2( 196, 108 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = false
 
-[node name="@SpikeHazard@108" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
+[node name="@SpikeHazard@108" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
 position = Vector2( 300, 108 )
-script = ExtResource( 15 )
 
-[node name="SpikeHazard" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
+[node name="SpikeHazard" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
 position = Vector2( 308, 108 )
-script = ExtResource( 15 )
 
-[node name="LaunchPad" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 16 )]
+[node name="LaunchPad" parent="GameWorld/Geometry" instance=ExtResource( 16 )]
 position = Vector2( 980, 108 )
-script = ExtResource( 17 )
 
-[node name="@Crate@118" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@118" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 2356, 84 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@126" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@126" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1036, 12 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@129" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@129" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1044, 12 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@130" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@130" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1052, 12 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@131" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@131" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1060, 12 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@132" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@132" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1068, 12 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@136" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@136" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1068, 20 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@137" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@137" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1060, 20 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@138" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@138" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1052, 20 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@139" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@139" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1044, 20 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@140" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@140" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1036, 20 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@SpikeHazard@149" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
+[node name="@SpikeHazard@149" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
 position = Vector2( 1116, 108 )
-script = ExtResource( 15 )
 
-[node name="@SpikeHazard@150" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
+[node name="@SpikeHazard@150" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
 position = Vector2( 1124, 108 )
-script = ExtResource( 15 )
 
-[node name="Crate" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="Crate" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 444, 100 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@90" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@90" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 460, 100 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@92" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@92" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 428, 100 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@SwordCrate@94" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 19 )]
+[node name="@SwordCrate@94" parent="GameWorld/Geometry" instance=ExtResource( 19 )]
 position = Vector2( 444, 76 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 20 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@95" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@95" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 436, 76 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@96" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@96" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 452, 76 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@SpikeHazard@98" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
+[node name="@SpikeHazard@98" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
 position = Vector2( 1188, 44 )
-script = ExtResource( 15 )
 
-[node name="@SpikeHazard@99" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
+[node name="@SpikeHazard@99" parent="GameWorld/Geometry" instance=ExtResource( 14 )]
 position = Vector2( 1180, 44 )
-script = ExtResource( 15 )
 
-[node name="@Crate@117" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@117" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1268, 60 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@118" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@118" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1268, 68 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@119" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@119" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1276, 68 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@120" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@120" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1284, 68 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@121" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@121" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1284, 60 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@122" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@122" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1276, 60 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@123" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@123" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1292, 60 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@124" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@124" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1292, 68 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@125" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@125" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1052, 52 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@126" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@126" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1044, 52 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@127" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@127" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1036, 52 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="@Crate@129" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
+[node name="@Crate@129" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1068, 52 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 12 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
-[node name="BlasterCrate" type="StaticBody2D" parent="GameWorld/Geometry" instance=ExtResource( 21 )]
+[node name="BlasterCrate" parent="GameWorld/Geometry" instance=ExtResource( 21 )]
 position = Vector2( 1060, 52 )
-collision_mask = 0
-script = ExtResource( 11 )
-drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
-__containment_scene = ExtResource( 22 )
-__break_sound = ExtResource( 13 )
-__let_player_kick_to_open = true
 
 [node name="EntityPool" type="Node2D" parent="GameWorld"]
 __meta__ = {
 "_editor_description_": "This node holds all the active game objects. The parent GameWorld node manages the objects in this node"
 }
 
-[node name="Player" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
+[node name="Player" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( -11, 96 )
-z_index = 1
-collision_layer = 4
-script = ExtResource( 24 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
 is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = false
-air_acceleration = 250.0
 
-[node name="FloatingScrap" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="FloatingScrap" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 116, 100 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@93" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@93" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 108, 100 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@94" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@94" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 108, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@95" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@95" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 108, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@96" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@96" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 116, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@97" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@97" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 116, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@98" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@98" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 148, 100 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@99" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@99" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 148, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@100" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@100" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 148, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@101" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@101" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 156, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@102" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@102" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 156, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@103" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@103" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 156, 100 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="Rodder" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
+[node name="Rodder" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 220, 100 )
-collision_layer = 0
-script = ExtResource( 29 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = true
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 32.0
-can_be_knocked_back = true
-detect_player_on_visible = true
-__death_sound = ExtResource( 30 )
 
-[node name="@FloatingScrap@109" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@109" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 292, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@110" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@110" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 292, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@111" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@111" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 292, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@112" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@112" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 300, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@113" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@113" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 300, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@114" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@114" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 300, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@115" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@115" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 308, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@116" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@116" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 316, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@117" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@117" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 316, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@118" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@118" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 308, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@119" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@119" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 308, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@120" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@120" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 316, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@Rodder@128" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
+[node name="@Rodder@128" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 636, 60 )
-collision_layer = 0
-script = ExtResource( 29 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = true
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 32.0
-can_be_knocked_back = true
-detect_player_on_visible = true
-__death_sound = ExtResource( 30 )
 
-[node name="@FloatingScrap@129" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@129" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 644, 68 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@130" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@130" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 652, 68 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@131" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@131" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 660, 68 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@132" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@132" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 668, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@133" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@133" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 676, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@134" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@134" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 684, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@135" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@135" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 692, 100 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@137" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@137" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 700, 108 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@138" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@138" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 708, 108 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="BoomCrawler" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
+[node name="BoomCrawler" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 796, 108 )
-collision_layer = 0
-script = ExtResource( 29 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = true
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5
-can_be_knocked_back = true
-detect_player_on_visible = false
-__death_sound = null
 
-[node name="@BoomCrawler@146" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
+[node name="@BoomCrawler@146" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 940, 52 )
-collision_layer = 0
-script = ExtResource( 29 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = true
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5
-can_be_knocked_back = true
-detect_player_on_visible = false
-__death_sound = null
 
-[node name="@FloatingScrap@149" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@149" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 980, 44 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@150" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@150" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 972, 36 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@151" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@151" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 980, 36 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@152" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@152" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 972, 44 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@153" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@153" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 988, 36 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@154" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@154" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 988, 44 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@Rodder@148" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
+[node name="@Rodder@148" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 1172, 100 )
-collision_layer = 0
-script = ExtResource( 29 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = true
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 32.0
-can_be_knocked_back = true
-detect_player_on_visible = true
-__death_sound = ExtResource( 30 )
 
-[node name="@FloatingScrap@161" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@161" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1116, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@162" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@162" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1124, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@163" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@163" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1116, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@165" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@165" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1124, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@169" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@169" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1116, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@170" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@170" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1124, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@171" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@171" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1108, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@172" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@172" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1108, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@173" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@173" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1108, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@174" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@174" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1132, 76 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@175" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@175" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1132, 84 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@FloatingScrap@176" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
+[node name="@FloatingScrap@176" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1132, 92 )
-collision_layer = 0
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
-amount_per_collect = 1
-__collect_sound = ExtResource( 27 )
 
-[node name="@BoomCrawler@97" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
+[node name="@BoomCrawler@97" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 1276, 108 )
-collision_layer = 0
-script = ExtResource( 29 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 2
-is_gravity_enabled = true
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5
-can_be_knocked_back = true
-detect_player_on_visible = false
-__death_sound = null
 
-[node name="@SuperScrap@108" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 32 )]
+[node name="@SuperScrap@108" parent="GameWorld/EntityPool" instance=ExtResource( 32 )]
 position = Vector2( 1220, 36 )
-collision_layer = 0
-script = ExtResource( 33 )
-__meta__ = {
-"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
-MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
-registered in the next physics process call."
-}
-collision_mode = 0
-is_gravity_enabled = false
-is_internal_collision_func_enabled = true
-gravity = 400
-stop_on_slope = true
-__remove_when_entity_pool_cleared = true
-__disappear_on_pickup = true
-__disappear_on_timeout = false
 
-[node name="ScrapHoverText" type="Label" parent="GameWorld" instance=ExtResource( 34 )]
+[node name="ScrapHoverText" parent="GameWorld" instance=ExtResource( 34 )]
 visible = false
-margin_bottom = 9.0
 custom_styles/normal = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
-script = ExtResource( 36 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="WeaponHoverText" type="Label" parent="GameWorld" instance=ExtResource( 34 )]
+[node name="WeaponHoverText" parent="GameWorld" instance=ExtResource( 34 )]
 visible = false
-margin_bottom = 9.0
 custom_styles/normal = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
-script = ExtResource( 36 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EscapeArea" type="Area2D" parent="GameWorld"]
 position = Vector2( 8, 72 )
@@ -1695,13 +416,11 @@ position = Vector2( -16, 0 )
 shape = SubResource( 4 )
 disabled = true
 
-[node name="ArrowSprite" type="AnimatedSprite" parent="GameWorld/EscapeArea" instance=ExtResource( 37 )]
+[node name="ArrowSprite" parent="GameWorld/EscapeArea" instance=ExtResource( 37 )]
 visible = false
 position = Vector2( 8, 24 )
 rotation = 1.5708
 frames = SubResource( 7 )
-frame = 1
-playing = true
 
 [node name="SoundPool" type="Node" parent="GameWorld"]
 
@@ -1716,11 +435,9 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/SecretEscapePoint"]
 shape = SubResource( 8 )
 
-[node name="ArrowSprite" type="AnimatedSprite" parent="GameWorld/SecretEscapePoint" instance=ExtResource( 37 )]
+[node name="ArrowSprite" parent="GameWorld/SecretEscapePoint" instance=ExtResource( 37 )]
 position = Vector2( 0, -24 )
 frames = SubResource( 7 )
-frame = 1
-playing = true
 
 [node name="CheckPoint" type="Position2D" parent="."]
 position = Vector2( 2280, 108 )
@@ -1733,12 +450,8 @@ __meta__ = {
 }
 
 [connection signal="activated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_activated"]
-[connection signal="completed" from="GameWorld/Geometry/BombSwitch" to="GameWorld/Geometry/BombSwitch" method="_on_BombSwitch_completed"]
 [connection signal="completion_transition_over" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_completion_transition_over"]
 [connection signal="detonated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_detonated"]
-[connection signal="player_detected" from="GameWorld/EntityPool/BoomCrawler" to="GameWorld/EntityPool/BoomCrawler/EnemyFSM/BoomCrawlerWalkState" method="_on_BoomCrawler_player_detected"]
-[connection signal="player_detected" from="GameWorld/EntityPool/@BoomCrawler@146" to="GameWorld/EntityPool/@BoomCrawler@146/EnemyFSM/BoomCrawlerWalkState" method="_on_BoomCrawler_player_detected"]
-[connection signal="player_detected" from="GameWorld/EntityPool/@BoomCrawler@97" to="GameWorld/EntityPool/@BoomCrawler@97/EnemyFSM/BoomCrawlerWalkState" method="_on_BoomCrawler_player_detected"]
 [connection signal="display_off" from="GameWorld/ScrapHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
 [connection signal="display_off" from="GameWorld/WeaponHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
 [connection signal="body_entered" from="GameWorld/EscapeArea" to="." method="_on_EscapeArea_body_entered"]
