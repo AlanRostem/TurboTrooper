@@ -45,15 +45,14 @@ func _player_collected(player):
 func _pick_up_condition(player):
 	return true
 
-func _on_PlayerDetectionArea_body_entered(body):
-	__player_found = body
-
 func _on_LifeTimer_timeout():
 	queue_free()
 
 func _on_FlashTimer_timeout():
 	visible = !visible
 
+func _on_PlayerDetectionArea_area_entered(area):
+		__player_found = area.get_parent()
 
-func _on_PlayerDetectionArea_body_exited(body):
-	__player_found = null
+func _on_PlayerDetectionArea_area_exited(area):
+		__player_found = null

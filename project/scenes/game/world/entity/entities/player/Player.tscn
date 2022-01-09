@@ -175,6 +175,14 @@ position = Vector2( 3, -3 )
 enabled = true
 cast_to = Vector2( 0, -8 )
 
+[node name="CollectArea" type="Area2D" parent="." index="12"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollectArea" index="0"]
+position = Vector2( 0, -4 )
+shape = SubResource( 2 )
+
 [connection signal="timeout" from="FlashingTimer" to="." method="_on_FlashingTimer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
 [connection signal="timeout" from="CrateOpeningTimer" to="." method="_on_CrateOpeningTimer_timeout"]
