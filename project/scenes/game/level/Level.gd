@@ -25,6 +25,9 @@ func _ready():
 	else:
 		player_node.state_machine.transition_to("PlayerEnterLevelState")
 	
+func get_player_node():
+	return $GameWorld/EntityPool/Player
+	
 func get_theme_enum():
 	return __theme
 	

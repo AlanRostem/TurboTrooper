@@ -19,7 +19,6 @@ func _on_AnimatedSprite_animation_finished():
 	queue_free()
 
 func _on_OutHitBox_hit_dealt(hitbox):
-	print(hitbox.get_parent().name)
 	hitbox.take_hit(__out_hit_box, DAMAGE, {}, HealthComponent.DAMAGE_TYPE_EXPLOSIVE)
 
 func _on_PlayerFlingArea_body_entered(player):

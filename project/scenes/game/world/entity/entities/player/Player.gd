@@ -69,6 +69,9 @@ onready var __camera = $Camera2D
 
 var __controls_enabled = true
 
+func _ready():
+	parent_world.get_parent().player_node = self
+
 func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
