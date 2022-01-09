@@ -405,6 +405,25 @@ margin_top = 32.0
 margin_bottom = 40.0
 __type = 8
 
+[node name="TileButton8" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 24.0
+margin_bottom = 40.0
+__type = 9
+
+[node name="TileButton9" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 40.0
+margin_bottom = 40.0
+__type = 10
+
+[node name="TileButton10" parent="MenuLayer/Tiles/TileGrid" instance=ExtResource( 4 )]
+margin_top = 48.0
+margin_bottom = 56.0
+__type = 11
+
 [node name="FileDialog" type="FileDialog" parent="MenuLayer"]
 margin_left = 8.0
 margin_top = 32.0
