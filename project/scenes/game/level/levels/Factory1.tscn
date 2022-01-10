@@ -1,0 +1,202 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scenes/game/level/level_types/BombLevel.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/parallax/cave.png" type="Texture" id=3]
+[ext_resource path="res://scenes/game/world/objective/BombSwitch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/game/world/objective/BombSwitch.gd" type="Script" id=5]
+[ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/game/world/environment/CustomTileMap.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/resources/MainTileSet.tres" type="TileSet" id=8]
+[ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=9]
+[ext_resource path="res://scenes/game/world/entity/entities/player/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/game/world/entity/entities/player/Player.gd" type="Script" id=11]
+[ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/font/pixelsix00.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.gd" type="Script" id=14]
+[ext_resource path="res://scenes/game/world/objective/ArrowSprite.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/sprites/item/objective/arrow.png" type="Texture" id=16]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 13 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 72 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 72 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 16 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 72, 8 )
+
+[node name="Level" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 1 )
+__theme = 0
+
+[node name="GameWorld" type="Node2D" parent="."]
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "This node contains all world collision and an entity pool. Spawning/despawning of
+entities is managed by this node, but are attached to the entity pool node"
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="GameWorld"]
+scroll_offset = Vector2( 440, 0 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="GameWorld/ParallaxBackground"]
+position = Vector2( -40, 0 )
+motion_mirroring = Vector2( 160, 0 )
+
+[node name="Sprite" type="Sprite" parent="GameWorld/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Geometry" type="Node2D" parent="GameWorld"]
+
+[node name="BombSwitch" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 4 )]
+position = Vector2( 152, 104 )
+script = ExtResource( 5 )
+__completion_transition_time = 3.0
+__detonation_time = 15
+
+[node name="ShopArea" type="Node2D" parent="GameWorld/Geometry" instance=ExtResource( 6 )]
+position = Vector2( 112, 80 )
+
+[node name="CustomTileMap" type="TileMap" parent="GameWorld/Geometry" instance=ExtResource( 7 )]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 8, 8 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65529, 6, 0, 65530, 6, 1, 65531, 6, 2, 0, 0, 0, 131065, 6, 65536, 131066, 6, 65537, 131067, 6, 65538, 196601, 6, 65536, 196602, 6, 65537, 196603, 6, 65538, 262137, 6, 65536, 262138, 6, 65537, 262139, 6, 65538, 327673, 6, 65536, 327674, 6, 65537, 327675, 6, 65538, 393209, 6, 65536, 393210, 6, 65537, 393211, 6, 65538, 458745, 6, 65536, 458746, 6, 65537, 458747, 6, 65538, 458751, 0, 0, 524281, 6, 65536, 524282, 6, 65537, 524283, 6, 65538, 589817, 6, 65536, 589818, 6, 65537, 589819, 6, 65538, 655353, 6, 65536, 655354, 6, 65537, 655355, 6, 65538, 720889, 6, 65536, 720890, 6, 65537, 720891, 6, 65538, 786425, 6, 65536, 786426, 6, 65537, 786427, 6, 65538, 851961, 6, 65536, 851962, 6, 65537, 851963, 6, 65538, 917497, 6, 65536, 917498, 6, 65537, 917499, 6, 65538, 983033, 6, 65536, 983034, 6, 65537, 983035, 6, 131076, 983036, 6, 1, 983037, 6, 1, 983038, 6, 1, 983039, 6, 1, 917504, 6, 1, 917505, 6, 1, 917506, 6, 1, 917507, 6, 1, 917508, 6, 1, 917509, 6, 1, 917510, 6, 1, 917511, 6, 1, 917512, 6, 1, 917513, 6, 1, 917514, 6, 1, 917515, 6, 1, 917516, 6, 1, 917517, 6, 1, 917518, 6, 1, 917519, 6, 1, 917520, 6, 1, 917521, 6, 1, 917522, 6, 1, 917523, 6, 1, 917524, 6, 1, 917525, 6, 1, 917526, 6, 1, 917527, 6, 1, 917528, 6, 2, 1048569, 6, 65536, 1048570, 6, 65537, 1048571, 6, 65537, 1048572, 6, 65537, 1048573, 6, 65537, 1048574, 6, 65537, 1048575, 6, 65537, 983040, 6, 65537, 983041, 6, 65537, 983042, 6, 65537, 983043, 6, 65537, 983044, 6, 65537, 983045, 6, 65537, 983046, 6, 65537, 983047, 6, 65537, 983048, 6, 65537, 983049, 6, 65537, 983050, 6, 65537, 983051, 6, 65537, 983052, 6, 65537, 983053, 6, 65537, 983054, 6, 65537, 983055, 6, 65537, 983056, 6, 65537, 983057, 6, 65537, 983058, 6, 65537, 983059, 6, 65537, 983060, 6, 65537, 983061, 6, 65537, 983062, 6, 65537, 983063, 6, 65537, 983064, 6, 131076, 983065, 6, 2, 1114105, 6, 65536, 1114106, 6, 65537, 1114107, 6, 65537, 1114108, 6, 65537, 1114109, 6, 65537, 1114110, 6, 65537, 1114111, 6, 65537, 1048576, 6, 65537, 1048577, 6, 65537, 1048578, 6, 65537, 1048579, 6, 65537, 1048580, 6, 65537, 1048581, 6, 65537, 1048582, 6, 65537, 1048583, 6, 65537, 1048584, 6, 65537, 1048585, 6, 65537, 1048586, 6, 65537, 1048587, 6, 65537, 1048588, 6, 65537, 1048589, 6, 65537, 1048590, 6, 65537, 1048591, 6, 65537, 1048592, 6, 65537, 1048593, 6, 65537, 1048594, 6, 65537, 1048595, 6, 65537, 1048596, 6, 65537, 1048597, 6, 65537, 1048598, 6, 65537, 1048599, 6, 65537, 1048600, 6, 65537, 1048601, 6, 65538, 1179641, 6, 131072, 1179642, 6, 131073, 1179643, 6, 131073, 1179644, 6, 131073, 1179645, 6, 131073, 1179646, 6, 131073, 1179647, 6, 131073, 1114112, 6, 131073, 1114113, 6, 131073, 1114114, 6, 131073, 1114115, 6, 131073, 1114116, 6, 131073, 1114117, 6, 131073, 1114118, 6, 131073, 1114119, 6, 131073, 1114120, 6, 131073, 1114121, 6, 131073, 1114122, 6, 131073, 1114123, 6, 131073, 1114124, 6, 131073, 1114125, 6, 131073, 1114126, 6, 131073, 1114127, 6, 131073, 1114128, 6, 131073, 1114129, 6, 131073, 1114130, 6, 131073, 1114131, 6, 131073, 1114132, 6, 131073, 1114133, 6, 131073, 1114134, 6, 131073, 1114135, 6, 131073, 1114136, 6, 131073, 1114137, 6, 131074 )
+script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": "Default tilemap node for all levels. Loads a specific TileSet resource with all tiles defined for later use"
+}
+
+[node name="EntityPool" type="Node2D" parent="GameWorld"]
+__meta__ = {
+"_editor_description_": "This node holds all the active game objects. The parent GameWorld node manages the objects in this node"
+}
+
+[node name="Player" type="KinematicBody2D" parent="GameWorld/EntityPool" instance=ExtResource( 10 )]
+position = Vector2( -11, 96 )
+z_index = 1
+collision_layer = 4
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_description_": "Base class for moving entities. Its collision mode can be modified between 
+MOVE, SLIDE, and SNAP. Its velocity can be changed at any time but is only 
+registered in the next physics process call."
+}
+collision_mode = 2
+is_gravity_enabled = false
+is_internal_collision_func_enabled = true
+gravity = 400
+stop_on_slope = true
+__remove_when_entity_pool_cleared = false
+air_acceleration = 250.0
+
+[node name="ScrapHoverText" type="Label" parent="GameWorld" instance=ExtResource( 12 )]
+visible = false
+margin_bottom = 9.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponHoverText" type="Label" parent="GameWorld" instance=ExtResource( 12 )]
+visible = false
+margin_bottom = 9.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EscapeArea" type="Area2D" parent="GameWorld"]
+position = Vector2( 8, 72 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/EscapeArea"]
+position = Vector2( 8, 0 )
+shape = SubResource( 3 )
+
+[node name="Blockade" type="StaticBody2D" parent="GameWorld/EscapeArea"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/EscapeArea/Blockade"]
+position = Vector2( -16, 0 )
+shape = SubResource( 4 )
+disabled = true
+
+[node name="ArrowSprite" type="AnimatedSprite" parent="GameWorld/EscapeArea" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 8, 24 )
+rotation = 1.5708
+frames = SubResource( 7 )
+playing = true
+
+[node name="SoundPool" type="Node" parent="GameWorld"]
+
+[node name="SecretEscapePoint" type="Area2D" parent="GameWorld"]
+position = Vector2( 136, -32 )
+collision_layer = 0
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/SecretEscapePoint"]
+shape = SubResource( 8 )
+
+[node name="ArrowSprite" type="AnimatedSprite" parent="GameWorld/SecretEscapePoint" instance=ExtResource( 15 )]
+position = Vector2( 0, -24 )
+frames = SubResource( 7 )
+frame = 1
+playing = true
+
+[node name="CheckPoint" type="Position2D" parent="."]
+position = Vector2( 140, 104 )
+
+[node name="StartSeparation" type="ColorRect" parent="."]
+margin_left = -8.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="activated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_activated"]
+[connection signal="completed" from="GameWorld/Geometry/BombSwitch" to="GameWorld/Geometry/BombSwitch" method="_on_BombSwitch_completed"]
+[connection signal="completion_transition_over" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_completion_transition_over"]
+[connection signal="detonated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_detonated"]
+[connection signal="display_off" from="GameWorld/ScrapHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
+[connection signal="display_off" from="GameWorld/WeaponHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
+[connection signal="body_entered" from="GameWorld/EscapeArea" to="." method="_on_EscapeArea_body_entered"]
+[connection signal="body_entered" from="GameWorld/SecretEscapePoint" to="." method="_on_SecretEscapePoint_body_entered"]
