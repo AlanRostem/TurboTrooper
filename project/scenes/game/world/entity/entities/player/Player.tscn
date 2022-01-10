@@ -41,7 +41,6 @@ collision_layer = 4
 script = ExtResource( 3 )
 collision_mode = 2
 __remove_when_entity_pool_cleared = false
-air_acceleration = 250.0
 
 [node name="FlashingTimer" type="Timer" parent="." index="0"]
 wait_time = 0.1
@@ -130,7 +129,9 @@ stream = ExtResource( 17 )
 [node name="Camera2D" type="Camera2D" parent="." index="8"]
 current = true
 drag_margin_h_enabled = true
+drag_margin_left = 0.1
 drag_margin_top = 1.0
+drag_margin_right = 0.1
 drag_margin_bottom = 1.0
 
 [node name="PlayerStats" type="Node2D" parent="." index="9"]

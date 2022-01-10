@@ -8,10 +8,10 @@ const RAM_SLIDE_DAMAGE = 8
 
 var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
 
-export var air_acceleration: float
+var air_acceleration = 250
 
 var walk_transition_weight = .4
-var max_walk_speed = 55
+var max_walk_speed = 50
 var walk_friction = .4
 
 var dash_transition_weight = .05
@@ -76,6 +76,9 @@ func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
 	
+func set_camera_focus_direction(dir_int):
+	pass
+
 func set_camera_bounds(bounds: Rect2):
 	__camera.limit_left = clamp(bounds.position.x, 0, INF);
 	__camera.limit_top = 0;
@@ -104,7 +107,7 @@ func sneak(direction: int, delta):
 	moving_direction = direction
 	
 func air_move(direction: int, delta: float):
-	accelerate_x(air_acceleration * direction, max_walk_speed, delta)
+	accelerate_x(air_acceleration * direction, max_dash_speed, delta)
 	moving_direction = direction
 	
 func negate_slide(direction: int, delta: float):

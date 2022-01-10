@@ -4,7 +4,7 @@ onready var __slide_sound = $SlideSound
 
 func movement_update(delta):
 	if player.is_roof_above(): 
-		if player.is_on_wall():
+		if player.is_on_wall() or !player.is_moving_too_fast(player.max_walk_speed):
 			parent_state_machine.transition_to("PlayerCrouchState")
 		return
 
