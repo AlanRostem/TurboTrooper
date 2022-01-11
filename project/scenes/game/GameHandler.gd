@@ -93,21 +93,31 @@ func change_level(index):
 	__has_check_point = false
 	if __current_level != null:
 		__saved_player_stats = __current_level.player_node.stats.get_data()
+		if __current_level.player_node.stats.get_health() <= PlayerStats.MAX_HEALTH:
+			__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
+	else:
+		__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	__saved_player_stats["checkpoint"] = null
-	__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	set_current_level(index)
 	
 	__level_intro_timer.start()
 	__color_rect.visible =  true
 
 func reset_current_level():
+	if __current_level.player_node.stats.get_health() <= PlayerStats.MAX_HEALTH:
+		__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
+	else: __saved_player_stats["life"] = __current_level.player_node.stats.get_health()
 	set_current_level(__level_index)
+
 
 func start_reset_sequence(died = false):
 	__reset_timer.start()
 	if died:
 		__current_level_theme.stop()
-		__saved_player_stats["weapon"] = -1
+		if !has_check_point():
+			__saved_player_stats["weapon"] = -1
+		if __current_level.player_node.stats.get_health() <= PlayerStats.MAX_HEALTH:
+			__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	
 func __load_current_level_theme(theme_enum):
 	if __current_level_theme_enum == theme_enum: return

@@ -264,6 +264,8 @@ func die():
 	parent_world.get_parent_level().game_handler.start_reset_sequence(true)
 	parent_world.hide_and_remove_entities()
 	parent_world.play_sound(__death_sound)
+	if stats.get_health() > PlayerStats.MAX_HEALTH:
+		stats.set_health(stats.get_health() - 1)
 	__is_immortal = true
 
 func _on_InvincibilityTimer_timeout():
