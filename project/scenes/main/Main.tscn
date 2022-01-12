@@ -15,15 +15,29 @@ __meta__ = {
 "_editor_description_": "Main application node. All real-time code runs through this node."
 }
 
-[node name="MainMenu" parent="." instance=ExtResource( 2 )]
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_top = 160.0
+margin_right = 160.0
+margin_bottom = 304.0
+rect_rotation = -90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="StartLabel" parent="MainMenu" index="1"]
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 160, 144 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="MainMenu" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
+
+[node name="StartLabel" parent="ViewportContainer/Viewport/MainMenu" index="1"]
 margin_left = 38.0
 margin_top = 80.0
 margin_right = 122.0
 margin_bottom = 90.0
 
-[node name="GameHandler" type="Node2D" parent="."]
+[node name="GameHandler" type="Node2D" parent="ViewportContainer/Viewport"]
 pause_mode = 2
 visible = false
 script = ExtResource( 1 )
@@ -35,13 +49,13 @@ that in mind, all user interface, such as the pause menu and HUD, will be handle
 the playable nodes themselves (such as a level and the level select world)"
 }
 
-[node name="LevelList" parent="GameHandler" instance=ExtResource( 5 )]
+[node name="LevelList" parent="ViewportContainer/Viewport/GameHandler" instance=ExtResource( 5 )]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="GameHandler"]
+[node name="CanvasLayer" type="CanvasLayer" parent="ViewportContainer/Viewport/GameHandler"]
 
-[node name="HUD" parent="GameHandler/CanvasLayer" instance=ExtResource( 3 )]
+[node name="HUD" parent="ViewportContainer/Viewport/GameHandler/CanvasLayer" instance=ExtResource( 3 )]
 
-[node name="ColorRect" type="ColorRect" parent="GameHandler/CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="ViewportContainer/Viewport/GameHandler/CanvasLayer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,28 +65,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseabilityTimer" type="Timer" parent="GameHandler"]
+[node name="PauseabilityTimer" type="Timer" parent="ViewportContainer/Viewport/GameHandler"]
 one_shot = true
 
-[node name="LevelIntroTimer" type="Timer" parent="GameHandler"]
+[node name="LevelIntroTimer" type="Timer" parent="ViewportContainer/Viewport/GameHandler"]
 wait_time = 0.7
 one_shot = true
 
-[node name="LevelResetTimer" type="Timer" parent="GameHandler"]
+[node name="LevelResetTimer" type="Timer" parent="ViewportContainer/Viewport/GameHandler"]
 wait_time = 4.2
 one_shot = true
 
-[node name="NextLevelTransitionTimer" type="Timer" parent="GameHandler"]
+[node name="NextLevelTransitionTimer" type="Timer" parent="ViewportContainer/Viewport/GameHandler"]
 one_shot = true
 
-[node name="WinThemePlayer" type="AudioStreamPlayer" parent="GameHandler"]
+[node name="WinThemePlayer" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/GameHandler"]
 stream = ExtResource( 7 )
 
-[connection signal="game_started" from="MainMenu" to="GameHandler" method="_on_MainMenu_game_started"]
-[connection signal="game_completed" from="GameHandler" to="MainMenu" method="_on_GameHandler_game_completed"]
-[connection signal="timeout" from="GameHandler/PauseabilityTimer" to="GameHandler" method="_on_PauseabilityTimer_timeout"]
-[connection signal="timeout" from="GameHandler/LevelIntroTimer" to="GameHandler" method="_on_LevelIntroTimer_timeout"]
-[connection signal="timeout" from="GameHandler/LevelResetTimer" to="GameHandler" method="_on_LevelResetTimer_timeout"]
-[connection signal="timeout" from="GameHandler/NextLevelTransitionTimer" to="GameHandler" method="_on_NextLevelTransitionTimer_timeout"]
+[connection signal="game_started" from="ViewportContainer/Viewport/MainMenu" to="ViewportContainer/Viewport/GameHandler" method="_on_MainMenu_game_started"]
+[connection signal="game_completed" from="ViewportContainer/Viewport/GameHandler" to="ViewportContainer/Viewport/MainMenu" method="_on_GameHandler_game_completed"]
+[connection signal="timeout" from="ViewportContainer/Viewport/GameHandler/PauseabilityTimer" to="ViewportContainer/Viewport/GameHandler" method="_on_PauseabilityTimer_timeout"]
+[connection signal="timeout" from="ViewportContainer/Viewport/GameHandler/LevelIntroTimer" to="ViewportContainer/Viewport/GameHandler" method="_on_LevelIntroTimer_timeout"]
+[connection signal="timeout" from="ViewportContainer/Viewport/GameHandler/LevelResetTimer" to="ViewportContainer/Viewport/GameHandler" method="_on_LevelResetTimer_timeout"]
+[connection signal="timeout" from="ViewportContainer/Viewport/GameHandler/NextLevelTransitionTimer" to="ViewportContainer/Viewport/GameHandler" method="_on_NextLevelTransitionTimer_timeout"]
 
-[editable path="MainMenu"]
+[editable path="ViewportContainer/Viewport/MainMenu"]
