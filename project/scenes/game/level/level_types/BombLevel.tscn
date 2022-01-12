@@ -62,13 +62,6 @@ shape = SubResource( 3 )
 [node name="ArrowSprite" parent="GameWorld/SecretEscapePoint" index="1" instance=ExtResource( 4 )]
 position = Vector2( 0, -24 )
 
-[node name="StartSeparation" type="ColorRect" parent="." index="2"]
-margin_left = -8.0
-margin_bottom = 144.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="activated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_activated"]
 [connection signal="completion_transition_over" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_completion_transition_over"]
 [connection signal="detonated" from="GameWorld/Geometry/BombSwitch" to="." method="_on_BombSwitch_detonated"]
