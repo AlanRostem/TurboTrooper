@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/game/level/management/LevelList.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/level/management/LevelListItem.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/level/levels/Cave1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/game/level/levels/Lab1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/game/level/levels/Factory1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/level/levels/TrainingLevel.tscn" type="PackedScene" id=6]
 
 [node name="LevelList" type="Node"]
 script = ExtResource( 1 )
+
+[node name="Factory1" parent="." instance=ExtResource( 2 )]
+level_scene = ExtResource( 5 )
 
 [node name="TrainingLevel" parent="." instance=ExtResource( 2 )]
 level_scene = ExtResource( 6 )
