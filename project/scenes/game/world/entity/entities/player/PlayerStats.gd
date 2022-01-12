@@ -43,6 +43,7 @@ onready var __rush_energy_recharge_timer = $RushEnergyRechargeTimer
 onready var __rush_energy_recharge_starting_delay_timer = $RushEnergyRechargeStartingDelayTimer
 onready var __damage_sound = $DamageSound
 
+export var __infinite_health = false
 
 func _ready():
 	if test_weapon_scene != null:
@@ -142,7 +143,8 @@ func get_scrap_count():
 
 func take_one_damage():
 	if __data["life"] == 0 or __player.is_invincible(): return
-	set_health(__data["life"] - 1)
+	if !__infinite_health:
+		set_health(__data["life"] - 1)
 	if __equipped_weapon != null:
 		__equipped_weapon.drop()
 		__player.set_sprite_frames(__default_player_sprite_frames)

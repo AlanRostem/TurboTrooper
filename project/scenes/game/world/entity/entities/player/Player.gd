@@ -8,10 +8,10 @@ const RAM_SLIDE_DAMAGE = 8
 
 var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
 
-export var air_acceleration: float
+var air_acceleration = 250
 
 var walk_transition_weight = .4
-var max_walk_speed = 55
+var max_walk_speed = 50
 var walk_friction = .4
 
 var dash_transition_weight = .05
@@ -45,6 +45,7 @@ var __can_move_on_ground = true
 var __is_opening_crate = false
 
 var __is_invincible = false
+var __is_immortal = false
 
 onready var __upper_body_shape: CollisionShape2D = $UpperBodyShape
 onready var __hit_box_shape = $InHitBox/CollisionShape2D
@@ -68,15 +69,24 @@ onready var __camera = $Camera2D
 
 var __controls_enabled = true
 
-#func _physics_process(delta):
-#	print(__dash_charge)
-#	print(get_velocity().x)
+func _ready():
+	parent_world.get_parent().player_node = self
+
+func _physics_process(delta):
+	if position.y > 144 + 24:
+		die()
 	
+func set_camera_focus_direction(dir_int):
+	pass
+
 func set_camera_bounds(bounds: Rect2):
 	__camera.limit_left = clamp(bounds.position.x, 0, INF);
-	__camera.limit_top = bounds.position.y;
+	__camera.limit_top = 0;
 	__camera.limit_right = bounds.size.x + bounds.position.x;
-	__camera.limit_bottom = bounds.size.y;
+	__camera.limit_bottom = 144;
+
+func become_immortal():
+	__is_immortal = true
 
 func set_controls_enabled(value):
 	__controls_enabled = value
@@ -97,7 +107,7 @@ func sneak(direction: int, delta):
 	moving_direction = direction
 	
 func air_move(direction: int, delta: float):
-	accelerate_x(air_acceleration * direction, max_walk_speed, delta)
+	accelerate_x(air_acceleration * direction, max_dash_speed, delta)
 	moving_direction = direction
 	
 func negate_slide(direction: int, delta: float):
@@ -249,11 +259,14 @@ func can_move_on_ground():
 	return __can_move_on_ground
 	
 func die():
+	if __is_immortal: return
 	state_machine.transition_to("PlayerDeathState")
-	parent_world.get_parent_level().start_reset_sequence()
+	parent_world.get_parent_level().game_handler.start_reset_sequence(true)
 	parent_world.hide_and_remove_entities()
-	parent_world.get_parent_level().stop_theme()
 	parent_world.play_sound(__death_sound)
+	if stats.get_health() > PlayerStats.MAX_HEALTH:
+		stats.set_health(stats.get_health() - 1)
+	__is_immortal = true
 
 func _on_InvincibilityTimer_timeout():
 	set_hit_box_enabled(true)

@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://scenes/game/world/environment/GeometryNode.gd"
 
 onready var __out_hit_box = $OutHitBox
 

@@ -3,7 +3,10 @@ extends "res://scenes/game/world/entity/entities/player/components/state_machine
 onready var __slide_sound = $SlideSound
 
 func movement_update(delta):
-	if player.is_roof_above(): return
+	if player.is_roof_above(): 
+		if player.is_on_wall() or !player.is_moving_too_fast(player.max_walk_speed):
+			parent_state_machine.transition_to("PlayerCrouchState")
+		return
 
 	var intended_dir = int(move_right) - int(move_left)
 	var move_dir = sign(player.get_velocity().x)

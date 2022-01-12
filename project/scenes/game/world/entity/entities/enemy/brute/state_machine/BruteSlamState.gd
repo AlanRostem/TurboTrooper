@@ -28,7 +28,7 @@ func _on_SlamTimer_timeout():
 	brute.set_recovering_from_slam(true)
 	var dir = brute.get_horizontal_player_detect_direction()
 	var location = brute.position + Vector2(dir * 12, -2)
-	brute.parent_world.spawn_entity_deferred(__blast_scene, location).dir = dir
+	brute.parent_world.spawn_entity_deferred(__blast_scene, location + Vector2.UP).dir = dir
 
 func _on_SlamDelayTimer_timeout():
 	brute.set_recovering_from_slam(false)

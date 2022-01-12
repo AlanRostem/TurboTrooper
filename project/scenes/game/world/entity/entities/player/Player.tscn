@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerLeaveLevelState.gd" type="Script" id=19]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerDeathState.gd" type="Script" id=20]
 [ext_resource path="res://assets/audio/sfx/player/player_take_damage.wav" type="AudioStream" id=21]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerLeaveLevelSecretState.gd" type="Script" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 2 )
@@ -40,7 +41,6 @@ collision_layer = 4
 script = ExtResource( 3 )
 collision_mode = 2
 __remove_when_entity_pool_cleared = false
-air_acceleration = 250.0
 
 [node name="FlashingTimer" type="Timer" parent="." index="0"]
 wait_time = 0.1
@@ -72,6 +72,7 @@ shape = SubResource( 2 )
 [node name="UpperBodyShape" type="CollisionShape2D" parent="." index="5"]
 position = Vector2( 0, -7 )
 shape = SubResource( 3 )
+one_way_collision_margin = 0.0
 
 [node name="BodyShape" parent="." index="6"]
 shape = SubResource( 4 )
@@ -82,41 +83,44 @@ init_state_on_ready = false
 [node name="PlayerDeathState" parent="PlayerFSM" index="0" instance=ExtResource( 5 )]
 script = ExtResource( 20 )
 
-[node name="PlayerLeaveLevelState" parent="PlayerFSM" index="1" instance=ExtResource( 5 )]
+[node name="PlayerLeaveLevelSecretState" parent="PlayerFSM" index="1" instance=ExtResource( 5 )]
+script = ExtResource( 22 )
+
+[node name="PlayerLeaveLevelState" parent="PlayerFSM" index="2" instance=ExtResource( 5 )]
 script = ExtResource( 19 )
 
-[node name="PlayerEnterLevelState" parent="PlayerFSM" index="2" instance=ExtResource( 5 )]
+[node name="PlayerEnterLevelState" parent="PlayerFSM" index="3" instance=ExtResource( 5 )]
 script = ExtResource( 18 )
 
 [node name="MoveTimer" type="Timer" parent="PlayerFSM/PlayerEnterLevelState" index="0"]
 one_shot = true
 
-[node name="PlayerIdleState" parent="PlayerFSM" index="3" instance=ExtResource( 5 )]
+[node name="PlayerIdleState" parent="PlayerFSM" index="4" instance=ExtResource( 5 )]
 script = ExtResource( 4 )
 is_grounded_state = true
 
-[node name="PlayerWalkState" parent="PlayerFSM" index="4" instance=ExtResource( 5 )]
+[node name="PlayerWalkState" parent="PlayerFSM" index="5" instance=ExtResource( 5 )]
 script = ExtResource( 12 )
 is_grounded_state = true
 
-[node name="PlayerRunState" parent="PlayerFSM" index="5" instance=ExtResource( 5 )]
+[node name="PlayerRunState" parent="PlayerFSM" index="6" instance=ExtResource( 5 )]
 script = ExtResource( 6 )
 is_grounded_state = true
 
 [node name="DustSpawnTimer" type="Timer" parent="PlayerFSM/PlayerRunState" index="0"]
 wait_time = 0.1
 
-[node name="PlayerAirBorneState" parent="PlayerFSM" index="6" instance=ExtResource( 5 )]
+[node name="PlayerAirBorneState" parent="PlayerFSM" index="7" instance=ExtResource( 5 )]
 script = ExtResource( 8 )
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerAirBorneState" index="0"]
 stream = ExtResource( 16 )
 
-[node name="PlayerCrouchState" parent="PlayerFSM" index="7" instance=ExtResource( 5 )]
+[node name="PlayerCrouchState" parent="PlayerFSM" index="8" instance=ExtResource( 5 )]
 script = ExtResource( 9 )
 is_grounded_state = true
 
-[node name="PlayerSlideState" parent="PlayerFSM" index="8" instance=ExtResource( 5 )]
+[node name="PlayerSlideState" parent="PlayerFSM" index="9" instance=ExtResource( 5 )]
 script = ExtResource( 10 )
 
 [node name="SlideSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerSlideState" index="0"]
@@ -125,7 +129,9 @@ stream = ExtResource( 17 )
 [node name="Camera2D" type="Camera2D" parent="." index="8"]
 current = true
 drag_margin_h_enabled = true
+drag_margin_left = 0.1
 drag_margin_top = 1.0
+drag_margin_right = 0.1
 drag_margin_bottom = 1.0
 
 [node name="PlayerStats" type="Node2D" parent="." index="9"]
@@ -146,8 +152,7 @@ material = ExtResource( 14 )
 use_parent_material = true
 position = Vector2( 0, -4 )
 frames = ExtResource( 7 )
-animation = "death"
-frame = 8
+animation = "idle"
 playing = true
 script = ExtResource( 11 )
 
@@ -169,6 +174,14 @@ cast_to = Vector2( 0, -8 )
 position = Vector2( 3, -3 )
 enabled = true
 cast_to = Vector2( 0, -8 )
+
+[node name="CollectArea" type="Area2D" parent="." index="12"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollectArea" index="0"]
+position = Vector2( 0, -4 )
+shape = SubResource( 2 )
 
 [connection signal="timeout" from="FlashingTimer" to="." method="_on_FlashingTimer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

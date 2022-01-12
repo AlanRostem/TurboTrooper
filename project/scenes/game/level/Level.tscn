@@ -1,61 +1,60 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scenes/game/world/GameWorld.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/world/environment/CustomTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=2]
 [ext_resource path="res://scenes/game/level/Level.gd" type="Script" id=3]
 [ext_resource path="res://scenes/game/world/entity/entities/player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/audio/music/normal_theme.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=8]
+[ext_resource path="res://assets/sprites/parallax/cave.png" type="Texture" id=9]
 
 [node name="Level" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 3 )
 
-[node name="Theme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-
-[node name="IntroTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
-[node name="ResetTimer" type="Timer" parent="."]
-wait_time = 4.2
-one_shot = true
-
-[node name="NextLevelTransitionTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+[node name="GameWorld" type="Node2D" parent="."]
+script = ExtResource( 8 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": "This node contains all world collision and an entity pool. Spawning/despawning of
+entities is managed by this node, but are attached to the entity pool node"
 }
 
-[node name="GameWorld" parent="." instance=ExtResource( 1 )]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="GameWorld"]
 
-[node name="CustomTileMap" parent="GameWorld/Geometry" index="0"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="GameWorld/ParallaxBackground"]
+motion_mirroring = Vector2( 160, 0 )
+
+[node name="Sprite" type="Sprite" parent="GameWorld/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="Geometry" type="Node2D" parent="GameWorld"]
+
+[node name="ShopArea" parent="GameWorld/Geometry" instance=ExtResource( 6 )]
+position = Vector2( 112, 80 )
+
+[node name="CustomTileMap" parent="GameWorld/Geometry" instance=ExtResource( 1 )]
 cell_size = Vector2( 8, 8 )
 script = ExtResource( 2 )
 
-[node name="Player" parent="GameWorld/EntityPool" index="0" instance=ExtResource( 4 )]
+[node name="EntityPool" type="Node2D" parent="GameWorld"]
+__meta__ = {
+"_editor_description_": "This node holds all the active game objects. The parent GameWorld node manages the objects in this node"
+}
+
+[node name="Player" parent="GameWorld/EntityPool" instance=ExtResource( 4 )]
 position = Vector2( 24, 88 )
 
-[node name="ScrapHoverText" parent="GameWorld" index="3"]
+[node name="ScrapHoverText" parent="GameWorld" instance=ExtResource( 7 )]
 visible = false
 
-[node name="WeaponHoverText" parent="GameWorld" index="4"]
+[node name="WeaponHoverText" parent="GameWorld" instance=ExtResource( 7 )]
 visible = false
+
+[node name="SoundPool" type="Node" parent="GameWorld"]
 
 [node name="CheckPoint" type="Position2D" parent="."]
 
-[connection signal="timeout" from="IntroTimer" to="." method="_on_IntroTimer_timeout"]
-[connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]
-[connection signal="timeout" from="NextLevelTransitionTimer" to="." method="_on_NextLeveTransitionTimer_timeout"]
-
-[editable path="GameWorld"]
+[connection signal="display_off" from="GameWorld/ScrapHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]
+[connection signal="display_off" from="GameWorld/WeaponHoverText" to="GameWorld" method="_on_ScrapHoverText_display_off"]

@@ -14,8 +14,9 @@ enum CollisionModes {
 export(CollisionModes) var collision_mode
 
 export var is_gravity_enabled = true
+export var is_internal_collision_func_enabled = true
 
-export var gravity = 400
+export var gravity = 400 
 
 export var stop_on_slope = true
 
@@ -106,7 +107,7 @@ func is_on_slope():
 func _physics_process(delta):
 	if is_gravity_enabled:
 		__velocity += __down_vector * gravity * delta
-	
+	if !is_internal_collision_func_enabled: return
 	match collision_mode:
 		CollisionModes.MOVE:
 			move_and_collide(__velocity * delta)

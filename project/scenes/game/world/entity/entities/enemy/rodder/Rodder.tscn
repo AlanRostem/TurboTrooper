@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rodder/state_machine/RodderState.tscn" type="PackedScene" id=2]
@@ -10,22 +10,33 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 7 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 9 )
+
 [node name="Rodder" instance=ExtResource( 1 )]
 collision_mode = 2
 player_detection_range_in_tiles = 32.0
 detect_player_on_visible = true
 
 [node name="BodyShape" parent="." index="0"]
+position = Vector2( 0, 5 )
 shape = SubResource( 1 )
 
+[node name="InHitBox" parent="." index="2"]
+position = Vector2( 0, 5 )
+
 [node name="BodyShape" type="CollisionShape2D" parent="InHitBox" index="0"]
-shape = SubResource( 1 )
+position = Vector2( 0, -2 )
+shape = SubResource( 2 )
+
+[node name="OutHitBox" parent="." index="3"]
+position = Vector2( 0, 5 )
 
 [node name="BodyShape" type="CollisionShape2D" parent="OutHitBox" index="0"]
 shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" parent="." index="4"]
-position = Vector2( -2.38419e-07, -0.5 )
+position = Vector2( 0, 4.5 )
 scale = Vector2( 0.4, 0.75 )
 
 [node name="EnemyFSM" parent="." index="5"]
@@ -44,10 +55,9 @@ script = ExtResource( 5 )
 wait_time = 0.67
 
 [node name="EnemySprite" parent="." index="6"]
-position = Vector2( 0, -9 )
+position = Vector2( 0, -4 )
 frames = ExtResource( 3 )
 animation = "walk"
-frame = 1
 playing = true
 script = ExtResource( 6 )
 

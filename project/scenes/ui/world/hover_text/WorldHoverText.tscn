@@ -4,18 +4,18 @@
 [ext_resource path="res://scenes/ui/world/hover_text/WorldHoverText.gd" type="Script" id=2]
 [ext_resource path="res://assets/font/pixelsix00.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 8
 font_data = ExtResource( 3 )
 
 [node name="WorldHoverText" instance=ExtResource( 1 )]
 margin_right = 0.0
 margin_bottom = 9.0
-custom_styles/normal = SubResource( 2 )
-custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = ""
 script = ExtResource( 2 )
 

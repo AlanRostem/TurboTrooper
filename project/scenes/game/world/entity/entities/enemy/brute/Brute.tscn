@@ -16,20 +16,27 @@ script = ExtResource( 6 )
 collision_mode = 2
 
 [node name="BodyShape" parent="." index="0"]
+position = Vector2( 0, -2 )
 shape = SubResource( 1 )
 
 [node name="HealthComponent" parent="." index="1"]
 max_health = 24
 __immunities = [ "energy" ]
 
+[node name="InHitBox" parent="." index="2"]
+position = Vector2( 0, -2 )
+
 [node name="BodyShape" type="CollisionShape2D" parent="InHitBox" index="0"]
 shape = SubResource( 1 )
+
+[node name="OutHitBox" parent="." index="3"]
+position = Vector2( 0, -2 )
 
 [node name="BodyShape" type="CollisionShape2D" parent="OutHitBox" index="0"]
 shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" parent="." index="4"]
-position = Vector2( 2.38419e-07, 0 )
+position = Vector2( 0, -2 )
 scale = Vector2( 0.5, 0.6 )
 
 [node name="EnemyFSM" parent="." index="5"]
@@ -50,7 +57,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="EnemySprite" parent="." index="6"]
-position = Vector2( 1, -10 )
+position = Vector2( 1, -12 )
 frames = ExtResource( 2 )
 animation = "idle_slam"
 frame = 1

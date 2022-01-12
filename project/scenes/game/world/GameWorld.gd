@@ -73,9 +73,13 @@ func spawn_entity(entity_scene, location):
 	entity.position = location
 	entity.parent_world = self
 	__entity_pool.add_child(entity)
-#	if entity is Player:
-#		assign_player_node(entity)
 	return entity
+	
+func add_geometry(scene, location):
+	var geometry = scene.instance()
+	geometry.position = location
+	__geometry.add_child(geometry)
+	return geometry
 	
 # Instance a node that inherits the base entity scene through a specified scene and
 # specify a relative location for the entity to be present. The node is then added as 
@@ -85,12 +89,16 @@ func spawn_entity_deferred(entity_scene, location):
 	entity.position = location
 	entity.parent_world = self
 	__entity_pool.call_deferred("add_child", entity)
-#	if entity is Player:
-#		assign_player_node(entity)
 	return entity
 
-# func move_entity_to_world(entity, world):
-#	pass
+func get_entity_pool():
+	return  __entity_pool
+	
+func get_geometry():
+	return __geometry
+
+func get_tile_map():
+	return __tile_map
 
 func show_effect_deferred(scene, location):
 	var effect = scene.instance()

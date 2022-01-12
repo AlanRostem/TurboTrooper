@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/world/entity/components/hit_box/HitBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/hazard/floating_spike_star.png" type="Texture" id=3]
+[ext_resource path="res://scenes/game/world/environment/hazards/MovingSpikeHazard.gd" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "disabled",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+custom_solver_bias = 1.0
+extents = Vector2( 6, 3 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 11 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 6, 6 )
+
+[node name="MovingSpikeHazard" instance=ExtResource( 1 )]
+collision_layer = 1
+collision_mask = 0
+script = ExtResource( 4 )
+is_gravity_enabled = false
+is_internal_collision_func_enabled = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+frames = SubResource( 4 )
+playing = true
+
+[node name="BodyShape" parent="." index="1"]
+shape = SubResource( 5 )
+disabled = true
+one_way_collision = true
+
+[node name="InHitBox" parent="." index="2" instance=ExtResource( 2 )]
+hit_box_action_type = 1
+__team = "enemy_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InHitBox" index="0"]
+shape = SubResource( 6 )
+
+[node name="OutHitBox" parent="." index="3" instance=ExtResource( 2 )]
+__team = "enemy_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutHitBox" index="0"]
+shape = SubResource( 7 )
+
+[node name="DisabledTimer" type="Timer" parent="." index="4"]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="hit_received" from="InHitBox" to="." method="_on_InHitBox_hit_received"]
+[connection signal="hit_dealt" from="OutHitBox" to="." method="_on_OutHitBox_hit_dealt"]
+[connection signal="timeout" from="DisabledTimer" to="." method="_on_DisabledTimer_timeout"]

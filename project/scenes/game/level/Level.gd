@@ -1,28 +1,44 @@
 extends Node2D
+class_name Level
+
+enum Theme {
+	CAVE,
+	LAB,
+	FACTORY,
+}
 
 onready var game_handler = get_parent()
-
-onready var __intro_timer = $IntroTimer
-onready var __reset_timer = $ResetTimer
-onready var __next_level_transition_timer = $NextLevelTransitionTimer
-
-onready var __color_rect = $CanvasLayer/ColorRect
 
 onready var __game_world = $GameWorld
 onready var __check_point = $CheckPoint
 
-onready var __theme = $Theme
-
 var player_node
 
 var __convert_player_scrap_to_score = false
+var __has_check_point = false
+
+export(Theme) var __theme = Theme.CAVE
 
 func _ready():
-	__color_rect.visible = true
-	if game_handler.has_check_point():
+	if __has_check_point:
 		player_node.state_machine.transition_to("PlayerIdleState")
 	else:
 		player_node.state_machine.transition_to("PlayerEnterLevelState")
+	
+func get_player_node():
+	return $GameWorld/EntityPool/Player
+	
+func get_theme_enum():
+	return __theme
+	
+func set_check_point_enabled(value):
+	__has_check_point = true
+	
+func set_check_point_location(vec):
+	__check_point.position = vec
+	
+func has_check_point():
+	return __has_check_point
 	
 func get_game_world():
 	return __game_world
@@ -39,9 +55,6 @@ func put_player_on_check_point(vec):
 	
 func set_remove_all_entities(value):
 	__game_world.set_remove_all_entities(value)
-	
-func start_reset_sequence():
-	__reset_timer.start()
 
 func set_player_stats(stats: Dictionary):
 	player_node.stats.set_from_data(stats)
@@ -57,18 +70,11 @@ func _physics_process(delta):
 			player_node.stats.convert_scrap_to_score(4)
 		else:
 			__convert_player_scrap_to_score = false
-			__next_level_transition_timer.start()
+			game_handler.start_transitioning_to_next_level()
 
 func _on_NextLeveTransitionTimer_timeout():
 #	game_handler.update_player_data(player_node.stats.get_data())
 	game_handler.set_current_to_next_level()
-
-func _on_IntroTimer_timeout():
-	__color_rect.visible = false
-	__theme.play()
 	
-func stop_theme():
-	__theme.stop()
-
 func _on_ResetTimer_timeout():
 	game_handler.reset_current_level()

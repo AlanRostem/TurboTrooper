@@ -6,6 +6,8 @@ func movement_update(delta):
 	if player.is_roof_above(): 
 		if !player.is_moving_too_fast(MIN_SLIDE_UNDER_ROOF_SPEED):
 			player.set_velocity_x(MIN_SLIDE_UNDER_ROOF_SPEED * player.get_looking_vector().x)
+			if player.is_on_wall():
+				player.look_horizontally(-player.get_looking_vector().x)
 		return
 		
 	player.apply_slide_friction(delta)
