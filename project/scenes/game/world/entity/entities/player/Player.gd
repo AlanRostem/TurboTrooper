@@ -75,6 +75,7 @@ func _ready():
 func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
+	__ram_slide_hit_box.scale.x = sign(get_velocity().x)
 	
 func set_camera_focus_direction(dir_int):
 	pass
@@ -175,7 +176,6 @@ func look_horizontally(dir):
 	if __looking_vector.y == 0:
 		__looking_vector.x = dir
 	__horizontal_looking_direction = dir
-	__ram_slide_hit_box.scale.x = dir
 	
 func get_horizontal_looking_dir():
 	return __horizontal_looking_direction
