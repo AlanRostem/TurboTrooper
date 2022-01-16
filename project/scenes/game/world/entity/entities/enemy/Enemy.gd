@@ -12,6 +12,7 @@ onready var __health_component = $HealthComponent
 onready var state_machine = $EnemyFSM
 onready var __damage_taken_timer = $DamageTakenTimer
 onready var __sprite = $EnemySprite
+onready var __shape = $BodyShape
 
 export(int) var scrap_drop_count_damaged = 1
 export(int) var scrap_drop_count_eliminated = 10
@@ -39,6 +40,12 @@ func _physics_process(delta):
 	elif __is_player_seen:
 		__is_player_seen = false
 		emit_signal("player_visual_lost", player)
+		
+func set_body_shape_enabled(value):
+	__shape.call_deferred("disabled", !value)
+		
+func get_sprite():
+	return __sprite
 		
 func can_see_player():
 	return __is_player_seen
@@ -81,6 +88,7 @@ func _on_OutHitBox_hit_dealt(hitbox):
 	var player = hitbox.get_parent()
 	if player is Player:
 		player.stats.take_one_damage()
+
 
 func set_can_deal_damage(value):
 	__can_deal_damage_to_player = value
