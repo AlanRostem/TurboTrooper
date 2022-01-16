@@ -16,7 +16,7 @@ export(CollisionModes) var collision_mode
 export var is_gravity_enabled = true
 export var is_internal_collision_func_enabled = true
 
-export var gravity = 400 
+export var gravity = 400
 
 export var stop_on_slope = true
 
@@ -119,5 +119,3 @@ func _physics_process(delta):
 			if is_on_floor():
 				__snap_vector = Vector2(__down_vector)
 				__is_on_slope = get_floor_normal().y != -1
-				
-	# TODO: Check if the entity is on a slope and store that in a variable
