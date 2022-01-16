@@ -7,7 +7,7 @@ var __distance = 0
 
 func enter(message):
 	enemy.set_velocity_y(-MAX_RISE_SPEED)
-	enemy.get_sprite().flip_h = enemy.horizontal_looking_direction < 0
+	enemy.get_sprite().flip_h = enemy.horizontal_looking_direction > 0
 	enemy.get_sprite().animation = "spawn"
 	
 func physics_update(delta):

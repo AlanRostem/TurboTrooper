@@ -8,9 +8,7 @@ func enter(message):
 	enemy.set_body_shape_enabled(true)
 
 func physics_update(delta):
+	enemy.set_velocity_y(0)
 	enemy.set_velocity_x(enemy.horizontal_looking_direction * MAX_RUSH_SPEED)
 	if enemy.is_on_wall():
-		explode()
-
-func explode():
-	queue_free()
+		enemy.explode()

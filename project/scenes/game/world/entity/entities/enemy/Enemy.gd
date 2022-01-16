@@ -42,9 +42,10 @@ func _physics_process(delta):
 		emit_signal("player_visual_lost", player)
 		
 func set_body_shape_enabled(value):
-	__shape.call_deferred("disabled", !value)
+	__shape.set_deferred("disabled", !value)
 		
 func get_sprite():
+	if __sprite == null: __sprite = $EnemySprite
 	return __sprite
 		
 func can_see_player():
