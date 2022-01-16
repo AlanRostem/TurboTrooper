@@ -5,6 +5,7 @@ var __rocket_rogue_scene = preload("res://scenes/game/world/objective/RocketRogu
 onready var __rocket_rogue_spawn_timer = $RocketRogueSpawnTimer
 onready var __spawn_pos_left = $SpawnPosLeft
 onready var __spawn_pos_right = $SpawnPosRight
+onready var __health_component = $HealthComponent
 
 var __spawn_left = true
 
@@ -16,7 +17,7 @@ func start_attack_sequence():
 
 func _on_HealthComponent_health_depleted(health_left):
 	complete()
-
+	print("ded")
 
 func _on_RocketRogueSpawnTimer_timeout():
 	if __spawn_left:
@@ -27,3 +28,7 @@ func _on_RocketRogueSpawnTimer_timeout():
 		__spawn_left = true
 		var rogue = get_parent_level().get_game_world().spawn_entity(__rocket_rogue_scene, __spawn_pos_right.global_position)
 		rogue.horizontal_looking_direction = -1
+
+
+func _on_HitBox_hit_received(hitbox, damage, damage_type):
+	__health_component.take_damage(damage)

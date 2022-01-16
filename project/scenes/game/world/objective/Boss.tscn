@@ -21,6 +21,7 @@ texture = ExtResource( 2 )
 
 [node name="HitBox" parent="." index="4" instance=ExtResource( 5 )]
 position = Vector2( 80, 16 )
+hit_box_action_type = 1
 __team = "enemy_team"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
@@ -46,7 +47,8 @@ position = Vector2( 8, 116 )
 position = Vector2( 152, 116 )
 
 [node name="RocketRogueSpawnTimer" type="Timer" parent="." index="10"]
-wait_time = 1.1
+wait_time = 3.0
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_HealthComponent_health_depleted"]
+[connection signal="hit_received" from="HitBox" to="." method="_on_HitBox_hit_received"]
 [connection signal="timeout" from="RocketRogueSpawnTimer" to="." method="_on_RocketRogueSpawnTimer_timeout"]
