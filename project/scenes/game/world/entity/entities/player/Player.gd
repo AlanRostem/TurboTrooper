@@ -5,6 +5,7 @@ const MAX_DASH_CHARGE = 100
 const PLAYER_TEAM = "player_team"
 const RAM_SLIDE_SPEED = 200
 const RAM_SLIDE_DAMAGE = 8
+const CAMERA_LOCK_MOVE_SPEED = 30
 
 var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
 
@@ -67,7 +68,10 @@ onready var __left_roof_ray = $RoofDetector/LeftRay
 
 onready var __camera = $Camera2D
 
+var __is_camera_locked = false
 var __controls_enabled = true
+
+var __camera_lock_pos_x
 
 func _ready():
 	parent_world.get_parent().player_node = self
@@ -76,9 +80,15 @@ func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
 	__ram_slide_hit_box.scale.x = sign(get_velocity().x)
+	if __is_camera_locked:
+		if __camera.position.x < __camera_lock_pos_x:
+			__camera.position.x += CAMERA_LOCK_MOVE_SPEED * delta
+		else:
+			__camera.position.x = __camera_lock_pos_x
 	
-func set_camera_focus_direction(dir_int):
-	pass
+func lock_camera_to(x):
+	__is_camera_locked = true
+	__camera_lock_pos_x = x
 
 func set_camera_bounds(bounds: Rect2):
 	__camera.limit_left = clamp(bounds.position.x, 0, INF);
