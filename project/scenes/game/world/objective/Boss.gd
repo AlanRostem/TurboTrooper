@@ -17,6 +17,7 @@ func start_attack_sequence():
 
 func _on_HealthComponent_health_depleted(health_left):
 	complete()
+	__rocket_rogue_spawn_timer.stop()
 
 func _on_RocketRogueSpawnTimer_timeout():
 	if __spawn_left:

@@ -45,6 +45,7 @@ animation = "off"
 
 [node name="ArrowSprite" parent="." index="1" instance=ExtResource( 4 )]
 position = Vector2( 0, -12 )
+frame = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
 position = Vector2( 0, 4 )
