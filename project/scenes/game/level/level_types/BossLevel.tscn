@@ -17,6 +17,6 @@ tile_data = PoolIntArray( -65536, 6, 0, -65535, 6, 1, -65534, 6, 1, -65533, 6, 1
 position = Vector2( 256, 0 )
 
 [node name="Player" parent="GameWorld/EntityPool" index="0"]
-position = Vector2( 296, 100 )
+position = Vector2( 28, 100 )
 
 [connection signal="completion_transition_over" from="GameWorld/Geometry/Boss" to="." method="_on_Boss_completion_transition_over"]
