@@ -80,6 +80,10 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea" index="0"]
 shape = SubResource( 2 )
 
+[node name="Camera2D" type="Camera2D" parent="." index="14"]
+limit_top = 0
+limit_bottom = 0
+
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_HealthComponent_health_depleted"]
 [connection signal="hit_received" from="HitBox" to="." method="_on_HitBox_hit_received"]
 [connection signal="timeout" from="RocketRogueSpawnTimer" to="." method="_on_RocketRogueSpawnTimer_timeout"]
