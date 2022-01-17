@@ -21,9 +21,14 @@ onready var __health_component = $HealthComponent
 onready var __blockade_shape = $Blockade/CollisionShape2D
 onready var __camera = $Camera2D
 
+onready var __check_point = $CheckPoint
+
 var __spawn_left = false
 var __shoot_left = false
 var __move_camera  = false
+
+func _ready():
+	get_parent_level().call_deferred("set_check_point_location", position + __check_point.position)
 
 func _physics_process(delta):
 	if !__move_camera: return
@@ -61,7 +66,8 @@ func _on_EnterArea_body_entered(player):
 	__camera.current = true
 	__camera.position.x = position.x - player.position.x
 	__move_camera = true
-
+	if !get_parent_level().game_handler.has_check_point():
+		get_parent_level().save_check_point()
 
 func _on_CannonTimer_timeout():
 	if __shoot_left:

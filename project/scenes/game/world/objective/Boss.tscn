@@ -51,15 +51,14 @@ position = Vector2( 8, 116 )
 position = Vector2( 152, 116 )
 
 [node name="CannonTimer" type="Timer" parent="." index="10"]
-wait_time = 4.5
+wait_time = 2.0
 
 [node name="RocketRogueSpawnTimer" type="Timer" parent="." index="11"]
-wait_time = 2.5
+wait_time = 3.0
 
 [node name="ArrowSprite" parent="." index="12" instance=ExtResource( 6 )]
 position = Vector2( -8, 104 )
 rotation = -1.5708
-frame = 0
 
 [node name="Blockade" type="StaticBody2D" parent="." index="13"]
 position = Vector2( -4, 104 )
@@ -86,6 +85,9 @@ shape = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="." index="15"]
 limit_top = 0
 limit_bottom = 0
+
+[node name="CheckPoint" type="Position2D" parent="." index="16"]
+position = Vector2( -40, 104 )
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_HealthComponent_health_depleted"]
 [connection signal="hit_received" from="HitBox" to="." method="_on_HitBox_hit_received"]
