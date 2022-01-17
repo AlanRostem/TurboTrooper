@@ -1,7 +1,8 @@
 extends "res://scenes/game/world/objective/Objective.gd"
 
 
-const CAMERA_MOVE_SPEED = 50
+const CAMERA_MOVE_SPEED = 100
+
 const CANNON_BALL_SPEED = 70
 
 var __rocket_rogue_scene = preload("res://scenes/game/world/objective/RocketRogueForBoss.tscn")

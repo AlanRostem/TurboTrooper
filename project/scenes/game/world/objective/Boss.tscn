@@ -54,11 +54,12 @@ position = Vector2( 152, 116 )
 wait_time = 4.5
 
 [node name="RocketRogueSpawnTimer" type="Timer" parent="." index="11"]
-wait_time = 3.0
+wait_time = 2.5
 
 [node name="ArrowSprite" parent="." index="12" instance=ExtResource( 6 )]
 position = Vector2( -8, 104 )
 rotation = -1.5708
+frame = 0
 
 [node name="Blockade" type="StaticBody2D" parent="." index="13"]
 position = Vector2( -4, 104 )

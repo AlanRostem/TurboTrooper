@@ -138,7 +138,7 @@ drag_margin_bottom = 1.0
 script = ExtResource( 13 )
 
 [node name="RushEnergyRechargeTimer" type="Timer" parent="PlayerStats" index="0"]
-wait_time = 0.4
+wait_time = 0.8
 
 [node name="RushEnergyRechargeStartingDelayTimer" type="Timer" parent="PlayerStats" index="1"]
 wait_time = 2.2
