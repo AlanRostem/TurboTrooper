@@ -18,7 +18,6 @@ func movement_update(delta):
 	if player.is_on_slope():
 		parent_state_machine.transition_to("PlayerSlideState")
 			
-	player.reduce_dash_charge(delta)
 
 	var dir = int(move_right) - int(move_left)
 	if dir != 0:

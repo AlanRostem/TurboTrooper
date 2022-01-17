@@ -1,11 +1,9 @@
 extends "res://scenes/game/world/entity/MovingEntity.gd"
 class_name Player
 
-const MAX_DASH_CHARGE = 100
 const PLAYER_TEAM = "player_team"
 const RAM_SLIDE_SPEED = 200
 const RAM_SLIDE_DAMAGE = 8
-const CAMERA_LOCK_MOVE_SPEED = 30
 
 var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
 
@@ -29,10 +27,6 @@ var slide_speed = 180
 var slide_friction = 0.02
 var slide_mitigation_acceleration = 250
 
-var __dash_charge_fill_per_second = 250
-var __dash_charge_loss_per_second = 120
-
-var __dash_charge = 0
 
 var moving_direction = 1
 var can_swap_looking_direction = true
@@ -147,21 +141,6 @@ func is_crouched():
 
 func jump():
 	set_velocity_y(-jump_speed)
-	
-func increase_dash_charge(delta):
-	__dash_charge = clamp(__dash_charge + __dash_charge_fill_per_second * delta, 0, MAX_DASH_CHARGE)
-
-func reduce_dash_charge(delta):
-	__dash_charge = clamp(__dash_charge - __dash_charge_loss_per_second * delta, 0, MAX_DASH_CHARGE)
-	
-func maximize_dash_charge():
-	__dash_charge = MAX_DASH_CHARGE
-	
-func has_max_dash_charge():
-	return __dash_charge == MAX_DASH_CHARGE
-	
-func clear_dash_charge():
-	__dash_charge = 0
 	
 func is_effectively_standing_still():
 	return int(round(get_velocity().x)) == 0

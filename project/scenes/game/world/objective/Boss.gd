@@ -2,16 +2,26 @@ extends "res://scenes/game/world/objective/Objective.gd"
 
 
 const CAMERA_MOVE_SPEED = 50
+const CANNON_BALL_SPEED = 70
+
 var __rocket_rogue_scene = preload("res://scenes/game/world/objective/RocketRogueForBoss.tscn")
+var __cannon_ball_scene = preload("res://scenes/game/world/entity/entities/projectile/projectiles/CannonBall.tscn")
 
 onready var __rocket_rogue_spawn_timer = $RocketRogueSpawnTimer
+onready var __cannon_timer = $CannonTimer
+
 onready var __spawn_pos_left = $SpawnPosLeft
 onready var __spawn_pos_right = $SpawnPosRight
+
+onready var __turret_pos_left = $TurretPosLeft
+onready var __turret_pos_right = $TurretPosRight
+
 onready var __health_component = $HealthComponent
 onready var __blockade_shape = $Blockade/CollisionShape2D
 onready var __camera = $Camera2D
 
 var __spawn_left = false
+var __shoot_left = false
 var __move_camera  = false
 
 func _physics_process(delta):
@@ -23,6 +33,7 @@ func _physics_process(delta):
 
 func start_attack_sequence():
 	__rocket_rogue_spawn_timer.start()
+	__cannon_timer.start()
 
 func _on_HealthComponent_health_depleted(health_left):
 	complete()
@@ -49,3 +60,14 @@ func _on_EnterArea_body_entered(player):
 	__camera.current = true
 	__camera.position.x = position.x - player.position.x
 	__move_camera = true
+
+
+func _on_CannonTimer_timeout():
+	if __shoot_left:
+		__shoot_left = false
+		var ball = get_parent_level().get_game_world().spawn_entity(__cannon_ball_scene, position + __turret_pos_left.position)
+		ball.set_velocity(Vector2(CANNON_BALL_SPEED, CANNON_BALL_SPEED))
+	else:
+		__shoot_left = true
+		var ball = get_parent_level().get_game_world().spawn_entity(__cannon_ball_scene, position + __turret_pos_right.position)
+		ball.set_velocity(Vector2(-CANNON_BALL_SPEED, CANNON_BALL_SPEED))

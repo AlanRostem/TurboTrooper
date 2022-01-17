@@ -46,7 +46,6 @@ func enter(message):
 			player.slide(player.moving_direction)
 			player.set_ram_slide_hit_box_enabled(true)
 			__slide_sound.play()
-	player.clear_dash_charge()
 	player.crouch()
 	player.collision_mode = MovingEntity.CollisionModes.SLIDE
 	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/game/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/objective/Boss.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/level/level_types/BossLevel.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/SwordCollectible.tscn" type="PackedScene" id=5]
 
 [node name="BossLevel" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -18,5 +19,8 @@ position = Vector2( 256, 0 )
 
 [node name="Player" parent="GameWorld/EntityPool" index="0"]
 position = Vector2( 28, 100 )
+
+[node name="SwordCollectible" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 5 )]
+position = Vector2( 68, 104 )
 
 [connection signal="completion_transition_over" from="GameWorld/Geometry/Boss" to="." method="_on_Boss_completion_transition_over"]
