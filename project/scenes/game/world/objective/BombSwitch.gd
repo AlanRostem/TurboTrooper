@@ -35,7 +35,6 @@ func _physics_process(delta):
 		__body_shape.set_deferred("disabled", true)
 		__press_shape.set_deferred("disabled", true)
 		__arrow_sprite.visible = false
-		get_parent_level().player_node.set_camera_focus_direction(-1)
 		emit_signal("activated")
 		if !get_parent_level().game_handler.has_check_point():
 			get_parent_level().save_check_point()
