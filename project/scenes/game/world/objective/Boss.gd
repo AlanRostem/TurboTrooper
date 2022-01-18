@@ -22,6 +22,7 @@ onready var __blockade_shape = $Blockade/CollisionShape2D
 onready var __camera = $Camera2D
 
 onready var __check_point = $CheckPoint
+onready var __eye_sprite = $EyeSprite
 
 var __spawn_left = false
 var __shoot_left = false
@@ -31,11 +32,25 @@ func _ready():
 	get_parent_level().call_deferred("set_check_point_location", position + __check_point.position)
 
 func _physics_process(delta):
+	var dist = get_parent_level().player_node.position.x
+	dist -= position.x + __eye_sprite.position.x
+	var max_dist = 4 * 8
+	if abs(dist) < max_dist:
+		__eye_sprite.animation = "watch_mid"
+	else:
+		if sign(dist) < 0:
+			__eye_sprite.animation = "watch_left"
+		else:
+			__eye_sprite.animation = "watch_right"
+	
 	if !__move_camera: return
 	__camera.position.x += CAMERA_MOVE_SPEED * delta
 	if __camera.position.x > 80:
 		__camera.position.x = 80
 		__move_camera = false
+		
+
+	
 
 func start_attack_sequence():
 	__rocket_rogue_spawn_timer.start()
