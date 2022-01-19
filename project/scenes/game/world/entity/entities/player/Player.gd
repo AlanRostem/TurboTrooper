@@ -1,17 +1,16 @@
 extends "res://scenes/game/world/entity/MovingEntity.gd"
 class_name Player
 
-const MAX_DASH_CHARGE = 100
 const PLAYER_TEAM = "player_team"
 const RAM_SLIDE_SPEED = 200
 const RAM_SLIDE_DAMAGE = 8
 
 var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
 
-export var air_acceleration: float
+var air_acceleration = 250
 
 var walk_transition_weight = .4
-var max_walk_speed = 55
+var max_walk_speed = 50
 var walk_friction = .4
 
 var dash_transition_weight = .05
@@ -28,10 +27,6 @@ var slide_speed = 180
 var slide_friction = 0.02
 var slide_mitigation_acceleration = 250
 
-var __dash_charge_fill_per_second = 250
-var __dash_charge_loss_per_second = 120
-
-var __dash_charge = 0
 
 var moving_direction = 1
 var can_swap_looking_direction = true
@@ -46,6 +41,7 @@ var __is_opening_crate = false
 
 var __is_invincible = false
 var __is_immortal = false
+var __controls_enabled = true
 
 onready var __upper_body_shape: CollisionShape2D = $UpperBodyShape
 onready var __hit_box_shape = $InHitBox/CollisionShape2D
@@ -67,15 +63,17 @@ onready var __left_roof_ray = $RoofDetector/LeftRay
 
 onready var __camera = $Camera2D
 
-var __controls_enabled = true
-
 func _ready():
 	parent_world.get_parent().player_node = self
 
 func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
-	
+	__ram_slide_hit_box.scale.x = sign(get_velocity().x)
+
+func set_camera_follow(value):
+	__camera.current = value
+
 func set_camera_bounds(bounds: Rect2):
 	__camera.limit_left = clamp(bounds.position.x, 0, INF);
 	__camera.limit_top = 0;
@@ -107,7 +105,7 @@ func sneak(direction: int, delta):
 	moving_direction = direction
 	
 func air_move(direction: int, delta: float):
-	accelerate_x(air_acceleration * direction, max_walk_speed, delta)
+	accelerate_x(air_acceleration * direction, max_dash_speed, delta)
 	moving_direction = direction
 	
 func negate_slide(direction: int, delta: float):
@@ -147,21 +145,6 @@ func is_crouched():
 func jump():
 	set_velocity_y(-jump_speed)
 	
-func increase_dash_charge(delta):
-	__dash_charge = clamp(__dash_charge + __dash_charge_fill_per_second * delta, 0, MAX_DASH_CHARGE)
-
-func reduce_dash_charge(delta):
-	__dash_charge = clamp(__dash_charge - __dash_charge_loss_per_second * delta, 0, MAX_DASH_CHARGE)
-	
-func maximize_dash_charge():
-	__dash_charge = MAX_DASH_CHARGE
-	
-func has_max_dash_charge():
-	return __dash_charge == MAX_DASH_CHARGE
-	
-func clear_dash_charge():
-	__dash_charge = 0
-	
 func is_effectively_standing_still():
 	return int(round(get_velocity().x)) == 0
 
@@ -175,7 +158,6 @@ func look_horizontally(dir):
 	if __looking_vector.y == 0:
 		__looking_vector.x = dir
 	__horizontal_looking_direction = dir
-	__ram_slide_hit_box.scale.x = dir
 	
 func get_horizontal_looking_dir():
 	return __horizontal_looking_direction
@@ -264,6 +246,8 @@ func die():
 	parent_world.get_parent_level().game_handler.start_reset_sequence(true)
 	parent_world.hide_and_remove_entities()
 	parent_world.play_sound(__death_sound)
+	if stats.get_health() > PlayerStats.MAX_HEALTH:
+		stats.set_health(stats.get_health() - 1)
 	__is_immortal = true
 
 func _on_InvincibilityTimer_timeout():

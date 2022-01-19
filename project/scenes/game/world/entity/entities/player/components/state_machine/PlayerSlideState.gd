@@ -4,7 +4,7 @@ onready var __slide_sound = $SlideSound
 
 func movement_update(delta):
 	if player.is_roof_above(): 
-		if player.is_on_wall():
+		if player.is_on_wall() or !player.is_moving_too_fast(player.max_walk_speed):
 			parent_state_machine.transition_to("PlayerCrouchState")
 		return
 
@@ -46,7 +46,6 @@ func enter(message):
 			player.slide(player.moving_direction)
 			player.set_ram_slide_hit_box_enabled(true)
 			__slide_sound.play()
-	player.clear_dash_charge()
 	player.crouch()
 	player.collision_mode = MovingEntity.CollisionModes.SLIDE
 	

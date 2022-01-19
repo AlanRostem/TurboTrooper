@@ -44,7 +44,7 @@ func _on_OutHitBox_hit_dealt(hitbox):
 		__boost_damage = false
 		damage = CRITICAL_DAMAGE
 	elif parent is Projectile:
-		parent.deflect(HitBox.PLAYER_TEAM, STANDARD_DAMAGE)
+		parent.deflect(HitBox.PLAYER_TEAM, STANDARD_DAMAGE, get_owner_player().get_looking_vector())
 		__deflect_sound.play()
 	hitbox.take_hit(__hit_box, damage, {
 		"knock_back": get_owner_player().get_horizontal_looking_direction()

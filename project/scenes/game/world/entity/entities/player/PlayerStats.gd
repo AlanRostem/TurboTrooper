@@ -193,8 +193,6 @@ func recharge_rush_energy():
 
 func convert_scrap_to_score(count = 1):
 	var c = count
-	if c > get_score():
-		c = get_score()
 	lose_scrap(c)
 	add_score(c)
 

@@ -7,29 +7,29 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 4 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 4 )
 region = Rect2( 64, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 13.0
@@ -47,7 +47,7 @@ __team = "player_team"
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
-frames = SubResource( 2 )
+frames = SubResource( 7 )
 frame = 4
 
 [node name="PlayerFlingArea" type="Area2D" parent="." index="3"]

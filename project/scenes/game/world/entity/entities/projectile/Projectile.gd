@@ -20,6 +20,7 @@ onready var __in_hit_box = $CounterHitBox
 onready var __sprite = $Sprite
 
 export(int) var damage
+export var change_damage_on_deflect = true
 
 export(RotationMode) var __rotation_mode = RotationMode.WHOLE
 
@@ -53,11 +54,14 @@ func deal_hit(hit_box):
 	hit_box.take_hit(__hit_box, damage, {}, damage_type)
 	destroy()
 
-func deflect(new_team, new_damage):
+func deflect(new_team, new_damage, dir = Vector2.ZERO):
 	__hit_box.change_team(new_team)
 	__in_hit_box.change_team(new_team)
-	damage = new_damage
-	set_velocity(-get_velocity())
+	if change_damage_on_deflect:
+		damage = new_damage
+	if dir == Vector2.ZERO:
+		set_velocity(-get_velocity())
+	else: set_velocity(get_velocity().length() * dir)
 
 func destroy():
 	parent_world.show_effect_deferred(__hit_effect, position)

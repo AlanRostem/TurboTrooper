@@ -4,7 +4,7 @@ onready var __buy_sound = $BuySound
 		
 		
 func _purchase_condition(player):
-	return player.stats.get_health() < player.stats.MAX_HEALTH
+	return player.stats.get_health() < player.stats.MAX_HEALTH * 2
 		
 func _purchase_response(player):
 	player.stats.add_one_health()

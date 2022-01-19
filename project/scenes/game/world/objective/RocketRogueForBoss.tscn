@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/components/EnemyState.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/components/RocketRogueSpawnState.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/components/RocketRogueRushState.gd" type="Script" id=4]
+[ext_resource path="res://assets/sprites/char/rush_rogue/char.png" type="Texture" id=5]
+[ext_resource path="res://scenes/game/world/objective/RocketRogueForBoss.gd" type="Script" id=6]
+[ext_resource path="res://scenes/game/world/entity/entities/enemy/components/RocketRogueRamIntoAirState.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 4 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "rush",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "spawn",
+"speed": 5.0
+} ]
+
+[node name="RocketRogueForBoss" instance=ExtResource( 1 )]
+script = ExtResource( 6 )
+collision_mode = 2
+is_gravity_enabled = false
+
+[node name="BodyShape" parent="." index="0"]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="InHitBox" parent="." index="2"]
+__team = "rogue_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InHitBox" index="0"]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[node name="OutHitBox" parent="." index="3"]
+__team = "rogue_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutHitBox" index="0"]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[node name="EnemyFSM" parent="." index="5"]
+__inital_state = NodePath("RocketRogueSpawnState")
+init_state_on_ready = true
+enter_state_on_ready = true
+
+[node name="RocketRogueSpawnState" parent="EnemyFSM" index="0" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="RocketRogueRushState" parent="EnemyFSM" index="1" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
+
+[node name="EnemyRamIntoAirState" parent="EnemyFSM" index="3"]
+script = ExtResource( 7 )
+
+[node name="EnemySprite" parent="." index="6"]
+position = Vector2( 0, -5 )
+frames = SubResource( 5 )
+animation = "rush"
+playing = true
+
+[connection signal="hit_dealt" from="OutHitBox" to="." method="_on_OutHitBox_hit_dealt_to_boss"]

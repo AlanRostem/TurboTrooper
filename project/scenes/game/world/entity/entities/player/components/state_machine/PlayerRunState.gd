@@ -11,7 +11,7 @@ func movement_update(delta):
 		parent_state_machine.transition_to("PlayerSlideState")
 		return
 	
-	if player.is_on_ground() and (player.has_max_dash_charge() or !player.stats.has_weapon()) and player.stats.get_rush_energy() > 0:
+	if player.is_on_ground() and player.stats.get_rush_energy() > 0:
 		if !__spawning_dust:
 			__dust_spawn_timer.start()
 			__spawning_dust = true
@@ -24,27 +24,19 @@ func movement_update(delta):
 		if dir != 0:
 			player.look_horizontally(dir)
 		player.run(dir, delta)
-		
-		var vel_x = player.get_velocity().x
-		if sign(vel_x) != dir:
-			player.reduce_dash_charge(delta)
-		else:
-			player.increase_dash_charge(delta)
+
 	else:
-		player.reduce_dash_charge(delta)
 		player.stop_running()
 		
 	if !player.is_moving_too_fast(player.max_walk_speed):
 		parent_state_machine.transition_to("PlayerWalkState")
-		player.clear_dash_charge()
 		return
 			
 	if crouch or slide_by_fire_button:
-		if (player.has_max_dash_charge() or !player.stats.has_weapon()) and player.stats.get_rush_energy() > 0:
+		if player.stats.get_rush_energy() > 0:
 			parent_state_machine.transition_to("PlayerSlideState", {
 				"boost": true
 			})
-			player.clear_dash_charge()
 		elif !slide_by_fire_button:
 			parent_state_machine.transition_to("PlayerSlideState")
 

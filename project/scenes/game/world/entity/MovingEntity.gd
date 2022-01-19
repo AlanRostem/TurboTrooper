@@ -16,7 +16,7 @@ export(CollisionModes) var collision_mode
 export var is_gravity_enabled = true
 export var is_internal_collision_func_enabled = true
 
-export var gravity = 400 
+export var gravity = 400
 
 export var stop_on_slope = true
 
@@ -56,22 +56,19 @@ func set_down_vector(vector):
 	__down_vector = vector
 	__snap_vector = vector 
 
-func get_perspective_angle():
-	return __down_vector.angle() - PI / 2
-
 # Retrieve the velocity vector as perceived by the down vector
 func get_velocity():
-	return __velocity.rotated(get_perspective_angle())
+	return __velocity
 
 # Change the velocity vector as perceived by the down vector
 func set_velocity(velocity):
 	if velocity.y < 0:
 		__snap_vector = Vector2.ZERO
-	__velocity = velocity.rotated(get_perspective_angle())
+	__velocity = velocity
 
 # Change the velocity on the x-axis vector as perceived by the down vector
 func set_velocity_x(x):
-	__velocity = Vector2(x, get_velocity().y).rotated(get_perspective_angle())
+	__velocity = Vector2(x, get_velocity().y)
 
 # Change the velocity on the y-axis vector as perceived by the down vector. If
 # the y-velocity is negative when the collision mode is SNAP, then the snap 
@@ -79,7 +76,7 @@ func set_velocity_x(x):
 func set_velocity_y(y):
 	if y < 0:
 		__snap_vector = Vector2.ZERO
-	__velocity = Vector2(get_velocity().x, y).rotated(get_perspective_angle())
+	__velocity = Vector2(get_velocity().x, y)
 	
 func accelerate_x(x, max_speed, delta):
 	var vx = get_velocity().x
@@ -122,5 +119,3 @@ func _physics_process(delta):
 			if is_on_floor():
 				__snap_vector = Vector2(__down_vector)
 				__is_on_slope = get_floor_normal().y != -1
-				
-	# TODO: Check if the entity is on a slope and store that in a variable
