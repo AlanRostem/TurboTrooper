@@ -24,11 +24,11 @@ region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 32, 32 )
+region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 7 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
@@ -48,12 +48,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 5 ) ],
 "loop": true,
-"name": "watch_left",
+"name": "dead",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 6 ) ],
 "loop": true,
-"name": "dead",
+"name": "watch_left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 7 ) ],
@@ -69,48 +69,41 @@ script = ExtResource( 3 )
 max_health = 180
 
 [node name="Sprite" type="Sprite" parent="." index="3"]
-position = Vector2( 80, 72 )
+position = Vector2( 84, 76 )
 texture = ExtResource( 2 )
 
 [node name="HitBox" parent="." index="4" instance=ExtResource( 5 )]
-position = Vector2( 80, 16 )
+position = Vector2( 84, 20 )
 hit_box_action_type = 1
 __team = "enemy_team"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="." index="5"]
-margin_left = -4.0
-margin_top = -4.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="TurretPosLeft" type="Position2D" parent="." index="5"]
+position = Vector2( 20, 36 )
 
-[node name="TurretPosLeft" type="Position2D" parent="." index="6"]
-position = Vector2( 16, 32 )
+[node name="TurretPosRight" type="Position2D" parent="." index="6"]
+position = Vector2( 148, 36 )
 
-[node name="TurretPosRight" type="Position2D" parent="." index="7"]
-position = Vector2( 144, 32 )
+[node name="SpawnPosLeft" type="Position2D" parent="." index="7"]
+position = Vector2( 12, 120 )
 
-[node name="SpawnPosLeft" type="Position2D" parent="." index="8"]
-position = Vector2( 8, 116 )
+[node name="SpawnPosRight" type="Position2D" parent="." index="8"]
+position = Vector2( 156, 120 )
 
-[node name="SpawnPosRight" type="Position2D" parent="." index="9"]
-position = Vector2( 152, 116 )
-
-[node name="CannonTimer" type="Timer" parent="." index="10"]
+[node name="CannonTimer" type="Timer" parent="." index="9"]
 wait_time = 2.0
 
-[node name="RocketRogueSpawnTimer" type="Timer" parent="." index="11"]
+[node name="RocketRogueSpawnTimer" type="Timer" parent="." index="10"]
 wait_time = 3.0
 
-[node name="ArrowSprite" parent="." index="12" instance=ExtResource( 6 )]
-position = Vector2( -8, 104 )
+[node name="ArrowSprite" parent="." index="11" instance=ExtResource( 6 )]
+position = Vector2( -4, 108 )
 rotation = -1.5708
 
-[node name="Blockade" type="StaticBody2D" parent="." index="13"]
-position = Vector2( -4, 104 )
+[node name="Blockade" type="StaticBody2D" parent="." index="12"]
+position = Vector2( 0, 108 )
 collision_mask = 0
 __meta__ = {
 "_edit_group_": true
@@ -120,8 +113,8 @@ __meta__ = {
 shape = SubResource( 2 )
 disabled = true
 
-[node name="EnterArea" type="Area2D" parent="." index="14"]
-position = Vector2( 8, 104 )
+[node name="EnterArea" type="Area2D" parent="." index="13"]
+position = Vector2( 12, 108 )
 collision_layer = 0
 collision_mask = 4
 __meta__ = {
@@ -131,23 +124,24 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea" index="0"]
 shape = SubResource( 2 )
 
-[node name="Camera2D" type="Camera2D" parent="." index="15"]
+[node name="Camera2D" type="Camera2D" parent="." index="14"]
+position = Vector2( 4, 4 )
 limit_top = 0
 limit_bottom = 0
 
-[node name="CheckPoint" type="Position2D" parent="." index="16"]
-position = Vector2( -40, 104 )
+[node name="CheckPoint" type="Position2D" parent="." index="15"]
+position = Vector2( -36, 108 )
 
-[node name="EyeSprite" type="AnimatedSprite" parent="." index="17"]
-position = Vector2( 80, 24 )
+[node name="EyeSprite" type="AnimatedSprite" parent="." index="16"]
+position = Vector2( 84, 28 )
 frames = SubResource( 8 )
 animation = "watch_mid"
 
-[node name="DamageFlashTimer" type="Timer" parent="." index="18"]
+[node name="DamageFlashTimer" type="Timer" parent="." index="17"]
 wait_time = 0.1
 one_shot = true
 
-[node name="ExplosionEffectTimer" type="Timer" parent="." index="19"]
+[node name="ExplosionEffectTimer" type="Timer" parent="." index="18"]
 wait_time = 0.2
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_HealthComponent_health_depleted"]

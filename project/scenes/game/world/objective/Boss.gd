@@ -58,8 +58,8 @@ func _physics_process(delta):
 	
 	if !__move_camera: return
 	__camera.position.x += CAMERA_MOVE_SPEED * delta
-	if __camera.position.x > 80:
-		__camera.position.x = 80
+	if __camera.position.x > 80 + 4:
+		__camera.position.x = 80 + 4
 		__move_camera = false
 
 func start_attack_sequence():
