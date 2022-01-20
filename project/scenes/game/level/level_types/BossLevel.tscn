@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/game/level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/objective/Boss.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/game/level/level_types/BossLevel.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/parallax/factory.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 52, 12 )
 
 [node name="BossLevel" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+
+[node name="Sprite" parent="GameWorld/ParallaxBackground/ParallaxLayer" index="0"]
+texture = ExtResource( 5 )
 
 [node name="ShopArea" parent="GameWorld/Geometry" index="0"]
 position = Vector2( 188, 100 )
@@ -30,5 +35,8 @@ one_way_collision = true
 
 [node name="Player" parent="GameWorld/EntityPool" index="0"]
 position = Vector2( -12, 96 )
+
+[node name="SuperScrap" parent="GameWorld/EntityPool" index="1" instance=ExtResource( 4 )]
+position = Vector2( 68, 100 )
 
 [connection signal="completion_transition_over" from="GameWorld/Geometry/Boss" to="." method="_on_Boss_completion_transition_over"]

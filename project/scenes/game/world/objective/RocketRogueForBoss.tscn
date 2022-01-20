@@ -78,6 +78,7 @@ script = ExtResource( 7 )
 position = Vector2( 0, -5 )
 frames = SubResource( 5 )
 animation = "rush"
+frame = 1
 playing = true
 
 [connection signal="hit_dealt" from="OutHitBox" to="." method="_on_OutHitBox_hit_dealt_to_boss"]

@@ -3,7 +3,7 @@ extends Enemy
 var __explosion_effect = preload("res://scenes/game/world/other/RocketRogueExplosionEffect.tscn")
 
 func _on_OutHitBox_hit_dealt_to_boss(hitbox):
-	hitbox.take_hit(null, 60)
+	hitbox.take_hit(null, 20)
 	explode()
 
 func explode():

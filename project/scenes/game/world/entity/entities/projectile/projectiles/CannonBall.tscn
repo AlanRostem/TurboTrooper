@@ -7,7 +7,7 @@
 extents = Vector2( 5, 5 )
 
 [node name="CannonBall" instance=ExtResource( 2 )]
-damage = 60
+damage = 20
 change_damage_on_deflect = false
 
 [node name="Sprite" parent="." index="0"]
