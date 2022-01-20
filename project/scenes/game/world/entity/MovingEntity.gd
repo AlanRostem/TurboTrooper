@@ -111,11 +111,13 @@ func _physics_process(delta):
 		CollisionModes.SLIDE:
 			__velocity = move_and_slide(__velocity, -__down_vector)
 		CollisionModes.SNAP:
-			# TODO: Determine if this needs rotation when changing 
-			# perspective vector
-			__velocity.y = move_and_slide_with_snap(
+			var vel = move_and_slide_with_snap(
 				__velocity, __snap_vector * parent_world.get_tile_size() / 4,
-				-__down_vector, stop_on_slope).y
+				-__down_vector, stop_on_slope)
+			if is_on_wall():
+				__velocity = vel
+			else:
+				__velocity.y = vel.y
 			if is_on_floor():
 				__snap_vector = Vector2(__down_vector)
 				__is_on_slope = get_floor_normal().y != -1

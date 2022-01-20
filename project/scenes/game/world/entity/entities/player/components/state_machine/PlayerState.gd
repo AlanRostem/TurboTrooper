@@ -29,9 +29,6 @@ func physics_process_input_update(delta):
 func physics_update(delta):
 	movement_update(delta)
 	
-	if player.is_on_wall():
-		player.set_velocity_x(0)
-	
 	if is_grounded_state:
 		if player.is_on_ground():
 			if jump:
