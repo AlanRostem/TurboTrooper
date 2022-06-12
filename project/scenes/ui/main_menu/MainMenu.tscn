@@ -16,22 +16,25 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -72.0
+margin_right = 120.0
+margin_bottom = 72.0
 texture = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StartLabel" parent="." instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.528
 margin_left = -42.0
-margin_top = 8.0
+margin_top = 4.0
 margin_right = 42.0
-margin_bottom = 18.0
+margin_bottom = 9.968
 custom_styles/normal = SubResource( 1 )
 text = "press start"
 align = 1
