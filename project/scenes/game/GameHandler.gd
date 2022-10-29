@@ -143,10 +143,14 @@ func get_hud():
 func start_transitioning_to_next_level():
 	__next_level_transition_timer.start()
 
+# Starts the game by setting self to visible and appending the first level index
+# as a child. If the player has already completed the game, index 1 will be used
+# and they are going to level 1 (0 is tutorial)
 func _on_MainMenu_game_started():
 	change_level(int(__has_completed_game))
 	visible = true
 
+# Made to make pausing not spammable
 func _on_PauseabilityTimer_timeout():
 	__can_pause = true
 
