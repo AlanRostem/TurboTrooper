@@ -9,11 +9,13 @@
 - Health Orbs replace Mega Scrap and are found in crates
 - Player has a new "Bash Attack" and "Aerial Kick" when unarmed
 - Sword no longer stops player when they attack
-- Power-Ups added and can be found in crates
 - Some enemies can drop a weapon based on their attack form
-- Spike Trap and other contraptions cannot be disabled by Blast Cannon anymore. Storm Mod attacks can do this now
 - Added Outlined Objects which only appear after the bomb is activated
 
+# List of ideas for additions in the game
+
+- Power-Ups added and can be found in crates
+- Spike Trap and other contraptions cannot be disabled by Blast Cannon anymore. Storm Mod attacks can do this now
 
 # Game Mechanics Changes
 
