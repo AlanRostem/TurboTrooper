@@ -2,9 +2,10 @@ extends Control
 
 
 onready var __health_label = $HealthLabel
-onready var __heart_icon = $HeartIcon
+# onready var __heart_icon = $HeartIcon
 
 onready var __flash_timer = $FlashTimer
+
 
 func set_health(count):
 	if count != 1:
@@ -14,6 +15,6 @@ func set_health(count):
 		__flash_timer.start()
 	__health_label.text = "-" + str(count)
 
-
+# Flashes the health bar 
 func _on_FlashTimer_timeout():
-	__heart_icon.visible = !__heart_icon.visible
+	visible = !visible
