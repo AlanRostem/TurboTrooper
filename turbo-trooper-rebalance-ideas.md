@@ -3,7 +3,6 @@
 - Weapons are no longer dropped after taking damage
 - Player loses their weapon only when they die
 - Stamina has been changed to a new mechanic called Momentum
-- Weapons have a new "Charged Attack" that requires some Momentum to perform
 - Scrap has been changed to Energy Orbs and fill up Momentum instead
 - Shops have been removed
 - Health Orbs replace Mega Scrap and are found in crates
@@ -16,6 +15,7 @@
 
 - Power-Ups added and can be found in crates
 - Spike Trap and other contraptions cannot be disabled by Blast Cannon anymore. Storm Mod attacks can do this now
+- Weapons have a new "Charged Attack" that requires some Momentum to perform
 
 # Game Mechanics Changes
 

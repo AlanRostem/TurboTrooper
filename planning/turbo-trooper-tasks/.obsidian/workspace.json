@@ -1,0 +1,146 @@
+{
+  "main": {
+    "id": "e08592d70c797341",
+    "type": "split",
+    "children": [
+      {
+        "id": "5f437f4dec01840b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0536974b3da46bef",
+            "type": "leaf",
+            "state": {
+              "type": "kanban",
+              "state": {
+                "file": "Tasks.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ec9cabd68841ee3d",
+    "type": "split",
+    "children": [
+      {
+        "id": "ba282c3132025431",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fed425490d4481ff",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "036b302950ad4624",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "877837cae4a56d78",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "51ee4d4b323cfe38",
+    "type": "split",
+    "children": [
+      {
+        "id": "a6f9b1339eb442f5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8cc5167e20438c11",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Tasks.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6b9454eef4c8ea94",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Tasks.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "302cc3e07f9aa077",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "8dba5a38f1b5ee1d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Tasks.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "0536974b3da46bef",
+  "lastOpenFiles": [
+    "Player Sprites.md",
+    "Tasks.md",
+    "Untitled.md"
+  ]
+}

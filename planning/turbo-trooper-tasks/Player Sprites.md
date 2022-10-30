@@ -1,0 +1,12 @@
+- [ ] Slide
+- [ ] Slide (sword)
+- [ ] Slide (blaster)
+- [ ] Jump
+- [ ] Jump (sword)
+- [ ] Jump (blaster)
+- [ ] Run
+- [ ] Run (sword)
+- [ ] Run (blaster)
+- [ ] Die
+- [ ] Bash
+- [ ] Aerial Spin Kick
