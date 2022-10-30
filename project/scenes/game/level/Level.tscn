@@ -29,14 +29,14 @@ motion_mirroring = Vector2( 160, 0 )
 texture = ExtResource( 9 )
 centered = false
 
+[node name="CustomTileMap" parent="GameWorld" instance=ExtResource( 1 )]
+cell_size = Vector2( 8, 8 )
+script = ExtResource( 2 )
+
 [node name="Geometry" type="Node2D" parent="GameWorld"]
 
 [node name="ShopArea" parent="GameWorld/Geometry" instance=ExtResource( 6 )]
 position = Vector2( 112, 80 )
-
-[node name="CustomTileMap" parent="GameWorld/Geometry" instance=ExtResource( 1 )]
-cell_size = Vector2( 8, 8 )
-script = ExtResource( 2 )
 
 [node name="EntityPool" type="Node2D" parent="GameWorld"]
 __meta__ = {
