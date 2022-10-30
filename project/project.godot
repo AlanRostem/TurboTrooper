@@ -80,7 +80,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Turbo Trooper"
+config/name="Turbo Trooper (old)"
 run/main_scene="res://scenes/main/Main.tscn"
 config/icon="res://icon.png"
 
