@@ -1,7 +1,5 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/resources/sprite_frames/ui/hud/RushEnergyBarSpriteFrames.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://scenes/ui/hud/RushEnergyBar.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/hud/HUD.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/elements/label/GameBoyLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sprites/item/scrap/scrap_small.png" type="Texture" id=6]
@@ -43,7 +41,7 @@ __meta__ = {
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_top = 128.0
-margin_right = 160.0
+margin_right = 240.0
 margin_bottom = 144.0
 color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 __meta__ = {
@@ -69,37 +67,6 @@ custom_styles/normal = SubResource( 1 )
 custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 text = "ESCAPE! - 30"
 align = 1
-
-[node name="RushEnergyBar" type="Control" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -78.0
-margin_top = 124.0
-margin_right = -50.0
-margin_bottom = 140.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="First" type="AnimatedSprite" parent="RushEnergyBar"]
-position = Vector2( 39, 8 )
-frames = ExtResource( 1 )
-animation = "empty"
-
-[node name="Second" type="AnimatedSprite" parent="RushEnergyBar"]
-position = Vector2( 23, 8 )
-frames = ExtResource( 1 )
-animation = "empty"
-
-[node name="Third" type="AnimatedSprite" parent="RushEnergyBar"]
-position = Vector2( 7, 8 )
-frames = ExtResource( 1 )
-animation = "empty"
-
-[node name="FlashTimer" type="Timer" parent="RushEnergyBar"]
-wait_time = 0.12
 
 [node name="ScrapInfo" type="Control" parent="."]
 anchor_left = 1.0
@@ -152,6 +119,4 @@ margin_top = 3.0
 margin_right = 49.0
 margin_bottom = 17.0
 text = "-3"
-
-[connection signal="timeout" from="RushEnergyBar/FlashTimer" to="RushEnergyBar" method="_on_FlashTimer_timeout"]
 [connection signal="timeout" from="HealthInfo/FlashTimer" to="HealthInfo" method="_on_FlashTimer_timeout"]

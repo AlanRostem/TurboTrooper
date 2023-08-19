@@ -11,5 +11,4 @@ one_shot = true
 
 [node name="WinTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-
 [connection signal="timeout" from="CompletionTransitionTimer" to="." method="_on_CompletionTransitionTimer_timeout"]
