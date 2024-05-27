@@ -50,9 +50,13 @@ func is_moving_faster_than(speed):
 	var margin = 0.1
 	return abs(get_velocity().x) > speed + margin
 	
+# TODO: Remove function
 func is_moving_approximately_at_speed(max_viable_x_speed):
 	var margin = 1
 	return max_viable_x_speed - abs(get_velocity().x) <=  + margin
+
+func is_moving_exactly_at_speed(speed: float):
+	return speed - abs(get_velocity().x) < PlayerSpeedValues.STOP_MARGIN
 
 # Change where "down" points to relative to the entity. This affects how the 
 # changing of velocity is done.

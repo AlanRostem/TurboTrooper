@@ -88,10 +88,20 @@ func controls_enabled():
 	return __controls_enabled
 
 func run(direction: int, delta: float):
-	set_velocity_x(lerp(get_velocity().x, direction * max_dash_speed, dash_transition_weight))
+	if direction != 0:
+		look_horizontally(direction)
+	set_velocity_x(
+		lerp(get_velocity().x, 
+		direction * PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED, 
+		PlayerSpeedValues.PLAYER_SPRINT_TRANSITION_WEIGHT))
 
 func walk(direction: int, delta: float):
-	set_velocity_x(lerp(get_velocity().x, direction * max_walk_speed, walk_transition_weight))
+	if direction != 0:
+		look_horizontally(direction)
+	set_velocity_x(
+		lerp(get_velocity().x, 
+		direction * PlayerSpeedValues.PLAYER_WALK_SPEED, 
+		PlayerSpeedValues.PLAYER_WALK_TRANSITION_WEIGHT))
 
 func sneak(direction: int, delta):
 	set_velocity_x(lerp(get_velocity().x, direction * max_crouch_speed, crouch_transition_weight))
@@ -106,7 +116,7 @@ func apply_slide_friction(delta):
 	set_velocity_x(lerp(get_velocity().x, 0, slide_friction))
 	
 func stop_running():
-	set_velocity_x(lerp(get_velocity().x, 0, walk_friction))
+	set_velocity_x(lerp(get_velocity().x, 0, PlayerSpeedValues.PLAYER_WALK_FRICTION))
 
 func crouch_walk(direction: int, delta: float):
 	pass

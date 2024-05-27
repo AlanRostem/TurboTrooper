@@ -1,7 +1,5 @@
 extends "res://scenes/game/world/entity/entities/player/components/state_machine/PlayerState.gd"
 
-onready var __slide_sound = $SlideSound
-
 func enter(message):
 	player.crouch()
 	player.collision_mode = MovingEntity.CollisionModes.SLIDE

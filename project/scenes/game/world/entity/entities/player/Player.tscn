@@ -110,6 +110,9 @@ is_grounded_state = true
 [node name="DustSpawnTimer" type="Timer" parent="PlayerFSM/PlayerRunState" index="0"]
 wait_time = 0.1
 
+[node name="SlideSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerRunState" index="1"]
+stream = ExtResource( 17 )
+
 [node name="PlayerAirBorneState" parent="PlayerFSM" index="7" instance=ExtResource( 5 )]
 script = ExtResource( 8 )
 is_grounded_state = false
@@ -124,9 +127,6 @@ is_grounded_state = true
 [node name="PlayerSlideState" parent="PlayerFSM" index="9" instance=ExtResource( 5 )]
 script = ExtResource( 10 )
 is_grounded_state = false
-
-[node name="SlideSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerSlideState" index="0"]
-stream = ExtResource( 17 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="7"]
 current = true

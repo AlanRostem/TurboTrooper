@@ -3,43 +3,38 @@ extends "res://scenes/game/world/entity/entities/player/components/state_machine
 var __dust_trail_scene = preload("res://scenes/game/world/other/DustTrailEffect.tscn")
 
 onready var __dust_spawn_timer = $DustSpawnTimer
+onready var __slide_sound = $SlideSound
 
 var __spawning_dust = false
 
 func movement_update(delta):
-	if player.is_moving_too_fast(player.max_dash_speed):
+	if !player.is_on_ground():
+		parent_state_machine.transition_to("PlayerAirBorneState")
+		return
+	
+	if jump:
+		parent_state_machine.transition_to("PlayerAirBorneState", {
+			"jumping": true
+		})
+		return
+	
+	if crouch:
 		parent_state_machine.transition_to("PlayerSlideState")
+		if player.stats.get_rush_energy() > 0 and player.is_moving_exactly_at_speed(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED):
+			player.set_velocity_x(sign(player.get_velocity().x)*PlayerSpeedValues.PLAYER_TURBO_SLIDE_SPEED)
+			player.stats.use_rush_energy(2)
+			__slide_sound.play()
 		return
-	
-	if player.is_on_ground() and player.stats.get_rush_energy() > 0:
-		if !__spawning_dust:
-			__dust_spawn_timer.start()
-			__spawning_dust = true
-	elif __spawning_dust:
-		__spawning_dust = false
-		__dust_spawn_timer.stop()
-	
-	if (move_left or move_right) and player.can_move_on_ground():
-		var dir = int(move_right) - int(move_left)
-		if dir != 0:
-			player.look_horizontally(dir)
-		player.run(dir, delta)
-
-	else:
-		player.stop_running()
 		
-	if !player.is_moving_too_fast(player.max_walk_speed):
-		parent_state_machine.transition_to("PlayerWalkState")
-		return
-			
-	if crouch or slide_by_fire_button:
-		if player.stats.get_rush_energy() > 0:
-			parent_state_machine.transition_to("PlayerSlideState", {
-				"boost": true
-			})
-		elif !slide_by_fire_button:
-			parent_state_machine.transition_to("PlayerSlideState")
-
+	var dir = int(move_right) - int(move_left)
+	if dir != sign(player.get_velocity().x):
+		player.stop_running()
+		if player.is_moving_slower_than(PlayerSpeedValues.PLAYER_WALK_SPEED):
+			parent_state_machine.transition_to("PlayerWalkState")
+			return
+	
+	player.run(dir, delta)
+	
 func exit():
 	__spawning_dust = false
 	__dust_spawn_timer.stop()
