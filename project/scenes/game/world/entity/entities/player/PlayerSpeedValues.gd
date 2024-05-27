@@ -1,6 +1,7 @@
 extends Node
 
 var TILE_SIZE = 8
+var STOP_MARGIN = 0.1
 
 var PLAYER_WALK_SPEED = (5.5 * TILE_SIZE)
 var PLAYER_WALK_TRANSITION_WEIGHT = (0.4)

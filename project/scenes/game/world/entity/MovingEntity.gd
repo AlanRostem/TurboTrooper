@@ -83,23 +83,15 @@ func set_velocity_y(y):
 	__velocity = Vector2(get_velocity().x, y)
 	
 func accelerate_x(x, max_speed, delta):
+	var cur_vel = get_velocity()
+	set_velocity_x(clamp(cur_vel.x + x * delta, -max_speed, max_speed))
+	
+func decelerate_x(x, delta):
 	var vx = get_velocity().x
-	var movement = x * delta;
-	var result = abs(vx + movement);
-	var differing_dir = sign(movement) != sign(vx);
-
-	if !__can_accelerate:
-		if result < max_speed or differing_dir:
-			__can_accelerate = true;
-		else: return
-
-	if result > max_speed and !differing_dir:
-		movement = (result - max_speed) * delta * sign(x);
-		result = abs(vx + movement);
-		if result > max_speed:
-			movement = 0;
-		__can_accelerate = false;
-
+	var movement = -sign(vx) * x * delta
+	if sign(get_velocity().x) != sign(vx):
+		set_velocity_x(0)
+		return
 	set_velocity_x(vx + movement)
 
 func is_on_slope():

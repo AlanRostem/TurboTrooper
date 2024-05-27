@@ -27,8 +27,6 @@ var slide_speed = 180
 var slide_friction = 0.02
 var slide_mitigation_acceleration = 250
 
-
-var moving_direction = 1
 var can_swap_looking_direction = true
 
 var __is_crouched = false
@@ -91,23 +89,18 @@ func controls_enabled():
 
 func run(direction: int, delta: float):
 	set_velocity_x(lerp(get_velocity().x, direction * max_dash_speed, dash_transition_weight))
-	moving_direction = direction
 
 func walk(direction: int, delta: float):
 	set_velocity_x(lerp(get_velocity().x, direction * max_walk_speed, walk_transition_weight))
-	moving_direction = direction
 
 func sneak(direction: int, delta):
 	set_velocity_x(lerp(get_velocity().x, direction * max_crouch_speed, crouch_transition_weight))
-	moving_direction = direction
 	
 func air_move(direction: int, delta: float):
 	accelerate_x(air_acceleration * direction, max_dash_speed, delta)
-	moving_direction = direction
 	
-func negate_slide(direction: int, delta: float):
-	accelerate_x(slide_mitigation_acceleration * direction, max_walk_speed, delta)
-	moving_direction = direction
+func negate_slide(delta: float):
+	decelerate_x(PlayerSpeedValues.PLAYER_SLIDE_NEGATION_DECELERATION, delta)
 	
 func apply_slide_friction(delta):
 	set_velocity_x(lerp(get_velocity().x, 0, slide_friction))
@@ -118,21 +111,18 @@ func stop_running():
 func crouch_walk(direction: int, delta: float):
 	pass
 
-func slide(direction: int):
-	set_velocity_x(direction * slide_speed)
+func slide(delta: float):
+	decelerate_x(PlayerSpeedValues.PLAYER_SLIDE_DECELERATION, delta)
+	# TODO: See if this works with slopes
 
 func crouch():
-	if __is_crouched: return
 	__is_crouched = true
-	__hit_box_shape.shape.extents.y = 3
-	__hit_box_shape.position.y = 0
-	
-	
+
 func stand_up():
-	if !__is_crouched: return
 	__is_crouched = false
-	__hit_box_shape.shape.extents.y = 7
-	__hit_box_shape.position.y = -4
+
+func is_standing_still():
+	return abs(get_velocity().x) < PlayerSpeedValues.STOP_MARGIN
 
 func is_crouched():
 	return __is_crouched
@@ -142,6 +132,9 @@ func jump():
 	
 func is_effectively_standing_still():
 	return int(round(get_velocity().x)) == 0
+	
+func is_moving_slower_than(speed: float):
+	return abs(get_velocity().x) < speed
 
 func is_on_ground():
 	return is_on_floor()
