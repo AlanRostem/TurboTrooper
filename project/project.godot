@@ -89,6 +89,10 @@ config/icon="res://icon.png"
 mix_rate=48000
 output_latency=20
 
+[autoload]
+
+PlayerSpeedValues="*res://scenes/game/world/entity/entities/player/PlayerSpeedValues.gd"
+
 [display]
 
 window/size/width=160

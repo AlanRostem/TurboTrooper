@@ -39,12 +39,12 @@ func movement_update(delta):
 
 func enter(message):
 	if player.is_on_slope():
-		player.set_ram_slide_hit_box_enabled(true)
+		pass#player.set_ram_slide_hit_box_enabled(true)
 	elif message.has("boost"):
 		if player.stats.get_rush_energy() >= 2:
 			player.stats.use_rush_energy(2)
 			player.slide(player.moving_direction)
-			player.set_ram_slide_hit_box_enabled(true)
+			#player.set_ram_slide_hit_box_enabled(true)
 			__slide_sound.play()
 	player.crouch()
 	player.collision_mode = MovingEntity.CollisionModes.SLIDE
@@ -52,4 +52,4 @@ func enter(message):
 func exit():
 	player.stand_up()
 	player.collision_mode = MovingEntity.CollisionModes.SNAP
-	player.set_ram_slide_hit_box_enabled(false)
+	#player.set_ram_slide_hit_box_enabled(false)

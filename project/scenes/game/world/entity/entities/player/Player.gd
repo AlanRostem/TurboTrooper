@@ -43,7 +43,6 @@ var __is_invincible = false
 var __is_immortal = false
 var __controls_enabled = true
 
-onready var __upper_body_shape: CollisionShape2D = $UpperBodyShape
 onready var __hit_box_shape = $InHitBox/CollisionShape2D
 onready var hit_box = $InHitBox
 onready var state_machine = $PlayerFSM
@@ -69,7 +68,8 @@ func _ready():
 func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
-	__ram_slide_hit_box.scale.x = sign(get_velocity().x)
+		return
+	set_ram_slide_hit_box_enabled(is_moving_faster_than(max_dash_speed))
 
 func set_camera_follow(value):
 	__camera.current = value
@@ -123,7 +123,6 @@ func slide(direction: int):
 
 func crouch():
 	if __is_crouched: return
-	__upper_body_shape.set_deferred("disabled", true)
 	__is_crouched = true
 	__hit_box_shape.shape.extents.y = 3
 	__hit_box_shape.position.y = 0
@@ -131,7 +130,6 @@ func crouch():
 	
 func stand_up():
 	if !__is_crouched: return
-	__upper_body_shape.set_deferred("disabled", false)
 	__is_crouched = false
 	__hit_box_shape.shape.extents.y = 7
 	__hit_box_shape.position.y = -4

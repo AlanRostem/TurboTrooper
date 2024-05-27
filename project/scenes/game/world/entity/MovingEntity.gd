@@ -46,6 +46,10 @@ func is_moving_too_fast(max_viable_x_speed):
 	var margin = 0.1
 	return abs(get_velocity().x) >= max_viable_x_speed + margin
 	
+func is_moving_faster_than(speed):
+	var margin = 0.1
+	return abs(get_velocity().x) > speed + margin
+	
 func is_moving_approximately_at_speed(max_viable_x_speed):
 	var margin = 1
 	return max_viable_x_speed - abs(get_velocity().x) <=  + margin
