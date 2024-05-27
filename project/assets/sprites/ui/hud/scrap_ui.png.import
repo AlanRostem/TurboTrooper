@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rush_energy.png-d45e3e63f7bc6691398c04a712d08f4d.stex"
+path="res://.import/scrap_ui.png-48c51652857c928efe281f8fa503aaf6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/hud/rush_energy.png"
-dest_files=[ "res://.import/rush_energy.png-d45e3e63f7bc6691398c04a712d08f4d.stex" ]
+source_file="res://assets/sprites/ui/hud/scrap_ui.png"
+dest_files=[ "res://.import/scrap_ui.png-48c51652857c928efe281f8fa503aaf6.stex" ]
 
 [params]
 

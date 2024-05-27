@@ -1,9 +1,6 @@
 extends Control
 
-
-onready var __health_label = $HealthLabel
-# onready var __heart_icon = $HeartIcon
-
+var __heart_sprite_texture = preload("res://assets/sprites/ui/hud/health.png")
 onready var __flash_timer = $FlashTimer
 
 
@@ -13,7 +10,13 @@ func set_health(count):
 		visible = true
 	else:
 		__flash_timer.start()
-	__health_label.text = "-" + str(count)
+	for node in $Hearts.get_children():
+		node.queue_free()
+	for i in range(count):
+		var heart = Sprite.new()
+		$Hearts.add_child(heart)
+		heart.position.x = i * 8
+		heart.texture = __heart_sprite_texture
 
 # Flashes the health bar 
 func _on_FlashTimer_timeout():
