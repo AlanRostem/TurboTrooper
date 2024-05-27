@@ -5,17 +5,22 @@ func enter(message):
 	# after a checkpoint is added. This is the worst way to fix it, but i dont
 	# fucking give a shit because I just want this game to work.
 	player.is_gravity_enabled = true
-
+	player.set_velocity_x(0)
+	
 func movement_update(delta):
-	if crouch:
-		parent_state_machine.transition_to("PlayerCrouchState")
-		return
-		
 	if jump:
 		parent_state_machine.transition_to("PlayerAirborneState", {
 			"jumping": true
 		})
 		return
+	
+	if !player.is_on_ground():
+		parent_state_machine.transition_to("PlayerAirborneState")
+		return
 		
 	if move_left or move_right:
 		parent_state_machine.transition_to("PlayerWalkState")
+		
+	if crouch:
+		parent_state_machine.transition_to("PlayerCrouchState")
+		return
