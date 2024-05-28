@@ -12,6 +12,7 @@ func connect_to_player(player):
 	player.stats.connect("rush_energy_changed", __rush_energy_bar, "set_rush_energy")
 	player.stats.connect("scrap_changed", __scrap_info, "set_scrap_count")
 	player.stats.connect("health_changed", __health_info, "set_health")
+	player.connect("tree_exited", self, "__player_deleted")
 	__player = player
 
 func _process(delta):
@@ -24,6 +25,9 @@ func _process(delta):
 		p.state_machine.get_current_state() == "PlayerRunState"
 	
 	$DpadIndicatorSprite.frame = 1 if dpad_on else 0
+
+func __player_deleted():
+	__player = null
 
 func set_global_message(text):
 	__message.rect_size.x = 0

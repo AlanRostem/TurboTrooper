@@ -29,7 +29,7 @@
 extents = Vector2( 5, 7 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 6 )
+extents = Vector2( 10, 7.55999 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 7 )
@@ -86,7 +86,7 @@ position = Vector2( 0, -4 )
 __team = "player_team"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RamSlideHitBox" index="0"]
-position = Vector2( 9.98608, -0.880011 )
+position = Vector2( 9.98608, -2.44001 )
 shape = SubResource( 1 )
 disabled = true
 
@@ -192,10 +192,10 @@ one_shot = true
 wait_time = 0.055
 
 [node name="MeteorEffectSprite" type="AnimatedSprite" parent="." index="10"]
+visible = false
 material = ExtResource( 24 )
 position = Vector2( 0, -4 )
 frames = SubResource( 8 )
-frame = 1
 playing = true
 
 [node name="RoofDetector" type="Node2D" parent="." index="11"]

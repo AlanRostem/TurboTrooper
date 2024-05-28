@@ -32,6 +32,9 @@ func movement_update(delta):
 			return
 	
 	player.run(dir, delta)
+	if not __spawning_dust:
+		__spawning_dust = true
+		__dust_spawn_timer.start()
 	
 func exit():
 	__spawning_dust = false
