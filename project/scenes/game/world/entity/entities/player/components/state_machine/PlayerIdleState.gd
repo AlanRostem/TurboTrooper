@@ -20,5 +20,5 @@ func movement_update(delta):
 		parent_state_machine.transition_to("PlayerWalkState")
 		
 	if crouch:
-		parent_state_machine.transition_to("PlayerCrouchState")
+		parent_state_machine.transition_to("PlayerSlideState")
 		return

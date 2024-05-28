@@ -5,6 +5,14 @@ onready var player_state_machine = get_parent().get_node("PlayerFSM")
 onready var __rush_energy_activity_timer = $RushEnergyVisualActivityTimer
 onready var __rush_energy_flash_timer = $RushEnergyVisualFlashTimer
 
+func __jump_check():
+	if player.is_aiming_up():
+		animation = "aim_up_jump"
+	elif player.is_aiming_down():
+		animation = "aim_down"
+	else:
+		animation = "jump"
+
 func _physics_process(delta):
 	scale.x = player.get_horizontal_looking_direction()
 	
@@ -44,13 +52,10 @@ func _physics_process(delta):
 			frame = f
 		"PlayerEnterLevelState": animation = "jump"
 		"PlayerLeaveLevelState": animation = "walking"
-		"PlayerAirBorneState": 
-			if player.is_aiming_up():
-				animation = "aim_up_jump"
-			elif player.is_aiming_down():
-				animation = "aim_down"
-			else:
-				animation = "jump"
+		"PlayerJumpState": 
+			__jump_check()
+		"PlayerFallState":
+			__jump_check()
 		"PlayerCrouchState": 
 			animation = "slide"
 		"PlayerSlideState": 

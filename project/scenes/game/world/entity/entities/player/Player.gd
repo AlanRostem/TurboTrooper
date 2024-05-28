@@ -218,7 +218,7 @@ func set_opening_crate(value):
 
 func set_ram_slide_hit_box_enabled(value):
 	__ram_slide_hit_box_shape.set_deferred("disabled", !value)
-	__ram_slide_hit_box_shape.scale.x = sign(get_velocity().x)
+	__ram_slide_hit_box.scale.x = sign(get_velocity().x)
 
 func _on_FlashingTimer_timeout():
 	visible = !visible

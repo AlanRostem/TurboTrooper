@@ -5,4 +5,4 @@ func enter(message):
 		player.stats.get_weapon().set_can_attack(false)
 
 func physics_update(delta):
-	player.set_velocity_x(-player.max_walk_speed)
+	player.set_velocity_x(-PlayerSpeedValues.PLAYER_WALK_SPEED)
