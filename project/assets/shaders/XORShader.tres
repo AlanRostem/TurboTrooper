@@ -1,0 +1,53 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+const uint NON_EXISTENT_COLOR = uint(4);
+const vec4 palette_color_0 = vec4(155.0/255.0, 188.0/255.0, 15.0/255.0, 1.0);
+const vec4 palette_color_1 = vec4(139.0/255.0, 172.0/255.0, 15.0/255.0, 1.0);
+const vec4 palette_color_2 = vec4(48.0/255.0, 98.0/255.0, 48.0/255.0, 1.0);
+const vec4 palette_color_3 = vec4(15.0/255.0, 56.0/255.0, 15.0/255.0, 1.0);
+
+const float COLOR_DIFF_MARGIN = 0.2;
+bool is_same_color(vec4 c0, vec4 c1)
+{
+	return abs(c0.r - c1.r) < COLOR_DIFF_MARGIN && abs(c0.g - c1.g) < COLOR_DIFF_MARGIN && abs(c0.b - c1.b) < COLOR_DIFF_MARGIN;
+}
+
+uint get_2bit_value_of_palette_color(vec4 color)
+{
+	if (is_same_color(color, palette_color_0)) return uint(0);
+	if (is_same_color(color, palette_color_1)) return uint(1);
+	if (is_same_color(color, palette_color_2)) return uint(2);
+	if (is_same_color(color, palette_color_3)) return uint(3);
+	return NON_EXISTENT_COLOR;
+}
+
+vec4 get_color_by_2bit_value(uint value)
+{
+	if (value == uint(0)) return palette_color_0;
+	if (value == uint(1)) return palette_color_1;
+	if (value == uint(2)) return palette_color_2;
+	if (value == uint(3)) return palette_color_3;
+
+	return vec4(255.0, 0.0, 0.0, 1.0);
+}
+
+void fragment()
+{
+	vec4 sprite_fragment = texture(TEXTURE, UV);
+	vec4 screen_fragment = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
+	if (sprite_fragment.a != 0.0)
+	{
+		uint mask = uint(3); // == 0b11
+		uint screen_2bit_color_value = get_2bit_value_of_palette_color(screen_fragment);
+		uint sprite_2bit_color_value = get_2bit_value_of_palette_color(sprite_fragment);
+		uint _2bit_result = sprite_2bit_color_value ^ screen_2bit_color_value;
+		COLOR = get_color_by_2bit_value(mask&(~_2bit_result));
+	}
+	else
+	{
+		COLOR = sprite_fragment;
+	}
+}"

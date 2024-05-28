@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/audio/sfx/player/player_take_damage.wav" type="AudioStream" id=21]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerLeaveLevelSecretState.gd" type="Script" id=22]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerFallState.gd" type="Script" id=23]
+[ext_resource path="res://assets/resources/shaders/XORShaderMaterial.tres" type="Material" id=24]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 7 )
@@ -174,14 +175,7 @@ one_shot = true
 [node name="DamageSound" type="AudioStreamPlayer" parent="PlayerStats" index="2"]
 stream = ExtResource( 21 )
 
-[node name="MeteorEffectSprite" type="AnimatedSprite" parent="." index="9"]
-visible = false
-material = ExtResource( 14 )
-position = Vector2( 0, -4 )
-frames = SubResource( 8 )
-playing = true
-
-[node name="PlayerSprite" type="AnimatedSprite" parent="." index="10"]
+[node name="PlayerSprite" type="AnimatedSprite" parent="." index="9"]
 material = ExtResource( 14 )
 use_parent_material = true
 position = Vector2( 0, -4 )
@@ -196,6 +190,13 @@ one_shot = true
 
 [node name="RushEnergyVisualFlashTimer" type="Timer" parent="PlayerSprite" index="1"]
 wait_time = 0.055
+
+[node name="MeteorEffectSprite" type="AnimatedSprite" parent="." index="10"]
+material = ExtResource( 24 )
+position = Vector2( 0, -4 )
+frames = SubResource( 8 )
+frame = 1
+playing = true
 
 [node name="RoofDetector" type="Node2D" parent="." index="11"]
 visible = false
