@@ -9,13 +9,11 @@ func enter(message):
 	
 func movement_update(delta):
 	if jump:
-		parent_state_machine.transition_to("PlayerAirborneState", {
-			"jumping": true
-		})
+		parent_state_machine.transition_to("PlayerJumpState")
 		return
 	
 	if !player.is_on_ground():
-		parent_state_machine.transition_to("PlayerAirborneState")
+		parent_state_machine.transition_to("PlayerFallState")
 		return
 		
 	if move_left or move_right:

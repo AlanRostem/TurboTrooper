@@ -65,7 +65,7 @@ func _physics_process(delta):
 		__equipped_weapon.attack()
 		
 	if Input.is_action_just_pressed("aim_down"):
-		if __player.state_machine.get_current_state() == "PlayerAirBorneState":
+		if !__player.is_on_ground(): # TODO: Verify correctness after this got changed
 			__player.toggle_aim_down()
 			
 	if Input.is_action_just_pressed("aim_up"):

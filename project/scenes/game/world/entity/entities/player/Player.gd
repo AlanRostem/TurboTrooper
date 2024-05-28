@@ -7,26 +7,6 @@ const RAM_SLIDE_DAMAGE = 8
 
 var __death_sound = preload("res://assets/audio/sfx/player/player_death.wav")
 
-var air_acceleration = 250
-
-var walk_transition_weight = .4
-var max_walk_speed = 50
-var walk_friction = .4
-
-var dash_transition_weight = .05
-var max_dash_speed  = 100
-var dash_friction = .1
-
-var jump_speed = 150
-var min_jump_speed = 50
-
-var max_crouch_speed = 15
-var crouch_transition_weight = .3
-
-var slide_speed = 180
-var slide_friction = 0.02
-var slide_mitigation_acceleration = 250
-
 var can_swap_looking_direction = true
 
 var __is_crouched = false
@@ -62,12 +42,13 @@ onready var __camera = $Camera2D
 
 func _ready():
 	parent_world.get_parent().player_node = self
+	gravity = PlayerSpeedValues.PLAYER_GRAVITY
 
 func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
 		return
-	set_ram_slide_hit_box_enabled(is_moving_faster_than(max_dash_speed))
+	set_ram_slide_hit_box_enabled(is_moving_faster_than(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED))
 
 func set_camera_follow(value):
 	__camera.current = value
@@ -102,24 +83,33 @@ func walk(direction: int, delta: float):
 		lerp(get_velocity().x, 
 		direction * PlayerSpeedValues.PLAYER_WALK_SPEED, 
 		PlayerSpeedValues.PLAYER_WALK_TRANSITION_WEIGHT))
-
-func sneak(direction: int, delta):
-	set_velocity_x(lerp(get_velocity().x, direction * max_crouch_speed, crouch_transition_weight))
 	
-func air_move(direction: int, delta: float):
-	accelerate_x(air_acceleration * direction, max_dash_speed, delta)
+func instant_move(direction: int, speed: float):
+	if direction != 0:
+		look_horizontally(direction)
+	set_velocity_x(direction * speed)
+
+func instant_stop():
+	set_velocity_x(0)
+	
+func lose_momentum_on_landing(delta):
+	set_velocity_x(sign(get_velocity().x) * PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED)
+	
+func resist_high_air_speed(direction: int, delta: float):
+	if direction != 0:
+		look_horizontally(direction)
+	var factor = max(0.00001, abs(get_velocity().x / PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED))
+	var time = factor * PlayerSpeedValues.PLAYER_DECELERATE_SPRINT_IN_AIR_BY_TURN_TIME
+	decelerate_x((PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED - PlayerSpeedValues.PLAYER_WALK_SPEED) / time, delta)
+	
+func air_stop(delta: float):
+	decelerate_x(PlayerSpeedValues.PLAYER_STOP_MID_AIR_DECELERATION, delta)
 	
 func negate_slide(delta: float):
 	decelerate_x(PlayerSpeedValues.PLAYER_SLIDE_NEGATION_DECELERATION, delta)
 	
-func apply_slide_friction(delta):
-	set_velocity_x(lerp(get_velocity().x, 0, slide_friction))
-	
 func stop_running():
 	set_velocity_x(lerp(get_velocity().x, 0, PlayerSpeedValues.PLAYER_WALK_FRICTION))
-
-func crouch_walk(direction: int, delta: float):
-	pass
 
 func slide(delta: float):
 	decelerate_x(PlayerSpeedValues.PLAYER_SLIDE_DECELERATION, delta)
@@ -138,7 +128,7 @@ func is_crouched():
 	return __is_crouched
 
 func jump():
-	set_velocity_y(-jump_speed)
+	set_velocity_y(-PlayerSpeedValues.PLAYER_MAX_JUMP_SPEED)
 	
 func is_effectively_standing_still():
 	return int(round(get_velocity().x)) == 0
@@ -228,6 +218,7 @@ func set_opening_crate(value):
 
 func set_ram_slide_hit_box_enabled(value):
 	__ram_slide_hit_box_shape.set_deferred("disabled", !value)
+	__ram_slide_hit_box_shape.scale.x = sign(get_velocity().x)
 
 func _on_FlashingTimer_timeout():
 	visible = !visible

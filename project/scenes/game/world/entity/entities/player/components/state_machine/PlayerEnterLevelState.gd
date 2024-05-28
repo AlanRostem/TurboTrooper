@@ -21,7 +21,7 @@ func exit():
 
 func physics_update(delta):
 	if !__move: return
-	player.set_velocity_x(player.max_dash_speed * 1.5)
+	player.set_velocity_x(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED * 1.5)
 	if player.is_on_ground():
 		parent_state_machine.transition_to("PlayerIdleState")
 		player.set_velocity_x(0)

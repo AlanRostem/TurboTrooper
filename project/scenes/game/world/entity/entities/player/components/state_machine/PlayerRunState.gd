@@ -8,14 +8,12 @@ onready var __slide_sound = $SlideSound
 var __spawning_dust = false
 
 func movement_update(delta):
-	if !player.is_on_ground():
-		parent_state_machine.transition_to("PlayerAirBorneState")
+	if jump:
+		parent_state_machine.transition_to("PlayerJumpState")
 		return
 	
-	if jump:
-		parent_state_machine.transition_to("PlayerAirBorneState", {
-			"jumping": true
-		})
+	if !player.is_on_ground():
+		parent_state_machine.transition_to("PlayerFallState")
 		return
 	
 	if crouch:

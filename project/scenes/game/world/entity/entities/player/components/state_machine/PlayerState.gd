@@ -29,14 +29,14 @@ func physics_process_input_update(delta):
 func physics_update(delta):
 	movement_update(delta)
 	
-	if is_grounded_state:
-		if player.is_on_ground():
-			if jump:
-				parent_state_machine.transition_to("PlayerAirBorneState", {
-					"jumping": true
-				})
-		else:
-			parent_state_machine.transition_to("PlayerAirBorneState")
+#	if is_grounded_state:
+#		if player.is_on_ground():
+#			if jump:
+#				parent_state_machine.transition_to("PlayerAirBorneState", {
+#					"jumping": true
+#				})
+#		else:
+#			parent_state_machine.transition_to("PlayerAirBorneState")
 		
 	
 func movement_update(delta):

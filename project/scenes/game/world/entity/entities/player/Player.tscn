@@ -7,8 +7,7 @@
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerState.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerRunState.gd" type="Script" id=6]
 [ext_resource path="res://assets/resources/sprite_frames/char/PlayerSpriteFrames.tres" type="SpriteFrames" id=7]
-[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerAirBorneState.gd" type="Script" id=8]
-[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerCrouchState.gd" type="Script" id=9]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerJumpState.gd" type="Script" id=8]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerSlideState.gd" type="Script" id=10]
 [ext_resource path="res://scenes/game/world/entity/entities/player/PlayerSprite.gd" type="Script" id=11]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerWalkState.gd" type="Script" id=12]
@@ -22,12 +21,13 @@
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerDeathState.gd" type="Script" id=20]
 [ext_resource path="res://assets/audio/sfx/player/player_take_damage.wav" type="AudioStream" id=21]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerLeaveLevelSecretState.gd" type="Script" id=22]
+[ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerFallState.gd" type="Script" id=23]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 7 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10.9823, 5.96621 )
+extents = Vector2( 10, 6 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 7 )
@@ -60,7 +60,7 @@ position = Vector2( 0, -4 )
 __team = "player_team"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RamSlideHitBox" index="0"]
-position = Vector2( -0.0139167, -0.880011 )
+position = Vector2( 9.98608, -0.880011 )
 shape = SubResource( 1 )
 disabled = true
 
@@ -113,16 +113,16 @@ wait_time = 0.1
 [node name="SlideSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerRunState" index="1"]
 stream = ExtResource( 17 )
 
-[node name="PlayerAirBorneState" parent="PlayerFSM" index="7" instance=ExtResource( 5 )]
+[node name="PlayerFallState" parent="PlayerFSM" index="7" instance=ExtResource( 5 )]
+script = ExtResource( 23 )
+is_grounded_state = false
+
+[node name="PlayerJumpState" parent="PlayerFSM" index="8" instance=ExtResource( 5 )]
 script = ExtResource( 8 )
 is_grounded_state = false
 
-[node name="JumpSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerAirBorneState" index="0"]
+[node name="JumpSound" type="AudioStreamPlayer" parent="PlayerFSM/PlayerJumpState" index="0"]
 stream = ExtResource( 16 )
-
-[node name="PlayerCrouchState" parent="PlayerFSM" index="8" instance=ExtResource( 5 )]
-script = ExtResource( 9 )
-is_grounded_state = true
 
 [node name="PlayerSlideState" parent="PlayerFSM" index="9" instance=ExtResource( 5 )]
 script = ExtResource( 10 )
@@ -154,7 +154,7 @@ material = ExtResource( 14 )
 use_parent_material = true
 position = Vector2( 0, -4 )
 frames = ExtResource( 7 )
-animation = "idle"
+animation = "fall"
 playing = true
 script = ExtResource( 11 )
 

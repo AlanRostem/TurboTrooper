@@ -10,14 +10,12 @@ func exit():
 	#player.set_ram_slide_hit_box_enabled(false)
 
 func movement_update(delta):
-	if !player.is_on_ground():
-		parent_state_machine.transition_to("PlayerAirBorneState")
-		return
-
 	if jump:
-		parent_state_machine.transition_to("PlayerAirBorneState", {
-			"jumping": true
-		})
+		parent_state_machine.transition_to("PlayerJumpState")
+		return
+	
+	if !player.is_on_ground():
+		parent_state_machine.transition_to("PlayerFallState")
 		return
 		
 	var dir = int(move_right) - int(move_left)
