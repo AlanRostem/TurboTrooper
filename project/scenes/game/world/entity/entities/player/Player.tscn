@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerRunState.gd" type="Script" id=6]
 [ext_resource path="res://assets/resources/sprite_frames/char/PlayerSpriteFrames.tres" type="SpriteFrames" id=7]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerJumpState.gd" type="Script" id=8]
+[ext_resource path="res://assets/sprites/effect/meteor.png" type="Texture" id=9]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerSlideState.gd" type="Script" id=10]
 [ext_resource path="res://scenes/game/world/entity/entities/player/PlayerSprite.gd" type="Script" id=11]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerWalkState.gd" type="Script" id=12]
@@ -31,6 +32,30 @@ extents = Vector2( 10, 6 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 7 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 9 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 9 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
 
 [node name="Player" instance=ExtResource( 1 )]
 z_index = 1
@@ -136,9 +161,7 @@ drag_margin_top = 1.0
 drag_margin_right = 0.1
 drag_margin_bottom = 1.0
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="8"]
-
-[node name="PlayerStats" type="Node2D" parent="." index="9"]
+[node name="PlayerStats" type="Node2D" parent="." index="8"]
 script = ExtResource( 13 )
 
 [node name="RushEnergyRechargeTimer" type="Timer" parent="PlayerStats" index="0"]
@@ -150,6 +173,13 @@ one_shot = true
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="PlayerStats" index="2"]
 stream = ExtResource( 21 )
+
+[node name="MeteorEffectSprite" type="AnimatedSprite" parent="." index="9"]
+visible = false
+material = ExtResource( 14 )
+position = Vector2( 0, -4 )
+frames = SubResource( 8 )
+playing = true
 
 [node name="PlayerSprite" type="AnimatedSprite" parent="." index="10"]
 material = ExtResource( 14 )

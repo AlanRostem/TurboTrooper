@@ -219,6 +219,8 @@ func set_opening_crate(value):
 func set_ram_slide_hit_box_enabled(value):
 	__ram_slide_hit_box_shape.set_deferred("disabled", !value)
 	__ram_slide_hit_box.scale.x = sign(get_velocity().x)
+	$MeteorEffectSprite.visible = value
+	$MeteorEffectSprite.flip_h = __ram_slide_hit_box.scale.x < 0
 
 func _on_FlashingTimer_timeout():
 	visible = !visible
