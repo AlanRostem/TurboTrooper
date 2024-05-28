@@ -1,0 +1,46 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+const vec4 palette_color_0 = vec4(155.0/255.0, 188.0/255.0, 15.0/255.0, 1.0);
+const vec4 palette_color_1 = vec4(139.0/255.0, 172.0/255.0, 15.0/255.0, 1.0);
+const vec4 palette_color_2 = vec4(48.0/255.0, 98.0/255.0, 48.0/255.0, 1.0);
+const vec4 palette_color_3 = vec4(15.0/255.0, 56.0/255.0, 15.0/255.0, 1.0);
+
+bool is_same_color(vec4 c0, vec4 c1)
+{
+	return c0.r == c1.r && c0.g == c1.g && c0.b == c1.b;
+}
+
+void fragment()
+{
+	vec4 rgba = texture(TEXTURE, UV);
+	if (rgba.a != 0.0)
+	{
+		if (is_same_color(rgba, palette_color_0))
+		{
+			COLOR = palette_color_3;
+		}
+		else if (is_same_color(rgba, palette_color_1))
+		{
+			COLOR = palette_color_2;
+		}
+		else if (is_same_color(rgba, palette_color_2))
+		{
+			COLOR = palette_color_1;
+		} else if (is_same_color(rgba, palette_color_3))
+		{
+			COLOR = palette_color_0;
+		}
+		else
+		{
+			COLOR = rgba;
+		} 
+		
+	}
+	else
+	{
+		COLOR = rgba;
+	}
+}"
