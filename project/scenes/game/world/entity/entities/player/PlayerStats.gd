@@ -145,12 +145,12 @@ func take_one_damage():
 	if __data["life"] == 0 or __player.is_invincible(): return
 	if !__infinite_health:
 		set_health(__data["life"] - 1)
-	if __equipped_weapon != null:
-		__equipped_weapon.drop()
-		__player.set_sprite_frames(__default_player_sprite_frames)
-		__equipped_weapon = null
-		__player.set_aim_up(false)
-		__player.stop_aiming_down()
+#	if __equipped_weapon != null:
+#		__equipped_weapon.drop()
+#		__player.set_sprite_frames(__default_player_sprite_frames)
+#		__equipped_weapon = null
+#		__player.set_aim_up(false)
+#		__player.stop_aiming_down()
 	if !__player.is_roof_above():
 		__player.set_velocity_x(0)
 	if __data["life"] == 0:
@@ -160,7 +160,7 @@ func take_one_damage():
 		__player.start_invinvibility_sequence()
 		__damage_sound.play()
 		__data["weapon"] = -1
-		
+
 	
 func add_one_health():
 	set_health(__data["life"] + 1)

@@ -7,6 +7,11 @@ code = "shader_type canvas_item;
 
 uniform sampler2D palette;
 
+const lowp uvec4 palette_color_0 = uvec4(0, 0, 0, 255);
+const lowp uvec4 palette_color_1 = uvec4(0, 0, 0, 255);
+const lowp uvec4 palette_color_2 = uvec4(0, 0, 0, 255);
+const lowp uvec4 palette_color_3 = uvec4(0, 0, 0, 255);
+
 void fragment() {
 	vec4 rgba = texture(TEXTURE, UV);
 	vec4 final_color = texture(palette, vec2(rgba.r, rgba.g));

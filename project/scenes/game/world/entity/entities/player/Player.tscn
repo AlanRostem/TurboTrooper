@@ -136,7 +136,9 @@ drag_margin_top = 1.0
 drag_margin_right = 0.1
 drag_margin_bottom = 1.0
 
-[node name="PlayerStats" type="Node2D" parent="." index="8"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="8"]
+
+[node name="PlayerStats" type="Node2D" parent="." index="9"]
 script = ExtResource( 13 )
 
 [node name="RushEnergyRechargeTimer" type="Timer" parent="PlayerStats" index="0"]
@@ -149,7 +151,7 @@ one_shot = true
 [node name="DamageSound" type="AudioStreamPlayer" parent="PlayerStats" index="2"]
 stream = ExtResource( 21 )
 
-[node name="PlayerSprite" type="AnimatedSprite" parent="." index="9"]
+[node name="PlayerSprite" type="AnimatedSprite" parent="." index="10"]
 material = ExtResource( 14 )
 use_parent_material = true
 position = Vector2( 0, -4 )
@@ -165,7 +167,7 @@ one_shot = true
 [node name="RushEnergyVisualFlashTimer" type="Timer" parent="PlayerSprite" index="1"]
 wait_time = 0.055
 
-[node name="RoofDetector" type="Node2D" parent="." index="10"]
+[node name="RoofDetector" type="Node2D" parent="." index="11"]
 visible = false
 
 [node name="LeftRay" type="RayCast2D" parent="RoofDetector" index="0"]
@@ -178,7 +180,7 @@ position = Vector2( 3, -3 )
 enabled = true
 cast_to = Vector2( 0, -8 )
 
-[node name="CollectArea" type="Area2D" parent="." index="11"]
+[node name="CollectArea" type="Area2D" parent="." index="12"]
 visible = false
 collision_layer = 8
 collision_mask = 0
