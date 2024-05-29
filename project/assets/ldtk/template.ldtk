@@ -11,7 +11,7 @@
 	"iid": "cd48af60-fec0-11ee-a2a9-998f8615a9b3",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 33,
+	"nextUid": 38,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "GridVania",
@@ -625,7 +625,7 @@
 				"averageColors": "9462f3529462f351f352f35268a10000f461f352f131f4620000f131f13168a1e462f562d462e352e3520000f351f3510000000000008572f46285710000f242f242000000000000f352f131f3520000f242f242000000000000e352f141e3520000000000000000000000007451f5617351000064516461645100000000f242f131f2520000f242f242000000000000f242f242f2420000f451f4610000000000008242f24282420000f363f363000000000000f353f363f3530000f353f353000000000000e572f572e572000000000000000000000000"
 			}
 		}
-	], "enums": [], "externalEnums": [], "levelFields": [] },
+	], "enums": [{ "identifier": "CaveBiome", "uid": 37, "values": [], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }], "externalEnums": [], "levelFields": [] },
 	"levels": [
 		{
 			"identifier": "Level_0",
