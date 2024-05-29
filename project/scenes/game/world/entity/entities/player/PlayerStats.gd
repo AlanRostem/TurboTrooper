@@ -99,8 +99,8 @@ func set_from_data(data: Dictionary):
 	set_score(data["score"])
 	set_check_point(data["checkpoint"])
 	match data["weapon"]:
-		SWORD_WEAPON_IDX: instance_and_equip_weapon(__sword_scene)
-		BLASTER_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
+		SWORD_WEAPON_IDX: print("NOT VALID ANYMORE")
+		_: instance_and_equip_weapon(__blaster_scene)
 	
 	
 func get_data():

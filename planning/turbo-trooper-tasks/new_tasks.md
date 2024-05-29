@@ -3,6 +3,7 @@
 ## Done
 
 - Fix bug where HUD scene loses a reference to the player scene after level transitioning
+- Make blaster default weapon
 
 ## Other
 
@@ -10,7 +11,6 @@
 
 ## Rebalance
 
-- Make blaster default weapon
 - Remove blaster from crates
 - Remove sword and crate item for it
 - Make Blast Cannon weapon

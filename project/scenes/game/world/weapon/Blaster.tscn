@@ -10,6 +10,7 @@ position = Vector2( 0, -3 )
 script = ExtResource( 2 )
 __player_sprite_frames = ExtResource( 3 )
 __collectible_sprite = ExtResource( 4 )
+is_ammo_infinite = true
 __attack_delay = 0.08
 weapon_index = 1
 

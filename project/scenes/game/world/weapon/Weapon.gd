@@ -7,6 +7,7 @@ signal dropped()
 
 export(SpriteFrames) var __player_sprite_frames
 export(Texture) var __collectible_sprite
+export(bool) var is_ammo_infinite = false
 
 export(bool) var use_attacking_delay = true
 
