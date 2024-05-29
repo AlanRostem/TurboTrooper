@@ -59,6 +59,7 @@ func stop_ticking():
 # TODO: Show explosion and die
 func _on_BombTimer_timeout():
 	emit_signal("detonated")
+	__parent_level.stop_battle_theme()
 	__parent_level.game_handler.get_hud().hide_global_message()
 	__count_down = false
 	__explode_sound.play()

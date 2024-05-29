@@ -28,6 +28,9 @@ func _ready():
 func play_battle_theme():
 	game_handler.start_battle_sequence()
 	
+func stop_battle_theme():
+	game_handler.cancel_battle_sequence()
+	
 func get_player_node():
 	return $GameWorld/EntityPool/Player
 	

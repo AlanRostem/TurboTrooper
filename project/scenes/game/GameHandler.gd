@@ -139,6 +139,9 @@ func start_battle_sequence():
 	__current_level_theme.stop()
 	__battle_theme_player.play()
 
+func cancel_battle_sequence():
+	__battle_theme_player.stop()
+
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)
 	
