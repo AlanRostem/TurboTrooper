@@ -5,8 +5,10 @@ const MAX_HEALTH = 3
 const MAX_RUSH_ENERGY = 6
 const MAX_SCORE = 99999
 
-const SWORD_WEAPON_IDX = 0
-const BLASTER_WEAPON_IDX = 1
+const SWORD_WEAPON_IDX = 0 # TODO: Remove
+const BLASTER_WEAPON_IDX = 1 # TODO: Remove
+
+const SCORCH_CANNON_IDX = 0
 
 signal scrap_changed(value)
 signal health_changed(value)
@@ -40,6 +42,7 @@ var __can_turbo_slide = false
 
 var __sword_scene = preload("res://scenes/game/world/weapon/Sword.tscn")
 var __blaster_scene = preload("res://scenes/game/world/weapon/Blaster.tscn")
+var __scorch_cannon_scene = preload("res://scenes/game/world/weapon/ScorchCannonWeapon.tscn")
 
 onready var __player = get_parent()
 onready var __rush_energy_recharge_timer = $RushEnergyRechargeTimer
@@ -100,10 +103,9 @@ func set_from_data(data: Dictionary):
 	set_check_point(data["checkpoint"])
 	match data["weapon"]:
 		SWORD_WEAPON_IDX: print("NOT VALID ANYMORE")
+		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
 		_: instance_and_equip_weapon(__blaster_scene)
-	
 
-	
 func get_data():
 	return __data
 	

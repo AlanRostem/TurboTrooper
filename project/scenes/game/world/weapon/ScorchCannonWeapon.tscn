@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/game/world/weapon/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/world/weapon/ScorchCannonWeapon.gd" type="Script" id=3]
+[ext_resource path="res://scenes/game/world/entity/components/hit_box/HitBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/resources/shaders/XORShaderMaterial.tres" type="Material" id=5]
+[ext_resource path="res://assets/sprites/projectile/scorch_flame.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 7 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 192, 0, 64, 32 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 14.0
+} ]
+
+[node name="ScorchCannonWeapon" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="DamageTickTimer" type="Timer" parent="." index="1"]
+wait_time = 0.072
+
+[node name="ScorchFlame" type="Node2D" parent="." index="2"]
+position = Vector2( 0, -4 )
+
+[node name="HitBox" parent="ScorchFlame" index="0" instance=ExtResource( 4 )]
+__team = "player_team"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScorchFlame/HitBox" index="0"]
+position = Vector2( 32, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ScorchFlame" index="1"]
+visible = false
+material = ExtResource( 5 )
+position = Vector2( 37, 0 )
+z_index = 1
+frames = SubResource( 6 )
+frame = 1
+playing = true
+
+[connection signal="timeout" from="DamageTickTimer" to="." method="_on_DamageTickTimer_timeout"]
+[connection signal="hit_dealt" from="ScorchFlame/HitBox" to="." method="_on_HitBox_hit_dealt"]

@@ -53,7 +53,7 @@ func get_owner_player():
 	return __player_owner
 	
 func equip():
-	__player_owner.set_sprite_frames(__player_sprite_frames)
+#	__player_owner.set_sprite_frames(__player_sprite_frames)
 	__player_owner.parent_world.play_sound(__pick_up_sound)
 	
 func drop():
