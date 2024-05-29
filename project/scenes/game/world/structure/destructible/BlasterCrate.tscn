@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://scenes/game/world/structure/destructible/WeaponCrate.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/weapon/BlasterCollectible.tscn" type="PackedScene" id=2]
-
-[node name="BlasterCrate" instance=ExtResource( 1 )]
-__containment_scene = ExtResource( 2 )

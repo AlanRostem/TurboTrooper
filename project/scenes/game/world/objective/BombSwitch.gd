@@ -45,6 +45,7 @@ func get_time_score():
 func _on_PressArea_body_entered(body):
 	__player_on_top = true
 	__press_sound.play()
+	__parent_level.play_battle_theme()
 	
 func is_ticking():
 	return __count_down

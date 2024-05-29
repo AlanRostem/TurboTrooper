@@ -91,6 +91,8 @@ func _on_EnterArea_body_entered(player):
 	if !__blockade_shape.disabled: return
 	__blockade_shape.set_deferred("disabled", false)
 	start_attack_sequence()
+	get_parent_level().play_battle_theme()
+	
 	player.set_camera_follow(false)
 	__camera.current = true
 	__camera.position.x = position.x - player.position.x

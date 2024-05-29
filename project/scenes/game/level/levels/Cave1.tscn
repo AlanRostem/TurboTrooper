@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=9]
 [ext_resource path="res://scenes/game/world/structure/destructible/Crate.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/game/world/environment/LaunchPad.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/game/world/structure/destructible/BlasterCrate.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/game/world/structure/destructible/ChainedCrate.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/game/world/entity/entities/player/Player.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/boom_crawler/BoomCrawler.tscn" type="PackedScene" id=21]
@@ -189,12 +188,6 @@ position = Vector2( 732, 76 )
 [node name="@Crate@101" parent="GameWorld/Geometry" instance=ExtResource( 10 )]
 position = Vector2( 732, 68 )
 
-[node name="BlasterCrate" parent="GameWorld/Geometry" instance=ExtResource( 16 )]
-position = Vector2( 252, 76 )
-
-[node name="@BlasterCrate@88" parent="GameWorld/Geometry" instance=ExtResource( 16 )]
-position = Vector2( 884, 68 )
-
 [node name="@Crate@97" parent="GameWorld/Geometry" instance=ExtResource( 10 )]
 position = Vector2( 1076, 76 )
 
@@ -293,11 +286,6 @@ is_gravity_enabled = false
 
 [node name="@BoomCrawler@115" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 212, 108 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@FloatingScrap@133" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 316, 76 )
@@ -365,11 +353,6 @@ __disappear_on_pickup = true
 
 [node name="@BoomCrawler@209" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 572, 108 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@FloatingScrap@210" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 652, 44 )
@@ -449,19 +432,9 @@ __disappear_on_pickup = true
 
 [node name="@BoomCrawler@97" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 884, 60 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="BoomCrawler" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 1036, 108 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@FloatingScrap@89" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 676, 60 )
@@ -529,11 +502,6 @@ __disappear_on_pickup = true
 
 [node name="@BoomCrawler@92" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 1308, 76 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@FloatingScrap@93" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1252, 60 )
@@ -577,11 +545,6 @@ __disappear_on_pickup = true
 
 [node name="@BoomCrawler@109" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 1396, 108 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="SuperScrap" parent="GameWorld/EntityPool" instance=ExtResource( 26 )]
 position = Vector2( 996, 56 )

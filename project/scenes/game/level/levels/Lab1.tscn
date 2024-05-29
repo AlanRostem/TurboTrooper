@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=2]
@@ -9,9 +9,7 @@
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=9]
 [ext_resource path="res://scenes/game/world/environment/LaunchPad.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/game/world/structure/destructible/Crate.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/game/world/structure/destructible/SwordCrate.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/game/world/environment/hazards/SpikeHazard.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/game/world/structure/destructible/BlasterCrate.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/game/world/structure/destructible/ChainedCrate.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/game/world/entity/entities/player/Player.tscn" type="PackedScene" id=23]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/rodder/Rodder.tscn" type="PackedScene" id=25]
@@ -95,78 +93,45 @@ position = Vector2( 980, 108 )
 
 [node name="@Crate@126" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1036, 12 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@129" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1044, 12 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@130" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1052, 12 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@131" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1060, 12 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@132" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1068, 12 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@136" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1068, 20 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@137" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1060, 20 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@138" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1052, 20 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@139" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1044, 20 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@140" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1036, 20 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@90" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 452, 100 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@92" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 436, 100 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
-
-[node name="@SwordCrate@94" parent="GameWorld/Geometry" instance=ExtResource( 16 )]
-position = Vector2( 444, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@95" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 436, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@96" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 452, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@SpikeHazard@98" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1188, 44 )
@@ -176,68 +141,39 @@ position = Vector2( 1180, 44 )
 
 [node name="@Crate@117" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1268, 60 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@118" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1268, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@119" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1276, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@120" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1284, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@121" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1284, 60 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@122" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1276, 60 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@123" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1292, 60 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@124" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1292, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@125" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1052, 52 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@126" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1044, 52 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@127" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1036, 52 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@129" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1068, 52 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
-
-[node name="BlasterCrate" parent="GameWorld/Geometry" instance=ExtResource( 20 )]
-position = Vector2( 1060, 52 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@SpikeHazard@93" parent="GameWorld/Geometry" instance=ExtResource( 18 )]
 position = Vector2( 1532, 28 )
@@ -253,191 +189,114 @@ position = Vector2( 1460, 28 )
 
 [node name="@Crate@102" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1636, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@104" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1652, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@106" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1676, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@107" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1684, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@110" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1692, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
-
-[node name="@BlasterCrate@159" parent="GameWorld/Geometry" instance=ExtResource( 20 )]
-position = Vector2( 1644, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@161" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1676, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@162" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1684, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@163" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1692, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@165" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1684, 60 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@167" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1692, 60 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@168" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 780, 84 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@169" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 780, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@172" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 788, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@173" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 788, 84 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@174" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 780, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@175" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 788, 68 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@176" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 788, 60 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@192" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1356, 84 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@193" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 1364, 84 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@209" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2140, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@210" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2068, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@211" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2076, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@213" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2116, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@214" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2108, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@215" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2148, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@216" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2180, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@217" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 2172, 76 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="ChainedCrate" parent="GameWorld/Geometry" instance=ExtResource( 22 )]
 position = Vector2( 1116, 108 )
-scrap_drop_count_damaged = 1
 
 [node name="ChainedCrate2" parent="GameWorld/Geometry" instance=ExtResource( 22 )]
 position = Vector2( 1124, 108 )
-scrap_drop_count_damaged = 1
 
 [node name="Crate" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 108, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@93" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 116, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@94" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 108, 100 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@99" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 116, 100 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@100" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 148, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@101" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 148, 100 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@102" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 156, 100 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="@Crate@103" parent="GameWorld/Geometry" instance=ExtResource( 12 )]
 position = Vector2( 156, 108 )
-scrap_drop_count_damaged = 1
-__let_player_kick_to_open = true
 
 [node name="EntityPool" type="Node2D" parent="GameWorld"]
 __meta__ = {
@@ -450,15 +309,9 @@ is_gravity_enabled = false
 
 [node name="Rodder" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 348, 100 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-can_be_knocked_back = true
 
 [node name="@Rodder@128" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 636, 60 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-can_be_knocked_back = true
 
 [node name="@FloatingScrap@129" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 644, 68 )
@@ -502,19 +355,9 @@ __disappear_on_pickup = true
 
 [node name="BoomCrawler" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 796, 108 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@BoomCrawler@146" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 940, 52 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@FloatingScrap@149" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 980, 44 )
@@ -542,9 +385,6 @@ __disappear_on_pickup = true
 
 [node name="@Rodder@148" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1172, 100 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-can_be_knocked_back = true
 
 [node name="@FloatingScrap@161" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 1116, 84 )
@@ -580,11 +420,6 @@ __disappear_on_pickup = true
 
 [node name="@BoomCrawler@97" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 1276, 108 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@SuperScrap@108" parent="GameWorld/EntityPool" instance=ExtResource( 32 )]
 position = Vector2( 1220, 36 )
@@ -592,33 +427,15 @@ __disappear_on_pickup = true
 
 [node name="@BoomCrawler@102" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 1516, 92 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@BoomCrawler@104" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 1476, 92 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@Rodder@100" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 1772, 100 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-can_be_knocked_back = true
 
 [node name="@BoomCrawler@101" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 1820, 60 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@FloatingScrap@118" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 1452, 76 )
@@ -694,11 +511,6 @@ __disappear_on_pickup = true
 
 [node name="@BoomCrawler@178" parent="GameWorld/EntityPool" instance=ExtResource( 31 )]
 position = Vector2( 1404, 100 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-player_detection_range_in_tiles = 5.0
-can_be_knocked_back = true
-detect_player_on_visible = false
 
 [node name="@FloatingScrap@186" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 1324, 108 )
@@ -726,9 +538,6 @@ __disappear_on_pickup = true
 
 [node name="@Rodder@198" parent="GameWorld/EntityPool" instance=ExtResource( 25 )]
 position = Vector2( 2140, 100 )
-scrap_drop_count_damaged = 1
-scrap_drop_count_eliminated = 10
-can_be_knocked_back = true
 
 [node name="FloatingScrap" parent="GameWorld/EntityPool" instance=ExtResource( 28 )]
 position = Vector2( 124, 76 )
@@ -834,7 +643,6 @@ visible = false
 position = Vector2( 8, 24 )
 rotation = 1.5708
 frames = SubResource( 7 )
-frame = 0
 
 [node name="SoundPool" type="Node" parent="GameWorld"]
 
@@ -852,7 +660,6 @@ shape = SubResource( 8 )
 [node name="ArrowSprite" parent="GameWorld/SecretEscapePoint" instance=ExtResource( 37 )]
 position = Vector2( 0, -24 )
 frames = SubResource( 7 )
-frame = 0
 
 [node name="CheckPoint" type="Position2D" parent="."]
 position = Vector2( 2480, 100 )

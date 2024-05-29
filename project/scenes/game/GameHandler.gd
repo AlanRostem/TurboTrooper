@@ -23,11 +23,11 @@ onready var __color_rect = $CanvasLayer/ColorRect
 onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
 onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
-#onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
-#onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
+#onready var __cave_theme = precollectibleload("res://assets/audio/music/normal_theme.wav")
 #onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
 
 onready var __win_theme_player = $WinThemePlayer
+onready var __battle_theme_player = $BattleThemePlayer
 
 var __current_level_theme
 var __current_level_theme_enum
@@ -83,7 +83,7 @@ func set_current_level(index):
 	
 	__current_level.set_player_stats(__saved_player_stats)
 	
-	__load_current_level_theme(__current_level.get_theme_enum())
+	load_current_level_theme(__current_level.get_theme_enum())
 	__pauseability_timer.start()
 	__can_pause = false
 	get_hud().hide_global_message()
@@ -119,7 +119,7 @@ func start_reset_sequence(died = false):
 		if __current_level.player_node.stats.get_health() <= PlayerStats.MAX_HEALTH:
 			__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	
-func __load_current_level_theme(theme_enum):
+func load_current_level_theme(theme_enum):
 	if __current_level_theme_enum == theme_enum: return
 	if __current_level_theme != null:
 		__current_level_theme.queue_free()
@@ -132,7 +132,12 @@ func __load_current_level_theme(theme_enum):
 	
 func start_level_win_sequence():
 	__current_level_theme.stop()
+	__battle_theme_player.stop()
 	__win_theme_player.play()
+
+func start_battle_sequence():
+	__current_level_theme.stop()
+	__battle_theme_player.play()
 
 func _on_current_level_ready():
 	__hud.connect_to_player(__current_level.player_node)
@@ -141,7 +146,7 @@ func get_hud():
 	return __hud
 	
 func start_transitioning_to_next_level():
-	__next_level_transition_timer.start()
+	pass#__next_level_transition_timer.start()
 
 # Starts the game by setting self to visible and appending the first level index
 # as a child. If the player has already completed the game, index 1 will be used
@@ -163,4 +168,8 @@ func _on_LevelResetTimer_timeout():
 	__current_level_theme.play()
 
 func _on_NextLevelTransitionTimer_timeout():
+	set_current_to_next_level()
+
+
+func _on_WinThemePlayer_finished():
 	set_current_to_next_level()

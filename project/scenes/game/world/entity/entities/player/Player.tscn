@@ -29,7 +29,7 @@
 extents = Vector2( 5, 7 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 7.55999 )
+extents = Vector2( 11.993, 6 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 7 )
@@ -86,7 +86,7 @@ position = Vector2( 0, -4 )
 __team = "player_team"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RamSlideHitBox" index="0"]
-position = Vector2( 9.98608, -2.44001 )
+position = Vector2( 7.99304, -2.44001 )
 shape = SubResource( 1 )
 disabled = true
 

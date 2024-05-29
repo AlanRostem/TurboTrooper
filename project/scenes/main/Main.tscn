@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/game/GameHandler.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/main_menu/MainMenu.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/game/level/management/LevelList.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/main/Main.gd" type="Script" id=6]
 [ext_resource path="res://assets/audio/music/win_theme.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/music/boss_and_escape_theme.wav" type="AudioStream" id=8]
 
 [node name="Main" type="Node2D"]
 material = ExtResource( 4 )
@@ -68,11 +69,15 @@ one_shot = true
 [node name="WinThemePlayer" type="AudioStreamPlayer" parent="GameHandler"]
 stream = ExtResource( 7 )
 
+[node name="BattleThemePlayer" type="AudioStreamPlayer" parent="GameHandler"]
+stream = ExtResource( 8 )
+
 [connection signal="game_started" from="MainMenu" to="GameHandler" method="_on_MainMenu_game_started"]
 [connection signal="game_completed" from="GameHandler" to="MainMenu" method="_on_GameHandler_game_completed"]
 [connection signal="timeout" from="GameHandler/PauseabilityTimer" to="GameHandler" method="_on_PauseabilityTimer_timeout"]
 [connection signal="timeout" from="GameHandler/LevelIntroTimer" to="GameHandler" method="_on_LevelIntroTimer_timeout"]
 [connection signal="timeout" from="GameHandler/LevelResetTimer" to="GameHandler" method="_on_LevelResetTimer_timeout"]
 [connection signal="timeout" from="GameHandler/NextLevelTransitionTimer" to="GameHandler" method="_on_NextLevelTransitionTimer_timeout"]
+[connection signal="finished" from="GameHandler/WinThemePlayer" to="GameHandler" method="_on_WinThemePlayer_finished"]
 
 [editable path="MainMenu"]

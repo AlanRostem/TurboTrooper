@@ -7,24 +7,24 @@
 [ext_resource path="res://assets/audio/sfx/world/bomb/bomb_explode.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/sfx/world/bomb_button/bomb_button_press.wav" type="AudioStream" id=6]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 16, 0, 16, 16 )
-
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
-"loop": true,
-"name": "on",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "off",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "on",
 "speed": 5.0
 } ]
 
@@ -45,6 +45,7 @@ animation = "off"
 
 [node name="ArrowSprite" parent="." index="1" instance=ExtResource( 4 )]
 position = Vector2( 0, -12 )
+frame = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
 position = Vector2( 0, 4 )
