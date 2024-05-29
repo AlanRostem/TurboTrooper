@@ -25,3 +25,4 @@
 ## Polish
 
 - Adjust player hitbox
+- Make the corners of tiles not be slopes
