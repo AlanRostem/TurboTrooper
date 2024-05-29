@@ -16,6 +16,7 @@ signal rush_energy_changed(value)
 signal rush_energy_consumed()
 signal weapon_changed(weapon)
 signal weapon_ammo_changed(value)
+signal turbo_slide_status_changed(flag)
 
 export(PackedScene) var test_weapon_scene
 
@@ -34,6 +35,8 @@ var __rush_energy_count = MAX_RUSH_ENERGY
 var __equipped_weapon
 
 var __is_recharging_rush_energy = false
+
+var __can_turbo_slide = false
 
 var __sword_scene = preload("res://scenes/game/world/weapon/Sword.tscn")
 var __blaster_scene = preload("res://scenes/game/world/weapon/Blaster.tscn")
@@ -60,6 +63,16 @@ func _physics_process(delta):
 			__rush_energy_recharge_starting_delay_timer.start()
 			__is_recharging_rush_energy = true
 	
+	var p = __player
+	var dpad_on = p.is_on_ground() and \
+		p.is_moving_exactly_at_speed(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED) and \
+		p.stats.get_rush_energy() >= 2 and \
+		p.state_machine.get_current_state() == "PlayerRunState"
+		
+	if dpad_on != __can_turbo_slide:
+		__can_turbo_slide = dpad_on
+		emit_signal("turbo_slide_status_changed", __can_turbo_slide)
+	
 	if __equipped_weapon == null: return
 	if Input.is_action_just_pressed("fire"):
 		__equipped_weapon.attack()
@@ -72,6 +85,7 @@ func _physics_process(delta):
 		__player.set_aim_up(true)
 	elif Input.is_action_just_released("aim_up"):
 		__player.set_aim_up(false)
+	
 		
 func set_check_point(checkpoint):
 	__data["checkpoint"] = checkpoint

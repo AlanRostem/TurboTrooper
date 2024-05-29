@@ -2,6 +2,8 @@
 
 ## Done
 
+- Fix bug where HUD scene loses a reference to the player scene after level transitioning
+
 ## Other
 
 - Experiment with rooms and camera transitions
@@ -15,5 +17,6 @@
 - Make Scorch Cannon weapon
 
 ## Bug Fixes
+
 
 ## Polish
