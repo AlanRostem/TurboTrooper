@@ -8,6 +8,7 @@
 - Remove sword and crate item for it
 - Add new level completion jingle
 - New boss and escape theme
+- Adjust player hitbox
 
 ## Ideas Needed
 
@@ -42,7 +43,6 @@
 
 ## Polish
 
-- Adjust player hitbox
 - Make the corners of tiles not be slopes
 - Add explosion sound when defeating a boss
 - Add enemy death sound
