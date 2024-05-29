@@ -88,6 +88,7 @@ func _on_OutHitBox_hit_dealt(hitbox):
 	if !__can_deal_damage_to_player: return
 	var player = hitbox.get_parent()
 	if player is Player:
+		if player.is_turboed_up(): return
 		player.stats.take_one_damage()
 
 

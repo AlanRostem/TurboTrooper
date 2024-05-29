@@ -102,6 +102,7 @@ func set_from_data(data: Dictionary):
 		SWORD_WEAPON_IDX: print("NOT VALID ANYMORE")
 		_: instance_and_equip_weapon(__blaster_scene)
 	
+
 	
 func get_data():
 	return __data

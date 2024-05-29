@@ -48,7 +48,7 @@ func _physics_process(delta):
 	if position.y > 144 + 24:
 		die()
 		return
-	set_ram_slide_hit_box_enabled(is_moving_faster_than(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED))
+	set_ram_slide_hit_box_enabled(is_turboed_up())
 
 func set_camera_follow(value):
 	__camera.current = value
@@ -230,6 +230,9 @@ func set_can_move_on_ground(value):
 
 func can_move_on_ground():
 	return __can_move_on_ground
+	
+func is_turboed_up():
+	return is_moving_faster_than(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED)
 	
 func die():
 	if __is_immortal: return
