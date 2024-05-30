@@ -9,6 +9,8 @@ extents = Vector2( 3, 3 )
 [node name="CollectibleItem" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 collision_mode = 2
+__disappear_on_pickup = true
+__disappear_on_timeout = true
 
 [node name="BodyShape" parent="." index="0"]
 shape = SubResource( 1 )

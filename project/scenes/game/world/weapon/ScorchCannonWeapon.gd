@@ -1,7 +1,10 @@
 extends "res://scenes/game/world/weapon/Weapon.gd"
 
 var __is_firing = false
+var __hover_time = 0
 var __do_hover = false
+
+var HOVER_TICK_TIME = 0.2
 
 func _physics_process(delta):
 	var player = get_owner_player()
@@ -19,27 +22,32 @@ func _physics_process(delta):
 		__is_firing = true
 		$ScorchFlame/AnimatedSprite.visible = true
 		$DamageTickTimer.start()
+		if player.is_aiming_down() and player.stats.get_rush_energy() > 0:
+			player.stats.use_rush_energy(1)
+			__hover_time = HOVER_TICK_TIME
+			__do_hover = true
+			player.is_gravity_enabled = false
+			player.set_velocity_y(0)
+		
 	elif __is_firing and Input.is_action_just_released("fire"):
 		__is_firing = false
 		$ScorchFlame/AnimatedSprite.visible = false
 		$DamageTickTimer.stop()
 		$ScorchFlame/HitBox/CollisionShape2D.set_deferred("disabled", true)
-		__do_hover = false
-	if player.stats.get_rush_energy() == 0:
-		__do_hover = false
-	if __do_hover:
-		player.set_velocity_y(0)
-	
+		player.is_gravity_enabled = true
+		
+	if __is_firing and __do_hover:
+		if player.is_aiming_down() and player.stats.get_rush_energy() > 0:
+			__hover_time -= delta
+			if __hover_time <= 0:
+				__hover_time = HOVER_TICK_TIME
+				player.stats.use_rush_energy(1)
+		else:
+			player.is_gravity_enabled = true
+			__do_hover = false
+			
 func _on_DamageTickTimer_timeout():
 	$ScorchFlame/HitBox/CollisionShape2D.disabled = !$ScorchFlame/HitBox/CollisionShape2D.disabled
-	var player = get_owner_player()
-	if !player.is_aiming_down(): 
-		__do_hover = false
-		return
-	if player.stats.get_rush_energy() > 0:
-		player.stats.use_rush_energy(1)
-		__do_hover = true
-
 
 func _on_HitBox_hit_dealt(hitbox):
 	hitbox.take_hit($ScorchFlame/HitBox, 2)
