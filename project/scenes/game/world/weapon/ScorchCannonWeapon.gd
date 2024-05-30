@@ -8,6 +8,7 @@ var HOVER_TICK_TIME = 0.2
 
 func _physics_process(delta):
 	var player = get_owner_player()
+	
 	if player.is_aiming_down():
 		$ScorchFlame.rotation_degrees = 90
 		$ScorchFlame.scale.x = 1
@@ -48,6 +49,9 @@ func _physics_process(delta):
 			
 func _on_DamageTickTimer_timeout():
 	$ScorchFlame/HitBox/CollisionShape2D.disabled = !$ScorchFlame/HitBox/CollisionShape2D.disabled
+	ammo -= 1
+	if ammo == 0:
+		get_owner_player().stats.destroy_weapon_and_set_to_beam_cannon()
 
 func _on_HitBox_hit_dealt(hitbox):
 	hitbox.take_hit($ScorchFlame/HitBox, 2)

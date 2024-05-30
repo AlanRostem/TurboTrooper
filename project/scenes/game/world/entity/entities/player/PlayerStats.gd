@@ -106,6 +106,11 @@ func set_from_data(data: Dictionary):
 		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
 		_: instance_and_equip_weapon(__blaster_scene)
 
+func destroy_weapon_and_set_to_beam_cannon():
+	__equipped_weapon.queue_free()
+	__equipped_weapon = null
+	instance_and_equip_weapon(__blaster_scene)
+
 func get_data():
 	return __data
 	
