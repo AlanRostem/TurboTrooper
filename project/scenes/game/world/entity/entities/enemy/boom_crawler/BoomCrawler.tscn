@@ -36,7 +36,7 @@ position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="HealthComponent" parent="." index="1"]
-max_health = 5
+max_health = 8
 
 [node name="InHitBox" parent="." index="2"]
 position = Vector2( 0, -3 )
@@ -65,7 +65,6 @@ script = ExtResource( 4 )
 [node name="EnemySprite" parent="." index="6"]
 position = Vector2( 0, -4 )
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [connection signal="player_detected" from="." to="EnemyFSM/BoomCrawlerWalkState" method="_on_BoomCrawler_player_detected"]

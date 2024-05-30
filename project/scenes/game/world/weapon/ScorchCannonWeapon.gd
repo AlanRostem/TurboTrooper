@@ -5,6 +5,7 @@ var __hover_time = 0
 var __do_hover = false
 
 var HOVER_TICK_TIME = 0.2
+var DAMAGE = 10
 
 func _physics_process(delta):
 	var player = get_owner_player()
@@ -23,6 +24,10 @@ func _physics_process(delta):
 		__is_firing = true
 		$ScorchFlame/AnimatedSprite.visible = true
 		$DamageTickTimer.start()
+		use_ammo()
+		if !has_ammo():
+			get_owner_player().stats.destroy_weapon_and_set_to_beam_cannon()
+			get_owner_player().is_gravity_enabled = true
 		if player.is_aiming_down() and player.stats.get_rush_energy() > 0:
 			player.stats.use_rush_energy(1)
 			__hover_time = HOVER_TICK_TIME
@@ -55,4 +60,4 @@ func _on_DamageTickTimer_timeout():
 		get_owner_player().is_gravity_enabled = true
 
 func _on_HitBox_hit_dealt(hitbox):
-	hitbox.take_hit($ScorchFlame/HitBox, 2)
+	hitbox.take_hit($ScorchFlame/HitBox, DAMAGE)

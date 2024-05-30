@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/game/world/environment/Shop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/item/other/ammo.png" type="Texture" id=2]
+[ext_resource path="res://scenes/game/world/environment/AmmoShop.gd" type="Script" id=3]
+
+[node name="AmmoShop" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="PriceTag" parent="." index="0"]
+margin_top = -22.0
+margin_bottom = -13.0
+
+[node name="ItemSprite" parent="." index="2"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 2 )

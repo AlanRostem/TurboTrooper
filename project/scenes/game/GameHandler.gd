@@ -42,6 +42,7 @@ var __saved_player_stats = {
 	"weapon": -1,
 	"scrap": 0,
 	"checkpoint": null,
+	"ammo": 0,
 }
 	
 func _physics_process(delta):

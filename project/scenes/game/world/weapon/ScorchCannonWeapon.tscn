@@ -35,6 +35,7 @@ animations = [ {
 
 [node name="ScorchCannonWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+weapon_index = 1
 
 [node name="DamageTickTimer" type="Timer" parent="." index="1"]
 wait_time = 0.072
@@ -56,7 +57,7 @@ material = ExtResource( 5 )
 position = Vector2( 37, 0 )
 z_index = 1
 frames = SubResource( 6 )
-frame = 2
+frame = 3
 playing = true
 
 [connection signal="timeout" from="DamageTickTimer" to="." method="_on_DamageTickTimer_timeout"]

@@ -5,10 +5,8 @@ const MAX_HEALTH = 3
 const MAX_RUSH_ENERGY = 6
 const MAX_SCORE = 99999
 
-const SWORD_WEAPON_IDX = 0 # TODO: Remove
-const BLASTER_WEAPON_IDX = 1 # TODO: Remove
-
-const SCORCH_CANNON_IDX = 0
+const BLASTER_WEAPON_IDX = 0
+const SCORCH_CANNON_IDX = 1
 
 signal scrap_changed(value)
 signal health_changed(value)
@@ -102,9 +100,9 @@ func set_from_data(data: Dictionary):
 	set_score(data["score"])
 	set_check_point(data["checkpoint"])
 	match data["weapon"]:
-		SWORD_WEAPON_IDX: print("NOT VALID ANYMORE")
-		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
 		_: instance_and_equip_weapon(__blaster_scene)
+		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
+	__equipped_weapon.add_ammo(data["ammo"])
 
 func destroy_weapon_and_set_to_beam_cannon():
 	__equipped_weapon.queue_free()
@@ -231,3 +229,4 @@ func _on_InHitBox_hit_received(hitbox, damage, damage_type):
 
 func __on_weapon_ammo_changed(ammo):
 	emit_signal("weapon_ammo_changed", ammo)
+	__data["ammo"] = ammo

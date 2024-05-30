@@ -9,6 +9,9 @@
 - Add new level completion jingle
 - New boss and escape theme
 - Adjust player hitbox
+- Make Scorch Cannon weapon
+- Make weapons that require ammo disappear when depleted
+
 
 ## Ideas Needed
 
@@ -26,9 +29,7 @@
 - Experiment with rooms and camera transitions
 - Abstract out the code for bosses
 - Make Blast Cannon weapon
-- Make Scorch Cannon weapon
 - Make Pierce Cannon weapon
-- Make weapons that require ammo disappear when depleted
 - Make Ammo shop
 - Remove Beam Cannon and Sword shop
 
