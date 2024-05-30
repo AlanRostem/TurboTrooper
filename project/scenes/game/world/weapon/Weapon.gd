@@ -8,7 +8,7 @@ signal dropped()
 export(SpriteFrames) var __player_sprite_frames
 export(Texture) var __collectible_sprite
 export(bool) var is_ammo_infinite = false
-export(int) var ammo = 30
+var ammo = 0
 
 export(bool) var use_attacking_delay = true
 
@@ -33,6 +33,17 @@ func is_attacking():
 func set_can_attack(value):
 	__can_attack = value
 
+func add_ammo(count):
+	ammo += count
+	
+func use_ammo():
+	ammo -= 1
+	if ammo <= 0:
+		ammo = 0;
+		
+func has_ammo():
+	return ammo > 0
+	
 func attack():
 	if !__can_attack or __is_attacking: return
 	

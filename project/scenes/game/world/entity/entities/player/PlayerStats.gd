@@ -173,8 +173,8 @@ func take_one_damage():
 #		__equipped_weapon = null
 #		__player.set_aim_up(false)
 #		__player.stop_aiming_down()
-	if !__player.is_roof_above():
-		__player.set_velocity_x(0)
+#	if !__player.is_roof_above():
+#		__player.set_velocity_x(0)
 	if __data["life"] == 0:
 		emit_signal("died")
 		__player.become_invincible()

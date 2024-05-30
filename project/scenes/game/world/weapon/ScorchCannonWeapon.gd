@@ -49,9 +49,10 @@ func _physics_process(delta):
 			
 func _on_DamageTickTimer_timeout():
 	$ScorchFlame/HitBox/CollisionShape2D.disabled = !$ScorchFlame/HitBox/CollisionShape2D.disabled
-	ammo -= 1
-	if ammo == 0:
+	use_ammo()
+	if !has_ammo():
 		get_owner_player().stats.destroy_weapon_and_set_to_beam_cannon()
+		get_owner_player().is_gravity_enabled = true
 
 func _on_HitBox_hit_dealt(hitbox):
 	hitbox.take_hit($ScorchFlame/HitBox, 2)

@@ -56,6 +56,7 @@ material = ExtResource( 5 )
 position = Vector2( 37, 0 )
 z_index = 1
 frames = SubResource( 6 )
+frame = 2
 playing = true
 
 [connection signal="timeout" from="DamageTickTimer" to="." method="_on_DamageTickTimer_timeout"]

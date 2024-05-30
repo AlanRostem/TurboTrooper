@@ -14,13 +14,16 @@ onready var __down_dash_sound = $DownDashSound
 var __boost_damage = false
 var __is_slamming = false
 
+func _ready():
+	set_can_attack(true)
+
 func _physics_process(delta):
 	var player = get_owner_player()
-	if player.is_roof_above():
-		set_can_attack(false)
-		return
-	else:
-		set_can_attack(true)
+#	if player.is_roof_above():
+#		set_can_attack(false)
+#		return
+#	else:
+#		set_can_attack(true)
 	__hit_box.scale.x = player.get_horizontal_looking_dir()
 	var dir = player.get_looking_vector()
 	if dir.y != 0:

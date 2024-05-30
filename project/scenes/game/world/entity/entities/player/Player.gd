@@ -35,9 +35,6 @@ onready var __ram_slide_hit_box_shape = $RamSlideHitBox/CollisionShape2D
 
 onready var __crate_opening_timer = $CrateOpeningTimer
 
-onready var __right_roof_ray = $RoofDetector/RightRay
-onready var __left_roof_ray = $RoofDetector/LeftRay
-
 onready var __camera = $Camera2D
 
 func _ready():
@@ -203,9 +200,6 @@ func become_invincible():
 	
 func is_invincible():
 	return __is_invincible
-	
-func is_roof_above():
-	return __right_roof_ray.is_colliding() or __left_roof_ray.is_colliding()
 	
 func is_opening_crate():
 	return __is_opening_crate

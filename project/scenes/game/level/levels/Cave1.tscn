@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scenes/game/level/level_types/BombLevel.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/world/GameWorld.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/parallax/cave.png" type="Texture" id=3]
 [ext_resource path="res://scenes/game/world/objective/BombSwitch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/game/world/structure/destructible/ScorchCannonCrate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/world/environment/ShopArea.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/world/environment/CustomTileMap.gd" type="Script" id=9]
@@ -275,6 +276,12 @@ position = Vector2( 1540, 108 )
 [node name="@Crate@149" parent="GameWorld/Geometry" instance=ExtResource( 10 )]
 position = Vector2( 1532, 100 )
 
+[node name="ScorchCannonCrate" parent="GameWorld/Geometry" instance=ExtResource( 5 )]
+position = Vector2( 252, 76 )
+
+[node name="ScorchCannonCrate2" parent="GameWorld/Geometry" instance=ExtResource( 5 )]
+position = Vector2( 124, 108 )
+
 [node name="EntityPool" type="Node2D" parent="GameWorld"]
 __meta__ = {
 "_editor_description_": "This node holds all the active game objects. The parent GameWorld node manages the objects in this node"
@@ -289,146 +296,111 @@ position = Vector2( 212, 108 )
 
 [node name="@FloatingScrap@133" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 316, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@137" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 348, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@140" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 364, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@143" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 380, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@145" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 396, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@146" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 332, 92 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@147" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 300, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@158" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 412, 108 )
-__disappear_on_pickup = true
 
 [node name="FloatingScrap" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 428, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@159" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 444, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@187" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 620, 92 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@202" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 620, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@203" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 628, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@204" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 628, 68 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@205" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 636, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@206" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 636, 52 )
-__disappear_on_pickup = true
 
 [node name="@BoomCrawler@209" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 572, 108 )
 
 [node name="@FloatingScrap@210" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 652, 44 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@211" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 660, 44 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@212" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 660, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@213" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 652, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@214" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 644, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@215" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 644, 44 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@216" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 636, 44 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@217" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 628, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@218" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 628, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@219" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 620, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@220" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 620, 68 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@221" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 612, 92 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@222" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 612, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@109" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 988, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@110" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 996, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@111" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1004, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@112" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1004, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@113" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 996, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@114" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 988, 76 )
-__disappear_on_pickup = true
 
 [node name="@BoomCrawler@97" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 884, 60 )
@@ -438,141 +410,108 @@ position = Vector2( 1036, 108 )
 
 [node name="@FloatingScrap@89" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 676, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@90" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 684, 68 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@91" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 692, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@92" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 700, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@93" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 708, 92 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@94" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 716, 100 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@95" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 724, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@96" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 668, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@97" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 668, 44 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@88" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1076, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@89" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1084, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@90" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1092, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@91" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1100, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@92" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1108, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@93" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1116, 108 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@94" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1124, 108 )
-__disappear_on_pickup = true
 
 [node name="@BoomCrawler@92" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 1308, 76 )
 
 [node name="@FloatingScrap@93" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1252, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@94" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1252, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@95" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1276, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@96" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1276, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@97" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1300, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@98" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1300, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@105" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1324, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@106" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1324, 52 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@107" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1348, 60 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@108" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1348, 52 )
-__disappear_on_pickup = true
 
 [node name="@BoomCrawler@109" parent="GameWorld/EntityPool" instance=ExtResource( 21 )]
 position = Vector2( 1396, 108 )
 
 [node name="SuperScrap" parent="GameWorld/EntityPool" instance=ExtResource( 26 )]
 position = Vector2( 996, 56 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@132" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1492, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@133" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1492, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@134" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1500, 76 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@135" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1500, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@136" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1508, 84 )
-__disappear_on_pickup = true
 
 [node name="@FloatingScrap@137" parent="GameWorld/EntityPool" instance=ExtResource( 23 )]
 position = Vector2( 1508, 76 )
-__disappear_on_pickup = true
 
 [node name="ScrapHoverText" parent="GameWorld" instance=ExtResource( 28 )]
 visible = false

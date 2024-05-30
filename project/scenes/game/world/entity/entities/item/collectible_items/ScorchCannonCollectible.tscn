@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/game/world/entity/entities/item/collectible_items/WeaponCollectible.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/game/world/weapon/ScorchCannonWeapon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/item/weapon/scorch_cannon_item.png" type="Texture" id=3]
+
+[node name="ScorchCannonCollectible" instance=ExtResource( 1 )]
+__weapon_scene = ExtResource( 2 )
+weapon_name = "ScorchCannonWeapon"
+weapon_name_to_display = "scorch"
+
+[node name="Sprite" parent="." index="2"]
+use_parent_material = true
+position = Vector2( 2, -3 )
+texture = ExtResource( 3 )
