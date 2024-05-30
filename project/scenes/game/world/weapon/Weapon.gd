@@ -68,17 +68,17 @@ func equip():
 #	__player_owner.set_sprite_frames(__player_sprite_frames)
 	__player_owner.parent_world.play_sound(__pick_up_sound)
 	
-func drop():
-	var collectible = __player_owner.parent_world.spawn_entity_deferred(__collectible_scene, __player_owner.position)
-	collectible.weapon = self
-	collectible.set_velocity(Vector2(-__player_owner.get_horizontal_looking_dir() * 50, -100))
-	collectible.call_deferred("set_sprite", __collectible_sprite)
-	__player_owner.stats.remove_child(self)
-	collectible.set_recently_dropped(true)
-	emit_signal("dropped")
-	__attack_delay_timer.stop()
-	__can_attack = true
-	__is_attacking = false
+func drop():pass
+#	var collectible = __player_owner.parent_world.spawn_entity_deferred(__collectible_scene, __player_owner.position)
+#	collectible.weapon = self
+#	collectible.set_velocity(Vector2(-__player_owner.get_horizontal_looking_dir() * 50, -100))
+#	collectible.call_deferred("set_sprite", __collectible_sprite)
+#	__player_owner.stats.remove_child(self)
+#	collectible.set_recently_dropped(true)
+#	emit_signal("dropped")
+#	__attack_delay_timer.stop()
+#	__can_attack = true
+#	__is_attacking = false
 
 func _on_AttackDelayTimer_timeout():
 	__is_attacking = false
