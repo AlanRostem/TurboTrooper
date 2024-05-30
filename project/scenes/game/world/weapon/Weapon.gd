@@ -4,6 +4,7 @@ signal attacked()
 signal attack_cycle_end()
 signal downwards_attack()
 signal dropped()
+signal ammo_changed(ammo)
 
 export(SpriteFrames) var __player_sprite_frames
 export(Texture) var __collectible_sprite
@@ -35,11 +36,13 @@ func set_can_attack(value):
 
 func add_ammo(count):
 	ammo += count
+	emit_signal("ammo_changed", ammo)
 	
 func use_ammo():
 	ammo -= 1
 	if ammo <= 0:
 		ammo = 0;
+	emit_signal("ammo_changed", ammo)
 		
 func has_ammo():
 	return ammo > 0

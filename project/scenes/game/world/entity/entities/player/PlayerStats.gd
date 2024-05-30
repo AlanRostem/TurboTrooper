@@ -142,6 +142,7 @@ func equip_weapon(weapon):
 	add_child(__equipped_weapon)
 	__equipped_weapon.equip()
 	emit_signal("weapon_changed", __equipped_weapon)
+	__equipped_weapon.connect("ammo_changed", self, "__on_weapon_ammo_changed")
 
 func equip_test_weapon():
 	instance_and_equip_weapon(test_weapon_scene)
@@ -227,3 +228,6 @@ func _on_RushEnergyRechargeStartingDelayTimer_timeout():
 
 func _on_InHitBox_hit_received(hitbox, damage, damage_type):
 	take_one_damage()
+
+func __on_weapon_ammo_changed(ammo):
+	emit_signal("weapon_ammo_changed", ammo)
