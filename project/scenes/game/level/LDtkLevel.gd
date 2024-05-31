@@ -2,14 +2,32 @@ extends Node2D
 
 var __room_scene = preload("res://scenes/game/level/Room.tscn")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
+var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
+onready var __sound_pool = $SoundPool
 
+onready var __parallax_sprite = $ParallaxBackground/ParallaxLayer/Sprite
+var __delayed_sounds = {}
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	load_from_file("res://assets/ldtk/template.ldtk")
+	
+func play_sound(stream, delay=0):
+	var sound
+	if delay > 0:
+		if !__delayed_sounds.has(stream.resource_path):
+			sound = __delayed_sound_scene.instance()
+			sound.delay = delay
+			__delayed_sounds[stream.resource_path] = true
+			sound.stream = stream
+			__sound_pool.add_child(sound)
+			sound.connect("can_play", self, "_on_sound_can_play")
+			sound.call_deferred("play")
+		return
+	sound = __sound_effect_scene.instance()
+	sound.stream = stream
+	__sound_pool.add_child(sound)
+	sound.call_deferred("play")
 
 func load_from_file(filepath):
 	var file = File.new()
@@ -29,3 +47,5 @@ func load_from_file(filepath):
 				_: print("Unrecognized layer type:", layers[j]["__identifier"])
 				
 		
+func _on_sound_can_play(sound):
+	__delayed_sounds.erase(sound.stream.resource_path)
