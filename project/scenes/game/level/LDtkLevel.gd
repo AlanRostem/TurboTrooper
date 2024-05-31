@@ -22,12 +22,10 @@ func load_from_file(filepath):
 		var layers = r["layerInstances"]
 		var data_entity_pool
 		var data_custom_tilemap
-		var data_geometry
 		for j in range(len(layers)):
 			match layers[j]["__identifier"]:
 				"EntityPool": data_entity_pool = layers[j]
 				"CustomTileMap": data_custom_tilemap  = layers[j]
-				"Geometry": data_geometry = layers[j]
 				_: print("Unrecognized layer type:", layers[j]["__identifier"])
 				
 		
