@@ -17,7 +17,6 @@ onready var __parent_level = get_parent()
 
 var player_node
 
-
 onready var __scrap_hover_text = $ScrapHoverText
 onready var __weapon_hover_text = $WeaponHoverText
 
