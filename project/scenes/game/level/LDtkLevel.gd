@@ -54,8 +54,11 @@ func load_from_file(filepath):
 							"EntityPool": data_entity_pool = layers[j]
 							"CustomTileMap": data_custom_tilemap  = layers[j]
 							_: print("Unrecognized layer type:", layers[j]["__identifier"])
+			var room_x = r["worldX"]
+			var room_y = r["worldY"]
 			var room_instance = __room_scene.instance()
 			add_child(room_instance)
+			room_instance.position = Vector2(room_x, room_y)
 
 			## Add entities to pool
 			var entity_instances = data_entity_pool["entityInstances"]
