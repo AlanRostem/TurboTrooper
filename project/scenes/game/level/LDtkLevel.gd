@@ -33,8 +33,8 @@ func has_check_point():
 
 func get_entity_scene_by_ldtk_identifier(identifier):
 		match identifier:
-				"EscapeLevelEntry": return null # TODO
-				"BombSwitch": return __scene_bomb_switch
+			"EscapeLevelEntry": return null # TODO
+			"BombSwitch": return __scene_bomb_switch
 		return null
 
 func load_from_file(filepath):
@@ -44,32 +44,33 @@ func load_from_file(filepath):
 	var json_dict = JSON.parse(json_data).result
 	var rooms = json_dict["levels"]
 	for i in range(len(rooms)):
-			var r = rooms[i]
-			var layers = r["layerInstances"]
-			var data_entity_pool
-			var data_custom_tilemap
-			# Find correct layers and set them to vars
-			for j in range(len(layers)):
-					match layers[j]["__identifier"]:
-							"EntityPool": data_entity_pool = layers[j]
-							"CustomTileMap": data_custom_tilemap  = layers[j]
-							_: print("Unrecognized layer type:", layers[j]["__identifier"])
-			var room_x = r["worldX"]
-			var room_y = r["worldY"]
-			var room_instance = __room_scene.instance()
-			add_child(room_instance)
-			room_instance.position = Vector2(room_x, room_y)
+		var r = rooms[i]
+		var layers = r["layerInstances"]
+		var data_entity_pool
+		var data_custom_tilemap
+		# Find correct layers and set them to vars
+		for j in range(len(layers)):
+			match layers[j]["__identifier"]:
+				"EntityPool": data_entity_pool = layers[j]
+				"CustomTileMap": data_custom_tilemap  = layers[j]
+				_: print("Unrecognized layer type:", layers[j]["__identifier"])
+		
+		var room_x = r["worldX"]
+		var room_y = r["worldY"]
+		var room_instance = __room_scene.instance()
+		add_child(room_instance)
+		room_instance.position = Vector2(room_x, room_y)
 
-			## Add entities to pool
-			var entity_instances = data_entity_pool["entityInstances"]
-			for j in range(len(entity_instances)):
-					var entity_name = entity_instances[j]["__identifier"]
-					var entity_scene = get_entity_scene_by_ldtk_identifier(entity_name)
-					if entity_scene != null:
-						var pos_x =  entity_instances[j]["px"][0]
-						var pos_y =  entity_instances[j]["px"][1]
-						room_instance.spawn_entity(entity_scene, Vector2(pos_x, pos_y))
-								
+		## Add entities to pool
+		var entity_instances = data_entity_pool["entityInstances"]
+		for j in range(len(entity_instances)):
+			var entity_name = entity_instances[j]["__identifier"]
+			var entity_scene = get_entity_scene_by_ldtk_identifier(entity_name)
+			if entity_scene != null:
+				var pos_x =  entity_instances[j]["px"][0]
+				var pos_y =  entity_instances[j]["px"][1]
+				room_instance.spawn_entity(entity_scene, Vector2(pos_x, pos_y))
+
 func play_sound(stream, delay=0):
 	var sound
 	if delay > 0:
