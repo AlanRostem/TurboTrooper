@@ -2,7 +2,7 @@ extends Node2D
 
 var __room_scene = preload("res://scenes/game/level/Room.tscn")
 
-var __scene_escape_area = null
+var __scene_escape_area = preload("res://scenes/game/world/objective/EscapeArea.tscn")
 var __scene_bomb_switch = preload("res://scenes/game/world/objective/BombSwitch.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
@@ -33,7 +33,7 @@ func has_check_point():
 
 func get_entity_scene_by_ldtk_identifier(identifier):
 		match identifier:
-			"EscapeLevelEntry": return null # TODO
+			"EscapeLevelEntry": return __scene_escape_area # TODO
 			"BombSwitch": return __scene_bomb_switch
 		return null
 
@@ -70,6 +70,10 @@ func load_from_file(filepath):
 				var pos_x =  entity_instances[j]["px"][0]
 				var pos_y =  entity_instances[j]["px"][1]
 				room_instance.spawn_entity(entity_scene, Vector2(pos_x, pos_y))
+				continue
+			print("Unrecognized entity type: ", entity_name)
+		
+		
 
 func play_sound(stream, delay=0):
 	var sound

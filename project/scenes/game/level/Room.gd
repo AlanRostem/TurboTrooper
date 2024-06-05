@@ -53,7 +53,7 @@ func assign_player_node(player):
 
 # Retrieve the pixel cell size for the tile map
 func get_tile_size():
-	return __tile_map.get_tile_size()
+	return 8
 
 # Instance a node that inherits the base entity scene through a specified scene and
 # specify a relative location for the entity to be present. The node is then added as 

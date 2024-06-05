@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/sprites/item/objective/arrow.png" type="Texture" id=1]
 [ext_resource path="res://scenes/game/world/objective/ArrowSprite.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/game/world/objective/EscapeArea.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 12 )
@@ -29,6 +30,7 @@ animations = [ {
 position = Vector2( 8, 72 )
 collision_layer = 0
 collision_mask = 4
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 8, -4 )
@@ -46,3 +48,4 @@ disabled = true
 position = Vector2( 8, 0 )
 rotation = 1.5708
 frames = SubResource( 3 )
+frame = 0
