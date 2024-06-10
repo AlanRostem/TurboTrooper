@@ -11,7 +11,7 @@ onready var __entity_pool = $EntityPool
 
 var __hide_entities = false
 
-onready var __tile_map = $CustomTileMap
+onready var __tile_map = $TileMap
 
 onready var __parent_level = get_parent()
 

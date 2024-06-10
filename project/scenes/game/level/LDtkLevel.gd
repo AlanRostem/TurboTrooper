@@ -61,6 +61,16 @@ func load_from_file(filepath):
 		add_child(room_instance)
 		room_instance.position = Vector2(room_x, room_y)
 
+		var int_grid = data_custom_tilemap["intGridCsv"]
+		var map_width = data_custom_tilemap["__cWid"]
+		var map_height = data_custom_tilemap["__cHei"]
+		for y in range(map_height):
+			for x in range(map_width):
+				 # Needs to be subtracted by 1 due to how Godot reads tile values
+				var tile_value = int_grid[y * map_width + x]-1
+				room_instance.get_tile_map().set_cellv(Vector2(x, y), tile_value)
+				room_instance.get_tile_map().update_bitmask_area(Vector2(x, y))
+
 		## Add entities to pool
 		var entity_instances = data_entity_pool["entityInstances"]
 		for j in range(len(entity_instances)):
