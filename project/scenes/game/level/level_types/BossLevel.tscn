@@ -35,6 +35,5 @@ position = Vector2( -12, 96 )
 
 [node name="SuperScrap" parent="GameWorld/EntityPool" index="2" instance=ExtResource( 4 )]
 position = Vector2( 68, 100 )
-__disappear_on_pickup = true
 
 [connection signal="completion_transition_over" from="GameWorld/EntityPool/Boss" to="." method="_on_Boss_completion_transition_over"]
