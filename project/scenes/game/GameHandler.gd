@@ -22,7 +22,7 @@ onready var __reset_timer = $LevelResetTimer
 onready var __color_rect = $CanvasLayer/ColorRect
 onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
-onready var __cave_theme = preload("res://assets/audio/music/boss_level_theme.wav")
+onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
 #onready var __boss_theme = precollectibleload("res://assets/audio/music/boss_level_theme.wav")
 #onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
 
