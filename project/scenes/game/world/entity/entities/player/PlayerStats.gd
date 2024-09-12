@@ -5,6 +5,7 @@ const MAX_HEALTH = 3
 const MAX_RUSH_ENERGY = 6
 const MAX_SCORE = 99999
 
+const NO_WEAPON_IDX = -1
 const BLASTER_WEAPON_IDX = 0
 const SCORCH_CANNON_IDX = 1
 
@@ -26,6 +27,7 @@ var __data = {
 	"scrap": 0,
 	"life": MAX_HEALTH,
 	"weapon": -1,
+	"ammo": 0,
 	"score": 0,
 	"checkpoint": null,
 }
@@ -95,12 +97,13 @@ func get_check_point():
 	return __data["checkpoint"]
 	
 func set_from_data(data: Dictionary):
+	print(data)
 	set_health(data["life"])
 	set_scrap(data["scrap"])
 	set_score(data["score"])
 	set_check_point(data["checkpoint"])
 	match data["weapon"]:
-		_: instance_and_equip_weapon(__blaster_scene)
+		NO_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
 		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
 	__equipped_weapon.add_ammo(data["ammo"])
 

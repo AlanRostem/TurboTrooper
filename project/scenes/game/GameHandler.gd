@@ -23,7 +23,7 @@ onready var __color_rect = $CanvasLayer/ColorRect
 onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
 onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
-#onready var __boss_theme = precollectibleload("res://assets/audio/music/boss_level_theme.wav")
+onready var __boss_theme = preload("res://assets/audio/music/boss_music.wav")
 #onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
 
 onready var __win_theme_player = $WinThemePlayer
@@ -129,6 +129,8 @@ func load_current_level_theme(theme_enum):
 	match theme_enum:
 		Level.Theme.CAVE:
 			__current_level_theme.stream = __cave_theme
+		Level.Theme.FACTORY:
+			__current_level_theme.stream = __boss_theme
 	add_child(__current_level_theme)
 	
 func start_level_win_sequence():
