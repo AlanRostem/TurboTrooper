@@ -2,6 +2,7 @@ extends Node2D
 
 var __room_scene = preload("res://scenes/game/level/Room.tscn")
 
+var __scene_player = preload("res://scenes/game/world/entity/entities/player/Player.tscn")
 var __scene_escape_area = preload("res://scenes/game/world/objective/EscapeArea.tscn")
 var __scene_bomb_switch = preload("res://scenes/game/world/objective/BombSwitch.tscn")
 
@@ -16,6 +17,8 @@ var __delayed_sounds = {}
 var __has_check_point = false
 var __check_point_room = null
 var __check_point_position = null
+
+var player_node
 
 func _ready():
 	load_from_file("res://assets/ldtk/template.ldtk")
@@ -33,7 +36,7 @@ func has_check_point():
 
 func get_entity_scene_by_ldtk_identifier(identifier):
 		match identifier:
-			"EscapeLevelEntry": return __scene_escape_area # TODO
+			"EscapeLevelEntry": return __scene_escape_area
 			"BombSwitch": return __scene_bomb_switch
 		return null
 
@@ -80,8 +83,11 @@ func load_from_file(filepath):
 				var pos_x =  entity_instances[j]["px"][0]
 				var pos_y =  entity_instances[j]["px"][1]
 				room_instance.spawn_entity(entity_scene, Vector2(pos_x, pos_y))
+				if not __has_check_point and entity_scene == __scene_escape_area:
+					var player = room_instance.spawn_entity(__scene_player, Vector2(pos_x, pos_y))
+					player.state_machine.transition_to("PlayerEnterLevelState")
 				continue
-			print("Unrecognized entity type: ", entity_name)
+			printerr("Unrecognized entity type: ", entity_name)
 		
 		
 
