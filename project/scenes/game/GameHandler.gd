@@ -26,6 +26,8 @@ onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
 onready var __boss_theme = preload("res://assets/audio/music/boss_music.wav")
 #onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
 
+onready var __ldtk_level_scene = preload("res://scenes/game/level/LDtkLevel.tscn")
+
 onready var __win_theme_player = $WinThemePlayer
 onready var __battle_theme_player = $BattleThemePlayer
 
@@ -72,16 +74,18 @@ func set_current_to_next_level():
 # Deletes the current level (if one is active) and instances a new one from the specified
 # scene.
 func set_current_level(index):
-	var level_scene: PackedScene = __level_list.get_level_scene(index)
 	__level_index = index
+	# TODO: organize files for levels
+	var level_path = "res://assets/ldtk/template.ldtk"
 	
 	if __current_level != null:
 		__current_level.queue_free()
-	__current_level = level_scene.instance()
+	__current_level = __ldtk_level_scene.instance()
 	if has_check_point():
 		__current_level.set_check_point_enabled(true)
-	__current_level.connect("ready", self, "_on_current_level_ready")
 	add_child(__current_level)
+	__current_level.load_from_file(level_path)
+	__current_level.init_event_recievers(__hud)
 	
 	__current_level.set_player_stats(__saved_player_stats)
 	
@@ -145,9 +149,6 @@ func start_battle_sequence():
 
 func cancel_battle_sequence():
 	__battle_theme_player.stop()
-
-func _on_current_level_ready():
-	__hud.connect_to_player(__current_level.player_node)
 	
 func get_hud(): 
 	return __hud

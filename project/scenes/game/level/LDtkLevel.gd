@@ -20,8 +20,58 @@ var __check_point_position = null
 
 var player_node
 
+onready var game_handler = get_parent()
+
+const SOLID_OBJECT_COLLISION_BIT = 0
+
+var __hover_text_scene = preload("res://scenes/ui/world/hover_text/WorldHoverText.tscn")
+
+onready var __entity_pool = $EntityPool
+
+var __hide_entities = false
+
+onready var __tile_map = $TileMap
+
+onready var __scrap_hover_text = $ScrapHoverText
+onready var __weapon_hover_text = $WeaponHoverText
+
+var __scrap_recently_collected = 0
+var __remove_all_entities = false
+
+
 func _ready():
-	load_from_file("res://assets/ldtk/template.ldtk")
+	pass
+	
+func init_level_data(data):
+	pass
+	
+func init_player(player, should_transition=false):
+	assign_player_node(player)
+	var rect = __tile_map.get_used_rect()
+	rect.position *= __tile_map.get_tile_size()
+	rect.size *= __tile_map.get_tile_size()
+	player.set_camera_bounds(rect)
+	if !should_transition:
+		player.state_machine.transition_to("PlayerIdleState")
+		return
+	player.state_machine.transition_to("PlayerEnterLevelState")
+	
+func init_event_recievers(hud):
+	hud.connect_to_player(player_node)
+
+func put_player_on_check_point(vec):
+	player_node.position = vec
+
+func set_player_stats(stats: Dictionary):
+	player_node.stats.set_from_data(stats)
+	if game_handler.has_check_point():
+		put_player_on_check_point(player_node.stats.get_check_point())
+
+func play_battle_theme():
+	pass#game_handler.start_battle_sequence()
+	
+func stop_battle_theme():
+	pass#game_handler.cancel_battle_sequence()
 
 func set_check_point_enabled(value):
 	__has_check_point = true
@@ -30,6 +80,10 @@ func set_check_point_enabled(value):
 func set_check_point_location_and_room(room, location):
 	__check_point_room = room
 	__check_point_position = location
+	
+func save_check_point():
+	# TODO: Implement
+	pass
 	
 func has_check_point():
 	return __has_check_point
@@ -46,48 +100,44 @@ func load_from_file(filepath):
 	var json_data = file.get_as_text()
 	var json_dict = JSON.parse(json_data).result
 	var rooms = json_dict["levels"]
-	for i in range(len(rooms)):
-		var r = rooms[i]
-		var layers = r["layerInstances"]
-		var data_entity_pool
-		var data_custom_tilemap
-		# Find correct layers and set them to vars
-		for j in range(len(layers)):
-			match layers[j]["__identifier"]:
-				"EntityPool": data_entity_pool = layers[j]
-				"CustomTileMap": data_custom_tilemap  = layers[j]
-				_: print("Unrecognized layer type:", layers[j]["__identifier"])
-		
-		var room_x = r["worldX"]
-		var room_y = r["worldY"]
-		var room_instance = __room_scene.instance()
-		add_child(room_instance)
-		room_instance.position = Vector2(room_x, room_y)
+	var r = rooms[0]
+	var layers = r["layerInstances"]
+	var data_entity_pool
+	var data_custom_tilemap
+	# Find correct layers and set them to vars
+	for j in range(len(layers)):
+		match layers[j]["__identifier"]:
+			"EntityPool": data_entity_pool = layers[j]
+			"CustomTileMap": data_custom_tilemap  = layers[j]
+			_: print("Unrecognized layer type:", layers[j]["__identifier"])
+	
+	var room_x = r["worldX"]
+	var room_y = r["worldY"]
 
-		var int_grid = data_custom_tilemap["intGridCsv"]
-		var map_width = data_custom_tilemap["__cWid"]
-		var map_height = data_custom_tilemap["__cHei"]
-		for y in range(map_height):
-			for x in range(map_width):
-				 # Needs to be subtracted by 1 due to how Godot reads tile values
-				var tile_value = int_grid[y * map_width + x]-1
-				room_instance.get_tile_map().set_cellv(Vector2(x, y), tile_value)
-				room_instance.get_tile_map().update_bitmask_area(Vector2(x, y))
+	var int_grid = data_custom_tilemap["intGridCsv"]
+	var map_width = data_custom_tilemap["__cWid"]
+	var map_height = data_custom_tilemap["__cHei"]
+	for y in range(map_height):
+		for x in range(map_width):
+			 # Needs to be subtracted by 1 due to how Godot reads tile values
+			var tile_value = int_grid[y * map_width + x]-1
+			__tile_map.set_cellv(Vector2(x, y), tile_value)
+			__tile_map.update_bitmask_area(Vector2(x, y))
 
-		## Add entities to pool
-		var entity_instances = data_entity_pool["entityInstances"]
-		for j in range(len(entity_instances)):
-			var entity_name = entity_instances[j]["__identifier"]
-			var entity_scene = get_entity_scene_by_ldtk_identifier(entity_name)
-			if entity_scene != null:
-				var pos_x =  entity_instances[j]["px"][0]
-				var pos_y =  entity_instances[j]["px"][1]
-				room_instance.spawn_entity(entity_scene, Vector2(pos_x, pos_y))
-				if not __has_check_point and entity_scene == __scene_escape_area:
-					var player = room_instance.spawn_entity(__scene_player, Vector2(pos_x, pos_y))
-					player.state_machine.transition_to("PlayerEnterLevelState")
-				continue
-			printerr("Unrecognized entity type: ", entity_name)
+	## Add entities to pool
+	var entity_instances = data_entity_pool["entityInstances"]
+	for j in range(len(entity_instances)):
+		var entity_name = entity_instances[j]["__identifier"]
+		var entity_scene = get_entity_scene_by_ldtk_identifier(entity_name)
+		if entity_scene != null:
+			var pos_x =  entity_instances[j]["px"][0]
+			var pos_y =  entity_instances[j]["px"][1]
+			spawn_entity(entity_scene, Vector2(pos_x, pos_y))
+			if not __has_check_point and entity_scene == __scene_escape_area:
+				var player = spawn_entity(__scene_player, Vector2(pos_x, pos_y))
+				init_player(player, true)
+			continue
+		printerr("Unrecognized entity type: ", entity_name)
 		
 		
 
@@ -107,6 +157,85 @@ func play_sound(stream, delay=0):
 	sound.stream = stream
 	__sound_pool.add_child(sound)
 	sound.call_deferred("play")
+	
+func hide_and_remove_entities():
+#	__geometry.visible = false
+	set_remove_all_entities(true)
+#	__parallax_sprite.visible = false
+	
+func set_remove_all_entities(value):
+	__remove_all_entities = value
+
+func remove_all_entities():
+	return __remove_all_entities
+
+func assign_player_node(player):
+	player_node = player
+
+# Retrieve the pixel cell size for the tile map
+func get_tile_size():
+	return 8
+	
+func get_theme_enum():
+	# TODO: Load theme enum from file
+	return Level.MusicThemes.CAVE
+
+# Instance a node that inherits the base entity scene through a specified scene and
+# specify a relative location for the entity to be present. The node is then added as 
+# a child of the EntityPool node.
+func spawn_entity(entity_scene, location):
+	var entity = entity_scene.instance()
+	entity.position = location
+	entity.parent_world = self
+	__entity_pool.add_child(entity)
+	return entity
+	
+func add_geometry(scene, location):
+	var geometry = scene.instance()
+	geometry.position = location
+#	__geometry.add_child(geometry)
+	__entity_pool.add_child(geometry)
+	return geometry
+	
+# Instance a node that inherits the base entity scene through a specified scene and
+# specify a relative location for the entity to be present. The node is then added as 
+# a child of the EntityPool node. The adding is deferred. 
+func spawn_entity_deferred(entity_scene, location):
+	var entity = entity_scene.instance()
+	entity.position = location
+	entity.parent_world = self
+	__entity_pool.call_deferred("add_child", entity)
+	return entity
+
+func get_entity_pool():
+	return  __entity_pool
+
+func get_tile_map():
+	return __tile_map
+
+func show_effect_deferred(scene, location):
+	var effect = scene.instance()
+	effect.position = location
+	__entity_pool.call_deferred("add_child", effect)
+	
+func show_hover_scrap_collected(amount, location):
+	__scrap_recently_collected += amount
+	__scrap_hover_text.display("+" + str(__scrap_recently_collected), location)
+
+func show_hover_weapon_collected(weapon_name, location):
+	__weapon_hover_text.display("+" + weapon_name, location)
+	
+# Uses weapon hover text
+func show_hover_text(text, location):
+	__weapon_hover_text.display(text, location)
 		
 func _on_sound_can_play(sound):
 	__delayed_sounds.erase(sound.stream.resource_path)
+
+func _on_ScrapHoverText_display_off():
+	__scrap_recently_collected = 0
+	
+
+func _on_DeathPits_body_entered(player):
+	player.die()
+

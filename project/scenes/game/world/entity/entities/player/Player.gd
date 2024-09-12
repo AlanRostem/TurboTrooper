@@ -38,7 +38,6 @@ onready var __crate_opening_timer = $CrateOpeningTimer
 onready var __camera = $Camera2D
 
 func _ready():
-	parent_world.get_parent().player_node = self
 	gravity = PlayerSpeedValues.PLAYER_GRAVITY
 
 func _physics_process(delta):
@@ -231,7 +230,7 @@ func is_turboed_up():
 func die():
 	if __is_immortal: return
 	state_machine.transition_to("PlayerDeathState")
-	parent_world.get_parent_level().game_handler.start_reset_sequence(true)
+	parent_world.game_handler.start_reset_sequence(true)
 	parent_world.hide_and_remove_entities()
 	parent_world.play_sound(__death_sound)
 	if stats.get_health() > PlayerStats.MAX_HEALTH:

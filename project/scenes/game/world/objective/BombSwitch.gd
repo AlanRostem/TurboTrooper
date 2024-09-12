@@ -36,7 +36,7 @@ func _physics_process(delta):
 		__press_shape.set_deferred("disabled", true)
 		__arrow_sprite.visible = false
 		emit_signal("activated")
-		if !get_parent_level().game_handler.has_check_point():
+		if !get_parent_level().has_check_point():
 			get_parent_level().save_check_point()
 		
 func get_time_score():
