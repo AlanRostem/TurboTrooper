@@ -1,7 +1,7 @@
 extends Node2D
 class_name Level
 
-enum Theme {
+enum MusicThemes {
 	CAVE,
 	LAB,
 	FACTORY,
@@ -17,7 +17,7 @@ var player_node
 var __convert_player_scrap_to_score = false
 var __has_check_point = false
 
-export(Theme) var __theme = Theme.CAVE
+export(MusicThemes) var __theme = MusicThemes.CAVE
 
 func _ready():
 	if __has_check_point:

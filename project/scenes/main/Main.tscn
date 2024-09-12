@@ -73,7 +73,6 @@ stream = ExtResource( 7 )
 stream = ExtResource( 8 )
 
 [connection signal="game_started" from="MainMenu" to="GameHandler" method="_on_MainMenu_game_started"]
-[connection signal="game_completed" from="GameHandler" to="MainMenu" method="_on_GameHandler_game_completed"]
 [connection signal="timeout" from="GameHandler/PauseabilityTimer" to="GameHandler" method="_on_PauseabilityTimer_timeout"]
 [connection signal="timeout" from="GameHandler/LevelIntroTimer" to="GameHandler" method="_on_LevelIntroTimer_timeout"]
 [connection signal="timeout" from="GameHandler/LevelResetTimer" to="GameHandler" method="_on_LevelResetTimer_timeout"]

@@ -45,6 +45,7 @@ var __saved_player_stats = {
 	"ammo": 0,
 }
 	
+	
 func _physics_process(delta):
 	if Input.is_action_just_pressed("pause") and __can_pause:
 		get_tree().paused = !get_tree().paused
@@ -127,9 +128,9 @@ func load_current_level_theme(theme_enum):
 		__current_level_theme = null
 	__current_level_theme = AudioStreamPlayer.new()
 	match theme_enum:
-		Level.Theme.CAVE:
+		Level.MusicThemes.CAVE:
 			__current_level_theme.stream = __cave_theme
-		Level.Theme.FACTORY:
+		Level.MusicThemes.FACTORY:
 			__current_level_theme.stream = __boss_theme
 	add_child(__current_level_theme)
 	
