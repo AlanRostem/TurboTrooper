@@ -15,7 +15,6 @@ onready var __parallax_sprite = $ParallaxBackground/ParallaxLayer/Sprite
 var __delayed_sounds = {}
 
 var __has_check_point = false
-var __check_point_room = null
 var __check_point_position = null
 
 var __escape_area_ref = null
@@ -50,6 +49,7 @@ func init_level_states(data):
 	if __bomb_switch_ref != null:
 		__escape_area_ref.connect_to_bomb_switch(__bomb_switch_ref)
 		player_node.connect_to_bomb_switch(__bomb_switch_ref)
+		__check_point_position = __bomb_switch_ref.position + Vector2(8 * -3, 0)
 	elif __boss_area_ref != null:
 		pass
 	
@@ -84,14 +84,12 @@ func stop_battle_theme():
 func set_check_point_enabled(value):
 	__has_check_point = true
 	
-# TODO fix this
-func set_check_point_location_and_room(room, location):
-	__check_point_room = room
-	__check_point_position = location
-	
+func set_check_point_position(pos):
+	__check_point_position = pos
+
 func save_check_point():
-	# TODO: Implement
-	pass
+	game_handler.set_check_point(__check_point_position)
+	player_node.stats.set_check_point(__check_point_position)
 	
 func has_check_point():
 	return __has_check_point
@@ -145,6 +143,7 @@ func load_from_file(filepath):
 			if not __has_check_point and entity_scene == __scene_escape_area:
 				var player = spawn_entity(__scene_player, Vector2(pos_x-8, pos_y+8))
 				init_player(player, true)
+
 				__escape_area_ref = entity_instance
 				continue
 				

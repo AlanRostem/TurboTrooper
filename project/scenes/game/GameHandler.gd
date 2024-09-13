@@ -81,14 +81,16 @@ func set_current_level(index):
 	if __current_level != null:
 		__current_level.queue_free()
 	__current_level = __ldtk_level_scene.instance()
-	if has_check_point():
-		__current_level.set_check_point_enabled(true)
 	add_child(__current_level)
 	__current_level.load_from_file(level_path)
+	
+	# func-call level init here after load and instantiated
 	__current_level.init_event_recievers(__hud)
 	__current_level.init_level_states(null)
 	
 	__current_level.set_player_stats(__saved_player_stats)
+	if has_check_point():
+		__current_level.set_check_point_enabled(true)
 	
 	load_current_level_theme(__current_level.get_theme_enum())
 	__pauseability_timer.start()

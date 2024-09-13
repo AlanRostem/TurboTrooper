@@ -22,9 +22,6 @@ var __player_on_top = false
 
 var __time_score = 0
 
-func _ready():
-	__parent_level.call_deferred("set_check_point_location_and_room", parent_world, position + Vector2.LEFT * 12)
-
 func _physics_process(delta):
 	if __count_down:
 		__parent_level.game_handler.get_hud().set_global_message("ESCAPE! - " + str(round(__bomb_timer.time_left)))
