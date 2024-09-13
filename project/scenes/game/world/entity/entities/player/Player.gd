@@ -45,6 +45,9 @@ func _physics_process(delta):
 		die()
 		return
 	set_ram_slide_hit_box_enabled(is_turboed_up())
+	
+func connect_to_bomb_switch(bomb_switch):
+	bomb_switch.connect("detonated", self, "__on_bomb_switch_detonated")
 
 func set_camera_follow(value):
 	__camera.current = value
@@ -256,4 +259,7 @@ func _on_CrateOpeningTimer_timeout():
 	set_opening_crate(false)
 
 func _on_PlayerStats_died():
+	die()
+
+func __on_bomb_switch_detonated():
 	die()

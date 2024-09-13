@@ -28,7 +28,7 @@ func __on_bomb_switch_activated():
 func _on_EscapeArea_body_entered(player):
 	if __is_bomb_switch_active:
 		player.state_machine.transition_to("PlayerLeaveLevelState")
-
+		$ArrowSprite.visible = false
 		__bomb_switch.complete()
 		return
 	
