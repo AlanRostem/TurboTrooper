@@ -86,6 +86,7 @@ func set_current_level(index):
 	add_child(__current_level)
 	__current_level.load_from_file(level_path)
 	__current_level.init_event_recievers(__hud)
+	__current_level.init_level_states(null)
 	
 	__current_level.set_player_stats(__saved_player_stats)
 	

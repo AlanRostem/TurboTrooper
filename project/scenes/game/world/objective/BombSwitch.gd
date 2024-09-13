@@ -66,7 +66,7 @@ func _on_BombTimer_timeout():
 
 func _on_BombSwitch_completed():
 	stop_ticking()
-	var world = __parent_level.get_game_world()
+	var world = __parent_level
 	world.show_hover_text("+" + str(__time_score) + "score", world.player_node.position)
 	world.player_node.stats.add_score(__time_score)
 

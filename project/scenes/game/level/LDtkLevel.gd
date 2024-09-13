@@ -18,6 +18,10 @@ var __has_check_point = false
 var __check_point_room = null
 var __check_point_position = null
 
+var __escape_area_ref = null
+var __bomb_switch_ref = null
+var __boss_area_ref = null
+
 var player_node
 
 onready var game_handler = get_parent()
@@ -42,8 +46,11 @@ var __remove_all_entities = false
 func _ready():
 	pass
 	
-func init_level_data(data):
-	pass
+func init_level_states(data):
+	if __bomb_switch_ref != null:
+		__escape_area_ref.connect_to_bomb_switch(__bomb_switch_ref)
+	elif __boss_area_ref != null:
+		pass
 	
 func init_player(player, should_transition=false):
 	assign_player_node(player)
@@ -68,10 +75,10 @@ func set_player_stats(stats: Dictionary):
 		put_player_on_check_point(player_node.stats.get_check_point())
 
 func play_battle_theme():
-	pass#game_handler.start_battle_sequence()
+	game_handler.start_battle_sequence()
 	
 func stop_battle_theme():
-	pass#game_handler.cancel_battle_sequence()
+	game_handler.cancel_battle_sequence()
 
 func set_check_point_enabled(value):
 	__has_check_point = true
@@ -100,6 +107,7 @@ func load_from_file(filepath):
 	var json_data = file.get_as_text()
 	var json_dict = JSON.parse(json_data).result
 	var rooms = json_dict["levels"]
+	# Using first room since rooms are not a thing anymore
 	var r = rooms[0]
 	var layers = r["layerInstances"]
 	var data_entity_pool
@@ -132,10 +140,18 @@ func load_from_file(filepath):
 		if entity_scene != null:
 			var pos_x =  entity_instances[j]["px"][0]
 			var pos_y =  entity_instances[j]["px"][1]
-			spawn_entity(entity_scene, Vector2(pos_x, pos_y))
+			var entity_instance = spawn_entity(entity_scene, Vector2(pos_x, pos_y))
 			if not __has_check_point and entity_scene == __scene_escape_area:
 				var player = spawn_entity(__scene_player, Vector2(pos_x, pos_y))
 				init_player(player, true)
+				__escape_area_ref = entity_instance
+				continue
+				
+			match entity_scene:
+				__scene_bomb_switch:
+					__bomb_switch_ref = entity_instance
+				#__scene_boss_area
+				
 			continue
 		printerr("Unrecognized entity type: ", entity_name)
 		
