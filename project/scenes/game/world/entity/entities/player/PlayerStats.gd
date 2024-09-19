@@ -104,7 +104,9 @@ func set_from_data(data: Dictionary):
 	set_check_point(data["checkpoint"])
 	match data["weapon"]:
 		NO_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
+		BLASTER_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
 		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
+	print(data["weapon"])
 	__equipped_weapon.add_ammo(data["ammo"])
 
 func destroy_weapon_and_set_to_beam_cannon():
