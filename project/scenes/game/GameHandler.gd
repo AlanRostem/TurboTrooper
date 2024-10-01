@@ -82,11 +82,12 @@ func set_current_level(index):
 		__current_level.queue_free()
 	__current_level = __ldtk_level_scene.instance()
 	add_child(__current_level)
+	__current_level.feed_init_data(__has_check_point)
 	__current_level.load_from_file(level_path)
 	
-	# func-call level init here after load and instantiated
+	# func-call level init here after load and instantiate
 	__current_level.init_event_recievers(__hud)
-	__current_level.init_level_states(null)
+	__current_level.init_level_states()
 	
 	__current_level.set_player_stats(__saved_player_stats)
 	if has_check_point():

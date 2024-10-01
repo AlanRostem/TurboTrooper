@@ -45,7 +45,10 @@ var __remove_all_entities = false
 func _ready():
 	pass
 	
-func init_level_states(data):
+func feed_init_data(has_check_point):
+	__has_check_point = has_check_point
+	
+func init_level_states():
 	if __bomb_switch_ref != null:
 		__escape_area_ref.connect_to_bomb_switch(__bomb_switch_ref)
 		player_node.connect_to_bomb_switch(__bomb_switch_ref)
@@ -140,9 +143,9 @@ func load_from_file(filepath):
 			var pos_x =  entity_instances[j]["px"][0]
 			var pos_y =  entity_instances[j]["px"][1]
 			var entity_instance = spawn_entity(entity_scene, Vector2(pos_x, pos_y))
-			if not __has_check_point and entity_scene == __scene_escape_area:
+			if entity_scene == __scene_escape_area:
 				var player = spawn_entity(__scene_player, Vector2(pos_x-8, pos_y+8))
-				init_player(player, true)
+				init_player(player, !__has_check_point)
 
 				__escape_area_ref = entity_instance
 				continue
