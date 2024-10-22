@@ -1,7 +1,7 @@
 extends GameSection
 
 var __current_level: LDTKLevel
-@onready var __sub_viewport: SubViewport = $Control/SubViewportContainer/SubViewport
+@onready var __sub_viewport: SubViewport = $SubViewportContainer/SubViewport
 
 
 func _on_entered(core: Core) -> void:
