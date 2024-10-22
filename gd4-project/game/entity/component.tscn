@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://88ulg845w5lm"]
+
+[ext_resource type="Script" path="res://game/entity/component.gd" id="1_rctyp"]
+
+[node name="Component" type="Node2D"]
+script = ExtResource("1_rctyp")

@@ -1,5 +1,5 @@
 extends Node2D
-class_name NodeEntity
+class_name CharacterEntity
 
 signal spawned(level: LDTKLevel, data: Dictionary)
 signal despawned(data: Dictionary)
