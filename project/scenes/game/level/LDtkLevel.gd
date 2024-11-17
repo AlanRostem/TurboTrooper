@@ -5,6 +5,9 @@ var __room_scene = preload("res://scenes/game/level/Room.tscn")
 var __scene_player = preload("res://scenes/game/world/entity/entities/player/Player.tscn")
 var __scene_escape_area = preload("res://scenes/game/world/objective/EscapeArea.tscn")
 var __scene_bomb_switch = preload("res://scenes/game/world/objective/BombSwitch.tscn")
+var __scene_scrap = preload("res://scenes/game/world/entity/entities/item/collectible_items/FloatingScrap.tscn")
+var __scene_crate_with_scrap = preload("res://scenes/game/world/structure/destructible/CrateWithScrap.tscn")
+var __scene_crate_with_scorch_cannon = preload("res://scenes/game/world/structure/destructible/ScorchCannonCrate.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
@@ -101,6 +104,9 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 		match identifier:
 			"EscapeLevelEntry": return __scene_escape_area
 			"BombSwitch": return __scene_bomb_switch
+			"Scrap": return __scene_scrap
+			"CrateWithScrap": return __scene_crate_with_scrap
+			"CrateWithScrochCannon": return __scene_crate_with_scorch_cannon
 		return null
 
 func load_from_file(filepath):
