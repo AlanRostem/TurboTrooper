@@ -22,6 +22,7 @@ func _physics_process(delta):
 	
 	if !__is_firing and Input.is_action_just_pressed("fire"):
 		__is_firing = true
+		$SoundEffect.play()
 		$ScorchFlame/AnimatedSprite.visible = true
 		$DamageTickTimer.start()
 		use_ammo()
@@ -37,6 +38,7 @@ func _physics_process(delta):
 		
 	elif __is_firing and Input.is_action_just_released("fire"):
 		__is_firing = false
+		$SoundEffect.stop()
 		$ScorchFlame/AnimatedSprite.visible = false
 		$DamageTickTimer.stop()
 		$ScorchFlame/HitBox/CollisionShape2D.set_deferred("disabled", true)
