@@ -2,7 +2,7 @@ extends Node2D
 class_name PlayerStats
 
 const MAX_HEALTH = 3
-const MAX_RUSH_ENERGY = 6
+const MAX_RUSH_ENERGY = 3
 const MAX_SCORE = 99999
 
 const NO_WEAPON_IDX = -1
@@ -203,12 +203,15 @@ func get_rush_energy():
 func set_rush_energy(count):
 	__rush_energy_count = clamp(count, 0, MAX_RUSH_ENERGY)
 	emit_signal("rush_energy_changed", __rush_energy_count)
+	
+func refill_rush_energy():
+	set_rush_energy(MAX_RUSH_ENERGY)
 
 func use_rush_energy(count):
 	set_rush_energy(__rush_energy_count - count)
-	__rush_energy_recharge_starting_delay_timer.stop()
-	__rush_energy_recharge_timer.stop()
-	__is_recharging_rush_energy = false
+#	__rush_energy_recharge_starting_delay_timer.stop()
+#	__rush_energy_recharge_timer.stop()
+#	__is_recharging_rush_energy = false
 	emit_signal("rush_energy_consumed")
 
 func recharge_rush_energy():

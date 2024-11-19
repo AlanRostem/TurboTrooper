@@ -64,5 +64,6 @@ playing = true
 [node name="SoundEffect" type="AudioStreamPlayer" parent="." index="3"]
 stream = ExtResource( 2 )
 
+[connection signal="dropped" from="." to="." method="_on_ScorchCannonWeapon_dropped"]
 [connection signal="timeout" from="DamageTickTimer" to="." method="_on_DamageTickTimer_timeout"]
 [connection signal="hit_dealt" from="ScorchFlame/HitBox" to="." method="_on_HitBox_hit_dealt"]
