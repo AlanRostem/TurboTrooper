@@ -1,13 +1,13 @@
 extends Control
 
-onready var __rush_energy_bar = $RushEnergyBar
+#onready var __rush_energy_bar = $RushEnergyBar
 onready var __scrap_info = $ScrapInfo
 onready var __health_info = $HealthInfo
 
 onready var __message = $GlobalMessage
 
 func connect_to_player(player):
-	player.stats.connect("rush_energy_changed", __rush_energy_bar, "set_rush_energy")
+	#player.stats.connect("rush_energy_changed", __rush_energy_bar, "set_rush_energy")
 	player.stats.connect("scrap_changed", __scrap_info, "set_scrap_count")
 	player.stats.connect("health_changed", __health_info, "set_health")
 	player.stats.connect("turbo_slide_status_changed", self, "set_dpad_indicator_visible")
@@ -23,10 +23,10 @@ func set_weapon_display(weapon):
 		return
 	$WeaponDisplay.visible = true
 	if "ScorchCannonWeapon" in weapon.name:
-		$WeaponDisplay/Sprite.texture = load("res://assets/sprites/item/weapon/scorch_cannon_item.png")
+		$WeaponDisplay/Sprite.texture = load("res://assets/sprites/ui/hud/weapon_icon_scorch.png")
 
 func set_dpad_indicator_visible(flag: bool):
-	$DpadIndicatorSprite.frame = 1 if flag else 0
+	$DpadIndicatorSprite.animation = "ready" if flag else "default"
 	
 func set_global_message(text):
 	__message.rect_size.x = 0

@@ -18,7 +18,9 @@ func movement_update(delta):
 	
 	if crouch:
 		parent_state_machine.transition_to("PlayerSlideState")
-		if player.stats.get_rush_energy() > 0 and player.is_moving_exactly_at_speed(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED):
+		# Removes this: player.stats.get_rush_energy() > 0 and
+		# Much nicer gameplay now!
+		if player.is_moving_exactly_at_speed(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED):
 			player.set_velocity_x(sign(player.get_velocity().x)*PlayerSpeedValues.PLAYER_TURBO_SLIDE_SPEED)
 			player.stats.use_rush_energy(2)
 			__slide_sound.play()

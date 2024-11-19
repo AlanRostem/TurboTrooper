@@ -109,8 +109,6 @@ PlayerSpeedValues="*res://scenes/game/world/entity/entities/player/PlayerSpeedVa
 
 window/size/width=160
 window/size/height=144
-window/size/test_width=640
-window/size/test_height=576
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
