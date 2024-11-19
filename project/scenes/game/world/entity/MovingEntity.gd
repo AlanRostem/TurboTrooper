@@ -32,6 +32,7 @@ var __snap_vector = Vector2.DOWN
 var __can_accelerate = true
 
 var __is_on_slope = false
+var __is_colliding = false
 
 func _ready():
 	if parent_world == null:
@@ -57,6 +58,9 @@ func is_moving_approximately_at_speed(max_viable_x_speed):
 
 func is_moving_exactly_at_speed(speed: float):
 	return speed - abs(get_velocity().x) < PlayerSpeedValues.STOP_MARGIN
+
+func is_colliding():
+	return __is_colliding
 
 # Change where "down" points to relative to the entity. This affects how the 
 # changing of velocity is done.
@@ -107,7 +111,8 @@ func _physics_process(delta):
 	if !is_internal_collision_func_enabled: return
 	match collision_mode:
 		CollisionModes.MOVE:
-			move_and_collide(__velocity * delta)
+			var coll: KinematicCollision2D = move_and_collide(__velocity * delta)
+			__is_colliding = coll != null and coll.collider_id != 0
 		CollisionModes.SLIDE:
 			__velocity = move_and_slide(__velocity, -__down_vector)
 		CollisionModes.SNAP:
