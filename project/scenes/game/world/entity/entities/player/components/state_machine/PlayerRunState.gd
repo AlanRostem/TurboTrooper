@@ -22,7 +22,7 @@ func movement_update(delta):
 		# Much nicer gameplay now!
 		if player.is_moving_exactly_at_speed(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED):
 			player.set_velocity_x(sign(player.get_velocity().x)*PlayerSpeedValues.PLAYER_TURBO_SLIDE_SPEED)
-			player.stats.use_rush_energy(2)
+#			player.stats.use_rush_energy(2)
 			__slide_sound.play()
 		return
 		

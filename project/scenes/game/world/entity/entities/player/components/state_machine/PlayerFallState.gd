@@ -5,6 +5,7 @@ func movement_update(delta):
 	# TODO: Coyote timer and jump buffer
 	var dir = int(move_right) - int(move_left)
 	if player.is_on_ground():
+		player.stats.refill_rush_energy()
 		if player.is_moving_faster_than(PlayerSpeedValues.PLAYER_TOP_SPRINT_SPEED):
 			player.lose_momentum_on_landing(delta)
 			parent_state_machine.transition_to("PlayerSlideState")

@@ -63,3 +63,7 @@ func _on_DamageTickTimer_timeout():
 
 func _on_HitBox_hit_dealt(hitbox):
 	hitbox.take_hit($ScorchFlame/HitBox, DAMAGE)
+
+
+func _on_ScorchCannonWeapon_dropped():
+	print("he")
