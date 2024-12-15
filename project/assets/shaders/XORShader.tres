@@ -4,10 +4,17 @@
 code = "shader_type canvas_item;
 
 const uint NON_EXISTENT_COLOR = uint(4);
+/* Old colors
 const vec4 palette_color_0 = vec4(155.0/255.0, 188.0/255.0, 15.0/255.0, 1.0);
 const vec4 palette_color_1 = vec4(139.0/255.0, 172.0/255.0, 15.0/255.0, 1.0);
 const vec4 palette_color_2 = vec4(48.0/255.0, 98.0/255.0, 48.0/255.0, 1.0);
 const vec4 palette_color_3 = vec4(15.0/255.0, 56.0/255.0, 15.0/255.0, 1.0);
+*/
+
+const vec4 palette_color_0 = vec4(123.0/255.0, 255.0/255.0, 48.0/255.0, 1.0);
+const vec4 palette_color_1 = vec4(0.0/255.0, 0.0/255.0, 0.0/255.0, 1.0);
+const vec4 palette_color_2 = vec4(0.0/255.0, 131.0/255.0, 0.0/255.0, 1.0);
+const vec4 palette_color_3 = vec4(81.0/255.0, 255.0/255.0, 0.0/255.0, 1.0);
 
 const float COLOR_DIFF_MARGIN = 0.2;
 bool is_same_color(vec4 c0, vec4 c1)
