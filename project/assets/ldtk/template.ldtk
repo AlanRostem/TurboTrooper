@@ -2168,6 +2168,22 @@
 							"fieldInstances": [],
 							"__worldX": 1352,
 							"__worldY": 96
+						},
+						{
+							"__identifier": "LaunchPad",
+							"__grid": [134,12],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#63C74D",
+							"iid": "cf6a2000-9b00-11ef-a253-1d4ff6756e3e",
+							"width": 16,
+							"height": 16,
+							"defUid": 58,
+							"px": [1072,96],
+							"fieldInstances": [],
+							"__worldX": 1072,
+							"__worldY": 96
 						}
 					]
 				},
