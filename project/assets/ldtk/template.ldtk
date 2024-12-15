@@ -1386,9 +1386,9 @@
 			"__bgPos": null,
 			"externalRelPath": null,
 			"fieldInstances": [
-				{ "__identifier": "Biome", "__type": "LocalEnum.Biome", "__value": "Lab", "__tile": null, "defUid": 66, "realEditorValues": [{
+				{ "__identifier": "Biome", "__type": "LocalEnum.Biome", "__value": "Cave", "__tile": null, "defUid": 66, "realEditorValues": [{
 					"id": "V_String",
-					"params": ["Lab"]
+					"params": ["Cave"]
 				}] },
 				{ "__identifier": "BombTime", "__type": "Int", "__value": 30, "__tile": null, "defUid": 67, "realEditorValues": [] }
 			],
