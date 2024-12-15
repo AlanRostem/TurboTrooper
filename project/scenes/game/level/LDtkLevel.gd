@@ -170,7 +170,6 @@ func load_from_file(filepath):
 			if entity_scene == __scene_escape_area:
 				var player = spawn_entity(__scene_player, Vector2(pos_x-16, pos_y))
 				init_player(player, !__has_check_point)
-
 				__escape_area_ref = entity_instance
 				continue
 				
@@ -184,8 +183,6 @@ func load_from_file(filepath):
 			continue
 		printerr("Unrecognized entity type: ", entity_name)
 		
-		
-
 func play_sound(stream, delay=0):
 	var sound
 	if delay > 0:
