@@ -5,6 +5,7 @@ enum MusicThemes {
 	CAVE,
 	LAB,
 	FACTORY,
+	CORE,
 }
 
 onready var game_handler = get_parent()

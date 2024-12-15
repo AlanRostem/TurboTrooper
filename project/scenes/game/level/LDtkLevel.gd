@@ -1,6 +1,14 @@
 extends Node2D
 class_name LDtkLevel
 
+var __parallax_cave = preload("res://assets/sprites/parallax/cave.png")
+var __parallax_lab = preload("res://assets/sprites/parallax/pipes.png")
+var __parallax_factory = preload("res://assets/sprites/parallax/factory.png")
+var __parallax_core = preload("res://assets/sprites/parallax/simulation.png")
+
+var __tileset_res_cave = preload("res://assets/resources/CaveBiomeTileset.tres")
+var __tileset_res_lab = preload("res://assets/resources/LabBiomeTileset.tres")
+
 var __room_scene = preload("res://scenes/game/level/Room.tscn")
 
 var __scene_player = preload("res://scenes/game/world/entity/entities/player/Player.tscn")
@@ -40,6 +48,7 @@ onready var __entity_pool = $EntityPool
 var __hide_entities = false
 
 var __music_theme
+var __theme_enum
 
 onready var __tile_map = $TileMap
 
@@ -115,6 +124,22 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"SpikeTrap": return __scene_spike_trap
 		return null
 
+func set_biome_by_string(biome_str):
+	match biome_str:
+		"Cave": 
+			__theme_enum = Level.MusicThemes.CAVE
+			__tile_map.tile_set = __tileset_res_cave
+			$ParallaxBackground/ParallaxLayer/Sprite.texture = __parallax_cave
+		"Lab": 
+			__theme_enum = Level.MusicThemes.LAB
+			__tile_map.tile_set = __tileset_res_lab
+			$ParallaxBackground/ParallaxLayer/Sprite.texture = __parallax_lab
+		"Factory": 
+			__theme_enum = Level.MusicThemes.FACTORY
+			printerr("missing factory tileset")
+		_: printerr("biome not found: ", biome_str)
+	print("Set biome: ", biome_str)
+
 func load_from_file(filepath):
 	var file = File.new()
 	file.open(filepath, file.READ)
@@ -130,7 +155,7 @@ func load_from_file(filepath):
 	for f in fields:
 		var id = f["__identifier"]
 		match id:
-			"Biome": print("Biome is: ", f["__value"]) # TODO: change parallax, tileset, and music
+			"Biome": set_biome_by_string(f["__value"])
 			"BombTime": bomb_detonation_time = int(f["__value"])
 	
 	var layers = r["layerInstances"]
@@ -219,8 +244,7 @@ func get_tile_size():
 	return 8
 	
 func get_theme_enum():
-	# TODO: Load theme enum from file
-	return Level.MusicThemes.CAVE
+	return __theme_enum
 
 # Instance a node that inherits the base entity scene through a specified scene and
 # specify a relative location for the entity to be present. The node is then added as 

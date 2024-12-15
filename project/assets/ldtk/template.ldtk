@@ -1285,7 +1285,7 @@
 		{ "id": "Cave", "tileRect": null, "color": 12470831 },
 		{ "id": "Lab", "tileRect": null, "color": 14120515 },
 		{ "id": "Factory", "tileRect": null, "color": 15389866 },
-		{ "id": "Matrix", "tileRect": null, "color": 14984818 }
+		{ "id": "Core", "tileRect": null, "color": 14984818 }
 	], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }], "externalEnums": [], "levelFields": [
 		{
 			"identifier": "Biome",
@@ -1386,7 +1386,10 @@
 			"__bgPos": null,
 			"externalRelPath": null,
 			"fieldInstances": [
-				{ "__identifier": "Biome", "__type": "LocalEnum.Biome", "__value": "Cave", "__tile": null, "defUid": 66, "realEditorValues": [] },
+				{ "__identifier": "Biome", "__type": "LocalEnum.Biome", "__value": "Lab", "__tile": null, "defUid": 66, "realEditorValues": [{
+					"id": "V_String",
+					"params": ["Lab"]
+				}] },
 				{ "__identifier": "BombTime", "__type": "Int", "__value": 30, "__tile": null, "defUid": 67, "realEditorValues": [] }
 			],
 			"layerInstances": [

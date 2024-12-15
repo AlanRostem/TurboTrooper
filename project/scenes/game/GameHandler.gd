@@ -138,8 +138,9 @@ func load_current_level_theme(theme_enum):
 	match theme_enum:
 		Level.MusicThemes.CAVE:
 			__current_level_theme.stream = __cave_theme
-		Level.MusicThemes.FACTORY:
+		Level.MusicThemes.LAB:
 			__current_level_theme.stream = __boss_theme
+		_: printerr("music theme not found: ", theme_enum)
 	add_child(__current_level_theme)
 	
 func start_level_win_sequence():
