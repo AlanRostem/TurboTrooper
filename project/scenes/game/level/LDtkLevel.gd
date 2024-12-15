@@ -10,6 +10,7 @@ var __scene_scrap = preload("res://scenes/game/world/entity/entities/item/collec
 var __scene_crate_with_scrap = preload("res://scenes/game/world/structure/destructible/CrateWithScrap.tscn")
 var __scene_crate_with_scorch_cannon = preload("res://scenes/game/world/structure/destructible/ScorchCannonCrate.tscn")
 var __scene_spawner_excavatron = preload("res://scenes/game/world/spawner/ExcavatronSpawner.tscn")
+var __scene_spike_trap = preload("res://scenes/game/world/environment/hazards/SpikeHazard.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
@@ -38,6 +39,8 @@ onready var __entity_pool = $EntityPool
 
 var __hide_entities = false
 
+var __music_theme
+
 onready var __tile_map = $TileMap
 
 onready var __scrap_hover_text = $ScrapHoverText
@@ -45,7 +48,6 @@ onready var __weapon_hover_text = $WeaponHoverText
 
 var __scrap_recently_collected = 0
 var __remove_all_entities = false
-
 
 func _ready():
 	pass
@@ -110,6 +112,7 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"CrateWithScrap": return __scene_crate_with_scrap
 			"CrateWithScrochCannon": return __scene_crate_with_scorch_cannon
 			"ExcavatronSpawner": return __scene_spawner_excavatron
+			"SpikeTrap": return __scene_spike_trap
 		return null
 
 func load_from_file(filepath):
@@ -117,9 +120,19 @@ func load_from_file(filepath):
 	file.open(filepath, file.READ)
 	var json_data = file.get_as_text()
 	var json_dict = JSON.parse(json_data).result
+	
 	var rooms = json_dict["levels"]
 	# Using first room since rooms are not a thing anymore
-	var r = rooms[0]
+	var r = rooms[0] # TODO: Consider this as each individual level
+	var fields = r["fieldInstances"]
+	
+	var bomb_detonation_time = 1000 # Setting a high value to detect error
+	for f in fields:
+		var id = f["__identifier"]
+		match id:
+			"Biome": print("Biome is: ", f["__value"]) # TODO: change parallax, tileset, and music
+			"BombTime": bomb_detonation_time = int(f["__value"])
+	
 	var layers = r["layerInstances"]
 	var data_entity_pool
 	var data_custom_tilemap
@@ -149,8 +162,10 @@ func load_from_file(filepath):
 		var entity_name = entity_instances[j]["__identifier"]
 		var entity_scene = get_entity_scene_by_ldtk_identifier(entity_name)
 		if entity_scene != null:
-			var pos_x =  entity_instances[j]["px"][0]
-			var pos_y =  entity_instances[j]["px"][1]
+			var w = entity_instances[j]["width"]
+			var h = entity_instances[j]["height"]
+			var pos_x =  entity_instances[j]["px"][0] + w/2
+			var pos_y =  entity_instances[j]["px"][1] + h/2
 			var entity_instance = spawn_entity(entity_scene, Vector2(pos_x, pos_y))
 			if entity_scene == __scene_escape_area:
 				var player = spawn_entity(__scene_player, Vector2(pos_x-8, pos_y+8))
@@ -162,6 +177,8 @@ func load_from_file(filepath):
 			match entity_scene:
 				__scene_bomb_switch:
 					__bomb_switch_ref = entity_instance
+					# The var "bomb_detonation_time" is waaaaay up in this code
+					__bomb_switch_ref.set_detonation_time(bomb_detonation_time)
 				#__scene_boss_area
 				
 			continue

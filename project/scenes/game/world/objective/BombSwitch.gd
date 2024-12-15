@@ -36,6 +36,9 @@ func _physics_process(delta):
 		if !get_parent_level().has_check_point():
 			get_parent_level().save_check_point()
 		
+func set_detonation_time(time):
+	__detonation_time = time
+		
 func get_time_score():
 	return __time_score
 		
