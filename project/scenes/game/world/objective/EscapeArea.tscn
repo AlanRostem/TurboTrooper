@@ -54,11 +54,9 @@ shape = SubResource( 2 )
 disabled = true
 
 [node name="ArrowSprite" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 8, 16 )
+position = Vector2( 8, 0 )
 rotation = 1.5708
 frames = SubResource( 3 )
-frame = 0
 
 [node name="OffMapSafetyBlocks" type="StaticBody2D" parent="."]
 position = Vector2( -8, -16 )

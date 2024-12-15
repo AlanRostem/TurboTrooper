@@ -168,7 +168,7 @@ func load_from_file(filepath):
 			var pos_y =  entity_instances[j]["px"][1] + h/2
 			var entity_instance = spawn_entity(entity_scene, Vector2(pos_x, pos_y))
 			if entity_scene == __scene_escape_area:
-				var player = spawn_entity(__scene_player, Vector2(pos_x-8, pos_y+8))
+				var player = spawn_entity(__scene_player, Vector2(pos_x-16, pos_y))
 				init_player(player, !__has_check_point)
 
 				__escape_area_ref = entity_instance
