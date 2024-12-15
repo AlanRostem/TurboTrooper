@@ -7,12 +7,12 @@
 [ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/components/EnemyState.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/components/EnemyRamIntoAirState.gd" type="Script" id=7]
-[ext_resource path="res://assets/resources/shaders/InvertShaderMaterial.tres" type="Material" id=8]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/components/EnemyMeleeKnockBackState.gd" type="Script" id=9]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/EnemyFSM.gd" type="Script" id=10]
 [ext_resource path="res://scenes/game/world/entity/components/state_machine/State.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/game/world/entity/entities/enemy/components/EnemyIdleState.gd" type="Script" id=12]
 [ext_resource path="res://assets/audio/sfx/enemies/enemy_death.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/resources/shaders/WhiteningShader.tres" type="Material" id=14]
 
 [node name="Enemy" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -58,7 +58,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="EnemySprite" type="AnimatedSprite" parent="." index="6"]
-material = ExtResource( 8 )
+material = ExtResource( 14 )
 use_parent_material = true
 
 [node name="DamageTakenTimer" type="Timer" parent="." index="7"]
