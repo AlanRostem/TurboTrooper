@@ -19,6 +19,10 @@ var __scene_crate_with_scrap = preload("res://scenes/game/world/structure/destru
 var __scene_crate_with_scorch_cannon = preload("res://scenes/game/world/structure/destructible/ScorchCannonCrate.tscn")
 var __scene_spawner_excavatron = preload("res://scenes/game/world/spawner/ExcavatronSpawner.tscn")
 var __scene_spike_trap = preload("res://scenes/game/world/environment/hazards/SpikeHazard.tscn")
+var __scene_arachnoid = preload("res://scenes/game/world/entity/entities/enemy/boom_crawler/BoomCrawler.tscn")
+var __scene_cadavetron = preload("res://scenes/game/world/entity/entities/enemy/rodder/Rodder.tscn")
+var __scene_rocket_charger = preload("res://scenes/game/world/entity/entities/enemy/rush_rogue/RushRogue.tscn")
+var __scene_terra_brute = preload("res://scenes/game/world/entity/entities/enemy/brute/Brute.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
@@ -122,6 +126,10 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"CrateWithScrochCannon": return __scene_crate_with_scorch_cannon
 			"ExcavatronSpawner": return __scene_spawner_excavatron
 			"SpikeTrap": return __scene_spike_trap
+			"Arachnoid": return __scene_arachnoid
+			"Cadavetron": return __scene_cadavetron
+			"RocketCharger": return __scene_rocket_charger
+			"TerraBrute": return __scene_terra_brute
 		return null
 
 func set_biome_by_string(biome_str):
