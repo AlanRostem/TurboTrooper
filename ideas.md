@@ -11,14 +11,54 @@
         - very quick enemy
     - Phazers
         - enemy that "glitches" itself out of reality and reappears near the player
-    - 
-    
-- Idea: make the existing enemies part of the cave biome. Each biome has five total thematic enemies
+- Core biome objects
+    - Null Portal
+        - "Portal" that is a bugged part of the simulation
+        - Entering it sends the player to the Null Partition (developer mode of the Core)
+        - this makes him invulnerable for a few seconds and stops time for all enemies
+
+- Idea: thematically introduce new enemies and objects based on the biome
+
+- Enemies introduced in Cave
     - Arachnoid
     - Cadavetron
     - Terra Brute
     - Rocket Charger
     - Excavatron
 
-- Lab Enemies
+- Cave Environmental Objects
+    - TNT Barrel
+        - Shoot to explode, launching the player away
+        - Can also destroy certain debris
+    - Rocky Debris
+        - Destructible debris with certain weapons or Turbo Slide
+
+-  Enemies introduced in Lab
+    - Crusty
+        - Has two claws that alternate between being on his sides or both on top of hit head, each protecting him from damage
+        - if the player is running or sliding into the claws, he will get caught, be immobilized, thrown away and take damage
+    - Cannon Turret
+        - Fires bombs in a fixed direction
+        - Can be placed in various directions
+
+- Lab Environmental Objects
+    - Launch Pad
+        - Launches the player upwards and keeps horizontal momentum
+    - Spike Trap
+        - Spike hazard that deals damage to the player
+        - It can be disabled using the default weapon
+
+- Enemies introduced in Factory
+    - Razor Flyer
+        - Slicer enemy with blades that spin around it. 
+        - it flies up and down 
+    - Factory Walker
+        - Walker enemy with long legs. It can only be attacked by hitting its body, meaning that the legs don't take damage and player can walk under them
+        - its critical hitbox is the bottom of his body
+        - it shoots a laser beam that charges up and instantly hits the player
+        - if the player is under the walker for too long, it will slam down
+
+- Factory Environmental Objects
+    - Conveyor Belt
+        - Moves the player and boost his speed in a certain direction
     - 
