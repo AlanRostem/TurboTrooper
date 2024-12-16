@@ -25,7 +25,7 @@ position = Vector2( 0, 1 )
 shape = SubResource( 2 )
 
 [node name="HealthComponent" parent="." index="1"]
-max_health = 16
+max_health = 13
 
 [node name="InHitBox" parent="." index="2"]
 position = Vector2( 0, 1 )

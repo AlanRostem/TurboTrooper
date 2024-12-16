@@ -56,6 +56,7 @@ var __music_theme
 var __theme_enum
 
 onready var __tile_map = $TileMap
+onready var __oneway_tile_map = $OnewayTilemap
 
 onready var __scrap_hover_text = $ScrapHoverText
 onready var __weapon_hover_text = $WeaponHoverText
@@ -77,12 +78,9 @@ func init_level_states():
 	elif __boss_area_ref != null:
 		pass
 	
-func init_player(player, should_transition=false):
+func init_player(player, camera_bounds, should_transition=false):
 	assign_player_node(player)
-	var rect = __tile_map.get_used_rect()
-	rect.position *= __tile_map.get_tile_size()
-	rect.size *= __tile_map.get_tile_size()
-	player.set_camera_bounds(rect)
+	player.set_camera_bounds(camera_bounds)
 	if !should_transition:
 		player.state_machine.transition_to("PlayerIdleState")
 		return
@@ -171,11 +169,13 @@ func load_from_file(filepath, index):
 	var layers = r["layerInstances"]
 	var data_entity_pool
 	var data_custom_tilemap
+	var data_oneway_tilemap
 	# Find correct layers and set them to vars
 	for j in range(len(layers)):
 		match layers[j]["__identifier"]:
 			"EntityPool": data_entity_pool = layers[j]
-			"CustomTileMap": data_custom_tilemap  = layers[j]
+			"TerrainTileMap": data_custom_tilemap  = layers[j]
+			"OnewayTileMap": data_oneway_tilemap  = layers[j]
 			_: print("Unrecognized layer type:", layers[j]["__identifier"])
 	
 	var room_x = r["worldX"]
@@ -190,6 +190,16 @@ func load_from_file(filepath, index):
 			var tile_value = int_grid[y * map_width + x]-1
 			__tile_map.set_cellv(Vector2(x, y), tile_value)
 			__tile_map.update_bitmask_area(Vector2(x, y))
+			
+	int_grid = data_oneway_tilemap["intGridCsv"]
+	map_width = data_oneway_tilemap["__cWid"]
+	map_height = data_oneway_tilemap["__cHei"]
+	for y in range(map_height):
+		for x in range(map_width):
+			 # Needs to be subtracted by 1 due to how Godot reads tile values
+			var tile_value = int_grid[y * map_width + x]-1
+			__oneway_tile_map.set_cellv(Vector2(x, y), tile_value)
+			__oneway_tile_map.update_bitmask_area(Vector2(x, y))
 
 	## Add entities to pool
 	var entity_instances = data_entity_pool["entityInstances"]
@@ -204,7 +214,8 @@ func load_from_file(filepath, index):
 			var entity_instance = spawn_entity(entity_scene, Vector2(pos_x, pos_y))
 			if entity_scene == __scene_escape_area:
 				var player = spawn_entity(__scene_player, Vector2(pos_x-16, pos_y))
-				init_player(player, !__has_check_point)
+				var camera_bounds = Rect2(Vector2.ZERO, Vector2(map_width, map_height)*8)
+				init_player(player, camera_bounds, !__has_check_point)
 				__escape_area_ref = entity_instance
 				continue
 				
