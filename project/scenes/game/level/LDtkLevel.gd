@@ -150,15 +150,15 @@ func set_biome_by_string(biome_str):
 		_: printerr("biome not found: ", biome_str)
 	print("Set biome: ", biome_str)
 
-func load_from_file(filepath):
+func load_from_file(filepath, index):
 	var file = File.new()
 	file.open(filepath, file.READ)
 	var json_data = file.get_as_text()
 	var json_dict = JSON.parse(json_data).result
 	
 	var rooms = json_dict["levels"]
-	# Using first room since rooms are not a thing anymore
-	var r = rooms[0] # TODO: Consider this as each individual level
+	# Room is the same as level
+	var r = rooms[index]
 	var fields = r["fieldInstances"]
 	
 	var bomb_detonation_time = 1000 # Setting a high value to detect error

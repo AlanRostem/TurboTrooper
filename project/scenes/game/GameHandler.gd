@@ -75,15 +75,14 @@ func set_current_to_next_level():
 # scene.
 func set_current_level(index):
 	__level_index = index
-	# TODO: organize files for levels
-	var level_path = "res://assets/ldtk/template.ldtk"
 	
+	var level_path = "res://assets/ldtk/template.ldtk"
 	if __current_level != null:
 		__current_level.queue_free()
 	__current_level = __ldtk_level_scene.instance()
 	add_child(__current_level)
 	__current_level.feed_init_data(__has_check_point)
-	__current_level.load_from_file(level_path)
+	__current_level.load_from_file(level_path, __level_index)
 	
 	# func-call level init here after load and instantiate
 	__current_level.init_event_recievers(__hud)
