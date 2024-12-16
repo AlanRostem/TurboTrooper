@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/game/level/LDtkLevel.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/parallax/cave.png" type="Texture" id=2]
@@ -10,9 +10,6 @@
 [sub_resource type="DynamicFont" id=2]
 size = 8
 font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
 
 [node name="LDtkLevel" type="Node2D"]
 script = ExtResource( 1 )
@@ -42,9 +39,7 @@ __meta__ = {
 [node name="ScrapHoverText" parent="." instance=ExtResource( 5 )]
 visible = false
 custom_fonts/font = SubResource( 2 )
-custom_styles/normal = SubResource( 1 )
 
 [node name="WeaponHoverText" parent="." instance=ExtResource( 5 )]
 visible = false
 custom_fonts/font = SubResource( 2 )
-custom_styles/normal = SubResource( 1 )

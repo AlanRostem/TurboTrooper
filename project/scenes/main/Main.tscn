@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/game/GameHandler.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/main_menu/MainMenu.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/main/Main.gd" type="Script" id=6]
 [ext_resource path="res://assets/audio/music/win_theme.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/audio/music/boss_and_escape_theme.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/ui/world/hover_text/StyleWorldHoverText.tres" type="StyleBox" id=9]
 
 [node name="Main" type="Node2D"]
 material = ExtResource( 4 )
@@ -23,6 +24,7 @@ margin_left = 38.0
 margin_top = 80.0
 margin_right = 122.0
 margin_bottom = 90.0
+custom_styles/normal = ExtResource( 9 )
 
 [node name="GameHandler" type="Node2D" parent="."]
 pause_mode = 2
@@ -47,7 +49,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -16.0
-color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+color = Color( 0.317647, 1, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

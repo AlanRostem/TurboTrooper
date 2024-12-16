@@ -1,13 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/resources/font/SmallFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/ui/world/hover_text/StyleWorldHoverText.tres" type="StyleBox" id=2]
 
 [node name="PixelLabel" type="Label"]
 margin_right = 40.0
 margin_bottom = 14.0
-custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.0588235, 0.219608, 0.0588235, 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
 text = "Test"
-__meta__ = {
-"_edit_use_anchors_": false
-}

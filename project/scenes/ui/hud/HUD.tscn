@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/sprites/ui/hud/weapon_icon_scorch.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ui/hud/HUD.gd" type="Script" id=3]
@@ -7,9 +7,6 @@
 [ext_resource path="res://scenes/ui/hud/ScrapInfo.gd" type="Script" id=7]
 [ext_resource path="res://assets/sprites/ui/hud/dpad_indicator.png" type="Texture" id=8]
 [ext_resource path="res://scenes/ui/hud/HealthInfo.gd" type="Script" id=9]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.188235, 0.384314, 0.188235, 1 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
@@ -57,7 +54,7 @@ script = ExtResource( 3 )
 margin_top = 128.0
 margin_right = 160.0
 margin_bottom = 144.0
-color = Color( 0.607843, 0.737255, 0.0588235, 1 )
+color = Color( 0.482353, 1, 0.188235, 1 )
 
 [node name="GlobalMessage" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -67,10 +64,11 @@ margin_left = -44.0
 margin_top = 32.0
 margin_right = 44.0
 margin_bottom = 42.0
-custom_colors/font_color = Color( 0.607843, 0.737255, 0.0588235, 1 )
-custom_styles/normal = SubResource( 1 )
 text = "ESCAPE! - 30"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ScrapInfo" type="Control" parent="."]
 anchor_left = 1.0
@@ -90,6 +88,9 @@ margin_top = -1.0
 margin_right = 34.0
 margin_bottom = 9.0
 text = "000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="ScrapInfo"]
 margin_left = 32.0
@@ -139,5 +140,8 @@ margin_top = 7.0
 margin_right = 41.0
 margin_bottom = 17.0
 text = "00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="HealthInfo/FlashTimer" to="HealthInfo" method="_on_FlashTimer_timeout"]
