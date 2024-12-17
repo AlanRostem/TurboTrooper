@@ -41,6 +41,7 @@ var __bomb_switch_ref = null
 var __boss_area_ref = null
 
 var player_node
+onready var __camera = $Camera2D
 
 onready var game_handler = get_parent()
 
@@ -80,7 +81,8 @@ func init_level_states():
 	
 func init_player(player, camera_bounds, should_transition=false):
 	assign_player_node(player)
-	player.set_camera_bounds(camera_bounds)
+	__camera.set_follow(player)
+	__camera.set_bounds(camera_bounds, player.position)
 	if !should_transition:
 		player.state_machine.transition_to("PlayerIdleState")
 		return

@@ -35,8 +35,6 @@ onready var __ram_slide_hit_box_shape = $RamSlideHitBox/CollisionShape2D
 
 onready var __crate_opening_timer = $CrateOpeningTimer
 
-onready var __camera = $Camera2D
-
 func _ready():
 	gravity = PlayerSpeedValues.PLAYER_GRAVITY
 
@@ -48,16 +46,6 @@ func _physics_process(delta):
 	
 func connect_to_bomb_switch(bomb_switch):
 	bomb_switch.connect("detonated", self, "__on_bomb_switch_detonated")
-
-func set_camera_follow(value):
-	__camera.current = value
-
-func set_camera_bounds(bounds: Rect2):
-	__camera.limit_left = bounds.position.x#clamp(bounds.position.x, 0, INF);
-	__camera.limit_top = bounds.position.x#clamp(bounds.position.y, 0, INF);
-	__camera.limit_right = bounds.size.x + bounds.position.x;
-	__camera.limit_bottom = bounds.size.y + bounds.position.y;
-	__camera.set_height_index_by_ypos(position.y)
 
 func become_immortal():
 	__is_immortal = true

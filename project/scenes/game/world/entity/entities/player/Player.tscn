@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/MovingEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/world/entity/components/state_machine/StateMachine.tscn" type="PackedScene" id=2]
@@ -24,7 +24,6 @@
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerLeaveLevelSecretState.gd" type="Script" id=22]
 [ext_resource path="res://scenes/game/world/entity/entities/player/components/state_machine/PlayerFallState.gd" type="Script" id=23]
 [ext_resource path="res://assets/resources/shaders/XORShaderMaterial.tres" type="Material" id=24]
-[ext_resource path="res://scenes/game/world/entity/entities/player/Camera2D.gd" type="Script" id=25]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 3, 6 )
@@ -154,17 +153,7 @@ stream = ExtResource( 16 )
 script = ExtResource( 10 )
 is_grounded_state = false
 
-[node name="Camera2D" type="Camera2D" parent="." index="7"]
-current = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-drag_margin_left = 0.1
-drag_margin_top = 0.4
-drag_margin_right = 0.1
-drag_margin_bottom = 0.4
-script = ExtResource( 25 )
-
-[node name="PlayerStats" type="Node2D" parent="." index="8"]
+[node name="PlayerStats" type="Node2D" parent="." index="7"]
 script = ExtResource( 13 )
 
 [node name="RushEnergyRechargeTimer" type="Timer" parent="PlayerStats" index="0"]
@@ -177,7 +166,7 @@ one_shot = true
 [node name="DamageSound" type="AudioStreamPlayer" parent="PlayerStats" index="2"]
 stream = ExtResource( 21 )
 
-[node name="PlayerSprite" type="AnimatedSprite" parent="." index="9"]
+[node name="PlayerSprite" type="AnimatedSprite" parent="." index="8"]
 material = ExtResource( 14 )
 use_parent_material = true
 position = Vector2( 0, -4 )
@@ -193,7 +182,7 @@ one_shot = true
 [node name="RushEnergyVisualFlashTimer" type="Timer" parent="PlayerSprite" index="1"]
 wait_time = 0.055
 
-[node name="CollectArea" type="Area2D" parent="." index="10"]
+[node name="CollectArea" type="Area2D" parent="." index="9"]
 visible = false
 collision_layer = 8
 collision_mask = 0
@@ -202,12 +191,12 @@ collision_mask = 0
 position = Vector2( 0, -4 )
 shape = SubResource( 2 )
 
-[node name="MeteorEffectSprite" type="AnimatedSprite" parent="." index="11"]
+[node name="MeteorEffectSprite" type="AnimatedSprite" parent="." index="10"]
 visible = false
 material = ExtResource( 24 )
 position = Vector2( 0, -4 )
 frames = SubResource( 8 )
-frame = 2
+frame = 1
 playing = true
 
 [connection signal="timeout" from="FlashingTimer" to="." method="_on_FlashingTimer_timeout"]

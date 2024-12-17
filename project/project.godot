@@ -105,6 +105,10 @@ output_latency=20
 
 PlayerSpeedValues="*res://scenes/game/world/entity/entities/player/PlayerSpeedValues.gd"
 
+[debug]
+
+gdscript/warnings/unused_variable=false
+
 [display]
 
 window/size/width=160
