@@ -40,6 +40,9 @@ func add_ammo(count):
 	
 func use_ammo():
 	ammo -= 1
+	if ammo <= 10:
+		__player_owner.parent_world.play_sound(preload("res://assets/audio/sfx/weapons/blaster/low_ammo_warning.wav"), 0.2)
+	
 	if ammo <= 0:
 		ammo = 0;
 	emit_signal("ammo_changed", ammo)
