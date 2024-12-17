@@ -17,6 +17,7 @@ var __scene_bomb_switch = preload("res://scenes/game/world/objective/BombSwitch.
 var __scene_scrap = preload("res://scenes/game/world/entity/entities/item/collectible_items/FloatingScrap.tscn")
 var __scene_crate_with_scrap = preload("res://scenes/game/world/structure/destructible/CrateWithScrap.tscn")
 var __scene_crate_with_scorch_cannon = preload("res://scenes/game/world/structure/destructible/ScorchCannonCrate.tscn")
+var __scene_crate_with_blast_cannon = preload("res://scenes/game/world/structure/destructible/CrateWithBlastCannon.tscn")
 var __scene_spawner_excavatron = preload("res://scenes/game/world/spawner/ExcavatronSpawner.tscn")
 var __scene_spike_trap = preload("res://scenes/game/world/environment/hazards/SpikeHazard.tscn")
 var __scene_arachnoid = preload("res://scenes/game/world/entity/entities/enemy/boom_crawler/BoomCrawler.tscn")
@@ -125,6 +126,7 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"Scrap": return __scene_scrap
 			"CrateWithScrap": return __scene_crate_with_scrap
 			"CrateWithScrochCannon": return __scene_crate_with_scorch_cannon
+			"CrateWithBlastCannon": return __scene_crate_with_blast_cannon
 			"ExcavatronSpawner": return __scene_spawner_excavatron
 			"SpikeTrap": return __scene_spike_trap
 			"Arachnoid": return __scene_arachnoid

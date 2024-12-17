@@ -58,7 +58,7 @@ material = ExtResource( 5 )
 position = Vector2( 37, 0 )
 z_index = 1
 frames = SubResource( 6 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="SoundEffect" type="AudioStreamPlayer" parent="." index="3"]

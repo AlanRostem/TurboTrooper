@@ -27,6 +27,8 @@ position = Vector2( 0, -1 )
 
 [node name="CounterHitBox" parent="." index="2"]
 position = Vector2( 0, -1 )
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" parent="CounterHitBox" index="0"]
 shape = SubResource( 1 )
