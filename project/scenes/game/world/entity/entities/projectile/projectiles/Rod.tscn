@@ -11,12 +11,9 @@ damage = 1
 position = Vector2( 0, -1 )
 texture = ExtResource( 2 )
 
-[node name="CounterHitBox" parent="." index="2"]
+[node name="HitBox" parent="." index="2"]
 __team = "enemy_team"
 
-[node name="HitBox" parent="." index="3"]
-__team = "enemy_team"
-
-[node name="VisibilityNotifier2D" parent="." index="4"]
+[node name="VisibilityNotifier2D" parent="." index="3"]
 position = Vector2( 5.96046e-08, -0.5 )
 scale = Vector2( 0.5, 0.25 )

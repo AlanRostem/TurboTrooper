@@ -1,12 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/entities/projectile/Projectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/projectile/blast.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/world/entity/entities/projectile/projectiles/EnergyBlast.gd" type="Script" id=3]
 [ext_resource path="res://assets/audio/sfx/weapons/blaster/blaster_shoot.wav" type="AudioStream" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2, 2 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 0, 0 )
@@ -16,7 +13,6 @@ script = ExtResource( 3 )
 max_velocity = 280.0
 damage_type = "energy"
 damage = 1
-destroy_on_any_hit = true
 __rotation_mode = 1
 __shoot_sound = ExtResource( 4 )
 
@@ -26,21 +22,13 @@ texture = ExtResource( 2 )
 [node name="BodyShape" parent="." index="1"]
 position = Vector2( 0, -1 )
 
-[node name="CounterHitBox" parent="." index="2"]
-position = Vector2( 0, -1 )
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D" parent="CounterHitBox" index="0"]
-shape = SubResource( 1 )
-
-[node name="HitBox" parent="." index="3"]
+[node name="HitBox" parent="." index="2"]
 position = Vector2( 0, -1 )
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 2 )
 
-[node name="VisibilityNotifier2D" parent="." index="4"]
+[node name="VisibilityNotifier2D" parent="." index="3"]
 position = Vector2( 0, -1 )
 scale = Vector2( 0.2, 0.2 )
 

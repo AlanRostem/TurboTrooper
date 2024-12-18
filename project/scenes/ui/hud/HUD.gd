@@ -6,6 +6,8 @@ onready var __health_info = $HealthInfo
 
 onready var __message = $GlobalMessage
 
+onready var __selected_weapon_node = $BeamCannonDisplay
+
 func connect_to_player(player):
 	#player.stats.connect("rush_energy_changed", __rush_energy_bar, "set_rush_energy")
 	player.stats.connect("scrap_changed", __scrap_info, "set_scrap_count")
@@ -15,15 +17,26 @@ func connect_to_player(player):
 	player.stats.connect("weapon_ammo_changed", self, "set_weapon_ammo")
 	
 func set_weapon_ammo(ammo):
-	$WeaponDisplay/AmmoLabel.text = str(ammo).pad_zeros(2)
+	if __selected_weapon_node == $BeamCannonDisplay:
+		return
+	__selected_weapon_node.get_node("AmmoLabel").text = str(ammo).pad_zeros(2)
+	
+func __select_weapon(node):
+	__selected_weapon_node.get_node("AnimatedSprite").animation = "unselected"
+	__selected_weapon_node = node
+	__selected_weapon_node.get_node("AnimatedSprite").animation = "selected"
 	
 func set_weapon_display(weapon):
 	if "Blaster" in weapon.name:
-		$WeaponDisplay.visible = false
+		__select_weapon($BeamCannonDisplay)
 		return
-	$WeaponDisplay.visible = true
+
 	if "ScorchCannonWeapon" in weapon.name:
-		$WeaponDisplay/Sprite.texture = load("res://assets/sprites/ui/hud/weapon_icon_scorch.png")
+		__select_weapon($ScorchCannonDisplay)
+		return
+	if "BlastCannonWeapon" in weapon.name:
+		__select_weapon($BlastCannonDisplay)
+		return
 
 func set_dpad_indicator_visible(flag: bool):
 	$DpadIndicatorSprite.animation = "ready" if flag else "default"
