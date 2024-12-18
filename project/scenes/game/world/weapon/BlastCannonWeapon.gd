@@ -16,10 +16,12 @@ func fire_projectile(scene):
 	var projectile = world.spawn_entity_deferred(scene, player.position)
 	
 	var dir = player.get_looking_vector()
+	var offset = Vector2(position)
 	if dir.y == 1:
 		projectile.damage = CRITICAL_DAMAGE
 		projectile.damage_type = HealthComponent.DAMAGE_TYPE_CRITICAL
-	var offset = Vector2(position)
+	else:
+		offset.y -= 3
 	projectile.call_deferred("init_from_player_weapon", dir, self, offset)
 	if !has_ammo():
 		get_owner_player().stats.destroy_weapon_and_set_to_beam_cannon()

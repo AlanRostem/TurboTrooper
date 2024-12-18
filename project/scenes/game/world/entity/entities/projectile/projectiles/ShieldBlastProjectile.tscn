@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/game/world/entity/entities/projectile/Projectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/projectile/mega-blast.png" type="Texture" id=2]
+[ext_resource path="res://scenes/game/world/entity/entities/projectile/projectiles/ShieldBlastProjectile.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/sfx/weapons/blaster/blast_cannon.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 1 )
 
 [node name="ShieldBlastProjectile" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+max_velocity = 200.0
 damage_type = "melee"
-damage = 2
+damage = 5
+__shoot_sound = ExtResource( 4 )
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( -2, 0 )
