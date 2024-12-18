@@ -16,9 +16,17 @@ func connect_to_player(player):
 	player.stats.connect("weapon_changed", self, "set_weapon_display")
 	player.stats.connect("weapon_ammo_changed", self, "set_weapon_ammo")
 	
-func set_weapon_ammo(ammo):
-	if __selected_weapon_node == $BeamCannonDisplay:
+func set_weapon_ammo(wname, ammo):
+	if __selected_weapon_node == $BeamCannonDisplay or "Blaster" in wname:
 		return
+	
+	if "ScorchCannonWeapon" in wname:
+		$ScorchCannonDisplay.get_node("AmmoLabel").text = str(ammo).pad_zeros(2)
+		return
+	if "BlastCannonWeapon" in wname:
+		$BlastCannonDisplay.get_node("AmmoLabel").text = str(ammo).pad_zeros(2)
+		return
+	
 	__selected_weapon_node.get_node("AmmoLabel").text = str(ammo).pad_zeros(2)
 	
 func __select_weapon(node):
@@ -26,7 +34,6 @@ func __select_weapon(node):
 	__selected_weapon_node = node
 	__selected_weapon_node.get_node("AnimatedSprite").animation = "selected"
 
-	
 func set_weapon_display(weapon):
 	if "Blaster" in weapon.name:
 		__select_weapon($BeamCannonDisplay)

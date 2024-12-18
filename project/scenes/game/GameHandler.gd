@@ -38,13 +38,18 @@ var __has_check_point = false
 var __can_pause = false
 export var __has_completed_game = false
 
+# TODO: create this in a beter way
 var __saved_player_stats = {
-	"score": 0,
+	"scrap": 0,
 	"life": 3,
 	"weapon": -1,
-	"scrap": 0,
+	"score": 0,
 	"checkpoint": null,
-	"ammo": 0,
+	"weapons_and_ammo": {
+		0: 0,
+		1: 0,
+		2: 0,
+	}
 }
 	
 	

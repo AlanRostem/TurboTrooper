@@ -8,6 +8,8 @@ const MAX_SCORE = 99999
 const NO_WEAPON_IDX = -1
 const BLASTER_WEAPON_IDX = 0
 const SCORCH_CANNON_IDX = 1
+const BLAST_CANNON_IDX = 2
+const MAX_WEAPONS = 3
 
 signal scrap_changed(value)
 signal health_changed(value)
@@ -16,7 +18,7 @@ signal died()
 signal rush_energy_changed(value)
 signal rush_energy_consumed()
 signal weapon_changed(weapon)
-signal weapon_ammo_changed(value)
+signal weapon_ammo_changed(wname, value)
 signal turbo_slide_status_changed(flag)
 
 export(PackedScene) var test_weapon_scene
@@ -27,9 +29,13 @@ var __data = {
 	"scrap": 0,
 	"life": MAX_HEALTH,
 	"weapon": -1,
-	"ammo": 0,
 	"score": 0,
 	"checkpoint": null,
+	"weapons_and_ammo": {
+		BLASTER_WEAPON_IDX: 0,
+		SCORCH_CANNON_IDX: 0,
+		BLAST_CANNON_IDX: 0,
+	}
 }
 
 var __rush_energy_count = MAX_RUSH_ENERGY
@@ -103,11 +109,13 @@ func set_from_data(data: Dictionary):
 	set_score(data["score"])
 	set_check_point(data["checkpoint"])
 	match data["weapon"]:
-		NO_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
+		NO_WEAPON_IDX: 
+			instance_and_equip_weapon(__blaster_scene)
+			data["weapon"] = BLASTER_WEAPON_IDX
 		BLASTER_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
 		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
-	print(data["weapon"])
-	__equipped_weapon.add_ammo(data["ammo"])
+	print("weapon:", data["weapon"])
+	__equipped_weapon.add_ammo(data["weapons_and_ammo"][data["weapon"]])
 
 func destroy_weapon_and_set_to_beam_cannon():
 	__equipped_weapon.queue_free()
@@ -235,6 +243,6 @@ func _on_RushEnergyRechargeStartingDelayTimer_timeout():
 func _on_InHitBox_hit_received(hitbox, damage, damage_type):
 	take_one_damage()
 
-func __on_weapon_ammo_changed(ammo):
-	emit_signal("weapon_ammo_changed", ammo)
-	__data["ammo"] = ammo
+func __on_weapon_ammo_changed(wname, ammo):
+	emit_signal("weapon_ammo_changed", wname, ammo)
+	__data["weapons_and_ammo"][__data["weapon"]] = ammo

@@ -4,7 +4,7 @@ signal attacked()
 signal attack_cycle_end()
 signal downwards_attack()
 signal dropped()
-signal ammo_changed(ammo)
+signal ammo_changed(weapon_name, ammo)
 
 export(SpriteFrames) var __player_sprite_frames
 export(Texture) var __collectible_sprite
@@ -39,7 +39,7 @@ func add_ammo(count):
 	if starting_ammo == 0:
 		starting_ammo = count
 	ammo += count
-	emit_signal("ammo_changed", ammo)
+	emit_signal("ammo_changed", name, ammo)
 	
 func use_ammo():
 	ammo -= 1
@@ -48,7 +48,7 @@ func use_ammo():
 	
 	if ammo <= 0:
 		ammo = 0;
-	emit_signal("ammo_changed", ammo)
+	emit_signal("ammo_changed", name, ammo)
 		
 func has_ammo():
 	return ammo > 0
@@ -78,13 +78,14 @@ func equip():
 	__player_owner.parent_world.play_sound(__pick_up_sound)
 	
 func drop():
-#	var collectible = __player_owner.parent_world.spawn_entity_deferred(__collectible_scene, __player_owner.position)
+#	var llectible = __player_owner.parent_world.spawn_entity_deferred(__collectible_scene, __player_owner.position)
 #	collectible.weapon = self
 #	collectible.set_velocity(Vector2(-__player_owner.get_horizontal_looking_dir() * 50, -100))
 #	collectible.call_deferred("set_sprite", __collectible_sprite)
 #	__player_owner.stats.remove_child(self)
 #	collectible.set_recently_dropped(true)
 	emit_signal("dropped")
+	queue_free()
 #	__attack_delay_timer.stop()
 #	__can_attack = true
 #	__is_attacking = false
