@@ -120,6 +120,7 @@ func set_from_data(data: Dictionary):
 		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
 		BLAST_CANNON_IDX: instance_and_equip_weapon(__blast_cannon_scene)
 	print("weapon:", data["weapon"])
+	__data["weapons_and_ammo"]=data["weapons_and_ammo"]
 	__equipped_weapon.add_ammo(data["weapons_and_ammo"][data["weapon"]])
 
 func __instance_weapon_instance_by_idx(idx):
