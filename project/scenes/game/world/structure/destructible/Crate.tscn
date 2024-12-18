@@ -15,7 +15,6 @@ extents = Vector2( 4, 4 )
 [node name="Crate" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 drop_scrap_on_damaged = false
-scrap_drop_count_damaged = 1
 __containment_scene = ExtResource( 4 )
 __break_sound = ExtResource( 5 )
 

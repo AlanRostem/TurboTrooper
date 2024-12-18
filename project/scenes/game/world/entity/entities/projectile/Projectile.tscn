@@ -16,6 +16,7 @@ message = {
 }
 damage = 0
 change_damage_on_deflect = true
+destroy_on_any_hit = true
 __rotation_mode = 0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]

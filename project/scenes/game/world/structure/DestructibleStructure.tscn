@@ -7,6 +7,8 @@
 
 [node name="DestructibleStructure" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+drop_scrap_on_damaged = true
+scrap_drop_count_damaged = 1
 
 [node name="InHitBox" parent="." index="0" instance=ExtResource( 2 )]
 hit_box_action_type = 1

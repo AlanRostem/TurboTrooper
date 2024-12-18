@@ -1,6 +1,8 @@
 extends MovingEntity
 class_name Projectile
 
+signal target_hit(hitbox)
+
 enum RotationMode {
 	WHOLE,
 	SPRITE,
@@ -22,6 +24,7 @@ onready var __sprite = $Sprite
 
 export(int) var damage
 export var change_damage_on_deflect = true
+export var destroy_on_any_hit = true
 
 export(RotationMode) var __rotation_mode = RotationMode.WHOLE
 
@@ -53,7 +56,9 @@ func init_deferred(dir_vec, team, offset = Vector2.ZERO):
 	
 func deal_hit(hit_box):
 	hit_box.take_hit(__hit_box, damage, message, damage_type)
-	destroy()
+	emit_signal("target_hit", hit_box)
+	if destroy_on_any_hit:
+		destroy()
 
 func deflect(new_team, new_damage, dir = Vector2.ZERO):
 	__hit_box.change_team(new_team)

@@ -16,6 +16,7 @@ script = ExtResource( 3 )
 max_velocity = 280.0
 damage_type = "energy"
 damage = 1
+destroy_on_any_hit = true
 __rotation_mode = 1
 __shoot_sound = ExtResource( 4 )
 

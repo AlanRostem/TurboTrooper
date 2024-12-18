@@ -1,4 +1,5 @@
 extends "res://scenes/game/world/structure/Structure.gd"
+class_name DestructibleStructure
 
 var scrap_scene = preload("res://scenes/game/world/entity/entities/item/collectible_items/Scrap.tscn")
 
