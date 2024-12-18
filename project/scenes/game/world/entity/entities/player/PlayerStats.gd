@@ -49,6 +49,7 @@ var __can_turbo_slide = false
 var __sword_scene = preload("res://scenes/game/world/weapon/Sword.tscn")
 var __blaster_scene = preload("res://scenes/game/world/weapon/Blaster.tscn")
 var __scorch_cannon_scene = preload("res://scenes/game/world/weapon/ScorchCannonWeapon.tscn")
+var __blast_cannon_scene = preload("res://scenes/game/world/weapon/BlastCannonWeapon.tscn")
 
 onready var __player = get_parent()
 onready var __rush_energy_recharge_timer = $RushEnergyRechargeTimer
@@ -94,6 +95,9 @@ func _physics_process(delta):
 		__player.set_aim_up(true)
 	elif Input.is_action_just_released("aim_up"):
 		__player.set_aim_up(false)
+		
+	if Input.is_action_just_pressed("select"):
+		cycle_weapon()
 	
 		
 func set_check_point(checkpoint):
@@ -114,8 +118,16 @@ func set_from_data(data: Dictionary):
 			data["weapon"] = BLASTER_WEAPON_IDX
 		BLASTER_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
 		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
+		BLAST_CANNON_IDX: instance_and_equip_weapon(__blast_cannon_scene)
 	print("weapon:", data["weapon"])
 	__equipped_weapon.add_ammo(data["weapons_and_ammo"][data["weapon"]])
+
+func __instance_weapon_instance_by_idx(idx):
+	match idx:
+		NO_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
+		BLASTER_WEAPON_IDX: instance_and_equip_weapon(__blaster_scene)
+		SCORCH_CANNON_IDX: instance_and_equip_weapon(__scorch_cannon_scene)
+		BLAST_CANNON_IDX: instance_and_equip_weapon(__blast_cannon_scene)
 
 func destroy_weapon_and_set_to_beam_cannon():
 	__equipped_weapon.queue_free()
@@ -152,6 +164,7 @@ func equip_weapon(weapon):
 	__data["weapon"] = weapon.weapon_index
 	add_child(__equipped_weapon)
 	__equipped_weapon.equip()
+	__equipped_weapon.add_ammo(__data["weapons_and_ammo"][__data["weapon"]])
 	emit_signal("weapon_changed", __equipped_weapon)
 	__equipped_weapon.connect("ammo_changed", self, "__on_weapon_ammo_changed")
 
@@ -160,6 +173,23 @@ func equip_test_weapon():
 	
 func get_equipped_weapon():
 	return __equipped_weapon
+
+func cycle_weapon():
+	var idx = __data["weapon"]
+	while true:
+		idx = (idx+1) % MAX_WEAPONS
+		var ammo = __data["weapons_and_ammo"][idx]
+		if idx == BLASTER_WEAPON_IDX or ammo != 0:
+			break
+	__instance_weapon_instance_by_idx(idx)
+
+func get_ammo_for(wname):
+	var idx = 0
+	match wname:
+		"ScorchCannonWeapon": idx = SCORCH_CANNON_IDX
+		"BlastCannonWeapon": idx = BLAST_CANNON_IDX
+	assert(idx != 0)
+	return __data["weapons_and_ammo"][idx]
 
 func set_scrap(count):
 	__data["scrap"] = count

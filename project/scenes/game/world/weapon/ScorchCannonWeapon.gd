@@ -66,4 +66,4 @@ func _on_HitBox_hit_dealt(hitbox):
 
 
 func _on_ScorchCannonWeapon_dropped():
-	print("he")
+	print("DEBUG: scorch weapon dropped")

@@ -28,7 +28,8 @@ func _player_collected(player):
 			parent_world.play_sound(__scrap_sound, 0.02) # TODO: Different sound
 			parent_world.show_hover_text("+"+str(starting_ammo)+"ammo", position)
 			return
-	player.stats.instance_and_equip_weapon(__weapon_scene)
+	if player.stats.get_ammo_for(weapon_name) == 0:
+		player.stats.instance_and_equip_weapon(__weapon_scene)
 	player.stats.get_weapon().add_ammo(starting_ammo)
 	parent_world.show_hover_weapon_collected(weapon_name_to_display, position)
 	

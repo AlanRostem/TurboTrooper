@@ -6,6 +6,7 @@
 [node name="BlastCannonWeapon" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 __attack_delay = 0.2
+weapon_index = 2
 
 [connection signal="attacked" from="." to="." method="_on_BlastCannonWeapon_attacked"]
 [connection signal="downwards_attack" from="." to="." method="_on_BlastCannonWeapon_downwards_attack"]
