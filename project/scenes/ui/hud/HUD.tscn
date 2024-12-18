@@ -147,15 +147,15 @@ __meta__ = {
 }
 
 [node name="ScrapCountLabel" parent="ScrapInfo" instance=ExtResource( 4 )]
-margin_left = 10.0
+margin_left = 24.0
 margin_top = -1.0
-margin_right = 34.0
+margin_right = 48.0
 margin_bottom = 9.0
 text = "000"
 
 [node name="TextureRect" type="TextureRect" parent="ScrapInfo"]
-margin_left = 32.0
-margin_right = 48.0
+margin_left = 7.0
+margin_right = 23.0
 margin_bottom = 8.0
 texture = ExtResource( 6 )
 

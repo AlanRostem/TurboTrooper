@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/audio/sfx/weapons/blaster/blast_cannon.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3, 1 )
+extents = Vector2( 3, 3 )
 
 [node name="ShieldBlastProjectile" instance=ExtResource( 1 )]
 script = ExtResource( 3 )

@@ -25,6 +25,7 @@ func __select_weapon(node):
 	__selected_weapon_node.get_node("AnimatedSprite").animation = "unselected"
 	__selected_weapon_node = node
 	__selected_weapon_node.get_node("AnimatedSprite").animation = "selected"
+
 	
 func set_weapon_display(weapon):
 	if "Blaster" in weapon.name:

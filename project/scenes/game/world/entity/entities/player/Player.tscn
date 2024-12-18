@@ -29,7 +29,7 @@
 extents = Vector2( 3, 6 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 11.993, 6 )
+extents = Vector2( 6.49998, 6 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 7 )
@@ -85,7 +85,7 @@ position = Vector2( 0, -4 )
 __team = "player_team"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RamSlideHitBox" index="0"]
-position = Vector2( 7.99304, -2.44001 )
+position = Vector2( 2.50002, -2.44001 )
 shape = SubResource( 1 )
 disabled = true
 
@@ -196,7 +196,7 @@ visible = false
 material = ExtResource( 24 )
 position = Vector2( 0, -4 )
 frames = SubResource( 8 )
-frame = 1
+frame = 3
 playing = true
 
 [connection signal="timeout" from="FlashingTimer" to="." method="_on_FlashingTimer_timeout"]
