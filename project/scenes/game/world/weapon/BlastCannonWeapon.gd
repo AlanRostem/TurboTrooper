@@ -23,6 +23,7 @@ func fire_projectile(scene):
 	else:
 		offset.y -= 3
 	projectile.call_deferred("init_from_player_weapon", dir, self, offset)
+	projectile.message = {"knock_back": dir.x}
 	if !has_ammo():
 		get_owner_player().stats.destroy_weapon_and_set_to_beam_cannon()
 		get_owner_player().is_gravity_enabled = true

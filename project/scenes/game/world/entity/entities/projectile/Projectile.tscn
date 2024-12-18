@@ -12,6 +12,8 @@ script = ExtResource( 2 )
 is_gravity_enabled = false
 max_velocity = 360.0
 damage_type = "standard"
+message = {
+}
 damage = 0
 change_damage_on_deflect = true
 __rotation_mode = 0

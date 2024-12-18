@@ -12,6 +12,7 @@ var __hit_effect = preload("res://scenes/game/world/other/BlastHitEffect.tscn")
 
 export(float) var max_velocity = 200
 export(String) var damage_type = HealthComponent.DAMAGE_TYPE_STANDARD
+export(Dictionary) var message = {}
 
 var owner_weapon
 
@@ -51,7 +52,7 @@ func init_deferred(dir_vec, team, offset = Vector2.ZERO):
 	call_deferred("init", dir_vec, team, offset)
 	
 func deal_hit(hit_box):
-	hit_box.take_hit(__hit_box, damage, {}, damage_type)
+	hit_box.take_hit(__hit_box, damage, message, damage_type)
 	destroy()
 
 func deflect(new_team, new_damage, dir = Vector2.ZERO):
