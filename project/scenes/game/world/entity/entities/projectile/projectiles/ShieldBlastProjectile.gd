@@ -11,5 +11,6 @@ func _on_ShieldBlastProjectile_target_hit(hitbox):
 	if hitbox.get_parent() is DestructibleStructure:
 		return
 	if hitbox.get_parent() is Projectile:
+		hitbox.get_parent().deflect(HitBox.PLAYER_TEAM, 12, parent_world.player_node.get_looking_vector())
 		return
 	destroy()

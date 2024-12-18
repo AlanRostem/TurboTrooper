@@ -10,6 +10,7 @@ export(SpriteFrames) var __player_sprite_frames
 export(Texture) var __collectible_sprite
 export(bool) var is_ammo_infinite = false
 var ammo = 0
+var starting_ammo = 0
 
 export(bool) var use_attacking_delay = true
 
@@ -35,12 +36,14 @@ func set_can_attack(value):
 	__can_attack = value
 
 func add_ammo(count):
+	if starting_ammo == 0:
+		starting_ammo = count
 	ammo += count
 	emit_signal("ammo_changed", ammo)
 	
 func use_ammo():
 	ammo -= 1
-	if ammo <= 10:
+	if ammo <= starting_ammo * 0.3:
 		__player_owner.parent_world.play_sound(preload("res://assets/audio/sfx/weapons/blaster/low_ammo_warning.wav"), 0.2)
 	
 	if ammo <= 0:
