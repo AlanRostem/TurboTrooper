@@ -182,6 +182,8 @@ func cycle_weapon():
 		var ammo = __data["weapons_and_ammo"][idx]
 		if idx == BLASTER_WEAPON_IDX or ammo != 0:
 			break
+	if __data["weapon"] == idx:
+		return
 	__instance_weapon_instance_by_idx(idx)
 
 func get_ammo_for(wname):

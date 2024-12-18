@@ -39,7 +39,7 @@ script = ExtResource( 3 )
 weapon_index = 1
 
 [node name="DamageTickTimer" type="Timer" parent="." index="1"]
-wait_time = 0.072
+wait_time = 0.1
 
 [node name="ScorchFlame" type="Node2D" parent="." index="2"]
 position = Vector2( 0, -4 )
@@ -58,7 +58,7 @@ material = ExtResource( 5 )
 position = Vector2( 37, 0 )
 z_index = 1
 frames = SubResource( 6 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="SoundEffect" type="AudioStreamPlayer" parent="." index="3"]
