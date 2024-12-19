@@ -117,7 +117,7 @@ gdscript/warnings/unused_variable=false
 
 [display]
 
-window/size/width=160
+window/size/width=216
 window/size/height=144
 window/size/test_width=480
 window/size/test_height=432

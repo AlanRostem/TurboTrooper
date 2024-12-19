@@ -14,7 +14,9 @@ var __transition_direction = 0
 var __limit_x
 var __limit_y
 
-const WIDTH = 160
+var __time_on_x_margin = 0
+
+const WIDTH = 216
 const HEIGHT = 144
 const SPEED_UP = 1
 const SPEED_DOWN = 3
@@ -44,8 +46,10 @@ func _physics_process(delta):
 
 	if __follow_node.position.x > (position.x + margin_x): # Right
 		position.x = (__follow_node.position.x - margin_x)
+		__time_on_x_margin += delta
 	elif __follow_node.position.x < (position.x - margin_x): # Left
 		position.x = (__follow_node.position.x + margin_x)
+		__time_on_x_margin += delta
 	
 	if __follow_node.position.y > (position.y + drag_max_y * HEIGHT): # Bottom
 		position.y = (__follow_node.position.y - drag_max_y * HEIGHT)

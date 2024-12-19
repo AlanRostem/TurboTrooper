@@ -145,10 +145,12 @@ func set_biome_by_string(biome_str):
 			__theme_enum = Level.MusicThemes.CAVE
 			__tile_map.tile_set = __tileset_res_cave
 			$ParallaxBackground/ParallaxLayer/Sprite.texture = __parallax_cave
+			$ParallaxBackground/ParallaxLayer/Sprite2.texture = __parallax_cave
 		"Lab": 
 			__theme_enum = Level.MusicThemes.LAB
 			__tile_map.tile_set = __tileset_res_lab
 			$ParallaxBackground/ParallaxLayer/Sprite.texture = __parallax_lab
+			$ParallaxBackground/ParallaxLayer/Sprite2.texture = __parallax_lab
 		"Factory": 
 			__theme_enum = Level.MusicThemes.FACTORY
 			printerr("missing factory tileset")

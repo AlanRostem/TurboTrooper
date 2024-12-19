@@ -116,7 +116,7 @@ script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_top = 128.0
-margin_right = 160.0
+margin_right = 216.0
 margin_bottom = 144.0
 color = Color( 0.482353, 1, 0.188235, 1 )
 
@@ -162,9 +162,9 @@ texture = ExtResource( 6 )
 [node name="HealthInfo" type="Control" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -151.0
+margin_left = -207.0
 margin_top = 133.0
-margin_right = -87.0
+margin_right = -143.0
 margin_bottom = 141.0
 script = ExtResource( 9 )
 __meta__ = {
@@ -177,12 +177,12 @@ __meta__ = {
 wait_time = 0.3
 
 [node name="DpadIndicatorSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 139, 136 )
+position = Vector2( 196, 136 )
 frames = SubResource( 4 )
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 152, 133 )
+position = Vector2( 209, 133 )
 frames = SubResource( 9 )
 
 [node name="BeamCannonDisplay" type="Control" parent="."]
