@@ -1,10 +1,5 @@
 extends Camera2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var __follow_node
 
 var __height_index = 0
@@ -13,8 +8,6 @@ var __transition_direction = 0
 
 var __limit_x
 var __limit_y
-
-var __time_on_x_margin = 0
 
 const WIDTH = 216
 const HEIGHT = 144
@@ -46,10 +39,8 @@ func _physics_process(delta):
 
 	if __follow_node.position.x > (position.x + margin_x): # Right
 		position.x = (__follow_node.position.x - margin_x)
-		__time_on_x_margin += delta
 	elif __follow_node.position.x < (position.x - margin_x): # Left
 		position.x = (__follow_node.position.x + margin_x)
-		__time_on_x_margin += delta
 	
 	if __follow_node.position.y > (position.y + drag_max_y * HEIGHT): # Bottom
 		position.y = (__follow_node.position.y - drag_max_y * HEIGHT)
@@ -57,7 +48,6 @@ func _physics_process(delta):
 		position.y = (__follow_node.position.y + drag_min_y * HEIGHT)
 		
 	position.x = clamp(position.x, WIDTH/2, __limit_x-WIDTH/2)
-#	position.y = clamp(position.y, HEIGHT/2, __limit_y-HEIGHT/2)
 	position.y = clamp(position.y, HEIGHT/2, __limit_y-HEIGHT/2)
 		
 	var live_height_index = int(__follow_node.position.y / HEIGHT)
