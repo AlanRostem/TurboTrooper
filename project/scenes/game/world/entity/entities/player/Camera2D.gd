@@ -39,7 +39,7 @@ func set_bounds(bounds: Rect2, player_pos: Vector2):
 func _physics_process(delta):
 	var drag_x = 0.1
 	var margin_x = drag_x * WIDTH
-	var drag_max_y = 0.2
+	var drag_max_y = 0.0
 	var drag_min_y = 0.2
 
 	if __follow_node.position.x > (position.x + margin_x): # Right
@@ -60,17 +60,23 @@ func _physics_process(delta):
 	var camera_height_index = int(position.y / HEIGHT)
 	var desired = (live_height_index+1) * HEIGHT
 	var speed = SPEED_UP if __transition_direction < 0 else SPEED_DOWN
+
+	var dir = 0
 	if live_height_index != __height_index:
-		var dir = live_height_index - __height_index
-		__update_height_transition(dir, desired)
+		dir = live_height_index - __height_index
 	elif camera_height_index != live_height_index:
-		var dir = live_height_index - camera_height_index
-		__update_height_transition(dir, desired)
+		dir = live_height_index - camera_height_index
+	var done = __update_height_transition(dir, desired)
+	if done:
+		__height_index = live_height_index
 
 func __update_height_transition(dir, desired):
 	var speed = SPEED_UP if dir < 0 else SPEED_DOWN
 	__limit_y += sign(dir) * speed
 	if dir < 0 and __limit_y < desired:
 		__limit_y = desired
+		return true
 	if dir > 0 and __limit_y > desired:
 		__limit_y = desired
+		return true
+	return false
