@@ -25,6 +25,8 @@ var __scene_cadavetron = preload("res://scenes/game/world/entity/entities/enemy/
 var __scene_rocket_charger = preload("res://scenes/game/world/entity/entities/enemy/rush_rogue/RushRogue.tscn")
 var __scene_terra_brute = preload("res://scenes/game/world/entity/entities/enemy/brute/Brute.tscn")
 var __scene_launch_pad = preload("res://scenes/game/world/environment/LaunchPad.tscn")
+var __scene_debris = preload("res://scenes/game/world/structure/destructible/Debris.tscn")
+
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
@@ -134,6 +136,7 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"RocketCharger": return __scene_rocket_charger
 			"TerraBrute": return __scene_terra_brute
 			"LaunchPad": return __scene_launch_pad
+			"Debris": return __scene_debris
 		return null
 
 func set_biome_by_string(biome_str):

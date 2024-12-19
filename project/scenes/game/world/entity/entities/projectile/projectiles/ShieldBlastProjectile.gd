@@ -8,7 +8,7 @@ func _ready():
 
 
 func _on_ShieldBlastProjectile_target_hit(hitbox):
-	if hitbox.get_parent() is DestructibleStructure:
+	if "Crate" in hitbox.get_parent().name:
 		return
 	if hitbox.get_parent() is Projectile:
 		hitbox.get_parent().deflect(HitBox.PLAYER_TEAM, 12, parent_world.player_node.get_looking_vector())
