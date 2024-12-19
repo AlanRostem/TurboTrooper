@@ -31,7 +31,7 @@
         - Shoot to explode, launching the player away
         - Can also destroy certain debris
     - Rocky Debris
-        - Destructible debris with certain weapons or Turbo Slide
+        - Destructible debris with Turbo Slide
 
 -  Enemies introduced in Lab
     - Crusty
@@ -60,5 +60,16 @@
 
 - Factory Environmental Objects
     - Conveyor Belt
-        - Moves the player and boost his speed in a certain direction
+        - Moves the player and boosts his speed in a certain direction
     - 
+
+- Secrets
+    - Super Scrap
+        - Grants 100 Scrap
+        - Gives one health to player, even if he has full health
+        - Player can get max three addtional health on top of the base three health
+    - Weapon ammo
+    - Shortcut portal
+        - when the bomb switch is active, the player can take this portal to win the level faster than the normal exit
+- Usage for scrap
+    - Buying items in shops (not sure where shops should be)
