@@ -62,7 +62,7 @@ func _on_DamageTickTimer_timeout():
 		get_owner_player().is_gravity_enabled = true
 
 func _on_HitBox_hit_dealt(hitbox):
-	hitbox.take_hit($ScorchFlame/HitBox, DAMAGE)
+	hitbox.take_hit($ScorchFlame/HitBox, DAMAGE, {}, HealthComponent.DAMAGE_TYPE_FLAME)
 
 
 func _on_ScorchCannonWeapon_dropped():

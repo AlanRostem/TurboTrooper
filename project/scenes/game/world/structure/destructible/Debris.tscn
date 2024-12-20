@@ -25,7 +25,7 @@ shape = SubResource( 2 )
 
 [node name="HealthComponent" parent="." index="2"]
 max_health = 1
-__immunities = [ "standard", "melee", "critical", "energy" ]
+__immunities = [ "standard", "melee", "critical", "energy", "flame" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 shape = SubResource( 3 )

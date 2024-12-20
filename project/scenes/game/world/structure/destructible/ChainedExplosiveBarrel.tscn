@@ -15,11 +15,7 @@ script = ExtResource( 3 )
 drop_scrap_on_damaged = false
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
-position = Vector2( 0, -4 )
 texture = ExtResource( 2 )
-
-[node name="InHitBox" parent="." index="1"]
-position = Vector2( 0, -4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InHitBox" index="0"]
 position = Vector2( 0, -1 )
@@ -27,11 +23,8 @@ shape = SubResource( 1 )
 
 [node name="HealthComponent" parent="." index="2"]
 max_health = 5
-__immunities = [ "standard", "energy", "critical", "ram_slide" ]
-
-[node name="ScrapDropLocation" parent="." index="3"]
-position = Vector2( 0, -31 )
+__immunities = [ "standard", "energy", "critical", "ram_slide", "melee" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
-position = Vector2( 0, -2 )
+position = Vector2( 0, 2 )
 shape = SubResource( 2 )
