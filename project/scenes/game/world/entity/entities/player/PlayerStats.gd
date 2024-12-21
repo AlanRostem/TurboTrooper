@@ -1,7 +1,7 @@
 extends Node2D
 class_name PlayerStats
 
-const MAX_HEALTH = 3
+const MAX_HEALTH = 2
 const MAX_RUSH_ENERGY = 3
 const MAX_SCORE = 99999
 
@@ -237,6 +237,9 @@ func set_health(value):
 	emit_signal("health_changed", __data["life"])
 
 func get_health(): return __data["life"]
+
+func get_max_health():
+	return MAX_HEALTH # TODO: make it modifiable
 
 func get_rush_energy():
 	return __rush_energy_count

@@ -114,3 +114,5 @@ custom_fonts/font = SubResource( 2 )
 pause_mode = 2
 current = true
 script = ExtResource( 8 )
+
+[connection signal="display_off" from="ScrapHoverText" to="." method="_on_ScrapHoverText_display_off"]
