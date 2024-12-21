@@ -215,6 +215,7 @@ pause={
 2d_physics/layer_2="hitbox_in"
 2d_physics/layer_3="player_body"
 2d_physics/layer_4="player_collect"
+2d_physics/layer_5="oneway"
 
 [physics]
 

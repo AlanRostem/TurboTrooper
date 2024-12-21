@@ -4,6 +4,7 @@
 
 [node name="MovingEntity" type="KinematicBody2D"]
 collision_layer = 0
+collision_mask = 17
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Base class for moving entities. Its collision mode can be modified between 

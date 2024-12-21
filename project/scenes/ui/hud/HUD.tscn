@@ -67,27 +67,6 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 8, 8, 8 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 8, 8 )
-
-[sub_resource type="SpriteFrames" id=15]
-animations = [ {
-"frames": [ SubResource( 13 ) ],
-"loop": true,
-"name": "selected",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ) ],
-"loop": true,
-"name": "unselected",
-"speed": 5.0
-} ]
-
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
 region = Rect2( 8, 8, 8, 8 )
@@ -104,6 +83,27 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "unselected",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 8, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ SubResource( 13 ) ],
+"loop": true,
+"name": "selected",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ) ],
 "loop": true,
 "name": "unselected",
 "speed": 5.0
@@ -196,29 +196,14 @@ position = Vector2( -16, 68 )
 frames = SubResource( 12 )
 animation = "selected"
 
-[node name="ScorchCannonDisplay" type="Control" parent="."]
+[node name="BlastCannonDisplay" type="Control" parent="."]
 margin_left = 24.0
 margin_top = 136.0
 margin_right = 48.0
 margin_bottom = 144.0
-
-[node name="AmmoLabel" parent="ScorchCannonDisplay" instance=ExtResource( 4 )]
-margin_left = 9.0
-margin_top = -1.0
-margin_right = 25.0
-margin_bottom = 9.0
-text = "00"
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="ScorchCannonDisplay"]
-position = Vector2( 4, 4 )
-frames = SubResource( 15 )
-animation = "unselected"
-
-[node name="BlastCannonDisplay" type="Control" parent="."]
-margin_left = 56.0
-margin_top = 136.0
-margin_right = 80.0
-margin_bottom = 144.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="AmmoLabel" parent="BlastCannonDisplay" instance=ExtResource( 4 )]
 margin_left = 9.0
@@ -230,6 +215,27 @@ text = "00"
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BlastCannonDisplay"]
 position = Vector2( 4, 4 )
 frames = SubResource( 18 )
+animation = "unselected"
+
+[node name="ScorchCannonDisplay" type="Control" parent="."]
+margin_left = 56.0
+margin_top = 136.0
+margin_right = 80.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AmmoLabel" parent="ScorchCannonDisplay" instance=ExtResource( 4 )]
+margin_left = 9.0
+margin_top = -1.0
+margin_right = 25.0
+margin_bottom = 9.0
+text = "00"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ScorchCannonDisplay"]
+position = Vector2( 4, 4 )
+frames = SubResource( 15 )
 animation = "unselected"
 
 [connection signal="timeout" from="HealthInfo/FlashTimer" to="HealthInfo" method="_on_FlashTimer_timeout"]
