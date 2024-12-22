@@ -28,6 +28,7 @@ var __scene_launch_pad = preload("res://scenes/game/world/environment/LaunchPad.
 var __scene_debris = preload("res://scenes/game/world/structure/destructible/Debris.tscn")
 var __scene_explosive_barrel = preload("res://scenes/game/world/structure/destructible/ChainedExplosiveBarrel.tscn")
 var __super_scrap_scene = preload("res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn")
+var __scene_sentinel_boss = preload("res://scenes/game/world/objective/Boss.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
@@ -98,6 +99,9 @@ func init_event_recievers(hud):
 func put_player_on_check_point(vec):
 	player_node.position = vec
 
+func get_camera():
+	return __camera
+
 func set_player_stats(stats: Dictionary):
 	player_node.stats.set_from_data(stats)
 	if game_handler.has_check_point():
@@ -140,6 +144,7 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"Debris": return __scene_debris
 			"ExplosiveBarrel": return __scene_explosive_barrel
 			"SuperScrap": return __super_scrap_scene
+			"SentinelBoss": return __scene_sentinel_boss
 		return null
 
 func set_biome_by_string(biome_str):

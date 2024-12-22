@@ -22,7 +22,7 @@ onready var __turret_pos_right = $TurretPosRight
 
 onready var __health_component = $HealthComponent
 onready var __blockade_shape = $Blockade/CollisionShape2D
-onready var __camera = $Camera2D
+var __camera
 
 onready var __check_point = $CheckPoint
 onready var __eye_sprite = $EyeSprite
@@ -35,7 +35,11 @@ var __died  = false
 var __explosion_count = 0
 
 func _ready():
-	get_parent_level().call_deferred("set_check_point_location", position + __check_point.position)
+	position.x -= 216/2
+	position.y -= 144/2
+	get_parent_level().set_check_point_position(position + __check_point.position)
+	get_parent_level().set_check_point_enabled(true)
+	__camera = get_parent_level().get_camera()
 
 func _physics_process(delta):
 	if __died:
@@ -75,11 +79,11 @@ func _on_HealthComponent_health_depleted(health_left):
 func _on_RocketRogueSpawnTimer_timeout():
 	if __spawn_left:
 		__spawn_left = false
-		var rogue = get_parent_level().get_game_world().spawn_entity(__rocket_rogue_scene, position + __spawn_pos_left.position)
+		var rogue = get_parent_level().spawn_entity(__rocket_rogue_scene, position + __spawn_pos_left.position)
 		rogue.horizontal_looking_direction = 1
 	else:
 		__spawn_left = true
-		var rogue = get_parent_level().get_game_world().spawn_entity(__rocket_rogue_scene, position + __spawn_pos_right.position)
+		var rogue = get_parent_level().spawn_entity(__rocket_rogue_scene, position + __spawn_pos_right.position)
 		rogue.horizontal_looking_direction = -1
 
 func _on_HitBox_hit_received(hitbox, damage, damage_type):
@@ -92,10 +96,7 @@ func _on_EnterArea_body_entered(player):
 	__blockade_shape.set_deferred("disabled", false)
 	start_attack_sequence()
 	get_parent_level().play_battle_theme()
-	
-	player.set_camera_follow(false)
-	__camera.current = true
-	__camera.position.x = position.x - player.position.x
+	__camera.pan_to_boss_area(self)
 	__move_camera = true
 	if !get_parent_level().game_handler.has_check_point():
 		get_parent_level().save_check_point()
@@ -103,11 +104,11 @@ func _on_EnterArea_body_entered(player):
 func _on_CannonTimer_timeout():
 	if __shoot_left:
 		__shoot_left = false
-		var ball = get_parent_level().get_game_world().spawn_entity(__cannon_ball_scene, position + __turret_pos_left.position)
+		var ball = get_parent_level().spawn_entity(__cannon_ball_scene, position + __turret_pos_left.position)
 		ball.set_velocity(Vector2(CANNON_BALL_SPEED, CANNON_BALL_SPEED))
 	else:
 		__shoot_left = true
-		var ball = get_parent_level().get_game_world().spawn_entity(__cannon_ball_scene, position + __turret_pos_right.position)
+		var ball = get_parent_level().spawn_entity(__cannon_ball_scene, position + __turret_pos_right.position)
 		ball.set_velocity(Vector2(-CANNON_BALL_SPEED, CANNON_BALL_SPEED))
 
 
@@ -119,7 +120,7 @@ func _on_ExplosionEffectTimer_timeout():
 	var pos = position + __eye_sprite.position
 	randomize()
 	pos += Vector2(rand_range(-10, 10), rand_range(-10, 10))
-	get_parent_level().get_game_world().show_effect_deferred(__explosion_effect, pos)
+	get_parent_level().show_effect_deferred(__explosion_effect, pos)
 	__explosion_count += 1
 	if __explosion_count == 10:
 		__explosion_effect_timer.stop()

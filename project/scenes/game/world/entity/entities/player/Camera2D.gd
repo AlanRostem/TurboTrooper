@@ -31,6 +31,9 @@ func set_bounds(bounds: Rect2, player_pos: Vector2):
 	position = player_pos
 	set_height_index_by_ypos(player_pos.y)
 	
+func pan_to_boss_area(boss_area):
+	pass
+	
 func _physics_process(delta):
 	var drag_x = 0.1
 	var margin_x = drag_x * WIDTH

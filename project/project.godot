@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/game/world/entity/entities/enemy/Enemy.gd"
 }, {
-"base": "",
-"class": "FLMusicLib",
-"language": "NativeScript",
-"path": "res://FLMusicLib/FLMusic.gdns"
-}, {
 "base": "Node2D",
 "class": "GameWorld",
 "language": "GDScript",
@@ -82,7 +77,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "DestructibleStructure": "",
 "Enemy": "",
-"FLMusicLib": "",
 "GameWorld": "",
 "GeometryNode": "",
 "HealthComponent": "",
