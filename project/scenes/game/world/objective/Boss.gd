@@ -36,7 +36,7 @@ var __explosion_count = 0
 
 func _ready():
 	position.x -= 216/2
-	position.y -= 144/2
+	position.y -= (144 - 5*8)/2
 	get_parent_level().set_check_point_position(position + __check_point.position)
 	get_parent_level().set_check_point_enabled(true)
 	__camera = get_parent_level().get_camera()
@@ -102,14 +102,17 @@ func _on_EnterArea_body_entered(player):
 		get_parent_level().save_check_point()
 
 func _on_CannonTimer_timeout():
+	var player_pos = get_parent_level().player_node.position
+	var turret_pos = Vector2.ZERO
 	if __shoot_left:
 		__shoot_left = false
-		var ball = get_parent_level().spawn_entity(__cannon_ball_scene, position + __turret_pos_left.position)
-		ball.set_velocity(Vector2(CANNON_BALL_SPEED, CANNON_BALL_SPEED))
+		turret_pos = __turret_pos_left
 	else:
 		__shoot_left = true
-		var ball = get_parent_level().spawn_entity(__cannon_ball_scene, position + __turret_pos_right.position)
-		ball.set_velocity(Vector2(-CANNON_BALL_SPEED, CANNON_BALL_SPEED))
+		turret_pos = __turret_pos_right
+	var angle = (player_pos - (position + turret_pos.position)).angle()
+	var ball = get_parent_level().spawn_entity(__cannon_ball_scene, position + turret_pos.position)
+	ball.set_velocity(Vector2(cos(angle) * CANNON_BALL_SPEED, sin(angle) * CANNON_BALL_SPEED))
 
 
 func _on_DamageFlashTimer_timeout():

@@ -69,11 +69,11 @@ script = ExtResource( 3 )
 max_health = 60
 
 [node name="Sprite" type="Sprite" parent="." index="3"]
-position = Vector2( 108, 80 )
+position = Vector2( 108, 64 )
 texture = ExtResource( 2 )
 
 [node name="HitBox" parent="." index="4" instance=ExtResource( 5 )]
-position = Vector2( 112, 24 )
+position = Vector2( 112, 8 )
 hit_box_action_type = 1
 __team = "enemy_team"
 
@@ -81,16 +81,16 @@ __team = "enemy_team"
 shape = SubResource( 1 )
 
 [node name="TurretPosLeft" type="Position2D" parent="." index="5"]
-position = Vector2( 18, 40 )
+position = Vector2( 18, 24 )
 
 [node name="TurretPosRight" type="Position2D" parent="." index="6"]
-position = Vector2( 200, 40 )
+position = Vector2( 200, 24 )
 
 [node name="SpawnPosLeft" type="Position2D" parent="." index="7"]
-position = Vector2( 10, 124 )
+position = Vector2( 8, 108 )
 
 [node name="SpawnPosRight" type="Position2D" parent="." index="8"]
-position = Vector2( 208, 124 )
+position = Vector2( 208, 108 )
 
 [node name="CannonTimer" type="Timer" parent="." index="9"]
 wait_time = 2.0
@@ -99,11 +99,11 @@ wait_time = 2.0
 wait_time = 3.0
 
 [node name="ArrowSprite" parent="." index="11" instance=ExtResource( 6 )]
-position = Vector2( -9.99997, 112 )
+position = Vector2( -9.99997, 96 )
 rotation = -1.5708
 
 [node name="Blockade" type="StaticBody2D" parent="." index="12"]
-position = Vector2( -3.99997, 112 )
+position = Vector2( -3.99997, 96 )
 collision_mask = 0
 __meta__ = {
 "_edit_group_": true
@@ -114,7 +114,7 @@ shape = SubResource( 2 )
 disabled = true
 
 [node name="EnterArea" type="Area2D" parent="." index="13"]
-position = Vector2( 8.00003, 112 )
+position = Vector2( 8.00003, 96 )
 collision_layer = 0
 collision_mask = 4
 __meta__ = {
@@ -125,10 +125,10 @@ __meta__ = {
 shape = SubResource( 2 )
 
 [node name="CheckPoint" type="Position2D" parent="." index="14"]
-position = Vector2( -38, 104 )
+position = Vector2( -38, 88 )
 
 [node name="EyeSprite" type="AnimatedSprite" parent="." index="15"]
-position = Vector2( 112, 32 )
+position = Vector2( 112, 16 )
 frames = SubResource( 8 )
 animation = "watch_mid"
 

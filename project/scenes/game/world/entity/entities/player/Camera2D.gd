@@ -9,6 +9,9 @@ var __transition_direction = 0
 var __limit_x
 var __limit_y
 
+var __pan_to_boss = false
+var __pan_offset_x = 0
+
 const WIDTH = 216
 const HEIGHT = 144
 const SPEED_UP = 1
@@ -32,18 +35,23 @@ func set_bounds(bounds: Rect2, player_pos: Vector2):
 	set_height_index_by_ypos(player_pos.y)
 	
 func pan_to_boss_area(boss_area):
-	pass
+	__pan_to_boss = true
+	__pan_offset_x = position.x
 	
 func _physics_process(delta):
 	var drag_x = 0.1
 	var margin_x = drag_x * WIDTH
 	var drag_max_y = 0.0
 	var drag_min_y = 0.2
-
-	if __follow_node.position.x > (position.x + margin_x): # Right
-		position.x = (__follow_node.position.x - margin_x)
-	elif __follow_node.position.x < (position.x - margin_x): # Left
-		position.x = (__follow_node.position.x + margin_x)
+	
+	if !__pan_to_boss:
+		if __follow_node.position.x > (position.x + margin_x): # Right
+			position.x = (__follow_node.position.x - margin_x)
+		elif __follow_node.position.x < (position.x - margin_x): # Left
+			position.x = (__follow_node.position.x + margin_x)
+	else:
+		position.x = __pan_offset_x
+		__pan_offset_x += 2
 	
 	if __follow_node.position.y > (position.y + drag_max_y * HEIGHT): # Bottom
 		position.y = (__follow_node.position.y - drag_max_y * HEIGHT)
