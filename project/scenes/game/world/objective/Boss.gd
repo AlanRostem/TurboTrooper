@@ -37,8 +37,6 @@ var __explosion_count = 0
 func _ready():
 	position.x -= 216/2
 	position.y -= (144 - 5*8)/2
-	get_parent_level().set_check_point_position(position + __check_point.position)
-	get_parent_level().set_check_point_enabled(true)
 	__camera = get_parent_level().get_camera()
 
 func _physics_process(delta):
@@ -93,6 +91,8 @@ func _on_HitBox_hit_received(hitbox, damage, damage_type):
 
 func _on_EnterArea_body_entered(player):
 	if !__blockade_shape.disabled: return
+	get_parent_level().set_check_point_position(position + __check_point.position)
+	get_parent_level().set_check_point_enabled(true)
 	__blockade_shape.set_deferred("disabled", false)
 	start_attack_sequence()
 	get_parent_level().play_battle_theme()
