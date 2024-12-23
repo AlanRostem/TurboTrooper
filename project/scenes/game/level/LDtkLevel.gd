@@ -173,6 +173,9 @@ func load_from_file(filepath, index):
 	
 	var rooms = json_dict["levels"]
 	# Room is the same as level
+	if len(rooms) <= index:
+		return false
+	
 	var r = rooms[index]
 	var fields = r["fieldInstances"]
 	
@@ -245,6 +248,7 @@ func load_from_file(filepath, index):
 				
 			continue
 		printerr("Unrecognized entity type: ", entity_name)
+	return true
 		
 func play_sound(stream, delay=0):
 	var sound

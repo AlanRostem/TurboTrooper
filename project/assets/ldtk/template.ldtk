@@ -1786,6 +1786,34 @@
 							"defUid": 38,
 							"px": [0,88],
 							"fieldInstances": []
+						},
+						{
+							"__identifier": "CrateWithScrochCannon",
+							"__grid": [19,14],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 53, "x": 0, "y": 0, "w": 8, "h": 8 },
+							"__smartColor": "#733E39",
+							"iid": "8fb831b0-9b00-11ef-948b-c30abf006130",
+							"width": 8,
+							"height": 8,
+							"defUid": 47,
+							"px": [152,112],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "CrateWithBlastCannon",
+							"__grid": [22,14],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 53, "x": 0, "y": 0, "w": 8, "h": 8 },
+							"__smartColor": "#3E2731",
+							"iid": "9108cd90-9b00-11ef-948b-8f60b226337e",
+							"width": 8,
+							"height": 8,
+							"defUid": 48,
+							"px": [176,112],
+							"fieldInstances": []
 						}
 					]
 				},

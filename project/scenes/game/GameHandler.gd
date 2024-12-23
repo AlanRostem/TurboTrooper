@@ -66,9 +66,7 @@ func has_check_point():
 	return __has_check_point
 
 func set_current_to_next_level():
-	if !__level_list.is_last_level(__level_index):
-		change_level(__level_index + 1)
-	else:
+	if !change_level(__level_index + 1):
 		__has_completed_game = true
 		emit_signal("game_completed")
 		visible = false
@@ -87,7 +85,8 @@ func set_current_level(index):
 	__current_level = __ldtk_level_scene.instance()
 	add_child(__current_level)
 	__current_level.feed_init_data(__has_check_point)
-	__current_level.load_from_file(level_path, __level_index)
+	if !__current_level.load_from_file(level_path, __level_index):
+		return false
 	
 	# func-call level init here after load and instantiate
 	__current_level.init_event_recievers(__hud)
@@ -101,6 +100,7 @@ func set_current_level(index):
 	__pauseability_timer.start()
 	__can_pause = false
 	get_hud().hide_global_message()
+	return true
 	
 
 func change_level(index):
@@ -112,11 +112,13 @@ func change_level(index):
 	else:
 		__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	__saved_player_stats["checkpoint"] = null
-	set_current_level(index)
+	if !set_current_level(index):
+		return false
 	
 	__level_intro_timer.start()
 	__color_rect.visible =  true
-
+	return true
+	
 func reset_current_level():
 	if __current_level.player_node.stats.get_health() <= PlayerStats.MAX_HEALTH:
 		__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
