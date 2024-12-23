@@ -1,6 +1,13 @@
 extends Node2D
 class_name LDtkLevel
 
+enum Types {
+	BOMB,
+	RUSH,
+	SCAVENGE,
+	BOSS
+}
+
 var __parallax_cave = preload("res://assets/sprites/parallax/cave.png")
 var __parallax_lab = preload("res://assets/sprites/parallax/pipes.png")
 var __parallax_factory = preload("res://assets/sprites/parallax/factory.png")
@@ -60,6 +67,7 @@ var __hide_entities = false
 
 var __music_theme
 var __theme_enum
+var __type_enum 
 
 onready var __tile_map = $TileMap
 onready var __oneway_tile_map = $OnewayTilemap
@@ -165,6 +173,13 @@ func set_biome_by_string(biome_str):
 		_: printerr("biome not found: ", biome_str)
 	print("Set biome: ", biome_str)
 
+func set_type_by_string(type_str):
+	match type_str:
+		"Bomb": __type_enum = Types.BOMB
+		"Rush": __type_enum = Types.RUSH
+		"Scavenge": __type_enum = Types.SCAVENGE
+		"Boss": __type_enum = Types.BOSS
+
 func load_from_file(filepath, index):
 	var file = File.new()
 	file.open(filepath, file.READ)
@@ -184,6 +199,7 @@ func load_from_file(filepath, index):
 		var id = f["__identifier"]
 		match id:
 			"Biome": set_biome_by_string(f["__value"])
+			"LevelType": set_type_by_string(f["__value"])
 			"BombTime": bomb_detonation_time = int(f["__value"])
 	
 	var layers = r["layerInstances"]
@@ -287,6 +303,9 @@ func get_tile_size():
 	
 func get_theme_enum():
 	return __theme_enum
+	
+func get_type_enum():
+	return __type_enum
 
 # Instance a node that inherits the base entity scene through a specified scene and
 # specify a relative location for the entity to be present. The node is then added as 

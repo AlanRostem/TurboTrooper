@@ -23,8 +23,9 @@ onready var __color_rect = $CanvasLayer/ColorRect
 onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
 onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
-onready var __boss_theme = preload("res://assets/audio/music/test.wav")
-#onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
+onready var __rush_theme = preload("res://assets/audio/music/test.wav")
+#onready var __scavenge_theme = preload("res://assets/audio/music/scavenge_theme.wav")
+onready var __boss_theme = preload("res://assets/audio/music/boss_music.wav")
 
 onready var __ldtk_level_scene = preload("res://scenes/game/level/LDtkLevel.tscn")
 
@@ -96,7 +97,7 @@ func set_current_level(index):
 	if has_check_point():
 		__current_level.set_check_point_enabled(true)
 	
-	load_current_level_theme(__current_level.get_theme_enum())
+	load_current_level_theme(__current_level.get_type_enum())
 	__pauseability_timer.start()
 	__can_pause = false
 	get_hud().hide_global_message()
@@ -135,18 +136,20 @@ func start_reset_sequence(died = false):
 		if __current_level.player_node.stats.get_health() <= PlayerStats.MAX_HEALTH:
 			__saved_player_stats["life"] = PlayerStats.MAX_HEALTH
 	
-func load_current_level_theme(theme_enum):
-	if __current_level_theme_enum == theme_enum: return
+func load_current_level_theme(type_enum):
+	if __current_level_theme_enum == type_enum: return
 	if __current_level_theme != null:
 		__current_level_theme.queue_free()
 		__current_level_theme = null
 	__current_level_theme = AudioStreamPlayer.new()
-	match theme_enum:
-		Level.MusicThemes.CAVE:
+	match type_enum:
+		LDtkLevel.Types.BOMB:
 			__current_level_theme.stream = __cave_theme
-		Level.MusicThemes.LAB:
+		LDtkLevel.Types.RUSH:
+			__current_level_theme.stream = __rush_theme
+		LDtkLevel.Types.BOSS:
 			__current_level_theme.stream = __boss_theme
-		_: printerr("music theme not found: ", theme_enum)
+		_: printerr("music theme not found: ", type_enum)
 	add_child(__current_level_theme)
 	
 func start_level_win_sequence():

@@ -93,4 +93,9 @@
     - Collectibles that unlock a door
         - the player must explore the level and collect the max number of "keys"
         - this unlocks a door and completes the level
-    - hmm... need one more...
+    - Rush level
+        - this level is after each bomb level
+        - the bomb explosion from the previous level is causing a reaction in this level
+        - the reaction creates a radiation that moves fast
+        - if the player is caught in this radiation they die
+        - the player must run as fast as possible to escape 
