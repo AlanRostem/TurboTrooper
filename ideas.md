@@ -1,5 +1,7 @@
 # Small ideas
 
+## Biomes - Enemies and environment
+
 - New biome: Core
     - The turbo trooper has breached all factories and is now infiltrating the main CPU controlling all Zdroids
     - Hacking it and disabling it means he has to enter its "Matrix" where the Zdroid AI is being trained
@@ -63,6 +65,8 @@
         - Moves the player and boosts his speed in a certain direction
     - 
 
+## Secrets
+
 - Secrets
     - Super Scrap
         - Grants 100 Scrap
@@ -71,5 +75,22 @@
     - Weapon ammo
     - Shortcut portal
         - when the bomb switch is active, the player can take this portal to win the level faster than the normal exit
-- Usage for scrap
-    - Buying items in shops (not sure where shops should be)
+## Usage ideas for scrap
+
+- Buying items in shops (not sure where shops should be)
+    - Replenish Life
+    - Replenish Ammo
+    - Increase starting life
+
+## Level types
+
+- The idea is to tie the level's theme to the type of level so that I don't need to make too many songs
+- Four level types per biome is enough
+- Current types
+    - Boss
+    - Bomb-escape
+- Ideas for more
+    - Collectibles that unlock a door
+        - the player must explore the level and collect the max number of "keys"
+        - this unlocks a door and completes the level
+    - hmm... need one more...
