@@ -81,6 +81,18 @@
     - Replenish Life
     - Replenish Ammo
     - Increase starting life
+- Upgrades
+    - Maybe this is how you unlock new weapons instead? 
+        - Same weapon can be found again on further levels, but it increases your ammo capacity when found again. 
+    - Turbo Shot: upon turbo sliding and pressing attack shortly after, unleash a more powerful shot unique for each weapon. 
+    - Wall Ride: some levels feature rigid walls. use these to enhance your mobility
+    - Recoil Boost: Firing downwards mid-air stops your fall allowing you to traverse further in the air. 
+
+## Weapons
+
+- Beam Cannon: Infinite ammo. Fires weak shots.
+- Blast Cannon: Limited ammo. Fires large projectiles dealing medium damage and knocks enemies and heavy objects away. Recoil boost launches player higher. 
+- Scorch Cannon: Limited ammo. Fires a stream of fire dealing high damage and can detonate explosives. 
 
 ## Level types
 
