@@ -90,7 +90,7 @@
 
 ## Weapons
 
-- Beam Cannon: Infinite ammo. Fires weak shots.
+- Beam Cannon: Infinite ammo. Fires weak shots that disables contraptions. 
 - Blast Cannon: Limited ammo. Fires large projectiles dealing medium damage and knocks enemies and heavy objects away. Recoil boost launches player higher. 
 - Scorch Cannon: Limited ammo. Fires a stream of fire dealing high damage and can detonate explosives. 
 
