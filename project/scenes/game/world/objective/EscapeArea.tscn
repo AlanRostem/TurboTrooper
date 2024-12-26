@@ -58,6 +58,7 @@ visible = false
 position = Vector2( 8, 0 )
 rotation = 1.5708
 frames = SubResource( 3 )
+frame = 0
 
 [node name="OffMapSafetyBlocks" type="StaticBody2D" parent="."]
 position = Vector2( -8, -16 )

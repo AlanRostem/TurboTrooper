@@ -95,6 +95,12 @@ func init_level_states():
 		__check_point_position = __bomb_switch_ref.position + Vector2(8 * -3, 0)
 	elif __boss_area_ref != null:
 		pass
+	elif __max_code_collectibles > 0:
+		__escape_area_ref.connect("completed", self, "__on_escape_are_completed")
+	
+func __on_escape_are_completed():
+	set_remove_all_entities(true)
+	game_handler.start_level_win_sequence()
 	
 func init_player(player, camera_bounds, should_transition=false):
 	assign_player_node(player)
@@ -346,6 +352,13 @@ func increment_collected_codes():
 	__current_code_collectibles += 1
 	if __current_code_collectibles == __max_code_collectibles:
 		game_handler.get_hud().set_global_message("RETURN!")
+		__escape_area_ref.set_waiting_for_player(true)
+		var timer = Timer.new()
+		add_child(timer)
+		timer.start(4)
+		yield(timer, "timeout")
+		game_handler.get_hud().hide_global_message()
+		timer.queue_free()
 		
 func get_codes():
 	return __current_code_collectibles

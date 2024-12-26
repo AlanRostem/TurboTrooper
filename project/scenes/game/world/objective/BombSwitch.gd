@@ -35,6 +35,12 @@ func _physics_process(delta):
 		emit_signal("activated")
 		if !get_parent_level().has_check_point():
 			get_parent_level().save_check_point()
+			
+func connect_to_escape_area(escape_area):
+	escape_area.connect("completed", self, "__on_escape_area_completed")
+		
+func __on_escape_area_completed():
+	complete()
 		
 func set_detonation_time(time):
 	__detonation_time = time
