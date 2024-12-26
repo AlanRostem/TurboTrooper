@@ -24,7 +24,7 @@ onready var __next_level_transition_timer = $NextLevelTransitionTimer
 
 onready var __cave_theme = preload("res://assets/audio/music/normal_theme.wav")
 onready var __rush_theme = preload("res://assets/audio/music/test.wav")
-#onready var __scavenge_theme = preload("res://assets/audio/music/scavenge_theme.wav")
+onready var __scavenge_theme = preload("res://assets/audio/music/scavenge_theme.wav")
 onready var __boss_theme = preload("res://assets/audio/music/boss_music.wav")
 
 onready var __ldtk_level_scene = preload("res://scenes/game/level/LDtkLevel.tscn")
@@ -147,6 +147,8 @@ func load_current_level_theme(type_enum):
 			__current_level_theme.stream = __cave_theme
 		LDtkLevel.Types.RUSH:
 			__current_level_theme.stream = __rush_theme
+		LDtkLevel.Types.SCAVENGE:
+			__current_level_theme.stream = __scavenge_theme
 		LDtkLevel.Types.BOSS:
 			__current_level_theme.stream = __boss_theme
 		_: printerr("music theme not found: ", type_enum)

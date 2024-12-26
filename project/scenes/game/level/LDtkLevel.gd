@@ -36,6 +36,7 @@ var __scene_debris = preload("res://scenes/game/world/structure/destructible/Deb
 var __scene_explosive_barrel = preload("res://scenes/game/world/structure/destructible/ChainedExplosiveBarrel.tscn")
 var __super_scrap_scene = preload("res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn")
 var __scene_sentinel_boss = preload("res://scenes/game/world/objective/Boss.tscn")
+var __scene_code_collectible = preload("res://scenes/game/world/objective/CodeCollectible.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
@@ -77,6 +78,9 @@ onready var __weapon_hover_text = $WeaponHoverText
 
 var __scrap_recently_collected = 0
 var __remove_all_entities = false
+
+var __current_code_collectibles = 0
+var __max_code_collectibles = 0
 
 func _ready():
 	pass
@@ -153,6 +157,7 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"ExplosiveBarrel": return __scene_explosive_barrel
 			"SuperScrap": return __super_scrap_scene
 			"SentinelBoss": return __scene_sentinel_boss
+			"CodesCollectible": return __scene_code_collectible
 		return null
 
 func set_biome_by_string(biome_str):
@@ -333,6 +338,20 @@ func spawn_entity_deferred(entity_scene, location):
 	entity.parent_world = self
 	__entity_pool.call_deferred("add_child", entity)
 	return entity
+
+func add_code_collectible_objective():
+	__max_code_collectibles += 1
+	
+func increment_collected_codes():
+	__current_code_collectibles += 1
+	if __current_code_collectibles == __max_code_collectibles:
+		pass # TODO: Implement end condition
+		
+func get_codes():
+	return __current_code_collectibles
+
+func get_max_codes():
+	return __max_code_collectibles
 
 func get_entity_pool():
 	return  __entity_pool
