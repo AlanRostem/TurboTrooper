@@ -30,8 +30,11 @@ func _player_collected(player):
 			return
 	if player.stats.get_ammo_for(weapon_name) == 0:
 		player.stats.instance_and_equip_weapon(__weapon_scene)
-	player.stats.get_weapon().add_ammo(starting_ammo)
-	parent_world.show_hover_weapon_collected(weapon_name_to_display, position)
+		player.stats.get_weapon().add_ammo(starting_ammo)
+		parent_world.show_hover_weapon_collected(weapon_name_to_display, position)
+		return
+	player.stats.store_ammo_for(weapon_name, starting_ammo)
+	parent_world.show_hover_text("+"+str(starting_ammo)+"ammo", position)
 	
 func _physics_process(delta):
 	set_velocity_y(lerp(get_velocity().y, 0, 0.1))

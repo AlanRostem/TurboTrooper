@@ -193,6 +193,15 @@ func get_ammo_for(wname):
 		"BlastCannonWeapon": idx = BLAST_CANNON_IDX
 	assert(idx != 0)
 	return __data["weapons_and_ammo"][idx]
+	
+func store_ammo_for(wname, amount):
+	var idx = 0
+	match wname:
+		"ScorchCannonWeapon": idx = SCORCH_CANNON_IDX
+		"BlastCannonWeapon": idx = BLAST_CANNON_IDX
+	assert(idx != 0)
+	__data["weapons_and_ammo"][idx] += amount
+	emit_signal("weapon_ammo_changed", wname, __data["weapons_and_ammo"][idx])
 
 func set_scrap(count):
 	__data["scrap"] = count
