@@ -9,6 +9,8 @@ var __transition_direction = 0
 var __limit_x
 var __limit_y
 
+var __prev_limit_y
+
 var __pan_to_boss = false
 var __pan_offset_x = 0
 
@@ -18,7 +20,7 @@ const SPEED_UP = 1
 const SPEED_DOWN = 3
 
 func set_height_index_by_ypos(ypos):
-	__height_index = int(ypos / HEIGHT)
+	__height_index = int(ypos / HEIGHT)+1
 	print("height idx:", __height_index)
 	
 func set_follow(node):
@@ -66,22 +68,26 @@ func _physics_process(delta):
 	var desired = (live_height_index+1) * HEIGHT
 	var speed = SPEED_UP if __transition_direction < 0 else SPEED_DOWN
 
-	var dir = 0
-	if live_height_index != __height_index:
-		dir = live_height_index - __height_index
-	elif camera_height_index != live_height_index:
-		dir = live_height_index - camera_height_index
-	var done = __update_height_transition(dir, desired)
+	var dir = live_height_index - __height_index # 0
+#	if live_height_index != __height_index: 
+#		# Happens normally
+#		dir = live_height_index - __height_index
+#	elif camera_height_index != live_height_index: 
+#		# Happens while transitioning and changing view
+#		dir = live_height_index - camera_height_index
+	var done = __update_height_transition(desired)
 	if done:
 		__height_index = live_height_index
-
-func __update_height_transition(dir, desired):
+	
+func __update_height_transition(desired):
+	var dir = desired - __limit_y
 	var speed = SPEED_UP if dir < 0 else SPEED_DOWN
-	__limit_y += sign(dir) * speed
-	if dir < 0 and __limit_y < desired:
-		__limit_y = desired
-		return true
-	if dir > 0 and __limit_y > desired:
-		__limit_y = desired
-		return true
-	return false
+	__limit_y = move_toward(__limit_y, desired, speed)
+	return __limit_y == desired
+#	if dir < 0 and __limit_y < desired:
+#		__limit_y = desired
+#		return true
+#	if dir > 0 and __limit_y > desired:
+#		__limit_y = desired
+#		return true
+#	return false

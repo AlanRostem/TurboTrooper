@@ -13,10 +13,10 @@ func _ready():
 	timer.queue_free()
 	
 	set_velocity_x(SPEED * DIR)
-	
+
 func disable():
 	$HitBox/BodyShape.set_deferred("disabled", true)
 
 func _on_HitBox_hit_dealt(hitbox):
 	set_velocity_x(0)
-	hitbox.take_hit($HitBox, 100, {}, HealthComponent.DAMAGE_TYPE_INSTANT_DEATH) # TODO: Unhack this hackyness
+	hitbox.take_hit($HitBox, 1, {}, HealthComponent.DAMAGE_TYPE_INSTANT_DEATH)

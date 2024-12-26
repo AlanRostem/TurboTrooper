@@ -34,5 +34,6 @@ shape = SubResource( 3 )
 [node name="ArrowSprite" parent="." instance=ExtResource( 1 )]
 position = Vector2( -16, 0 )
 rotation = -1.5708
+frame = 0
 
 [connection signal="body_entered" from="." to="." method="_on_RushEscapeArea_body_entered"]
