@@ -345,7 +345,7 @@ func add_code_collectible_objective():
 func increment_collected_codes():
 	__current_code_collectibles += 1
 	if __current_code_collectibles == __max_code_collectibles:
-		pass # TODO: Implement end condition
+		game_handler.get_hud().set_global_message("RETURN!")
 		
 func get_codes():
 	return __current_code_collectibles
