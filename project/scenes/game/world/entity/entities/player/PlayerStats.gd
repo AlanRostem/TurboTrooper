@@ -277,6 +277,9 @@ func _on_RushEnergyRechargeStartingDelayTimer_timeout():
 	recharge_rush_energy()
 
 func _on_InHitBox_hit_received(hitbox, damage, damage_type):
+	if damage_type == HealthComponent.DAMAGE_TYPE_INSTANT_DEATH:
+		__player.die()
+		return
 	take_one_damage()
 
 func __on_weapon_ammo_changed(wname, ammo):

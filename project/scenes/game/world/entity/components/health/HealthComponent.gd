@@ -10,6 +10,7 @@ const DAMAGE_TYPE_FLAME = "flame"
 const DAMAGE_TYPE_CRITICAL = "critical"
 const DAMAGE_TYPE_RAM_SLIDE = "ram_slide"
 const DAMAGE_TYPE_EXPLOSIVE = "explosive"
+const DAMAGE_TYPE_INSTANT_DEATH = "death"
 
 signal damage_taken(damage)
 signal health_depleted(health_left)

@@ -37,6 +37,8 @@ var __scene_explosive_barrel = preload("res://scenes/game/world/structure/destru
 var __super_scrap_scene = preload("res://scenes/game/world/entity/entities/item/collectible_items/SuperScrap.tscn")
 var __scene_sentinel_boss = preload("res://scenes/game/world/objective/Boss.tscn")
 var __scene_code_collectible = preload("res://scenes/game/world/objective/CodeCollectible.tscn")
+var __scene_radiation_area = preload("res://scenes/game/world/entity/entities/hazard/RadiationArea.tscn")
+var __scene_rush_escape_area = preload("res://scenes/game/world/objective/RushEscapeArea.tscn")
 
 var __sound_effect_scene = preload("res://scenes/game/world/sound_pool/TemporarySoundEffect.tscn")
 var __delayed_sound_scene = preload("res://scenes/game/world/sound_pool/DelayedSoundEffect.tscn")
@@ -52,6 +54,8 @@ var __check_point_position = null
 var __escape_area_ref = null
 var __bomb_switch_ref = null
 var __boss_area_ref = null
+var __rush_escape_area = null
+var __rush_radiation_area = null
 
 var player_node
 onready var __camera = $Camera2D
@@ -97,6 +101,14 @@ func init_level_states():
 		pass
 	elif __max_code_collectibles > 0:
 		__escape_area_ref.connect("completed", self, "__on_escape_are_completed")
+	elif __rush_radiation_area != null and __rush_escape_area != null:
+		__rush_escape_area.connect("completed", self, "__on_rush_escape_area_completed")
+
+func __on_rush_escape_area_completed():
+	set_remove_all_entities(true)
+	game_handler.start_level_win_sequence()
+	__rush_radiation_area.set_velocity_x(0)
+	__rush_radiation_area.disable()
 	
 func __on_escape_are_completed():
 	set_remove_all_entities(true)
@@ -164,6 +176,8 @@ func get_entity_scene_by_ldtk_identifier(identifier):
 			"SuperScrap": return __super_scrap_scene
 			"SentinelBoss": return __scene_sentinel_boss
 			"CodesCollectible": return __scene_code_collectible
+			"RadiationArea": return __scene_radiation_area
+			"RushEscapeArea": return __scene_rush_escape_area
 		return null
 
 func set_biome_by_string(biome_str):
@@ -272,6 +286,10 @@ func load_from_file(filepath, index):
 					# The var "bomb_detonation_time" is waaaaay up in this code
 					__bomb_switch_ref.set_detonation_time(bomb_detonation_time)
 				#__scene_boss_area
+				__scene_rush_escape_area:
+					__rush_escape_area = entity_instance
+				__scene_radiation_area:
+					__rush_radiation_area = entity_instance
 				
 			continue
 		printerr("Unrecognized entity type: ", entity_name)

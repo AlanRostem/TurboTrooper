@@ -196,6 +196,7 @@ visible = false
 material = ExtResource( 24 )
 position = Vector2( 0, -4 )
 frames = SubResource( 8 )
+frame = 2
 playing = true
 
 [connection signal="timeout" from="FlashingTimer" to="." method="_on_FlashingTimer_timeout"]
